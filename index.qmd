@@ -1,5 +1,8 @@
 ---
 title: "Home"
+page-layout: full
+title-block-banner: true
+comments: false
 ---
 
 This is a Quarto website.
