@@ -2,7 +2,7 @@
 title: "Research"
 listing:
     contents: research
-    sort: "title desc"
+    sort: "date desc"
     type: grid
     categories: true
     sort-ui: true

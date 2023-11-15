@@ -2,6 +2,7 @@
 title: "Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies"
 image: featured.png
 image-alt: "Legacy survey images overlaid with HI spectra from program GBT/23B-032"
+date: now
 categories:
     - Radio Astronomy
     - GBT

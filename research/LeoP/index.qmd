@@ -2,6 +2,7 @@
 title: "Fundamental Astrophysics at Low Metallicity: Leo P"
 image: featured.png
 image-alt: "Moment Map of Leo P"
+date: now
 categories:
     - Radio Astronomy
     - VLA

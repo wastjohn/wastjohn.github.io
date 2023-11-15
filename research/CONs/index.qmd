@@ -2,6 +2,7 @@
 title: "Exploring Hidden Nuclei in Nearby Galaxies"
 image: featured.png
 image-alt: "False-color ratio image of NGC2273 "
+date: now
 categories:
     - Optical Astronomy
     - JWST

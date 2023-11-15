@@ -2,6 +2,7 @@
 title: "Analysis of the Optical Spectra of H2O Megamaser Emissions"
 image: featured.png
 image-alt: "Maser and Non-Maser Emission Line Diagnostic Diagrams"
+date: 06/01/2022
 categories:
     - Optical Astronomy
     - GBT

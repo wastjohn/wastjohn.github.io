@@ -71,9 +71,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -177,6 +177,12 @@ ul.task-list li input[type="checkbox"] {
          <option value="listing-title" data-direction="asc">
           Title
         </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
          <option value="listing-author" data-direction="asc">
           Author
         </option>
@@ -188,82 +194,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Radio Astronomy,GBT,International Collegues,In progress" data-listing-file-modified-sort="1700019443493" data-listing-reading-time-sort="1">
-<a href="./research/GBT-ConfirmedLocalVolumeDwarfGalaxies/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./research/GBT-ConfirmedLocalVolumeDwarfGalaxies/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Legacy survey images overlaid with HI spectra from program GBT/23B-032">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Radio Astronomy'); return false;">
-Radio Astronomy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('GBT'); return false;">
-GBT
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('International Collegues'); return false;">
-International Collegues
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('In progress'); return false;">
-In progress
-</div>
-</div>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Radio Astronomy,VLA,Python,CASA,In progress" data-listing-file-modified-sort="1700018734483" data-listing-reading-time-sort="1">
-<a href="./research/LeoP/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./research/LeoP/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Moment Map of Leo P">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Fundamental Astrophysics at Low Metallicity: Leo P
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Radio Astronomy'); return false;">
-Radio Astronomy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('VLA'); return false;">
-VLA
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('CASA'); return false;">
-CASA
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('In progress'); return false;">
-In progress
-</div>
-</div>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="Optical Astronomy,JWST,HST,Python,SAOImage DS9,In progress" data-listing-file-modified-sort="1700018746657" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="0" data-categories="Optical Astronomy,JWST,HST,Python,SAOImage DS9,In progress" data-listing-date-sort="1700063359000" data-listing-file-modified-sort="1700063221075" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <a href="./research/CONs/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -296,16 +227,100 @@ In progress
 <div class="card-text listing-description">
 
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 
+</div>
+<div class="listing-date">
+Nov 15, 2023
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="Optical Astronomy,GBT,Python,SQL,Past Project" data-listing-file-modified-sort="1700019220846" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="1" data-categories="Radio Astronomy,GBT,International Collegues,In progress" data-listing-date-sort="1700063359000" data-listing-file-modified-sort="1700063211193" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./research/GBT-ConfirmedLocalVolumeDwarfGalaxies/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./research/GBT-ConfirmedLocalVolumeDwarfGalaxies/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Legacy survey images overlaid with HI spectra from program GBT/23B-032">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Radio Astronomy'); return false;">
+Radio Astronomy
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('GBT'); return false;">
+GBT
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('International Collegues'); return false;">
+International Collegues
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('In progress'); return false;">
+In progress
+</div>
+</div>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Nov 15, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="Radio Astronomy,VLA,Python,CASA,In progress" data-listing-date-sort="1700063359000" data-listing-file-modified-sort="1700063283269" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./research/LeoP/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./research/LeoP/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Moment Map of Leo P">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Fundamental Astrophysics at Low Metallicity: Leo P
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Radio Astronomy'); return false;">
+Radio Astronomy
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VLA'); return false;">
+VLA
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('CASA'); return false;">
+CASA
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('In progress'); return false;">
+In progress
+</div>
+</div>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Nov 15, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="Optical Astronomy,GBT,Python,SQL,Past Project" data-listing-date-sort="1654059600000" data-listing-file-modified-sort="1700063357345" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <a href="./research/H2OMegamasers/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -335,9 +350,12 @@ Past Project
 <div class="card-text listing-description">
 
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 
+</div>
+<div class="listing-date">
+Jun 1, 2022
 </div>
 </div>
 </div>
