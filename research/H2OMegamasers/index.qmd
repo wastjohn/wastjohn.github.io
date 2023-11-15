@@ -1,0 +1,18 @@
+---
+title: "Analysis of the Optical Spectra of H2O Megamaser Emissions"
+image: featured.png
+image-alt: "Maser and Non-Maser Emission Line Diagnostic Diagrams"
+categories:
+    - Optical Astronomy
+    - GBT
+    - Python
+    - SQL
+    - Past Project
+about: 
+    template: solana
+    image: featured.png
+---
+* Analysis of the Optical Spectra of H2O Megamaser Emissions, MRGS (Fall 2020 – Spring 2022) – Researching, designing, and coding an analysis of microwave energy coming from the centers of galaxies. 
+    + Research advisors: Dr. Anca Constantin (JMU Physics and Astronomy Department), Mr. Russell Kohrs (MRGS Environmental Science), Ms. Jennifer Moyers (MRGS English)
+    + Presented at the Shenandoah Valley Regional Science and Engineering Fair, Virginia State Science and Engineering Fair, and International Science and Engineering Fair
+

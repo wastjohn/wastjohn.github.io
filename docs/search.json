@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "To learn more about Quarto websites visit https://quarto.org/docs/websites.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n    subplot_kw = {'projection': 'polar'}\n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()"
   },
   {
     "objectID": "about.html",
@@ -18,6 +18,41 @@
     "href": "research.html",
     "title": "Research",
     "section": "",
-    "text": "Here is some text about my research.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\nNo matching items"
+    "text": "Here is some text about my research.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nMapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies\n\n\n\nRadio Astronomy\n\n\nGBT\n\n\nInternational Collegues\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamental Astrophysics at Low Metallicity: Leo P\n\n\n\nRadio Astronomy\n\n\nVLA\n\n\nPython\n\n\nCASA\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExploring Hidden Nuclei in Nearby Galaxies\n\n\n\nOptical Astronomy\n\n\nJWST\n\n\nHST\n\n\nPython\n\n\nSAOImage DS9\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalysis of the Optical Spectra of H2O Megamaser Emissions\n\n\n\nOptical Astronomy\n\n\nGBT\n\n\nPython\n\n\nSQL\n\n\nPast Project\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "research/LeoP/index.html",
+    "href": "research/LeoP/index.html",
+    "title": "Fundamental Astrophysics at Low Metallicity: Leo P",
+    "section": "",
+    "text": "Fundamental Astrophysics at Low Metallicity: Leo P, Macalester College (Summer 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John Cannon (Macalester Physics and Astronomy Department)\nScheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024"
+  },
+  {
+    "objectID": "research/GBT-ConfirmedLocalVolumeDwarfGalaxies/index.html",
+    "href": "research/GBT-ConfirmedLocalVolumeDwarfGalaxies/index.html",
+    "title": "Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies",
+    "section": "",
+    "text": "Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies, Macalester College (Summer 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John Cannon\nAdditional research members:"
+  },
+  {
+    "objectID": "research/CONs/index.html",
+    "href": "research/CONs/index.html",
+    "title": "Exploring Hidden Nuclei in Nearby Galaxies",
+    "section": "",
+    "text": "Exploring Hidden Nuclei in Nearby Galaxies, Macalester College (Fall 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John (Jay) Gallagher III (Visiting Astronomy Professor, Macalester College & Emeritus Professor of Astronomy, U. Wisconsin-Madison)\nScheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024"
+  },
+  {
+    "objectID": "research/H2OMegamasers/index.html",
+    "href": "research/H2OMegamasers/index.html",
+    "title": "Analysis of the Optical Spectra of H2O Megamaser Emissions",
+    "section": "",
+    "text": "Analysis of the Optical Spectra of H2O Megamaser Emissions, MRGS (Fall 2020 – Spring 2022) – Researching, designing, and coding an analysis of microwave energy coming from the centers of galaxies.\n\nResearch advisors: Dr. Anca Constantin (JMU Physics and Astronomy Department), Mr. Russell Kohrs (MRGS Environmental Science), Ms. Jennifer Moyers (MRGS English)\nPresented at the Shenandoah Valley Regional Science and Engineering Fair, Virginia State Science and Engineering Fair, and International Science and Engineering Fair"
   }
 ]

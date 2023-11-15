@@ -1,0 +1,19 @@
+---
+title: "Exploring Hidden Nuclei in Nearby Galaxies"
+image: featured.png
+image-alt: "False-color ratio image of NGC2273 "
+categories:
+    - Optical Astronomy
+    - JWST
+    - HST
+    - Python
+    - SAOImage DS9
+    - In progress
+about: 
+    template: solana
+    image: featured.png
+---
+* Exploring Hidden Nuclei in Nearby Galaxies, Macalester College (Fall 2023 - Present) – [Description of research]
+    + Research advisor: Dr. John (Jay) Gallagher III (Visiting Astronomy Professor, Macalester College & Emeritus Professor of Astronomy, U. Wisconsin-Madison)
+    + Scheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024
+

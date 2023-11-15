@@ -71,9 +71,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -119,12 +119,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="./research.html" rel="" target="" aria-current="page">
  <span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="CASA">CASA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GBT">GBT <span class="quarto-category-count">(2)</span></div><div class="category" data-category="HST">HST <span class="quarto-category-count">(1)</span></div><div class="category" data-category="In progress">In progress <span class="quarto-category-count">(3)</span></div><div class="category" data-category="International Collegues">International Collegues <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JWST">JWST <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Optical Astronomy">Optical Astronomy <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Past Project">Past Project <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Radio Astronomy">Radio Astronomy <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SAOImage DS9">SAOImage DS9 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SQL">SQL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VLA">VLA <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -169,13 +169,181 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Radio Astronomy,GBT,International Collegues,In progress" data-listing-file-modified-sort="1700019443493" data-listing-reading-time-sort="1">
+<a href="./research/GBT-ConfirmedLocalVolumeDwarfGalaxies/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./research/GBT-ConfirmedLocalVolumeDwarfGalaxies/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Legacy survey images overlaid with HI spectra from program GBT/23B-032">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Radio Astronomy'); return false;">
+Radio Astronomy
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('GBT'); return false;">
+GBT
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('International Collegues'); return false;">
+International Collegues
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('In progress'); return false;">
+In progress
+</div>
+</div>
+<div class="card-text listing-description">
 
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Radio Astronomy,VLA,Python,CASA,In progress" data-listing-file-modified-sort="1700018734483" data-listing-reading-time-sort="1">
+<a href="./research/LeoP/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./research/LeoP/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Moment Map of Leo P">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Fundamental Astrophysics at Low Metallicity: Leo P
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Radio Astronomy'); return false;">
+Radio Astronomy
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VLA'); return false;">
+VLA
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('CASA'); return false;">
+CASA
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('In progress'); return false;">
+In progress
+</div>
+</div>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="Optical Astronomy,JWST,HST,Python,SAOImage DS9,In progress" data-listing-file-modified-sort="1700018746657" data-listing-reading-time-sort="1">
+<a href="./research/CONs/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./research/CONs/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="False-color ratio image of NGC2273 ">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Exploring Hidden Nuclei in Nearby Galaxies
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Optical Astronomy'); return false;">
+Optical Astronomy
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('JWST'); return false;">
+JWST
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('HST'); return false;">
+HST
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('SAOImage DS9'); return false;">
+SAOImage DS9
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('In progress'); return false;">
+In progress
+</div>
+</div>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="Optical Astronomy,GBT,Python,SQL,Past Project" data-listing-file-modified-sort="1700019220846" data-listing-reading-time-sort="1">
+<a href="./research/H2OMegamasers/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./research/H2OMegamasers/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Maser and Non-Maser Emission Line Diagnostic Diagrams">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Analysis of the Optical Spectra of H2O Megamaser Emissions
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Optical Astronomy'); return false;">
+Optical Astronomy
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('GBT'); return false;">
+GBT
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('SQL'); return false;">
+SQL
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Past Project'); return false;">
+Past Project
+</div>
+</div>
+<div class="card-text listing-description">
+
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
