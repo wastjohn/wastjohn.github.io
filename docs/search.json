@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Home",
+    "title": "Will St. John",
     "section": "",
-    "text": "To learn more about Quarto websites visit https://quarto.org/docs/websites.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n    subplot_kw = {'projection': 'polar'}\n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()"
+    "text": "he/him/his\nUndergraduate Physics & Astronomy Student | Macalester College\n\n\nMassanutten Regional Governor’s School  2020-2022 | Mt. Jackson, VA\nEast Rockingham High School  2018-2022 | Elkton, VA"
   },
   {
     "objectID": "about.html",
@@ -54,5 +54,19 @@
     "title": "Analysis of the Optical Spectra of H2O Megamaser Emissions",
     "section": "",
     "text": "Analysis of the Optical Spectra of H2O Megamaser Emissions, MRGS (Fall 2020 – Spring 2022) – Researching, designing, and coding an analysis of microwave energy coming from the centers of galaxies.\n\nResearch advisors: Dr. Anca Constantin (JMU Physics and Astronomy Department), Mr. Russell Kohrs (MRGS Environmental Science), Ms. Jennifer Moyers (MRGS English)\nPresented at the Shenandoah Valley Regional Science and Engineering Fair, Virginia State Science and Engineering Fair, and International Science and Engineering Fair"
+  },
+  {
+    "objectID": "index.html#brianna-heggeseth",
+    "href": "index.html#brianna-heggeseth",
+    "title": "Will St. John",
+    "section": "",
+    "text": "Pronunciation  she/her/hers\nUndergraduate Physics and Astronomy Student  MSCS Department @ Macalester College\n\n\nAssociate Professor of Statistics 2020-present | Macalester College\nAssistant Professor of Statistics 2018-2020 | Macalester College\nAssistant Professor of Statistics 2013-2018 | Williams College\n\n\n\nPhD in Statistics 2013 | University of California Berkeley\nBA in Math with Statistics concentration 2008 | Saint Olaf College"
+  },
+  {
+    "objectID": "index.html#will-st.-john",
+    "href": "index.html#will-st.-john",
+    "title": "Will St. John",
+    "section": "",
+    "text": "he/him/his\nUndergraduate Physics & Astronomy Student | Macalester College\n\n\nMassanutten Regional Governor’s School  2020-2022 | Mt. Jackson, VA\nEast Rockingham High School  2018-2022 | Elkton, VA"
   }
 ]
