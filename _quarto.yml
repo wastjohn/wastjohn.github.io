@@ -10,12 +10,13 @@ website:
         text: Home
       - href: research.qmd
         text: Research
-      - href: about.qmd
-        text: About
 
 format:
   html:
-    theme: cosmo
+    theme:
+      dark: [cosmo, dark.scss]
+      light: [cosmo, light.scss]
+      
     css: styles.css
     toc: true
 

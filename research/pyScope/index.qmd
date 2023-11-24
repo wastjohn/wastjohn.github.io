@@ -1,0 +1,15 @@
+---
+title: "pyScope: Optical Telescope Automation with Python"
+image: featured.png
+image-alt: "pyScope logo"
+date: now
+categories:
+    - Optical Astronomy
+    - Python
+    - In progress
+about: 
+    template: solana
+    image: featured.png
+---
+
+Python programming
