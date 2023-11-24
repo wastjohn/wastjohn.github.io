@@ -35,10 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,12 +91,9 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../research.html" rel="" target="">
  <span class="menu-text">Research</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
-  </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -130,13 +129,10 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </header> 
       <div class="about-contents"><main class="content" id="quarto-document-content">
-<ul>
-<li>Analysis of the Optical Spectra of H2O Megamaser Emissions, MRGS (Fall 2020 – Spring 2022) – Researching, designing, and coding an analysis of microwave energy coming from the centers of galaxies.
-<ul>
-<li>Research advisors: Dr.&nbsp;Anca Constantin (JMU Physics and Astronomy Department), Mr.&nbsp;Russell Kohrs (MRGS Environmental Science), Ms.&nbsp;Jennifer Moyers (MRGS English)</li>
-<li>Presented at the Shenandoah Valley Regional Science and Engineering Fair, Virginia State Science and Engineering Fair, and International Science and Engineering Fair</li>
-</ul></li>
-</ul>
+<p>At Massanutten Regional Governor’s School (MRGS), students take a research course where they are given the opportunnity to work with outside mentors. I was fortunate enough to be able to work with Dr.&nbsp;Anca Constantin, a professor in JMU’s Physics and Astronomy Department, during my two years at MRGS.</p>
+<p>The goal of our project was to learn more about water megamasers by examining the optical spectra of a large dataset of confirmed megamasers. This was done by crossmatching a catalog of known megamasers, provided by the Megamaser Cosmology Project (MCP), with the Sloan Digital Sky Survey (SDSS). Python was used for data manipulation and visualization. SQL was used for data filtering in the SDSS. If interested, you can download a copy of my <a href="2022_ISEFPresentation_StJohn.pptx">end-of-year/ISEF presentation</a>.</p>
+<p>At the end of my senior year, this project was entered into the Shenandoah Valley Regional Science Fair, where it won first place in its division, allowing it to be entered into the Virginia State Science and Engineering Fair. It was also a finalist project in the 2022 International Science and Engineering Fair. <a href="https://abstracts.societyforscience.org/Home/FullAbstract?ISEFYears=0%2C2022%2C&amp;Category=Any%20Category&amp;Finalist=St.%20John&amp;AllAbstracts=True&amp;FairCountry=Any%20Country&amp;FairState=Any%20State&amp;Keywords=Megamasers&amp;ProjectId=23073">Here is the link to the ISEF abstract.</a></p>
+<p>This was my first hands-on experience working with Python, SQL, and astronomy research in general. I am <em>incredibly</em> thankful for Dr.&nbsp;Constantin for the opportunnity to work with her, and for Mr.&nbsp;Russel Kohrs and Ms.&nbsp;Jennifer Moyers of MRGS for advising me on this two-year project.</p>
 
 
 </main></div>
@@ -166,6 +162,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

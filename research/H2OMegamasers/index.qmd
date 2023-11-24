@@ -13,7 +13,12 @@ about:
     template: solana
     image: featured.png
 ---
-* Analysis of the Optical Spectra of H2O Megamaser Emissions, MRGS (Fall 2020 – Spring 2022) – Researching, designing, and coding an analysis of microwave energy coming from the centers of galaxies. 
-    + Research advisors: Dr. Anca Constantin (JMU Physics and Astronomy Department), Mr. Russell Kohrs (MRGS Environmental Science), Ms. Jennifer Moyers (MRGS English)
-    + Presented at the Shenandoah Valley Regional Science and Engineering Fair, Virginia State Science and Engineering Fair, and International Science and Engineering Fair
+At Massanutten Regional Governor's School (MRGS), students take a research course where they are given the opportunnity to work with outside mentors. I was fortunate enough to be able to work with Dr. Anca Constantin, a professor in JMU's Physics and Astronomy Department, during my two years at MRGS.
 
+The goal of our project was to learn more about water megamasers by examining the optical spectra of a large dataset of confirmed megamasers. This was done by crossmatching a catalog of known megamasers, provided by the Megamaser Cosmology Project (MCP), with the Sloan Digital Sky Survey (SDSS). Python was used for data manipulation and visualization. SQL was used for data filtering in the SDSS. If interested, you can download a copy of my <a href="2022_ISEFPresentation_StJohn.pptx">end-of-year/ISEF presentation</a>.
+
+<!-- TODO: Create quarto version of presentation -->
+
+At the end of my senior year, this project was entered into the Shenandoah Valley Regional Science Fair, where it won first place in its division, allowing it to be entered into the Virginia State Science and Engineering Fair. It was also a finalist project in the 2022 International Science and Engineering Fair. <a href='https://abstracts.societyforscience.org/Home/FullAbstract?ISEFYears=0%2C2022%2C&Category=Any%20Category&Finalist=St.%20John&AllAbstracts=True&FairCountry=Any%20Country&FairState=Any%20State&Keywords=Megamasers&ProjectId=23073'>Here is the link to the ISEF abstract.</a>
+
+This was my first hands-on experience working with Python, SQL, and astronomy research in general. I am *incredibly* thankful for Dr. Constantin for the opportunnity to work with her, and for Mr. Russel Kohrs and Ms. Jennifer Moyers of MRGS for advising me on this two-year project.
