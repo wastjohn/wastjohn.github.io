@@ -16,7 +16,7 @@ about:
 :::{#intro-heading}
 ## Will St. John
 
-he/him/his 
+He/Him/His 
 
 Undergraduate Physics & Astronomy Student | Macalester College
 
@@ -33,7 +33,7 @@ East Rockingham High School <br>
 
 
 
-<i class='bi-download'></i> Download my <a href="https://drive.google.com/file/d/1SSb5GHpL-SbkpGC9tqDC6oh6J_RZxYZh/view?usp=sharinglink" target="_blank">CV</a>.
+<i class='bi-download'></i> Download my <a href="https://drive.google.com/file/d/1lkcWNKZqZ2Ij572Gbe8KLYp-n2wHma9x/view?usp=sharing" target="_blank">CV</a>.
 
 ### Personal
 
