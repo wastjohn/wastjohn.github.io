@@ -5,7 +5,7 @@ about:
     template: trestles
     image-width: 20em
     image-shape: round
-    image: images/StJohnSoph.jpg
+    image: images/StJohn_Junior.webp
     links:
       - icon: envelope
         href: mailto:wstjohn@macalester.edu
@@ -30,10 +30,20 @@ East Rockingham High School <br>
 :::
 
 ### Biography
+I am an undergraduate student at Macalester College, currently in my third year. I am majoring in Physics with a Concentration in Astronomy and will also graduate with a Minor in Mathematics.
+
+Currently, cosmology sounds the most appealing to me, research-wise. I also enjoy thinking about astrophysical phenomena, their driving mechanisms, and their implications, which makes me think theory would be a good specialization as well. I also really enjoy programming and making models, so perhaps something in `computational theoretical cosmology`? At least it sounds cool.
+
+Unfortunately, I haven't taken many astro courses at Macalester (there are really only 2), but I will be taking astrophysics this Spring!
+
+Regardless, the reason I want to go into astrophysics/cosmology is:
+
+> I believe cosmology is the field that can answer the biggest questions.
 
 
-
-<i class='bi-download'></i> Download my <a href="https://drive.google.com/file/d/14VrpjkMyNO0DWVdG5JuliY6noKXRxAoD/view?usp=sharing" target="_blank">CV</a>.
+Even though I don't yet have the theory background of a graduate student, I have been fortunate enough to have had multiple astro-specific research opportunities. If you are interested, explore the research page to learn more about them, 
+<!-- <i class='bi-download'></i>  -->
+<a href="https://drive.google.com/file/d/14VrpjkMyNO0DWVdG5JuliY6noKXRxAoD/view?usp=sharing" target="_blank">download my CV</a>, or reach out to me using the info provide below!
 
 ### Personal
 
@@ -45,4 +55,4 @@ I am from McGaheysville, VA.
 
 **Address**: 1600 Grand Avenue, Saint Paul, MN 55105
 
-**Phone**: 123-456-7890
+**Phone**: 540-908-0354
