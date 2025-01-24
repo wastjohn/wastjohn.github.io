@@ -3,6 +3,7 @@ title: "Courses"
 listing:
     contents: courses
     type: table
+    fields: [title]
     categories: false
     sort-ui: false
     filter-ui: false
@@ -10,5 +11,3 @@ page-layout: full
 title-block-banner: false
 comments: false
 ---
-
-Courses I'm currently enrolled in.
