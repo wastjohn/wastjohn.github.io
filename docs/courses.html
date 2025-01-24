@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Research – Will St.&nbsp;John</title>
+<title>Courses – Will St.&nbsp;John</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,9 +80,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -155,11 +155,11 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./research.html" aria-current="page"> 
+    <a class="nav-link" href="./research.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./courses.html"> 
+    <a class="nav-link active" href="./courses.html" aria-current="page"> 
 <span class="menu-text">Courses</span></a>
   </li>  
 </ul>
@@ -173,13 +173,13 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Research</h1>
+    <div class="quarto-title column-page">
+      <h1 class="title">Courses</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta column-page">
 
       
     
@@ -190,36 +190,30 @@ window.Quarto = {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Q0FTQQ==">CASA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R0JU">GBT <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R3Jhdml0YXRpb25hbCUyMFdhdmVz">Gravitational Waves <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SFNU">HST <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SFRNTCUyRkNTUw==">HTML/CSS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW4lMjBwcm9ncmVzcw==">In progress <span class="quarto-category-count">(5)</span></div><div class="category" data-category="SW50ZXJuYXRpb25hbCUyMENvbGxlZ3Vlcw==">International Collegues <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SldTVA==">JWST <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3B0aWNhbCUyMEFzdHJvbm9teQ==">Optical Astronomy <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UGFzdCUyMFByb2plY3Q=">Past Project <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(5)</span></div><div class="category" data-category="UmFkaW8lMjBBc3Ryb25vbXk=">Radio Astronomy <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U0FPSW1hZ2UlMjBEUzk=">SAOImage DS9 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U1FM">SQL <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VkxB">VLA <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
 
 
-<p>Here is some text about my research.</p>
+<p>Courses I’m currently enrolled in.</p>
 
 
 
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
      <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
+         <option value="listing-title-sort" data-direction="asc">
           Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
         </option>
          <option value="listing-author" data-direction="asc">
           Author
@@ -231,286 +225,36 @@ window.Quarto = {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1700868217000" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<a href="./research/H2OMegamasers/presentation.pptx" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Presentation
-</h5>
-<div class="card-text listing-description">
-
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="T3B0aWNhbCUyMEFzdHJvbm9teSUyQ0pXU1QlMkNIU1QlMkNQeXRob24lMkNTQU9JbWFnZSUyMERTOSUyQ0luJTIwcHJvZ3Jlc3M=" data-listing-date-sort="1737743151000" data-listing-file-modified-sort="1700063221000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="57">
-<a href="./research/CONs/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/CONs/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="False-color ratio image of NGC2273 ">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Exploring Hidden Nuclei in Nearby Galaxies
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('T3B0aWNhbCUyMEFzdHJvbm9teQ=='); return false;">
-Optical Astronomy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SldTVA=='); return false;">
-JWST
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SFNU'); return false;">
-HST
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('U0FPSW1hZ2UlMjBEUzk='); return false;">
-SAOImage DS9
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SW4lMjBwcm9ncmVzcw=='); return false;">
-In progress
-</div>
-</div>
-<div class="card-text listing-description">
-
-<li>Exploring Hidden Nuclei in Nearby Galaxies, Macalester College (Fall 2023 - Present) – [Description of research]
-<ul>
-<li>Research advisor: Dr.&nbsp;John (Jay) Gallagher III (Visiting…</li><li></li></ul></li>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jan 24, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="UmFkaW8lMjBBc3Ryb25vbXklMkNHQlQlMkNJbnRlcm5hdGlvbmFsJTIwQ29sbGVndWVzJTJDSW4lMjBwcm9ncmVzcw==" data-listing-date-sort="1737743151000" data-listing-file-modified-sort="1700063211000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39">
-<a href="./research/GBT-ConfirmedLocalVolumeDwarfGalaxies/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/GBT-ConfirmedLocalVolumeDwarfGalaxies/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Legacy survey images overlaid with HI spectra from program GBT/23B-032">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UmFkaW8lMjBBc3Ryb25vbXk='); return false;">
-Radio Astronomy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R0JU'); return false;">
-GBT
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJuYXRpb25hbCUyMENvbGxlZ3Vlcw=='); return false;">
-International Collegues
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SW4lMjBwcm9ncmVzcw=='); return false;">
-In progress
-</div>
-</div>
-<div class="card-text listing-description">
-
-<li>Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies, Macalester College (Summer 2023 - Present) – [Description of research]
-<ul>
-<li>Research advisor…</li><li></li></ul></li>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jan 24, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="UmFkaW8lMjBBc3Ryb25vbXklMkNWTEElMkNQeXRob24lMkNDQVNBJTJDSW4lMjBwcm9ncmVzcw==" data-listing-date-sort="1737743151000" data-listing-file-modified-sort="1700063283000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="46">
-<a href="./research/LeoP/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/LeoP/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Moment Map of Leo P">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Fundamental Astrophysics at Low Metallicity: Leo P
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('UmFkaW8lMjBBc3Ryb25vbXk='); return false;">
-Radio Astronomy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('VkxB'); return false;">
-VLA
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Q0FTQQ=='); return false;">
-CASA
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SW4lMjBwcm9ncmVzcw=='); return false;">
-In progress
-</div>
-</div>
-<div class="card-text listing-description">
-
-<li>Fundamental Astrophysics at Low Metallicity: Leo P, Macalester College (Summer 2023 - Present) – [Description of research]
-<ul>
-<li>Research advisor: Dr.&nbsp;John Cannon (Macalester…</li><li></li></ul></li>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jan 24, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="T3B0aWNhbCUyMEFzdHJvbm9teSUyQ1B5dGhvbiUyQ0luJTIwcHJvZ3Jlc3M=" data-listing-date-sort="1737743151000" data-listing-file-modified-sort="1700790618000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="2">
-<a href="./research/pyScope/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/pyScope/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="pyScope logo">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-pyScope: Optical Telescope Automation with Python
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('T3B0aWNhbCUyMEFzdHJvbm9teQ=='); return false;">
-Optical Astronomy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SW4lMjBwcm9ncmVzcw=='); return false;">
-In progress
-</div>
-</div>
-<div class="card-text listing-description">
-Python programming
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jan 24, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="R3Jhdml0YXRpb25hbCUyMFdhdmVzJTJDT3B0aWNhbCUyMEFzdHJvbm9teSUyQ1B5dGhvbiUyQ1NRTCUyQ0hUTUwlMkZDU1MlMkNJbiUyMHByb2dyZXNz" data-listing-date-sort="1737743151000" data-listing-file-modified-sort="1722536655000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="2">
-<a href="./research/TUBRO/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/TUBRO/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="TURBO logo">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-TURBO: Total-coverage Ultra-fast Response to Binary Mergers Observatory
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R3Jhdml0YXRpb25hbCUyMFdhdmVz'); return false;">
-Gravitational Waves
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('T3B0aWNhbCUyMEFzdHJvbm9teQ=='); return false;">
-Optical Astronomy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('U1FM'); return false;">
-SQL
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SFRNTCUyRkNTUw=='); return false;">
-HTML/CSS
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('SW4lMjBwcm9ncmVzcw=='); return false;">
-In progress
-</div>
-</div>
-<div class="card-text listing-description">
-Python programming
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jan 24, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="T3B0aWNhbCUyMEFzdHJvbm9teSUyQ0dCVCUyQ1B5dGhvbiUyQ1NRTCUyQ1Bhc3QlMjBQcm9qZWN0" data-listing-date-sort="1654059600000" data-listing-file-modified-sort="1722870858000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239">
-<a href="./research/H2OMegamasers/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./research/H2OMegamasers/featured.png" class="thumbnail-image card-img" style="height: 150px;" alt="Maser and Non-Maser Emission Line Diagnostic Diagrams">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Analysis of the Optical Spectra of H2O Megamaser Emissions
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('T3B0aWNhbCUyMEFzdHJvbm9teQ=='); return false;">
-Optical Astronomy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R0JU'); return false;">
-GBT
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('U1FM'); return false;">
-SQL
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UGFzdCUyMFByb2plY3Q='); return false;">
-Past Project
-</div>
-</div>
-<div class="card-text listing-description">
-At Massanutten Regional Governor’s School (MRGS), students take a research course where they are given the opportunnity to work with outside mentors. I was fortunate enough…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jun 1, 2022
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+<th>
+<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-listing-file-modified-sort="1737743025728" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Machine Learning" data-listing-filename-sort="index.qmd">
+<td>
+<a href="./courses/ML/index.html" class="title listing-title">Machine Learning</a>
+</td>
+<td>
+<span class="listing-author">&nbsp;</span>
+</td>
+</tr>
+<tr data-index="1" data-listing-file-modified-sort="1737742473819" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Topology" data-listing-filename-sort="index.qmd">
+<td>
+<a href="./courses/topology/index.html" class="title listing-title">Topology</a>
+</td>
+<td>
+<span class="listing-author">&nbsp;</span>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>

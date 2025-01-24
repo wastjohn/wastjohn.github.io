@@ -10,5 +10,12 @@
       "/research/TUBRO/index.html",
       "/research/H2OMegamasers/index.html"
     ]
+  },
+  {
+    "listing": "/courses.html",
+    "items": [
+      "/courses/ML/index.html",
+      "/courses/topology/index.html"
+    ]
   }
 ]
