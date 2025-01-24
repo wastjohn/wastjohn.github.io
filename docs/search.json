@@ -95,6 +95,13 @@
     "href": "courses/ML/index.html",
     "title": "Machine Learning",
     "section": "",
-    "text": "January 23, 2025"
+    "text": "Machine Learning: using algorithms that can learn from existing patterns and make predictions\n\n\n\nSupervised Learning\n\nmodel relationship between input \\(x = (x_1, x_2, \\cdots, x_p)\\) and output \\(y\\).\n\n\\[\\begin{align*}y &= f(x) + \\epsilon \\\\ &= \\text{ trend in relationship } + \\text{ residual deviation from trend }\\end{align*}\\]\n\nTypes:\n\nRegression (\\(y\\) is quantitative)\nClassification (\\(y\\) is categorical)\n\n\nUnsupervised Learning\n\nNo output variable\nGoal is to use \\(x\\) to understand/modify strucutre of data with respect to \\(x\\)\nTypes:\n\nClustering (similar \\(x\\)’s’)\nDimension Reduction (turn original set of \\(p\\) input varaibles into set with \\(k&lt;p\\) variables)"
+  },
+  {
+    "objectID": "courses/ML/index.html#supervised-vs-unsupervised-learning",
+    "href": "courses/ML/index.html#supervised-vs-unsupervised-learning",
+    "title": "Machine Learning",
+    "section": "",
+    "text": "Supervised Learning\n\nmodel relationship between input \\(x = (x_1, x_2, \\cdots, x_p)\\) and output \\(y\\).\n\n\\[\\begin{align*}y &= f(x) + \\epsilon \\\\ &= \\text{ trend in relationship } + \\text{ residual deviation from trend }\\end{align*}\\]\n\nTypes:\n\nRegression (\\(y\\) is quantitative)\nClassification (\\(y\\) is categorical)\n\n\nUnsupervised Learning\n\nNo output variable\nGoal is to use \\(x\\) to understand/modify strucutre of data with respect to \\(x\\)\nTypes:\n\nClustering (similar \\(x\\)’s’)\nDimension Reduction (turn original set of \\(p\\) input varaibles into set with \\(k&lt;p\\) variables)"
   }
 ]

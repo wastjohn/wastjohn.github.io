@@ -1,5 +1,26 @@
 ---
 title: "Machine Learning"
-toc-location: left
 ---
-# January 23, 2025
+# Introduction
+> Machine Learning: using algorithms that can learn from existing patterns and make predictions
+
+## Supervised vs Unsupervised Learning
+
+**Supervised Learning**
+
+- model relationship between input $x = (x_1, x_2, \cdots, x_p)$ and output $y$.
+
+$$\begin{align*}y &= f(x) + \epsilon \\ &= \text{ trend in relationship } + \text{ residual deviation from trend }\end{align*}$$
+
+- Types:
+  - Regression ($y$ is quantitative)
+  - Classification ($y$ is categorical)
+
+**Unsupervised Learning**
+
+- No output variable
+- Goal is to use $x$ to understand/modify strucutre of data with respect to $x$
+- Types:
+  - Clustering (similar $x$'s')
+  - Dimension Reduction (turn original set of $p$ input varaibles into set with $k<p$ variables)
+
