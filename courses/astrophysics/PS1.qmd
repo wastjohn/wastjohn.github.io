@@ -1,0 +1,46 @@
+---
+title: "Astrophysics PS1"
+author: "Will St. John + Theo Darci-Maher"
+---
+
+# Problem 1
+For Winer Observatory,
+
+a) Find the altutude of the Sun along the meridian on the first day of summer and
+
+> **Answer**:
+
+b) the maximum altidue of the sun on the first day of winter.
+
+> **Answer**:
+
+c) How do you expect these altitudes to change for an observer at Macalester?
+
+> **Answer**:
+
+# Problem 2
+Congratulations!  You’ve been awarded 4 hours of observing time on the Subaru Telescope on Manua Kea on March 18 (yay, spring break trip to Hawaii!).
+
+a) What is the Subaru telescope?  What portions of the electromagnetic spectrum will you observe in?
+
+> **Answer**: Visible and near infrared.
+
+b) Of the following objects, which will you be able to observe if your time starts at 10:00 PM?  NGC 13, NGC 2213, NGC 3019, NGC 4214, NGC 5808, NGC 6680, NGC 7111.  You may find the NASA/IPAC Extragalactic Database (aka NED, https://ned.ipac.caltech.edu/) helpful.
+
+> **Answer**
+
+
+# Problem 3
+Use Simbad (https://simbad.cds.unistra.fr/simbad/) to look up the parallax and J2000 coordinates to the three brightest stars in the constellation Orion’s belt: Alnilam, Alnitak, and Mintaka.
+
+a) What can you learn about the motion of these stars on Simbad
+
+> **Answer**:
+
+b) What are the distances to the stars in parsecs?
+
+> **Answer**:
+
+c) For the two stars with the most similar distances, calculate their angular separation and minimum physical separation (assuming they are both at a distance equal to that of the nearest of the two stars).
+
+> **Answer**:

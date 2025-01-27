@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -114,8 +143,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#types-of-topology" id="toc-types-of-topology" class="nav-link active" data-scroll-target="#types-of-topology">Types of Topology</a></li>
+  <li><a href="#geometry-vs-toplogy" id="toc-geometry-vs-toplogy" class="nav-link" data-scroll-target="#geometry-vs-toplogy">Geometry vs Toplogy</a></li>
+  <li><a href="#continuity" id="toc-continuity" class="nav-link" data-scroll-target="#continuity">Continuity</a>
+  <ul class="collapse">
+  <li><a href="#open-sets" id="toc-open-sets" class="nav-link" data-scroll-target="#open-sets">Open Sets</a></li>
+  <li><a href="#closed-sets" id="toc-closed-sets" class="nav-link" data-scroll-target="#closed-sets">Closed Sets</a></li>
+  <li><a href="#continuity-by-open-sets" id="toc-continuity-by-open-sets" class="nav-link" data-scroll-target="#continuity-by-open-sets">Continuity by Open Sets</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -139,8 +181,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="types-of-topology" class="level1">
+<h1>Types of Topology</h1>
+<ul>
+<li>Point set</li>
+<li>Geometric</li>
+<li>Algebraic</li>
+<li>Computational</li>
+</ul>
+</section>
+<section id="geometry-vs-toplogy" class="level1">
+<h1>Geometry vs Toplogy</h1>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Geometry</th>
+<th style="text-align: center;">Topology</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">measurments</td>
+<td style="text-align: center;">how are things qualitatively similar</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">rigid shapes</td>
+<td style="text-align: center;">answers qualitative questions</td>
+</tr>
+</tbody>
+</table>
+<p>So what is it?</p>
+<blockquote class="blockquote">
+<p><strong>Topology</strong> is the study of <em>continuous</em> functions.</p>
+</blockquote>
+</section>
+<section id="continuity" class="level1">
+<h1>Continuity</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 75%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Naive Continuity</th>
+<th style="text-align: center;">Rigorous Continuity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">draw without picking up your pencil</td>
+<td style="text-align: center;"><span class="math inline">\(\epsilon\)</span>-<span class="math inline">\(\delta\)</span> definition: <span class="math inline">\(\forall \epsilon&gt;0 \exists \delta&gt;0 s.t. |x-a|&lt;\delta \implies |f(x) - f(a)| &lt; \epsilon\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Cons</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Somone from planet Zog might have different intuition</td>
+<td style="text-align: center;">Impractical (prove all?) and distant reliant</td>
+</tr>
+</tbody>
+</table>
+<p>We want a definition of continuity that doesn’t rely on distance. Enter open sets.</p>
+<section id="open-sets" class="level2">
+<h2 class="anchored" data-anchor-id="open-sets">Open Sets</h2>
+<blockquote class="blockquote">
+<p><strong>Definition</strong>: If <span class="math inline">\(S\subset\mathbb{R}\)</span> then <span class="math inline">\(S\)</span> is open if <span class="math inline">\(\forall x \in S \exists\)</span> some open interval <span class="math inline">\((x-\delta_x, x+\delta_x)\)</span> (where <span class="math inline">\(\delta_x&gt;0\)</span>) contained within <span class="math inline">\(S\)</span>.</p>
+</blockquote>
+<p>Note that <span class="math inline">\((x-\delta_x, x+\delta_x)\)</span> is sometimes called an open neighborhood or “breathing space”.</p>
+</section>
+<section id="closed-sets" class="level2">
+<h2 class="anchored" data-anchor-id="closed-sets">Closed Sets</h2>
+<blockquote class="blockquote">
+<p><strong>Definition</strong>: A subset <span class="math inline">\(S\subset\mathbb{R}\)</span> is closed if its compliment <span class="math inline">\(\mathbb{R}-S\)</span> is open.</p>
+</blockquote>
+</section>
+<section id="continuity-by-open-sets" class="level2">
+<h2 class="anchored" data-anchor-id="continuity-by-open-sets">Continuity by Open Sets</h2>
+<blockquote class="blockquote">
+<p><strong>Definition</strong>: If <span class="math inline">\(f:D\rightarrow C\)</span> is a function, and <span class="math inline">\(S\)</span> is a subset of <span class="math inline">\(C\)</span>, then the primage of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span>, written <span class="math inline">\(f^{-1}(S)\)</span>, is the subset of <span class="math inline">\(D\)</span> defined by <span class="math display">\[f^{-1}(S) = {x\in D, f(x)\in S}\]</span></p>
+</blockquote>
+<p>In other words, the preimage of <span class="math inline">\(S\)</span> consists of all the points which get mapped to <span class="math inline">\(S\)</span> by <span class="math inline">\(f\)</span>.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

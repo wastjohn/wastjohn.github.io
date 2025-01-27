@@ -14,6 +14,8 @@
   {
     "listing": "/courses.html",
     "items": [
+      "/courses/astrophysics/index.html",
+      "/courses/astrophysics/PS1.html",
       "/courses/ML/index.html",
       "/courses/topology/index.html"
     ]

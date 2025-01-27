@@ -2,4 +2,48 @@
 title: "Topology"
 ---
 
+# Types of Topology
 
+- Point set
+- Geometric
+- Algebraic
+- Computational
+
+# Geometry vs Toplogy
+
+|Geometry|Topology|
+|:------:|:------:|
+|measurments|how are things qualitatively similar|
+|rigid shapes|answers qualitative questions|
+
+So what is it?
+
+> **Topology** is the study of *continuous* functions.
+
+# Continuity
+
+|Naive Continuity|Rigorous Continuity|
+|:--------------:|:-----------------:|
+|draw without picking up your pencil|$\epsilon$-$\delta$ definition: $\forall \epsilon>0 \exists \delta>0 s.t. |x-a|<\delta \implies |f(x) - f(a)| < \epsilon$|
+|Cons|
+|Somone from planet Zog might have different intuition|Impractical (prove all?) and distant reliant|
+
+: {tbl-colwidths="[75,25]"}
+
+We want a definition of continuity that doesn't rely on distance. Enter open sets.
+
+## Open Sets
+
+> **Definition**: If $S\subset\mathbb{R}$ then $S$ is open if $\forall x \in S \exists$ some open interval $(x-\delta_x, x+\delta_x)$ (where $\delta_x>0$) contained within $S$.
+
+Note that $(x-\delta_x, x+\delta_x)$ is sometimes called an open neighborhood or "breathing space".
+
+## Closed Sets
+
+> **Definition**: A subset $S\subset\mathbb{R}$ is closed if its compliment $\mathbb{R}-S$ is open.
+
+## Continuity by Open Sets
+
+> **Definition**: If $f:D\rightarrow C$ is a function, and $S$ is a subset of $C$, then the primage of $S$ under $f$, written $f^{-1}(S)$, is the subset of $D$ defined by $$f^{-1}(S) = {x\in D, f(x)\in S}$$
+
+In other words, the preimage of $S$ consists of all the points which get mapped to $S$ by $f$.

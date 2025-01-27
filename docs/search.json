@@ -88,7 +88,7 @@
     "href": "courses.html",
     "title": "Courses",
     "section": "",
-    "text": "Title\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nTopology\n\n\n\n\n\nNo matching items"
+    "text": "Title\n\n\n\n\n\n\nAstrophysics\n\n\n\n\nAstrophysics PS1\n\n\n\n\nMachine Learning\n\n\n\n\nTopology\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "courses/ML/index.html",
@@ -103,5 +103,40 @@
     "title": "Machine Learning",
     "section": "",
     "text": "Supervised Learning\n\nmodel relationship between input \\(x = (x_1, x_2, \\cdots, x_p)\\) and output \\(y\\).\n\n\\[\\begin{align*}y &= f(x) + \\epsilon \\\\ &= \\text{ trend in relationship } + \\text{ residual deviation from trend }\\end{align*}\\]\n\nTypes:\n\nRegression (\\(y\\) is quantitative)\nClassification (\\(y\\) is categorical)\n\n\nUnsupervised Learning\n\nNo output variable\nGoal is to use \\(x\\) to understand/modify strucutre of data with respect to \\(x\\)\nTypes:\n\nClustering (similar \\(x\\)’s’)\nDimension Reduction (turn original set of \\(p\\) input varaibles into set with \\(k&lt;p\\) variables)"
+  },
+  {
+    "objectID": "courses/astrophysics/PS1.html",
+    "href": "courses/astrophysics/PS1.html",
+    "title": "Astrophysics PS1",
+    "section": "",
+    "text": "Problem 1\nFor Winer Observatory,\n\nFind the altutude of the Sun along the meridian on the first day of summer and\n\n\nAnswer:\n\n\nthe maximum altidue of the sun on the first day of winter.\n\n\nAnswer:\n\n\nHow do you expect these altitudes to change for an observer at Macalester?\n\n\nAnswer:\n\n\n\nProblem 2\nCongratulations! You’ve been awarded 4 hours of observing time on the Subaru Telescope on Manua Kea on March 18 (yay, spring break trip to Hawaii!).\n\nWhat is the Subaru telescope? What portions of the electromagnetic spectrum will you observe in?\n\n\nAnswer: Visible and near infrared.\n\n\nOf the following objects, which will you be able to observe if your time starts at 10:00 PM? NGC 13, NGC 2213, NGC 3019, NGC 4214, NGC 5808, NGC 6680, NGC 7111. You may find the NASA/IPAC Extragalactic Database (aka NED, https://ned.ipac.caltech.edu/) helpful.\n\n\nAnswer\n\n\n\nProblem 3\nUse Simbad (https://simbad.cds.unistra.fr/simbad/) to look up the parallax and J2000 coordinates to the three brightest stars in the constellation Orion’s belt: Alnilam, Alnitak, and Mintaka.\n\nWhat can you learn about the motion of these stars on Simbad\n\n\nAnswer:\n\n\nWhat are the distances to the stars in parsecs?\n\n\nAnswer:\n\n\nFor the two stars with the most similar distances, calculate their angular separation and minimum physical separation (assuming they are both at a distance equal to that of the nearest of the two stars).\n\n\nAnswer:"
+  },
+  {
+    "objectID": "courses/topology/index.html",
+    "href": "courses/topology/index.html",
+    "title": "Topology",
+    "section": "",
+    "text": "Point set\nGeometric\nAlgebraic\nComputational"
+  },
+  {
+    "objectID": "courses/topology/index.html#open-sets",
+    "href": "courses/topology/index.html#open-sets",
+    "title": "Topology",
+    "section": "Open Sets",
+    "text": "Open Sets\n\nDefinition: If \\(S\\subset\\mathbb{R}\\) then \\(S\\) is open if \\(\\forall x \\in S \\exists\\) some open interval \\((x-\\delta_x, x+\\delta_x)\\) (where \\(\\delta_x&gt;0\\)) contained within \\(S\\).\n\nNote that \\((x-\\delta_x, x+\\delta_x)\\) is sometimes called an open neighborhood or “breathing space”."
+  },
+  {
+    "objectID": "courses/topology/index.html#closed-sets",
+    "href": "courses/topology/index.html#closed-sets",
+    "title": "Topology",
+    "section": "Closed Sets",
+    "text": "Closed Sets\n\nDefinition: A subset \\(S\\subset\\mathbb{R}\\) is closed if its compliment \\(\\mathbb{R}-S\\) is open."
+  },
+  {
+    "objectID": "courses/topology/index.html#continuity-by-open-sets",
+    "href": "courses/topology/index.html#continuity-by-open-sets",
+    "title": "Topology",
+    "section": "Continuity by Open Sets",
+    "text": "Continuity by Open Sets\n\nDefinition: If \\(f:D\\rightarrow C\\) is a function, and \\(S\\) is a subset of \\(C\\), then the primage of \\(S\\) under \\(f\\), written \\(f^{-1}(S)\\), is the subset of \\(D\\) defined by \\[f^{-1}(S) = {x\\in D, f(x)\\in S}\\]\n\nIn other words, the preimage of \\(S\\) consists of all the points which get mapped to \\(S\\) by \\(f\\)."
   }
 ]
