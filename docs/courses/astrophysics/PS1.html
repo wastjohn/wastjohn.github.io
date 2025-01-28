@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -161,19 +224,34 @@ ul.task-list li input[type="checkbox"] {
 <li>Find the altutude of the Sun along the meridian on the first day of summer and</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>Answer</strong>:</p>
+<p><strong>Answer</strong>: The first day of summer is the corresponds to the summer solstice, at which the Sun is at a declination of around 23.5 degrees. Winer observatory is located at a latitude of 31.67 degrees. The following diagram can be made for an observer at Winer.</p>
+<p><img src="astrophysics_PS1_diagram.png" class="img-fluid" style="width:60.0%"></p>
+<p>From this geometry, we can construct the following relationship between the zenith <span class="math inline">\(z\)</span>, declination <span class="math inline">\(\delta\)</span>, and altitude <span class="math inline">\(A\)</span></p>
+<p><span class="math display">\[A = 90 - z + \delta\]</span></p>
+<p>Using this equation, we can plug in the zenith/latitude of Winer and the declination of the Sun at the summer solstice to find the altitude of the Sun at Winer on the summer solstice.</p>
+<p><span class="math display">\[ A = 90 - 31.67 + 23.5 = \boxed{81.83 \text{ deg}} \]</span></p>
 </blockquote>
 <ol start="2" type="a">
 <li>the maximum altidue of the sun on the first day of winter.</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>Answer</strong>:</p>
+<p><strong>Answer</strong>: Using the equation above, we can plug in the declination of the Sun on the winter solstice (-23.5 degrees) to solve for the altitude from Winer.</p>
+<p><span class="math display">\[ A = 90 - 31.67 - 23.5 = \boxed{34.83 \text{ deg}} \]</span></p>
 </blockquote>
 <ol start="3" type="a">
 <li>How do you expect these altitudes to change for an observer at Macalester?</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>Answer</strong>:</p>
+<p><strong>Answer</strong>: Macalester is at a higher latitude, so we would expect the respective altitudes to be lower. Using the nifty equation we found early, we can find how much lower exactly.</p>
+<p>For some target at Winer, the altitude is</p>
+<p><span class="math display">\[A_w = 90 - z_w + \delta \]</span></p>
+<p>For the same target at Mac, the altitude is</p>
+<p><span class="math display">\[A_m = 90 - z_m + \delta\]</span></p>
+<p>Thus, the difference between altitudes at Mac and Winer is</p>
+<p><span class="math display">\[A_m - A_w = z_w - z_m = 31.67 - 45 = -13.33\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\boxed{A_m = A_w - 13.33}\]</span></p>
+<p>So the altitudes at Mac are 13.33 degrees lower than the altitudes at Winer.</p>
 </blockquote>
 </section>
 <section id="problem-2" class="level1">
@@ -183,13 +261,94 @@ ul.task-list li input[type="checkbox"] {
 <li>What is the Subaru telescope? What portions of the electromagnetic spectrum will you observe in?</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>Answer</strong>: Visible and near infrared.</p>
+<p><strong>Answer</strong>: The Subaru telescope is an 8.2 meter optical and near infrared telescope located near the summit of Maunakea, Hawaii, operated by the National Astronomical Observatory of Japan (NAOJ), National Institutes of Natural Sciences. We could abserve in visible and near infrared portions of the electromagnetic spectrum.</p>
 </blockquote>
 <ol start="2" type="a">
 <li>Of the following objects, which will you be able to observe if your time starts at 10:00 PM? NGC 13, NGC 2213, NGC 3019, NGC 4214, NGC 5808, NGC 6680, NGC 7111. You may find the NASA/IPAC Extragalactic Database (aka NED, https://ned.ipac.caltech.edu/) helpful.</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>Answer</strong></p>
+<p><strong>Answer</strong>: Below is a table of target names and coordinates.</p>
+<table class="caption-top table">
+<caption>Target list</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">name</th>
+<th style="text-align: center;"><span class="math inline">\(\alpha\)</span> [deg]</th>
+<th style="text-align: center;"><span class="math inline">\(\delta\)</span> [deg]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">NGC 13</td>
+<td style="text-align: center;">2.1987</td>
+<td style="text-align: center;">33.4333</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">NGC 2213</td>
+<td style="text-align: center;">92.6753</td>
+<td style="text-align: center;">-71.5286</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NGC 3019</td>
+<td style="text-align: center;">147.5299</td>
+<td style="text-align: center;">12.7461</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">NGC 4214</td>
+<td style="text-align: center;">183.9132</td>
+<td style="text-align: center;">36.3269</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NGC 5808</td>
+<td style="text-align: center;">223.5115</td>
+<td style="text-align: center;">73.1317</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">NGC 6680</td>
+<td style="text-align: center;">279.9332</td>
+<td style="text-align: center;">22.3165</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NGC 7111</td>
+<td style="text-align: center;">325.4739</td>
+<td style="text-align: center;">-6.7088</td>
+</tr>
+</tbody>
+</table>
+<p>March 18th is nearly the vernal equinox, which means the Sun will have a right ascension around 0 deg. Thus, we can consider the bad range of <span class="math inline">\(\alpha\)</span> values to be 270-90 deg and the good range of <span class="math inline">\(\alpha\)</span> values to be 90-270 deg. This allows us to get rid of NGC 13, NGC 6680, and NGC 7111 due to their <span class="math inline">\(\alpha\)</span> values near the Sun.</p>
+<p>We can also get rid of NGC 2213, as it has a declination of -71 degrees, which is unobservable from the Subaru telescope given its latitude of 19.8255 degrees North (19.8255 - 90 = -70 = minimum declination for possible observation).</p>
+<table class="caption-top table">
+<caption>Revised target list</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">name</th>
+<th style="text-align: center;"><span class="math inline">\(\alpha\)</span> [deg]</th>
+<th style="text-align: center;"><span class="math inline">\(\delta\)</span> [deg]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">NGC 3019</td>
+<td style="text-align: center;">147.5299</td>
+<td style="text-align: center;">12.7461</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">NGC 4214</td>
+<td style="text-align: center;">183.9132</td>
+<td style="text-align: center;">36.3269</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NGC 5808</td>
+<td style="text-align: center;">223.5115</td>
+<td style="text-align: center;">73.1317</td>
+</tr>
+</tbody>
+</table>
+<p>Since we are near the vernal equinox, at noon we expect the Sun to be directly overhead, making the LST around 0 hours. At midnight, we expect the LST to be around 12. Thus two hours earlier, when our observation block starts, we expect to have an LST of around 10. We know the following relation.</p>
+<p><span class="math display">\[HA = LST - \alpha\]</span></p>
+<p>If we convert our <span class="math inline">\(\alpha\)</span>’s to hours from degrees, we can solve for the hour angles of each target to determine if we can see them in our observing block.</p>
+<p><span class="math display">\[HA = 10 - \begin{pmatrix}9.8 \\ 12.2 \\ 14.9\end{pmatrix} = \begin{pmatrix}0.2 \\ -2.2 \\ -4.9\end{pmatrix}\]</span></p>
+<p>In other words, at 10 pm local time at the Subaru Telescope, NGC 3019 will be almost directly overhead; two hours later, NGC 4214 will be transiting; and at the end of our session, NGC 5808 will be rising/an hour away from transiting.</p>
 </blockquote>
 </section>
 <section id="problem-3" class="level1">
@@ -199,20 +358,96 @@ ul.task-list li input[type="checkbox"] {
 <li>What can you learn about the motion of these stars on Simbad</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>Answer</strong>:</p>
+<p><strong>Answer</strong>: Alnilam is moving at 1.44 and -0.78 milliarcseconds/year in right ascension and declination, respectively, and away from us at 27.30 km/s. Alnitak is moving at 3.19 and 2.03 milliarcseconds/year in right ascension and declination, respectively, and away from us at 18.50 km/s. Mintaka is moving at 0.65 and -0.69 milliarcseconds/year in right ascension and declination, respectively, and away from us at 18.50 km/s.</p>
 </blockquote>
 <ol start="2" type="a">
 <li>What are the distances to the stars in parsecs?</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>Answer</strong>:</p>
+<p><strong>Answer</strong>: According to Simbad, the parallax of these stars is the following</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">parallax [mas]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Alnilam</td>
+<td style="text-align: center;">1.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Alnitak</td>
+<td style="text-align: center;">4.43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Mintaka</td>
+<td style="text-align: center;">4.71</td>
+</tr>
+</tbody>
+</table>
+<p>Using the relation between parallax <span class="math inline">\(p\)</span> and distance <span class="math inline">\(d\)</span>,</p>
+<p><span class="math display">\[d_{pc} = \frac{1}{p_{arcsec}}\]</span></p>
+<p>we can find the disances for each star to be the following.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">parallax [mas]</th>
+<th style="text-align: center;">distances [pc]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Alnilam</td>
+<td style="text-align: center;">1.65</td>
+<td style="text-align: center;">606</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Alnitak</td>
+<td style="text-align: center;">4.43</td>
+<td style="text-align: center;">226</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Mintaka</td>
+<td style="text-align: center;">4.71</td>
+<td style="text-align: center;">212</td>
+</tr>
+</tbody>
+</table>
 </blockquote>
 <ol start="3" type="a">
 <li>For the two stars with the most similar distances, calculate their angular separation and minimum physical separation (assuming they are both at a distance equal to that of the nearest of the two stars).</li>
 </ol>
 <blockquote class="blockquote">
-<p><strong>Answer</strong>:</p>
+<p><strong>Answer</strong>: Angular separation between two points on the celestial sphere is defined by <span class="math display">\[(\Delta \theta)^2 = (\Delta\alpha\cos\delta)^2 + (\Delta\delta)^2\]</span></p>
+<p>The physical separation can be found by the small angle formula, namely</p>
+<p><span class="math display">\[\theta_{rad} = \frac{D}{d}\]</span></p>
+<p>The following code chuck solves for the angular and physical separation given the coordinates of the two stars and the distance to the closest star.</p>
 </blockquote>
+<div id="ae46be5c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>alnitak <span class="op">=</span> (<span class="fl">085.18969443</span> <span class="op">*</span> u.deg,<span class="op">-</span><span class="fl">01.94257359</span> <span class="op">*</span> u.deg)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mintaka <span class="op">=</span> (<span class="fl">083.00166706</span> <span class="op">*</span> u.deg,<span class="op">-</span><span class="fl">00.29909511</span> <span class="op">*</span> u.deg)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mintaka_parallax <span class="op">=</span> <span class="fl">4.71</span> <span class="op">*</span> u.arcsec <span class="op">*</span> <span class="dv">10</span><span class="op">**-</span><span class="dv">3</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ara, adec <span class="op">=</span> alnitak</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mra, mdec <span class="op">=</span> mintaka</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>dra <span class="op">=</span> ara <span class="op">-</span> mra</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ddec <span class="op">=</span> adec <span class="op">-</span> mdec</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.sqrt((dra <span class="op">*</span> np.cos(adec))<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> ddec<span class="op">**</span><span class="dv">2</span>).to(u.rad)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> mintaka_parallax.to(u.parsec, equivalencies<span class="op">=</span>u.parallax())</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>separation <span class="op">=</span> theta <span class="op">*</span> distance</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""Alnitak and Mintaka are separated by </span><span class="sc">{</span>theta<span class="sc">.</span>to(u.deg)<span class="sc">:.2f}</span><span class="ss">, </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">which corresponds to a physical separation of </span><span class="sc">{</span>separation <span class="op">/</span> u<span class="sc">.</span>rad<span class="sc">:.2f}</span><span class="ss">"""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Alnitak and Mintaka are separated by 2.74 deg, 
+which corresponds to a physical separation of 10.14 pc</code></pre>
+</div>
+</div>
 
 
 </section>
