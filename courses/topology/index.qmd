@@ -38,12 +38,59 @@ We want a definition of continuity that doesn't rely on distance. Enter open set
 
 Note that $(x-\delta_x, x+\delta_x)$ is sometimes called an open neighborhood or "breathing space".
 
+> **Theorem**: $\displaystyle \bigcup_{}^\infty opensets = open$
+> 
+> **Theorem**: $\displaystyle \bigcap_{}^N opensets = open$
+
 ## Closed Sets
 
 > **Definition**: A subset $S\subset\mathbb{R}$ is closed if its compliment $\mathbb{R}-S$ is open.
+
+> **Theorem**: $\displaystyle \bigcap_{}^\infty closedsets = closed$
+> 
+> **Theorem**: $\displaystyle \bigcup_{}^N closedsets = closed$
+
+Note, open and closed sets are not opposites of each other!
 
 ## Continuity by Open Sets
 
 > **Definition**: If $f:D\rightarrow C$ is a function, and $S$ is a subset of $C$, then the primage of $S$ under $f$, written $f^{-1}(S)$, is the subset of $D$ defined by $$f^{-1}(S) = {x\in D, f(x)\in S}$$
 
 In other words, the preimage of $S$ consists of all the points which get mapped to $S$ by $f$.
+
+> **Theorem**: Let $f:\mathbb{R}\rightarrow\mathbb{R}$ be a function. If $f$ is continuous, then $f^{-1}(S)$ is open whenever $S\subset\mathbb{R}$ is open. And vice versa: If $f^{-1}(S)$ is open whenever $S$ is an open subset of $\mathbb{R}$, then $f$ is continuous.
+
+Note, continuity also works for closed sets!
+
+# Topological Space
+
+> **Definition**: A set, $X$, with a collection, $T$, of subsets of $X$, called "open" sets which satisfy the following
+>
+> T1) The set $X$ is "open"
+> T2) The empty set is "open"
+> T3) Arbitrary unions of open sets are open
+> T4) Finite intersection of open sets are open
+
+The collection of open sets is called the topology of $X$
+
+Ex: $\mathbb{R}$
+
+## Constructing a Topology
+
+You can construct a topology by satisfying T1-T4 in two different ways.
+
+> **Definition**: Indiscrete Topology - Call empty set and set $S$ open
+>
+> **Definition**: Discrete Topology - Take all subsets of $S$ to be open
+
+## Closed Subset
+
+> **Definition**: A subset $S$ of a topological space $T$ is closed if $T-S$ is open.
+
+## Topological Space and Continutity
+
+> **Definition**: A function/map $f:S\rightarrow T$ from one topological space to another is continuous if the preimage $f^{-1}(Q)$ of every open set $Q\subset T$ is an open set in $S$.
+>
+> **Definition**: If $S$ has discrete topology and $T$ has any topological space, then any function $f:S\rightarrow T$ is continuous. If $T$ has indiscrete topology and $S$ has any topological space, then any function $f:S\rightarrow T$ is continuous.
+>
+> **Definition**: If $R$, $S$, $T$ are topological spaces and $f:R\rightarrow S$, $g:S\rightarrow T$ are continuous functions, then $g\circ f:R\rightarrow T$ is continuous.
