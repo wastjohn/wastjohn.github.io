@@ -1,0 +1,127 @@
+---
+title: "Astrophysics PS2"
+author: "Will St. John + Kiki Murphy"
+---
+
+# Problem 1
+Consider the extrasolar planet system known as TRAPPIST-1 (the system with the most Earth-size habitable zone planets!).  Refer to [https://arxiv.org/abs/1703.01424](Gillon et al. (2017)) for relevant orbital parameters.  Rank the orbital angular momentum of each planet from highest to lowest.  Before you do any calculations take a stab at the ranking using your intuition and the derived equation.  Compare your guess to the final ranking.  Any surprises?
+
+> **Answer**: For our intuition approach, looking at the angular momention equation
+>
+> $$L = \mu\sqrt{GMa(1-e^2)}$$
+>
+> allows us to make some simplifications given our system's properties. For starters, the system mass $M$ is approximately the same for all orbits due to the mass of the star in comparison to the exoplanets. Additionally, the constant $G$ will not change for each system. If we consider the reduced mass $mu$, we can make the following simplification for a system with a very large ($m_1$) and very small mass ($m_2$).
+>
+> $$\mu = \frac{m_1 m_2}{m_1 + m_2} \approx \frac{m_1 m_2}{m_1} = m_2$$
+>
+> Thus, the primary characteristics for determining the angular momentum, by intuition, is the mass of the exoplanet, the semi-major axis, and the eccentricity.
+>
+> $$$L \sim m_2 \sqrt{a(1-e^2)}$
+>
+> Using the values given in the paper, we predict the following.
+>
+> 1. g (largest L)
+> 2. c
+> 3. b
+> 4. f
+> 5. e
+> 6. d (smallest L)
+>
+> Checking our values with a calculation...
+
+
+```{python}
+import astropy.units as u
+import astropy.constants as c
+
+star_m = 0.0802 * c.M_sun
+
+def L(m, a, e):
+    return ((star_m * m)/(star_m + m)) * (c.G * (star_m + m) * a * (1 - e**2)) ** 0.5
+
+# m, a, e
+trappist_b = [0.85 * c.M_earth, 11.11 * u.au * 10 ** -3, 0.081]
+trappist_c = [1.38 * c.M_earth, 15.21 * u.au * 10 ** -3, 0.083]
+trappist_d = [0.41 * c.M_earth, 21.44 * u.au * 10 ** -3, 0.070]
+trappist_e = [0.62 * c.M_earth, 28.17 * u.au * 10 ** -3, 0.085]
+trappist_f = [0.68 * c.M_earth, 37.1 * u.au * 10 ** -3, 0.063]
+trappist_g = [1.34 * c.M_earth, 45.1 * u.au * 10 ** -3, 0.061]
+
+lb = L(trappist_b[0], trappist_b[1], trappist_b[2]).to(u.kg * u.m ** 2 / u.s)
+lc = L(trappist_c[0], trappist_c[1], trappist_c[2]).to(u.kg * u.m ** 2 / u.s)
+ld = L(trappist_d[0], trappist_d[1], trappist_d[2]).to(u.kg * u.m ** 2 / u.s)
+le = L(trappist_e[0], trappist_e[1], trappist_e[2]).to(u.kg * u.m ** 2 / u.s)
+lf = L(trappist_f[0], trappist_f[1], trappist_f[2]).to(u.kg * u.m ** 2 / u.s)
+lg = L(trappist_g[0], trappist_g[1], trappist_g[2]).to(u.kg * u.m ** 2 / u.s)
+
+print(f"L trappist b: {lb:.2e}")
+print(f"L trappist c: {lc:.2e}")
+print(f"L trappist d: {ld:.2e}")
+print(f"L trappist e: {le:.2e}")
+print(f"L trappist f: {lf:.2e}")
+print(f"L trappist g: {lg:.2e}")
+```
+
+> we get agreement with the largest and smallest values,
+> 
+> 1. g (largest L)
+> 2. c
+> 3. f
+> 4. e
+> 5. b
+> 6. d (smallest L)
+> 
+> 
+> which is relatively expected for a simple intution guess with no calculations.
+
+# Problem 2
+Comet C/2013 A1 (Siding Spring) was discovered in January 2013.  Refer to [https://arxiv.org/abs/2012.12172](Andrienko et al. (2020)) for relevant orbital parameters.  Calculate the following five orbital properties: orbital period, perihelion distance in AU, aphelion distance in AU, perihelion velocity in km/s, and aphelion velocity in km/s.  You may ignore uncertainties.
+
+> **Answer**: The equations for orbital period, aphelion, perihelion, aphelion velocity, and perihelion velocity are shown below, respectively.
+>
+> $$P^2 = \frac{4\pi^2}{G(m_1 + m_2)}a^3$$
+> $$\text{perihelion} = a - ae$$
+> $$\text{aphelion} = a + ae$$
+> $$v_p^2 = \frac{GM}{a}\left(\frac{1+e}{1-e}\right)$$
+> $$v_a^2 = \frac{GM}{a}\left(\frac{1-e}{1+e}\right)$$
+>
+> Using the equations above, and the values for $a$, and $e$ in the paper provided (in addition to some constants), we can solve for the five orbital properties listed earlier.
+>  
+```{python}
+import math
+a = 2.590376582621090E4 * u.au
+e = 0.9999458751571103
+
+P = ((4 * math.pi ** 2) * a ** 3 / (c.G * c.M_sun)) ** 0.5
+perihelion = a - a * e
+aphelion = a + a * e
+v_p = (c.G * c.M_sun * ((1 + e)/(1 - e)) / a) ** 0.5
+v_a = (c.G * c.M_sun * ((1 - e)/(1 + e)) / a) ** 0.5
+
+print(f"Orbital Period: {P.to(u.yr):.2e}")
+print(f"Perihelion: {perihelion.to(u.au):.2e}")
+print(f"Aphelion: {aphelion.to(u.au):.2e}")
+print(f"Perihelion Velocity: {v_p.to(u.km / u.s):.2e}")
+print(f"Aphelion Velocity: {v_a.to(u.km / u.s):.2e}")
+```
+
+
+# Problem 3
+A planet with a mass 33.3 times larger than that of the Earth orbits a 1.7 Solar mass star with an orbital period of 8.88 years.  What are the semimajor axis of the orbit (in AU) and the reduced mass (in Solar masses)?
+
+> **Answer**: Using the equation for orbital period (see above), we can rearrange to solve for the semimajor axis.
+>
+> $$a = \left(\frac{P^2 G(m_1 + m_2)}{4\pi^2}\right)^{1/3}$$
+>
+> Additionally, we can solve for the reduced mass using the equation outlined in Problem 1. Using the equations above the values provided, we can write a simple script to solve for the semimajor and reduced mass
+```{python}
+m1 = 33.3 * c.M_earth
+m2 = 1.7 * c.M_sun
+P = 8.88 * u.yr
+
+a = (P ** 2 * c.G * (m1 + m2) / (4 * math.pi ** 2)) ** (1/3)
+mu = ((m1 * m2)/(m1 + m2))
+
+print(f"Semimajor axis: {a.to(u.au):.4e}")
+print(f"Reduced mass: {mu.to(u.M_sun):.4e}")
+```

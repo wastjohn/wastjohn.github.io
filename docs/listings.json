@@ -16,8 +16,15 @@
     "items": [
       "/courses/astrophysics/index.html",
       "/courses/astrophysics/PS1.html",
+      "/courses/astrophysics/PS2.html",
       "/courses/ML/index.html",
       "/courses/topology/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/astrophysics/index.html",
+    "items": [
+      "/courses/astrophysics/work/PS1.html"
     ]
   }
 ]
