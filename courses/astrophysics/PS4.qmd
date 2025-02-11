@@ -1,0 +1,70 @@
+---
+title: "Astrophysics PS4"
+author: "Will St. John + Theo Darci-Maher + Elliott Lewis"
+---
+
+# Problem 1
+The Milky Way disk is approximately 50 kpc in diameter. Imagine that you observe a spaceship, which is 100 meters in length, traveling at 0.994 c.
+
+a) While the ship is in flight, how long does it appear to you?
+b) What is the diameter of the galaxy as measured by someone on the spaceship?
+c) How long does the journey across the galaxy take, as measured by you?
+d) How long does the journey across the galaxy take, as measured by someone on the spaceship?
+
+
+> **Answer**: 
+>
+>
+```{python}
+import astropy.units as u
+import astropy.constants as c
+
+D_mw = 50 * u.kpc
+D_s = 100 * u.m
+v = 0.994 * c.c
+
+gamma = 1 / (1 - v**2 / c.c ** 2) ** 0.5
+
+# moving rulers are compressed
+D_s_prime = D_s / gamma
+
+D_mw_prime = D_mw / gamma
+
+# Moving clocks run slow
+t_rest = D_mw / v
+
+t_moving = t_rest / gamma
+
+print(f"length of moving ship from MW reference frame: {D_s_prime:.2f}")
+print(f"length of MW from ship perspective: {D_mw_prime:.2f}")
+print(f"time for ship to cross MW from MW perspective: {t_rest.to(u.yr):.2f}")
+print(f"time for ship to cross MW from ship perspective: {t_moving.to(u.yr):.2f}")
+```
+
+# Problem 2
+Starting with the equation for superluminal motion, derive the following equations:
+
+a) v/c < 1 for angles satisfying $\frac{\frac{v_{app}^2}{c^2} - 1}{\frac{v_{app}^2}{c^2} + 1} < \cos\phi < 1$
+b) That the smallest possible value for v/c for the source is $\frac{\frac{v_{app}^2}{c^2} - 1}{\frac{v_{app}^2}{c^2} + 1} < \cos\phi < 1$
+c) The smallest possible v/c will occur at an angle $\phi_{min}$ such that $\cot\phi_{min} = \frac{v_{app}}{c}$ 
+d) The Lorentz factor corresponding to the minimum v/c is $\gamma_{min} = \frac{1}{\sqrt{1 - v_{min}^2}} = \sqrt{1 + v_{app}^2/c^2} = \frac{1}{\sin\phi_{min}}$
+e) The inner 6” of the jet from M87 is observed to have an apparent velocity of 4.5c [https://ui.adsabs.harvard.edu/abs/2013ApJ...774L..21M/abstract](Meyer et al. 2013).  Using your newly derived equations, estimate the minimum velocity, minimum approaching angle, and Lorentz factor of the jet.
+
+> **Answer**: 
+>
+
+```{python}
+
+```
+
+
+# Problem 3
+Use the ADS and/or ArXiV search engine tools to identify a recent (within the past few years) peer-reviewed scholarly manuscript that deals with a relativistic concept and/or observations of superluminal motion.  Provide a brief summary of the main results of the paper, including a discussion of how the material connects to the concepts that we discussed in Chapter 4 of the textbook. 
+
+> **Answer**:
+>
+> 
+```{python}
+
+```
+

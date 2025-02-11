@@ -1,0 +1,110 @@
+---
+title: "Astrophysics PS3"
+author: "Will St. John + Kiki Murphy"
+---
+
+# Problem 1
+Consider a model of a subgiant star with a surface temperature 27,000 K and radius 7.4 times as large as the Sun.  The parallax measured for the stars is 0.008 arcseconds.  Calculate
+
+a) The luminosity in solar luminosity
+b) Absolute bolometric magnitude
+c) Apparent bolometric magnitude
+d) Distance modulus
+e) Radiant flux at the surface of the star 
+f) Radiant flux at the surface of Jupiter
+g) Peak wavelength of the star’s spectrum
+
+> **Answer**: 
+>
+>
+```{python}
+import astropy.units as u
+import astropy.constants as c
+import math
+import numpy as np
+T_e = 27000 * u.K
+parallax = 0.008 * u.arcsec
+R = 7.4 * c.R_sun
+m_sun = -27 
+M_sun = 4.74
+
+distance = parallax.to(u.pc, equivalencies=u.parallax())
+
+surface_flux = c.sigma_sb * T_e ** 4
+L = 4 * math.pi * R ** 2 * surface_flux
+flux = L / (4 * math.pi * distance ** 2)
+flux_jupiter = L / (4 * math.pi * (5.2 * u.au) ** 2)
+print(M_sun,c.L_sun.value)
+M = M_sun - 2.5 * math.log10(L / c.L_sun)
+m = M + 5 * math.log10(distance / (10 * u.pc))
+l_max = 0.0029 * u.m * u.K / T_e
+
+print(f"Luminosity (L): {L.to(u.L_sun):.2e}")
+print(f"Absolute bolometric magitude (M): {M:.2f}")
+print(f"Relative bolometric magnitude (m): {m:.2f}")
+print(f"Distance modulus (m-M): {m-M:.2f}")
+print(f"Radiant flux at surface of star: {surface_flux:.2e}")
+print(f"Radiant flux at surface of Jupiter: {flux_jupiter.to(u.W / u.m ** 2):.2e}")
+print(f"Peak wavelength (l_max): {l_max.to(u.nm)}")
+```
+
+# Problem 2
+A $1.2\times10^4$ kg spacecraft is launched from Earth and is to be accelerated radially away from the Sun using a circular solar sail.  The initial acceleration of the spacecraft is to be 1g.  Assuming a flat sail, determine the radius of the sail if it is
+
+a) Black, so it absorbs the Sun’s light.
+b) Shiny, so it reflects the Sun’s light.
+c) How does this proposed spacecraft compare to what NASA is considering for it’s next generation of proposed solar sail enabled spacecraft: https://www.nasa.gov/general/nasa-next-generation-solar-sail-boom-technology-ready-for-launch/ 
+Hint: The spacecraft, like Earth, is orbiting the Sun.  Should you include the Sun’s gravity in your calculation?
+
+> **Answer**: 
+>
+
+```{python}
+d = 1 * u.au
+m = 1.2E4 * u.kg
+a = 9.8  * u.m / u.s ** 2
+theta = 0 * u.deg
+flux = c.L_sun / (4 * math.pi * d ** 2)
+r_abs = ((m * a * c.c) / (flux * math.pi * math.cos(0))) ** 0.5
+r_ref = ((m * a * c.c) / (2 * flux * math.pi * math.cos(0)**2)) ** 0.5
+print(f"{r_abs.to(u.km):.2f}")
+print(f"{r_ref.to(u.km):.2f}")
+```
+
+
+# Problem 3
+We have discussed the blackbody spectral energy distributions of individual stars.  Many studies have examined the relationships between the total stellar mass, luminosity, and observed colors of composite stellar populations (e.g., the millions or billions of stars found in typical galaxies).  One such study is Hermann et al. (2016), which studies the properties of low-mass irregular galaxies.  This approach is applied in many subsequent works (e.g., Gault et al. 2021).
+Consider a galaxy with the following measure global properties, measured in the SDSS g and r filters.  Information on the SDSS filters can be found here; note that g and g’ filters are interchangeable.
+
+	Apparent magnitude in the r band: mr=18.02
+	Distance: D = 76 Mpc
+	Measured color: (g - r) = 0.30
+
+Using this information, and the M/L relation for the SDSS r-band relation from Herrmann et al. (2016), calculate the following characteristics.  You may assume that the absolute magnitude of the Sun in the SDSS r-filter is r = +4.65.
+
+a) Absolute magnitude in the r band
+b) M/L ratio (using Solar units)
+c) log10(L/Lsun)
+d) log10(M/Msun)
+
+> **Answer**:
+>
+> 
+```{python}
+m_r = 18.02
+D = 76 * u.pc * 1E6
+a_lambda = -0.313
+b_lambda = 0.894
+color = 0.30
+M_r = m_r - 5 * np.log10(D.value) + 5
+ML = 10 ** (a_lambda + b_lambda * color)
+Llog = (M_r - M_sun) / -2.5
+Mlog = math.log10(10 ** Llog)
+print(f"{10 ** Llog:.2e}")
+print(f"Absolute magnitude in r band: {M_r}")
+print(f"M/L ratio: {ML * u.M_sun / u.L_sun :.2f}")
+print(f"log10(L/Lsun): {Llog}")
+print(f"log10(M/Msun): {Mlog}")
+
+```
+
