@@ -1,0 +1,150 @@
+---
+title: "Astrophysics PS6"
+author: "Will St. John + Caedan Miller + Kiki Murphy"
+---
+
+# Problem 1
+The Event Horizon Telescope revolutionized our understanding of black holes by producing the first image of the immediate region surrounding one such structure in the galaxy M87. The theoretical diffraction limit of the EHT is given in the discovery paper.
+
+To demonstrate how amazing this is, consider that normal human hair grows at the rate of a half an inch per month. Imagine you could use the EHT to observe a human standing on the surface of the moon at its perigee orbital position. Using Lunar parameters from this page, how long (in units of days) will you have to wait for this instrument to be able to measure the growth of that human's hair?
+
+
+> **Answer**: The diffraction limit is esstentially the smallest angle we are able to see with a telescope. According the discovery paper, the diffraction limit of the EHT is $25\mu$as. Now the question becomes: If we place a person on the Moon at perigee, how long will we have to wait before we can observe their hair growing?
+>
+> Using trig, we can determine the length corresponding to our diffraction angle at a distance of the Moon's perigee. Dividing that length by the hair growth rate will tell us how long we would have to wait before we can resolve the image of the hair.
+>
+> The code below does just that.
+>
+```{python}
+import astropy.units as u
+import astropy.constants as c
+import numpy as np
+import matplotlib.pyplot as plt
+
+diff_limit_EHT = 25 * 1E-6 * u.arcsec
+
+hair_growth_rate = 0.5 / 39.37 * u.meter / (1/12 * u.yr)
+
+moon_perigee = 0.3633 * 1E6 * u.km
+
+physical_diff_lim = moon_perigee * np.tan(diff_limit_EHT)
+
+time = physical_diff_lim / hair_growth_rate
+
+
+print(f"Days to wait for EHT to measure growth of human hair: {time.to(u.yr) * 365 / u.yr:.2f} days")
+```
+
+Note that this time is approximately 3 months, which would correspond to hair that is 1.5 inches in length. Putting this all into context, the EHT can resolve the 1.5 inch long hair of a person on the Moon at perigee.
+
+# Problem 2
+Consider a radio telescope operating in the S-band, which covers the frequency range of 2-4 GHz.  Imagine that the telescope's frequency dependence is triangular, meaning that the sensitivity of the detector is zero at the edges and maximal at band center.
+
+This filter function is expressed as
+
+$$f_\nu = \frac{\nu}{\nu_m - \nu_l} - \frac{\nu_l}{\nu_m - \nu_l}\text{ for } \nu_l\leq\nu\leq\nu_m$$
+$$f_\nu = -\frac{\nu}{\nu_u - \nu_m} + \frac{\nu_u}{\nu_u - \nu_m}\text{ for } \nu_m\leq\nu\leq\nu_u$$
+$$f_\nu = 0\text{ for all other }\nu$$
+
+Here $f_\nu$ is the filter function, $\nu_m$ is the mid-point frequency, $\nu_u$ is the upper (higher) frequency, and $\nu_l$ is the lower frequency.
+
+You observe with this system at a frequency of 3.2 GHz with a bandwidth of 80 MHz.  
+
+a) What are $\nu_m$, $\nu_u$, and $\nu_l$?
+
+Assume that the radio dish is 100% efficient over the observing bandwidth and that the diameter of the dish is 65 m.  Assume that the source is a galaxy with with a constant spectral flux density of 3.17 mJy over the detector’s frequency range.  
+
+b) What is the total power received by the telescope?
+c) Assume that the source of the emission is a galaxy located at distance of 23 Mpc that radiates isotropically.  What is the power emitted by this source? 
+
+> **Answer**: Given our observing frequency and bandwitdth, the corresponding mid, lower, and upper frequencies are simply the center and bounds created by our bandwidth, centered at the observing frequency. Thus,
+>
+```{python}
+f = 3.2 * u.GHz
+bw = 80 * u.MHz
+f_m = f
+f_l = f - 0.5 * bw
+f_u = f + 0.5 * bw
+
+print(f"mid-point frequency: {f}")
+print(f"upper frequency: {f_u}")
+print(f"lower frequency: {f_l}")
+
+```
+
+Assuming the radio dish is 100% effective, the total power is given by 
+
+$$P = S * A * \Delta\nu,$$
+
+where $S$ is the spectral flux density, $A$ is the collecting area of the telescope, and $\Delta\nu$ is the bandwidth.
+
+```{python}
+S = 3.17 * 1E-3 * u.Jy
+d = 65 * u.m
+D = 23 * u.Mpc
+A = np.pi * (d/2) ** 2
+P_obs = S * A * bw  # power (more like intensity?) received by telescope
+
+print(f"Power received by the telescope: {P_obs.to(u.W):.2e}")
+```
+
+The ratio of the source power to the observed power is the same as the ratio of the area the intrinsic power is dispersed over (at Earch) to the area of the radio telescope.
+
+$$\frac{P_{source}}{P_{observed}} = \frac{A_{source}}{A_{telescope}}$$
+
+We can find the power of the source by multiplying the ratio by the power observed by the telescope.
+
+$$P_{source} = \frac{A_{source}}{A_{telescope}} * P_{observed}$$
+
+```{python}
+# power at source, ratio is the same
+A_source = 4 * np.pi * D ** 2
+A_telescope = np.pi * (d/2) ** 2
+ratio = A_source / A_telescope
+P_source = P_obs * ratio
+
+print(f"Power emitted by the source: {P_source.to(u.L_sun):.2f}")
+```
+
+This is a very low luminosity for a galaxy, but if we are observing a star or pulsar, this might be a more reasonable value.
+
+# Problem 3
+The Macalester Observatory, located on the roof of Olin-Rice Hall, is a 16-inch diameter telescope with a focal length of 3251 mm. 
+
+a) What is the focal ratio?
+b) What is the plate scale?
+c) Imagine that the Macalester Observatory is used to observe two objects that are separated by 3.3 arcseconds on the sky.  What is the linear separation of these objects on the focal plane in microns?
+
+> **Answer**: The focal ratio $F$ is simply the focal length $f$ divided by the diameter $D$ of the telescope.
+>
+> $$F = \frac{f}{D}$$
+>
+> The plate scale $S$ is defined as
+>
+> $$S = \frac{206265 \text{ ["] }}{f}$$
+>
+> Dividng an angular separation by the plate scale gives the linear separation on the focal plane.
+>
+> $$\Delta x = \frac{\Delta\theta}{S}$$
+>
+> The code below perfoms the processes described above for the given scenario.
+```{python}
+f = 3251 * u.mm
+D = 16 / 39.37 * u.m
+
+# focal ratio F
+F = f / D
+
+# Plate Scale S
+S = 206265 * u.arcsec / f
+
+# Linear separation from projection
+sep = 3.3 * u.arcsec
+lin_sep = sep / S
+
+print(f"focal ratio F: {F.to(u.m/u.m):.2f}")
+print(f"plate scale S: {S:.2f}")
+print(f'linear separation: {lin_sep.to(u.micron):.2f}')
+```
+
+
