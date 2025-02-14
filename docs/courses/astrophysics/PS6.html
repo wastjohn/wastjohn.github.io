@@ -226,7 +226,7 @@ window.Quarto = {
 <p>Using trig, we can determine the length corresponding to our diffraction angle at a distance of the Moon’s perigee. Dividing that length by the hair growth rate will tell us how long we would have to wait before we can resolve the image of the hair.</p>
 <p>The code below does just that.</p>
 </blockquote>
-<div id="4c4cedb6" class="cell" data-execution_count="1">
+<div id="9a669791" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -243,9 +243,9 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> physical_diff_lim <span class="op">/</span> hair_growth_rate</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Days to wait for EHT to measure growth of human hair: </span><span class="sc">{</span>time<span class="sc">.</span>to(u.yr) <span class="op">*</span> <span class="dv">365</span> <span class="op">/</span> u<span class="sc">.</span>yr<span class="sc">:.2f}</span><span class="ss"> days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Wait time: </span><span class="sc">{</span>time<span class="sc">.</span>to(u.yr) <span class="op">*</span> <span class="dv">365</span> <span class="op">/</span> u<span class="sc">.</span>yr<span class="sc">:.2f}</span><span class="ss"> days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Days to wait for EHT to measure growth of human hair: 105.46 days</code></pre>
+<pre><code>Wait time: 105.46 days</code></pre>
 </div>
 </div>
 <p>Note that this time is approximately 3 months, which would correspond to hair that is 1.5 inches in length. Putting this all into context, the EHT can resolve the 1.5 inch long hair of a person on the Moon at perigee.</p>
@@ -268,7 +268,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: Given our observing frequency and bandwitdth, the corresponding mid, lower, and upper frequencies are simply the center and bounds created by our bandwidth, centered at the observing frequency. Thus,</p>
 </blockquote>
-<div id="9ffccf91" class="cell" data-execution_count="2">
+<div id="8ea7f9ff" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">3.2</span> <span class="op">*</span> u.GHz</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bw <span class="op">=</span> <span class="dv">80</span> <span class="op">*</span> u.MHz</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>f_m <span class="op">=</span> f</span>
@@ -287,7 +287,7 @@ lower frequency: 3.16 GHz</code></pre>
 <p>Assuming the radio dish is 100% effective, the total power is given by</p>
 <p><span class="math display">\[P = S * A * \Delta\nu,\]</span></p>
 <p>where <span class="math inline">\(S\)</span> is the spectral flux density, <span class="math inline">\(A\)</span> is the collecting area of the telescope, and <span class="math inline">\(\Delta\nu\)</span> is the bandwidth.</p>
-<div id="7fbe1f49" class="cell" data-execution_count="3">
+<div id="f59f7e29" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> <span class="fl">3.17</span> <span class="op">*</span> <span class="fl">1E-3</span> <span class="op">*</span> u.Jy</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">65</span> <span class="op">*</span> u.m</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">23</span> <span class="op">*</span> u.Mpc</span>
@@ -303,7 +303,7 @@ lower frequency: 3.16 GHz</code></pre>
 <p><span class="math display">\[\frac{P_{source}}{P_{observed}} = \frac{A_{source}}{A_{telescope}}\]</span></p>
 <p>We can find the power of the source by multiplying the ratio by the power observed by the telescope.</p>
 <p><span class="math display">\[P_{source} = \frac{A_{source}}{A_{telescope}} * P_{observed}\]</span></p>
-<div id="b0ad9097" class="cell" data-execution_count="4">
+<div id="ec0adcf2" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># power at source, ratio is the same</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>A_source <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> D <span class="op">**</span> <span class="dv">2</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>A_telescope <span class="op">=</span> np.pi <span class="op">*</span> (d<span class="op">/</span><span class="dv">2</span>) <span class="op">**</span> <span class="dv">2</span></span>
@@ -334,7 +334,7 @@ lower frequency: 3.16 GHz</code></pre>
 <p><span class="math display">\[\Delta x = \frac{\Delta\theta}{S}\]</span></p>
 <p>The code below perfoms the processes described above for the given scenario.</p>
 </blockquote>
-<div id="d2657e6d" class="cell" data-execution_count="5">
+<div id="eb8d6739" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="dv">3251</span> <span class="op">*</span> u.mm</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">16</span> <span class="op">/</span> <span class="fl">39.37</span> <span class="op">*</span> u.m</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>

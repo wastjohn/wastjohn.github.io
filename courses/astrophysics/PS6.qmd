@@ -32,7 +32,7 @@ physical_diff_lim = moon_perigee * np.tan(diff_limit_EHT)
 time = physical_diff_lim / hair_growth_rate
 
 
-print(f"Days to wait for EHT to measure growth of human hair: {time.to(u.yr) * 365 / u.yr:.2f} days")
+print(f"Wait time: {time.to(u.yr) * 365 / u.yr:.2f} days")
 ```
 
 Note that this time is approximately 3 months, which would correspond to hair that is 1.5 inches in length. Putting this all into context, the EHT can resolve the 1.5 inch long hair of a person on the Moon at perigee.
