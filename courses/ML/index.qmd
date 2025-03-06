@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning"
+title: "Machine Learning Notes - Adapted from Macalester's STAT 253 SP25 Course by Brianna Heggeseth"
 ---
 # Introduction
 > Machine Learning: using algorithms that can learn from existing patterns and make predictions
@@ -23,4 +23,157 @@ $$\begin{align*}y &= f(x) + \epsilon \\ &= \text{ trend in relationship } + \tex
 - Types:
   - Clustering (similar $x$'s')
   - Dimension Reduction (turn original set of $p$ input varaibles into set with $k<p$ variables)
+
+# Regression
+We are trying to build a model $f(x)$ of some quantitative output.
+
+$$y = f(x) + \epsilon$$
+
+
+## Model Evaluation
+
+### Model Evaluation
+Once we have the model, we need to evaluate:
+
+1. Is the model **wrong**?
+   1.  eg. Linear fit on quadratic data
+   2.  Look at *residual plot*
+2. Is the model **strong**?
+   1. How well does our model explain the variability in response?
+   2. Look at $R^2$, adjusted $R^2$
+3. Does the model **produce accurate predictions**?
+   1. Look at *residual plot*
+   2. MSE, RMSE, MAE
+4. Is the model **fair**? 
+   1. Who collected/funded the data?
+   2. How/why did they collect it?
+   3. Implications of analysis
+
+### Overfitting
+Adding more predictors can result in an overfit model.
+Relying on in-sample metrics can lead to overfitting
+
+- In-sample metrics only tell you how the model performs on that dataset used to make the model.
+- Biased! 
+- Overly optimisitc!
+
+Prevention
+
+- Training vs testing groups
+- k-Fold Cross Validation
+
+
+### Cross-Validation
+Algorithm:
+
+- Split data into $k$ folds
+- For each fold:
+  - Remove the fold from the data set, this will be the testing set
+  - Use the rest of the data to train the model
+  - Calculate the error between the testing and training model
+- Average all error estimates from each fold
+
+This is a more accurate value for what you expect your model to be off by when tested on new data.
+
+Common values of $k$: 7, 10
+
+Note: $k=n$ is also known as Leave One Out Cross Validation (LOOCV)
+
+## Model Selection
+How can we decide what predictors to include in our model?
+
+Methods:
+
+1. **Variable selection** Identify a subset of predictors
+   - Best subset selection
+   - Backward-stepwise selection
+   - Forward-stepwise selection
+2. **Shrinkage / regularization** Shrink/regularize the coefficients of all predictors towards 0.
+   1. LASSO, ridge regression, elastic net
+3. **Dimension Reduction** Combine predictors into a smaller set of new predictors
+   1. Principal componets regression
+
+### Model Selection
+Greedy algorithms:
+
+- **Best Subset Selection** Build all $2^p$ models that use any combination of available predictors and identify best model based on chosen metric
+  - Computationally expensive
+- **Backward Stepwise Selection** Build a model with all $p$ predictors. Remove the predictor with largest p-value and build a model with the remaining. Repeat till you have $p$ models. Identify best to some metric.
+  - Greedy
+  - Overestimates significance of remaining predictors
+- **Forward Stepwise Selection** Better than Best Subset Selection, but worse than Backwards Stepwise Selection.
+  - Computationally expensive
+  - Can produce odd combination of predictors
+
+### LASSO: Shrinkage / Regularization
+Least squares that penalizes predictors that add complexity.
+
+Pros:
+
+- helps with model selection, preventing overfitting
+- Predictors must be scaled (R does it for us)
+- Isn't greedy and doesn't choose variables based on p-values
+
+Tuning:
+
+- $\lambda = 0$, LASSO = Least Squares
+- As $\lambda$ increases, variable coefficients go to zero
+
+## Flexible Models
+What if the relationship between $x$ and $y$ is more complicated? Use flexible models!
+
+Parametric vs Nonparametric Models
+
+- **Parametric** Assumes relationship across domain of function
+- **Nonparametric** More flexibility in relationship between $x$ and $y$
+
+### Nonparametric Models
+Need to consider the scale of variables when calculating distances between observations with more than one predictor (NORMALIZE!)
+
+- Normalization - an example of pre-processing, decisions wherein effect models and predictons
+- Might need to preprocess data in variable recipe
+
+### KNN Regression and the Bias-Variance Tradeoff
+- Nonparametric
+- Assumption: Similar $x$ values imply similar $y$ values.
+- from kknn package: knn predicts y from weighted average
+  - more influence to closer neighbors
+
+Algorithm:
+
+- Identify $K$ nearest neighbors of $x$ with respect to Euclidean distance
+- Observe the $y$ values of these neighbors
+- $f(x) = \text{average}(y \text{ neighbors})$
+
+Bias-Variance Tradeoff
+
+- **Bias** How well does the model predict values?
+  - Extremes: $K=1$, overfit, no bias; $K=K$ just a line but smoothed due to weights
+- **Variance** How does the model shape change from dataset to dataset?
+  - Overfit model: passes through each point in the data, high variance
+
+### LOESS & Splines
+
+Splines
+
+- Fit polynomial models in small localized regions and make the boundaries smooth.
+- Can only spline one quantitative predictor
+- Natural vs basis
+  - Natural: pass `deg_free` argument where `deg_free = # of knots + 1`
+    - Variant of B-splines with additional constraint at boundaries to reduce variance
+    - Knots typically based on quantiles of predictor
+  - Basis: specify specific knots `options = list(knots = c(x_1, x_2))`
+    - You choose the knots
+    - Functions can be unstable at boundaries
+
+LOESS
+
+- Fit regression models in small, localized regions, where nearby data have greater influence than far data
+- Can only LOESS one quantitative predictor
+- Nonparametric
+- Algorithm:
+  - Define the span $h \in (0,1]$. Perform the following to estimate $f(x)$ at each possible predictor value $x$
+    - Identify a neighborhood consisting of the $100\times h\%$ of cases that are closes to $x$
+    - Putting more weight on closer $x$ neighbors, fit a linear model in this neighborhood
+    - Use the local linear model to estimate $f(x)$
 

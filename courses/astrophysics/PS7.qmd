@@ -1,0 +1,114 @@
+---
+title: "Astrophysics PS7"
+author: "Will St. John + Caedan Miller + Kiki Murphy"
+---
+
+# Problem 1
+Consider a spectroscopic binary system with a period of 2.17 days.  The orbits have zero eccentricity.  The maximum Doppler shifts of the fainter and brighter stars are 112.6 km/s and 71.4 km/s, respectively. 
+
+a) How can an astronomer deduce the eccentricity of the orbits in a spectroscopic binary system?  What observations, measurements, modeling, etc.  are needed?
+b) Assuming a statistical value for <sin3i>, determine the total mass of the spectroscopic binary system (in solar masses).  Explain your choice of statistical value.
+c) What is the mass of the fainter star?
+d) What is the mass of the brighter star?
+
+
+
+> **Answer**: 
+
+```{python}
+import astropy.units as u
+import astropy.constants as c
+import numpy as np
+
+P = 2.17 / 365 * u.yr
+V1 = 112.6 * u.km / u.s
+V2 = 71.4 * u.km / u.s
+sin3i = 2/3
+
+total_mass = P / (2 * np.pi * c.G) * (V1 + V2) ** 3 / sin3i
+print(f"total mass: {total_mass.to(u.M_sun):.2f}")
+
+ratio21 = V2 / V1
+m2 = total_mass / (ratio21 + 1)
+m1 = ratio21 * m2
+print(f"mass of fainter star: {m1.to(u.M_sun):.2f}")
+print(f"mass of brighter star: {m2.to(u.M_sun):.2f}")
+```
+
+# Problem 2
+Assume that two stars, "1" and "2", are in circular obits about a common center of mass and are seperated by a distance “a”.  Assume an orbital inclination of i and stellar radii of “R1” and “R2” for the two stars.
+
+a) Find an expression for i that just barely produces an eclipse.  Hint: consider the Figure 7.8 from the textbook
+
+The [Kepler space telescope](https://science.nasa.gov/mission/kepler/) revolutionzed our understanding of extrasolar planets. Hundreds of scholarly manuscripts have been published about these results. One intriguing results is the Kepler-1661 system presented by [Socia et al](https://ui.adsabs.harvard.edu/abs/2020AJ....159...94S/abstract). (2020). Use the information in the paper and apply the equation you deduce for i to calculate: 
+
+b) the minimum inclination angle for an eclipse to occur at the minimum separation of the primary and secondary stars,
+c) and the minimum inclination angle for an eclipse to occur at the maximum separation of the primary and secondary stars.
+d) Do your constraints on i agree with the results presented by Socia et al. (2020)?
+
+
+> **Answer**: 
+
+$$i > \cos^{-1}\left(\frac{R_1 + R_2}{a}\right)$$
+
+```{python}
+R1 = 0.76 * u.R_sun
+R2 = 0.276 * u.R_sun
+P = 28.2 / 365 * u.yr
+m1 = 0.84 * u.M_sun
+m2 = 0.262 * u.M_sun
+e = 0.112
+a = (P ** 2 * c.G * (m1 + m2) / (4 * np.pi ** 2)) ** (1/3)
+i = np.arccos((R1 + R2) / a)
+i.to(u.deg)
+```
+
+# Problem 3
+
+3) Consider an eclipsing, spectroscopic binary system.  The orbital period is 5.51 years and the eccentricity is zero.  The maximum radial velocity of Star A is 4.7 km/s and the maximum radial velocity of Star B is 17.4 km/s.  The time period between first contact (or beginning of eclipse) and minimum light is 0.48 days.  The length of the primary minimum is 0.84 days.  The apparent bolometeric magnitudes of maximum, primary minimum, and secondary minimum are 6.41, 9.12, and 6.66, respectively.  Find the following:
+
+a) The ratio of stellar masses
+b) The sum of stellar masses (in solar masses)
+c) The individual masses of Star A and Star B
+d) The radii of Star A and Star B
+e) The ratio of the effective temperature of the two stars.
+
+
+> **Answer**:
+>
+>
+
+```{python}
+e = 0
+P = 5.51 * u.yr
+v_A = 4.7 * u.km / u.s
+v_B = 17.4 * u.km / u.s
+v = v_A + v_B
+dt_fc_to_ml = 0.48 / 365 * u.yr
+primary_minimum_length = 0.84 / 365 * u.yr
+B_0 = 6.41
+B_p = 9.12
+B_s = 6.66
+
+mAmB_ratio = v_B / v_A
+
+total_mass = P / (2 * np.pi * c.G) * (v_A + v_B) ** 3 / sin3i
+print(f"total mass: {total_mass.to(u.M_sun):.2f}")
+
+
+m_B = total_mass / (mAmB_ratio + 1)
+m_A = mAmB_ratio * m_B
+print(f"Mass of Star A: {m_A.to(u.M_sun):.2f}")
+print(f"Mass of Star B: {m_B.to(u.M_sun):.2f}")
+
+R_s = v * dt_fc_to_ml / 2
+R_l = v * primary_minimum_length / 2 + R_s
+
+print(f"Radius of Star A: {R_l.to(u.R_sun):.2f}")
+print(f"Radius of Star B: {R_s.to(u.R_sun):.2f}")
+
+
+temp_ratio = ((B_0 - B_p) / (B_0 - B_s)) ** (1/4)
+print(f"Temperature ratio (B to A): {temp_ratio:.2f}")
+
+```

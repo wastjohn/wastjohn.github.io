@@ -1,0 +1,206 @@
+---
+title: "Astrophysics PS9"
+author: "Will St. John + Theo Darci-Maher + Kiki Murphy"
+---
+
+# Problem 1
+Derive various important relationships that describe a blackbody radiation field.
+
+a) Derive an expression for the number density of blackbody photons (photons per unit volume) with wavelength $\lambda$ and $d\lambda$.  This differential should be expressed in terms $d\lambda$.
+b) Integrate the expression from a) over all wavelengths to obtain an expression for the total number density of blackbody photons.  This results should include only numerical factors, fundamental constants, and the variable T (temperature).
+c) Show that, for a blackbody, the average energy per photon is a simple relationship involving only a numerical factor, a single fundamental constant, and the variable T (temperature).
+
+
+> **Answer**: The blackbody spectral energy density $u_\lambda$ for some $\lambda+d\lambda$ is defined as 
+> $$u_\lambda d\lambda = \frac{4\pi}{c}B_\lambda d\lambda= \frac{8\pi hc}{\lambda^5}\left(\frac{1}{e^{hc/\lambda k T}-1}\right)d\lambda.$$
+>
+> Addititonally, we know the a photon with wavelength $\lambda$ has an energy described by
+> $$E = hf = \frac{hc}{\lambda}$$
+>
+> Dividing the blackbody spectral energy density by the photon energy will give us the number density of blackbody photons with wavelength $\lambda$ and $d\lambda$.
+>
+> $$\boxed{n_\lambda d\lambda = \frac{u_\lambda d\lambda}{E} = \frac{8\pi}{\lambda^4}\left(\frac{1}{e^{hc/\lambda k T}-1}\right)d\lambda}$$
+>
+> Integrating the right hand side over all wavelengths to find the total number density of blackbody photons results in the following integral.
+>
+> $$\int_0^\infty\frac{8\pi hc}{\lambda^5}\left(\frac{1}{e^{hc/\lambda k T}-1}\right)d\lambda$$
+>
+> Plugging this integral into Mathematica gives the following result
+>
+> $$n = \int_0^\infty\frac{8\pi hc}{\lambda^5}\left(\frac{1}{e^{hc/\lambda k T}-1}\right)d\lambda = 16\pi\zeta(3)\left(\frac{kT}{ch}\right)^3$$
+>
+> where $\zeta(3)$ is the Riemann zeta function which has an approximate value of 1.20206. Thus our total number density of blackbody photons is 
+>
+> $$\boxed{n = 16\pi\zeta(3)\left(\frac{kT}{ch}\right)^3 \approx 19.2329\pi\left(\frac{kT}{ch}\right)^3}$$
+>
+> The total blackbody energy density over all wavelengths is 
+> $$u = aT^4, \quad a = \frac{4\sigma}{c} = 7.566\cdot10^{-16}\frac{\text{J}}{\text{m}^2 \text{K}^4}$$
+>
+> If we divide the total blackbody energy density by our number density for blackbody photons found above, we should get the average energy per photon for a blackbody with temperature $T$.
+>
+> $$\boxed{\bar{E}_\gamma = \frac{u}{n} = \frac{aT^4}{16\pi\zeta(3)\left(\frac{kT}{ch}\right)^3} \approx 2.70 T}$$
+
+
+# Problem 2
+A ground-based observatory makes two measurements of the specific intensity from a star:
+
+- $I_1 = 7.51\times10^{-12}$ W m$^{-2}$ is made at a zenith angle $\theta_1=17.15$ degrees
+- $I_2 = 5.18\times10^{-12}$ W m$^{-2}$ is made at a zenith angle $\theta_2=37.86$ degrees
+
+
+a) What is the vertical optical depth?
+b) What is the specific intensity above the Earth's atmosphere (in W m$^-$2)?
+
+> **Answer**: For a ground based observer, the intensity as a function of optical depth goes as
+> 
+> $$I_\lambda = I_{\lambda,0} e^{-\tau_{\lambda,0}\sec\theta}$$
+>
+> Taking the ratio of our measured intensities allows us to rearrange to solve for the intrinsic optical depth, 
+>
+> $$\tau_{\lambda,0} = \frac{\ln\left(\frac{I_{\lambda,1}}{I_{\lambda,2}}\right)}{-\sec\theta_1 + \sec\theta_2}$$
+>
+> where the vertical optical depth is airmass dependent.
+>
+> $$\tau_\lambda = \tau_{\lambda,0}\sec\theta$$
+>
+> Once $\tau_{\lambda,0}$ has been found, we can use either measured intensity and corresponding angle to determine the specific intensity before atmospheric attenuation.
+>
+> $$I_{\lambda,0} = \frac{I_\lambda}{e^{-\tau_{\lambda,0}\sec\theta}}$$
+>
+> The code chunk below performs the calculations described above.
+
+```{python}
+import astropy.units as u
+import numpy as np
+
+I1 = 7.51E-12 * u.W / u.m**2
+I2 = 5.18E-12 * u.W / u.m**2
+theta1 = 17.15 * u.deg
+theta2 = 37.86 * u.deg
+
+tau0 = np.log(I1 / I2) / (-(1/np.cos(theta1)) + (1/np.cos(theta2)))
+tau1 = tau0 / np.cos(theta1)
+tau2 = tau0 / np.cos(theta2)
+I0 = I1 / (np.exp(-tau0 / np.cos(theta1)))
+
+print(f"Intrinsic optical depth: {tau0:.2f}")
+print(f"Vertical optical depth (I1): {tau1:.2f}")
+print(f"Vertical optical depth (I2): {tau2:.2f}")
+print(f"Specific intensity abover Earth's atmosphere: {I0:.2e}")
+```
+
+# Problem 3
+In this problem you will use the values of density and opacity at various points near the surface of a model star to calculate the optical depth. The model is that of a 1 Solar mass star with $T_{eff} = 5504$ K. The data in stellar-opacity.dat (on Moodle) shows physical values in the outer 3.3% of the star's radius; the surface of the star is at $r=7.1\times10^8$ m.
+We will use simple numerical integration to determine the optical depth in each region of the model.  Recall that optical depth is defined by the relation
+Examining the data in the table, we see that we are given 42 model layers in the outer regions of the star.  As one moves inward from the "surface" of the star to the interior, the values of $\rho$ and $\kappa$ change.  We can determine the value of tau in each region by beginning with the outermost layer and working our way inward.  To do this, we will apply the "Trapezoidal Rule", a simple but effective numerical integration technique.  The values of $\tau$ in each subsequent layer can be found by applying the relation
+
+$$\tau_{i+1} = \tau_i - \left(\frac{\kappa_i \rho_i + \kappa_{i+1} \rho_{i+1}}{2}\right)\left(r_{i+1}-r_i\right)$$
+
+where $i$ and $i+1$ designate adjacent zones in the model. Find the optical depth at each point by numerically integrating the relation for tau using the trapezoidal rule as provided.
+
+Using the software package of your choice, create six plots:
+
+1. kappa vs radius
+2. rho vs radius
+3. tau vs radius
+4. Temperature vs radius
+5. tau vs temperature
+6. temperature vs physical depth into star
+
+Estimate graphically the depth that one "sees" as the "surface" of this model star by zooming in on the appropriate region of plot #6.  Include a zoom and your numerical estimate for the depth in (km).
+
+> **Answer**: The code below calculates the optical depth using the trapezoidal rule numerical integration for $\tau_{i+1}$.
+
+```{python}
+from astropy.io import ascii
+import astropy.units as u
+import matplotlib.pyplot as plt
+
+data = ascii.read("stellar-opacity.dat")
+
+m = 1 * u.M_sun
+t_eff = 5504 * u.K
+r = 7.1E8 * u.m
+
+tau_values = [0]
+
+tau = 0
+for i in range(len(data) - 1):
+    tau1 = tau - (data["kappa"][i] * data["rho"][i] + 
+        data["kappa"][i + 1] * data["rho"][i + 1]) / 2 * (data["r"][i + 1] - data["r"][i])
+    tau = tau1
+
+    tau_values.append(tau)
+
+data["tau"] = tau_values
+data["physical_depth"] = np.ones(len(data)) * r.value - data["r"]
+
+
+# eddington approximation
+data["temp"] = (0.75 * t_eff ** 4 * (data["tau"] + (2/3))) ** (1/4)
+
+# plotting relationships
+# kappa vs radius
+plt.figure(figsize=(8,10))
+plt.subplot(3,2,1)
+plt.scatter(y = data["kappa"], x = data["r"])
+plt.xlabel("radius [m]")
+plt.ylabel("kappa [m^2/kg]")
+
+# rho vs radius
+plt.subplot(3,2,2)
+plt.scatter(y = data["rho"], x = data["r"])
+plt.xlabel("radius [m]")
+plt.ylabel("rho [kg/m^3]")
+
+# tau vs radius
+plt.subplot(3,2,3)
+plt.scatter(y = data["tau"], x = data["r"])
+plt.xlabel("radius [m]")
+plt.ylabel("tau")
+
+# temp vs radius
+plt.subplot(3,2,4)
+plt.scatter(y = data["temp"], x = data["r"])
+plt.xlabel("radius [m]")
+plt.ylabel("temp [K]")
+
+# tau vs temp
+plt.subplot(3,2,5)
+plt.scatter(y = data["tau"], x = data["temp"])
+plt.xlabel("temp [K]")
+plt.ylabel("tau")
+
+# temp vs physical depth
+plt.subplot(3,2,6)
+plt.scatter(y = data["temp"], x = data["physical_depth"])
+plt.xlabel("physical depth [m]")
+plt.ylabel("temp [K]")
+
+plt.subplots_adjust(wspace=0.5, hspace=0.5)
+plt.show()
+```
+
+> The code below finds the value of $\tau$ closest to 2/3, which corresponds to the optical depth we "see" as the "surface" and plots vertical and horizontal lines corresponding to the approximate physical depth and temperature, respectively.
+
+```{python}
+# calculate physical depth of optical depth = 2/3
+mask = (data["tau"] < 1) & (data["tau"] > 1/3)
+subdata = data["tau","physical_depth","temp"][mask]
+print(subdata)
+
+plt.figure()
+plt.scatter(y = data["temp"], x = data["physical_depth"])
+plt.xlabel("physical depth [m]")
+plt.ylabel("temp [K]")
+plt.xlim(0, 0.2e7)
+plt.ylim(0,10000)
+plt.vlines(subdata["physical_depth"][1], linestyle = '--', color = "orange", 
+            label = "tau ~ 2/3", ymax = subdata["temp"][1], ymin = 0)
+plt.hlines(subdata["temp"][1], linestyle = '--', color = "orange", 
+            xmax = subdata["physical_depth"][1], xmin = 0)
+plt.legend()
+plt.show()
+```
+
+> In this case, we can "see" ($\tau \sim 2/3$) to a physical depth of approximately $10^6$ m into the star.

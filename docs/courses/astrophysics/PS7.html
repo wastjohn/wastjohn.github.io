@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Will St.&nbsp;John + Caedan Miller + Kiki Murphy">
 
-<title>Machine Learning Notes - Adapted from Macalester’s STAT 253 SP25 Course by Brianna Heggeseth – Will St. John</title>
+<title>Astrophysics PS7 – Will St.&nbsp;John</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -148,30 +183,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#supervised-vs-unsupervised-learning" id="toc-supervised-vs-unsupervised-learning" class="nav-link" data-scroll-target="#supervised-vs-unsupervised-learning">Supervised vs Unsupervised Learning</a></li>
-  </ul></li>
-  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a>
-  <ul class="collapse">
-  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model Evaluation</a>
-  <ul class="collapse">
-  <li><a href="#model-evaluation-1" id="toc-model-evaluation-1" class="nav-link" data-scroll-target="#model-evaluation-1">Model Evaluation</a></li>
-  <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting">Overfitting</a></li>
-  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">Cross-Validation</a></li>
-  </ul></li>
-  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a>
-  <ul class="collapse">
-  <li><a href="#model-selection-1" id="toc-model-selection-1" class="nav-link" data-scroll-target="#model-selection-1">Model Selection</a></li>
-  <li><a href="#lasso-shrinkage-regularization" id="toc-lasso-shrinkage-regularization" class="nav-link" data-scroll-target="#lasso-shrinkage-regularization">LASSO: Shrinkage / Regularization</a></li>
-  </ul></li>
-  <li><a href="#flexible-models" id="toc-flexible-models" class="nav-link" data-scroll-target="#flexible-models">Flexible Models</a>
-  <ul class="collapse">
-  <li><a href="#nonparametric-models" id="toc-nonparametric-models" class="nav-link" data-scroll-target="#nonparametric-models">Nonparametric Models</a></li>
-  <li><a href="#knn-regression-and-the-bias-variance-tradeoff" id="toc-knn-regression-and-the-bias-variance-tradeoff" class="nav-link" data-scroll-target="#knn-regression-and-the-bias-variance-tradeoff">KNN Regression and the Bias-Variance Tradeoff</a></li>
-  <li><a href="#loess-splines" id="toc-loess-splines" class="nav-link" data-scroll-target="#loess-splines">LOESS &amp; Splines</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link active" data-scroll-target="#problem-1">Problem 1</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2</a></li>
+  <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3">Problem 3</a></li>
   </ul>
 </nav>
     </div>
@@ -180,13 +194,19 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Machine Learning Notes - Adapted from Macalester’s STAT 253 SP25 Course by Brianna Heggeseth</h1>
+<h1 class="title">Astrophysics PS7</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Will St.&nbsp;John + Caedan Miller + Kiki Murphy </p>
+          </div>
+  </div>
     
   
     
@@ -197,241 +217,132 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
+<section id="problem-1" class="level1">
+<h1>Problem 1</h1>
+<p>Consider a spectroscopic binary system with a period of 2.17 days. The orbits have zero eccentricity. The maximum Doppler shifts of the fainter and brighter stars are 112.6 km/s and 71.4 km/s, respectively.</p>
+<ol type="a">
+<li>How can an astronomer deduce the eccentricity of the orbits in a spectroscopic binary system? What observations, measurements, modeling, etc. are needed?</li>
+<li>Assuming a statistical value for <sin3i>, determine the total mass of the spectroscopic binary system (in solar masses). Explain your choice of statistical value.</sin3i></li>
+<li>What is the mass of the fainter star?</li>
+<li>What is the mass of the brighter star?</li>
+</ol>
 <blockquote class="blockquote">
-<p>Machine Learning: using algorithms that can learn from existing patterns and make predictions</p>
+<p><strong>Answer</strong>:</p>
 </blockquote>
-<section id="supervised-vs-unsupervised-learning" class="level2">
-<h2 class="anchored" data-anchor-id="supervised-vs-unsupervised-learning">Supervised vs Unsupervised Learning</h2>
-<p><strong>Supervised Learning</strong></p>
-<ul>
-<li>model relationship between input <span class="math inline">\(x = (x_1, x_2, \cdots, x_p)\)</span> and output <span class="math inline">\(y\)</span>.</li>
-</ul>
-<p><span class="math display">\[\begin{align*}y &amp;= f(x) + \epsilon \\ &amp;= \text{ trend in relationship } + \text{ residual deviation from trend }\end{align*}\]</span></p>
-<ul>
-<li>Types:
-<ul>
-<li>Regression (<span class="math inline">\(y\)</span> is quantitative)</li>
-<li>Classification (<span class="math inline">\(y\)</span> is categorical)</li>
-</ul></li>
-</ul>
-<p><strong>Unsupervised Learning</strong></p>
-<ul>
-<li>No output variable</li>
-<li>Goal is to use <span class="math inline">\(x\)</span> to understand/modify strucutre of data with respect to <span class="math inline">\(x\)</span></li>
-<li>Types:
-<ul>
-<li>Clustering (similar <span class="math inline">\(x\)</span>’s’)</li>
-<li>Dimension Reduction (turn original set of <span class="math inline">\(p\)</span> input varaibles into set with <span class="math inline">\(k&lt;p\)</span> variables)</li>
-</ul></li>
-</ul>
+<div id="6e8d6e76" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> <span class="fl">2.17</span> <span class="op">/</span> <span class="dv">365</span> <span class="op">*</span> u.yr</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>V1 <span class="op">=</span> <span class="fl">112.6</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>V2 <span class="op">=</span> <span class="fl">71.4</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sin3i <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>total_mass <span class="op">=</span> P <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> c.G) <span class="op">*</span> (V1 <span class="op">+</span> V2) <span class="op">**</span> <span class="dv">3</span> <span class="op">/</span> sin3i</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"total mass: </span><span class="sc">{</span>total_mass<span class="sc">.</span>to(u.M_sun)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>ratio21 <span class="op">=</span> V2 <span class="op">/</span> V1</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> total_mass <span class="op">/</span> (ratio21 <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> ratio21 <span class="op">*</span> m2</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mass of fainter star: </span><span class="sc">{</span>m1<span class="sc">.</span>to(u.M_sun)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mass of brighter star: </span><span class="sc">{</span>m2<span class="sc">.</span>to(u.M_sun)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>total mass: 2.10 solMass
+mass of fainter star: 0.82 solMass
+mass of brighter star: 1.29 solMass</code></pre>
+</div>
+</div>
 </section>
-</section>
-<section id="regression" class="level1">
-<h1>Regression</h1>
-<p>We are trying to build a model <span class="math inline">\(f(x)\)</span> of some quantitative output.</p>
-<p><span class="math display">\[y = f(x) + \epsilon\]</span></p>
-<section id="model-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="model-evaluation">Model Evaluation</h2>
-<section id="model-evaluation-1" class="level3">
-<h3 class="anchored" data-anchor-id="model-evaluation-1">Model Evaluation</h3>
-<p>Once we have the model, we need to evaluate:</p>
-<ol type="1">
-<li>Is the model <strong>wrong</strong>?
-<ol type="1">
-<li>eg. Linear fit on quadratic data</li>
-<li>Look at <em>residual plot</em></li>
-</ol></li>
-<li>Is the model <strong>strong</strong>?
-<ol type="1">
-<li>How well does our model explain the variability in response?</li>
-<li>Look at <span class="math inline">\(R^2\)</span>, adjusted <span class="math inline">\(R^2\)</span></li>
-</ol></li>
-<li>Does the model <strong>produce accurate predictions</strong>?
-<ol type="1">
-<li>Look at <em>residual plot</em></li>
-<li>MSE, RMSE, MAE</li>
-</ol></li>
-<li>Is the model <strong>fair</strong>?
-<ol type="1">
-<li>Who collected/funded the data?</li>
-<li>How/why did they collect it?</li>
-<li>Implications of analysis</li>
-</ol></li>
+<section id="problem-2" class="level1">
+<h1>Problem 2</h1>
+<p>Assume that two stars, “1” and “2”, are in circular obits about a common center of mass and are seperated by a distance “a”. Assume an orbital inclination of i and stellar radii of “R1” and “R2” for the two stars.</p>
+<ol type="a">
+<li>Find an expression for i that just barely produces an eclipse. Hint: consider the Figure 7.8 from the textbook</li>
 </ol>
-</section>
-<section id="overfitting" class="level3">
-<h3 class="anchored" data-anchor-id="overfitting">Overfitting</h3>
-<p>Adding more predictors can result in an overfit model. Relying on in-sample metrics can lead to overfitting</p>
-<ul>
-<li>In-sample metrics only tell you how the model performs on that dataset used to make the model.</li>
-<li>Biased!</li>
-<li>Overly optimisitc!</li>
-</ul>
-<p>Prevention</p>
-<ul>
-<li>Training vs testing groups</li>
-<li>k-Fold Cross Validation</li>
-</ul>
-</section>
-<section id="cross-validation" class="level3">
-<h3 class="anchored" data-anchor-id="cross-validation">Cross-Validation</h3>
-<p>Algorithm:</p>
-<ul>
-<li>Split data into <span class="math inline">\(k\)</span> folds</li>
-<li>For each fold:
-<ul>
-<li>Remove the fold from the data set, this will be the testing set</li>
-<li>Use the rest of the data to train the model</li>
-<li>Calculate the error between the testing and training model</li>
-</ul></li>
-<li>Average all error estimates from each fold</li>
-</ul>
-<p>This is a more accurate value for what you expect your model to be off by when tested on new data.</p>
-<p>Common values of <span class="math inline">\(k\)</span>: 7, 10</p>
-<p>Note: <span class="math inline">\(k=n\)</span> is also known as Leave One Out Cross Validation (LOOCV)</p>
-</section>
-</section>
-<section id="model-selection" class="level2">
-<h2 class="anchored" data-anchor-id="model-selection">Model Selection</h2>
-<p>How can we decide what predictors to include in our model?</p>
-<p>Methods:</p>
-<ol type="1">
-<li><strong>Variable selection</strong> Identify a subset of predictors
-<ul>
-<li>Best subset selection</li>
-<li>Backward-stepwise selection</li>
-<li>Forward-stepwise selection</li>
-</ul></li>
-<li><strong>Shrinkage / regularization</strong> Shrink/regularize the coefficients of all predictors towards 0.
-<ol type="1">
-<li>LASSO, ridge regression, elastic net</li>
-</ol></li>
-<li><strong>Dimension Reduction</strong> Combine predictors into a smaller set of new predictors
-<ol type="1">
-<li>Principal componets regression</li>
-</ol></li>
+<p>The <a href="https://science.nasa.gov/mission/kepler/">Kepler space telescope</a> revolutionzed our understanding of extrasolar planets. Hundreds of scholarly manuscripts have been published about these results. One intriguing results is the Kepler-1661 system presented by <a href="https://ui.adsabs.harvard.edu/abs/2020AJ....159...94S/abstract">Socia et al</a>. (2020). Use the information in the paper and apply the equation you deduce for i to calculate:</p>
+<ol start="2" type="a">
+<li>the minimum inclination angle for an eclipse to occur at the minimum separation of the primary and secondary stars,</li>
+<li>and the minimum inclination angle for an eclipse to occur at the maximum separation of the primary and secondary stars.</li>
+<li>Do your constraints on i agree with the results presented by Socia et al.&nbsp;(2020)?</li>
 </ol>
-<section id="model-selection-1" class="level3">
-<h3 class="anchored" data-anchor-id="model-selection-1">Model Selection</h3>
-<p>Greedy algorithms:</p>
-<ul>
-<li><strong>Best Subset Selection</strong> Build all <span class="math inline">\(2^p\)</span> models that use any combination of available predictors and identify best model based on chosen metric
-<ul>
-<li>Computationally expensive</li>
-</ul></li>
-<li><strong>Backward Stepwise Selection</strong> Build a model with all <span class="math inline">\(p\)</span> predictors. Remove the predictor with largest p-value and build a model with the remaining. Repeat till you have <span class="math inline">\(p\)</span> models. Identify best to some metric.
-<ul>
-<li>Greedy</li>
-<li>Overestimates significance of remaining predictors</li>
-</ul></li>
-<li><strong>Forward Stepwise Selection</strong> Better than Best Subset Selection, but worse than Backwards Stepwise Selection.
-<ul>
-<li>Computationally expensive</li>
-<li>Can produce odd combination of predictors</li>
-</ul></li>
-</ul>
+<blockquote class="blockquote">
+<p><strong>Answer</strong>:</p>
+</blockquote>
+<p><span class="math display">\[i &gt; \cos^{-1}\left(\frac{R_1 + R_2}{a}\right)\]</span></p>
+<div id="7f76bf6c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>R1 <span class="op">=</span> <span class="fl">0.76</span> <span class="op">*</span> u.R_sun</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>R2 <span class="op">=</span> <span class="fl">0.276</span> <span class="op">*</span> u.R_sun</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> <span class="fl">28.2</span> <span class="op">/</span> <span class="dv">365</span> <span class="op">*</span> u.yr</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> <span class="fl">0.84</span> <span class="op">*</span> u.M_sun</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> <span class="fl">0.262</span> <span class="op">*</span> u.M_sun</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="fl">0.112</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (P <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> c.G <span class="op">*</span> (m1 <span class="op">+</span> m2) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">**</span> <span class="dv">2</span>)) <span class="op">**</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> np.arccos((R1 <span class="op">+</span> R2) <span class="op">/</span> a)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>i.to(u.deg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
+<p><span class="math inline">\(88.526554\mathrm{{}^{\circ}}\)</span></p>
+</div>
+</div>
 </section>
-<section id="lasso-shrinkage-regularization" class="level3">
-<h3 class="anchored" data-anchor-id="lasso-shrinkage-regularization">LASSO: Shrinkage / Regularization</h3>
-<p>Least squares that penalizes predictors that add complexity.</p>
-<p>Pros:</p>
-<ul>
-<li>helps with model selection, preventing overfitting</li>
-<li>Predictors must be scaled (R does it for us)</li>
-<li>Isn’t greedy and doesn’t choose variables based on p-values</li>
-</ul>
-<p>Tuning:</p>
-<ul>
-<li><span class="math inline">\(\lambda = 0\)</span>, LASSO = Least Squares</li>
-<li>As <span class="math inline">\(\lambda\)</span> increases, variable coefficients go to zero</li>
-</ul>
-</section>
-</section>
-<section id="flexible-models" class="level2">
-<h2 class="anchored" data-anchor-id="flexible-models">Flexible Models</h2>
-<p>What if the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is more complicated? Use flexible models!</p>
-<p>Parametric vs Nonparametric Models</p>
-<ul>
-<li><strong>Parametric</strong> Assumes relationship across domain of function</li>
-<li><strong>Nonparametric</strong> More flexibility in relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></li>
-</ul>
-<section id="nonparametric-models" class="level3">
-<h3 class="anchored" data-anchor-id="nonparametric-models">Nonparametric Models</h3>
-<p>Need to consider the scale of variables when calculating distances between observations with more than one predictor (NORMALIZE!)</p>
-<ul>
-<li>Normalization - an example of pre-processing, decisions wherein effect models and predictons</li>
-<li>Might need to preprocess data in variable recipe</li>
-</ul>
-</section>
-<section id="knn-regression-and-the-bias-variance-tradeoff" class="level3">
-<h3 class="anchored" data-anchor-id="knn-regression-and-the-bias-variance-tradeoff">KNN Regression and the Bias-Variance Tradeoff</h3>
-<ul>
-<li>Nonparametric</li>
-<li>Assumption: Similar <span class="math inline">\(x\)</span> values imply similar <span class="math inline">\(y\)</span> values.</li>
-<li>from kknn package: knn predicts y from weighted average
-<ul>
-<li>more influence to closer neighbors</li>
-</ul></li>
-</ul>
-<p>Algorithm:</p>
-<ul>
-<li>Identify <span class="math inline">\(K\)</span> nearest neighbors of <span class="math inline">\(x\)</span> with respect to Euclidean distance</li>
-<li>Observe the <span class="math inline">\(y\)</span> values of these neighbors</li>
-<li><span class="math inline">\(f(x) = \text{average}(y \text{ neighbors})\)</span></li>
-</ul>
-<p>Bias-Variance Tradeoff</p>
-<ul>
-<li><strong>Bias</strong> How well does the model predict values?
-<ul>
-<li>Extremes: <span class="math inline">\(K=1\)</span>, overfit, no bias; <span class="math inline">\(K=K\)</span> just a line but smoothed due to weights</li>
-</ul></li>
-<li><strong>Variance</strong> How does the model shape change from dataset to dataset?
-<ul>
-<li>Overfit model: passes through each point in the data, high variance</li>
-</ul></li>
-</ul>
-</section>
-<section id="loess-splines" class="level3">
-<h3 class="anchored" data-anchor-id="loess-splines">LOESS &amp; Splines</h3>
-<p>Splines</p>
-<ul>
-<li>Fit polynomial models in small localized regions and make the boundaries smooth.</li>
-<li>Can only spline one quantitative predictor</li>
-<li>Natural vs basis
-<ul>
-<li>Natural: pass <code>deg_free</code> argument where <code>deg_free = # of knots + 1</code>
-<ul>
-<li>Variant of B-splines with additional constraint at boundaries to reduce variance</li>
-<li>Knots typically based on quantiles of predictor</li>
-</ul></li>
-<li>Basis: specify specific knots <code>options = list(knots = c(x_1, x_2))</code>
-<ul>
-<li>You choose the knots</li>
-<li>Functions can be unstable at boundaries</li>
-</ul></li>
-</ul></li>
-</ul>
-<p>LOESS</p>
-<ul>
-<li>Fit regression models in small, localized regions, where nearby data have greater influence than far data</li>
-<li>Can only LOESS one quantitative predictor</li>
-<li>Nonparametric</li>
-<li>Algorithm:
-<ul>
-<li>Define the span <span class="math inline">\(h \in (0,1]\)</span>. Perform the following to estimate <span class="math inline">\(f(x)\)</span> at each possible predictor value <span class="math inline">\(x\)</span>
-<ul>
-<li>Identify a neighborhood consisting of the <span class="math inline">\(100\times h\%\)</span> of cases that are closes to <span class="math inline">\(x\)</span></li>
-<li>Putting more weight on closer <span class="math inline">\(x\)</span> neighbors, fit a linear model in this neighborhood</li>
-<li>Use the local linear model to estimate <span class="math inline">\(f(x)\)</span></li>
-</ul></li>
-</ul></li>
-</ul>
+<section id="problem-3" class="level1">
+<h1>Problem 3</h1>
+<ol start="3" type="1">
+<li>Consider an eclipsing, spectroscopic binary system. The orbital period is 5.51 years and the eccentricity is zero. The maximum radial velocity of Star A is 4.7 km/s and the maximum radial velocity of Star B is 17.4 km/s. The time period between first contact (or beginning of eclipse) and minimum light is 0.48 days. The length of the primary minimum is 0.84 days. The apparent bolometeric magnitudes of maximum, primary minimum, and secondary minimum are 6.41, 9.12, and 6.66, respectively. Find the following:</li>
+</ol>
+<ol type="a">
+<li>The ratio of stellar masses</li>
+<li>The sum of stellar masses (in solar masses)</li>
+<li>The individual masses of Star A and Star B</li>
+<li>The radii of Star A and Star B</li>
+<li>The ratio of the effective temperature of the two stars.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Answer</strong>:</p>
+</blockquote>
+<div id="408c6933" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> <span class="fl">5.51</span> <span class="op">*</span> u.yr</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>v_A <span class="op">=</span> <span class="fl">4.7</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>v_B <span class="op">=</span> <span class="fl">17.4</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> v_A <span class="op">+</span> v_B</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>dt_fc_to_ml <span class="op">=</span> <span class="fl">0.48</span> <span class="op">/</span> <span class="dv">365</span> <span class="op">*</span> u.yr</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>primary_minimum_length <span class="op">=</span> <span class="fl">0.84</span> <span class="op">/</span> <span class="dv">365</span> <span class="op">*</span> u.yr</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>B_0 <span class="op">=</span> <span class="fl">6.41</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>B_p <span class="op">=</span> <span class="fl">9.12</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>B_s <span class="op">=</span> <span class="fl">6.66</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>mAmB_ratio <span class="op">=</span> v_B <span class="op">/</span> v_A</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>total_mass <span class="op">=</span> P <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> c.G) <span class="op">*</span> (v_A <span class="op">+</span> v_B) <span class="op">**</span> <span class="dv">3</span> <span class="op">/</span> sin3i</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"total mass: </span><span class="sc">{</span>total_mass<span class="sc">.</span>to(u.M_sun)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>m_B <span class="op">=</span> total_mass <span class="op">/</span> (mAmB_ratio <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>m_A <span class="op">=</span> mAmB_ratio <span class="op">*</span> m_B</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mass of Star A: </span><span class="sc">{</span>m_A<span class="sc">.</span>to(u.M_sun)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mass of Star B: </span><span class="sc">{</span>m_B<span class="sc">.</span>to(u.M_sun)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>R_s <span class="op">=</span> v <span class="op">*</span> dt_fc_to_ml <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>R_l <span class="op">=</span> v <span class="op">*</span> primary_minimum_length <span class="op">/</span> <span class="dv">2</span> <span class="op">+</span> R_s</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Radius of Star A: </span><span class="sc">{</span>R_l<span class="sc">.</span>to(u.R_sun)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Radius of Star B: </span><span class="sc">{</span>R_s<span class="sc">.</span>to(u.R_sun)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>temp_ratio <span class="op">=</span> ((B_0 <span class="op">-</span> B_p) <span class="op">/</span> (B_0 <span class="op">-</span> B_s)) <span class="op">**</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temperature ratio (B to A): </span><span class="sc">{</span>temp_ratio<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>total mass: 3.38 solMass
+Mass of Star A: 2.66 solMass
+Mass of Star B: 0.72 solMass
+Radius of Star A: 1.81 solRad
+Radius of Star B: 0.66 solRad
+Temperature ratio (B to A): 1.81</code></pre>
+</div>
+</div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
