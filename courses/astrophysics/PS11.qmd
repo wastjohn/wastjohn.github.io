@@ -1,0 +1,110 @@
+---
+title: "Astrophysics PS11"
+author: "Will St. John + Theo Darci-Maher + Caedan Miller"
+---
+
+# Problem 1
+
+a) Using the equation that gives the FWHM at a given wavelength thermal and turbulent motions (given below. Note in class, we just saw the factor by which the line is broaden), estimate full width at half-maximum of the hydrogen H$\alpha$ absorption line due to random thermal motions in the Sun's photosphere.  Assume the temperature is the Sun's effective temperature.
+b) Using H$\alpha$ redshift data for solar granulation (discussed in Ch. 11 of the textbook), estimate the FWHM when convective turbulent motions are included with thermal motions.
+c) What is the ratio of $v^2_{turb}$  to $2kT/m$?
+d) Determine the relative change in the FWHM due to Doppler broadening when turbulence is included.  Does turbulence make a significant contribution to FWHM in the solar photosphere?
+
+
+> **Answer**: The following code chunk calculates the answers to the questions above. Given the relative change in part d), turbulence does not make a significant contribution to FWHM in the solar photosphere.
+> 
+```{python}
+import astropy.units as u
+import astropy.constants as c
+import numpy as np
+
+T = 5777 * u.K
+halpha = 656 * u.nm
+v_turb = 0.4 * u.km / u.s
+m = c.m_p
+k = c.k_B
+
+# a
+fwhm_no_turb = 2 * halpha / c.c * np.sqrt(2 * k * T / m * np.log(2))
+print(f"fwhm without turbulence: {fwhm_no_turb.to(u.angstrom):.4f}")
+
+# b
+fwhm = 2 * halpha / c.c * np.sqrt((2 * k * T / m + v_turb ** 2) * np.log(2))
+print(f"fwhm with turbulence: {fwhm.to(u.angstrom):.4f}")
+
+# c
+ratio = v_turb ** 2 / (2 * k * T / m)
+print(f"v_turb^2 is {100 * ratio.to(u.dimensionless_unscaled):.4f}% of 2kT/m")
+
+# d
+relative_change = (fwhm - fwhm_no_turb) / fwhm_no_turb
+print(f"relative change in FWHM with turbulence: {100 * relative_change:.4f}%")
+```
+
+
+# Problem 2
+Suppose you are attempting to make observations through an optically thick gas that has a constant density and temperature.  Assume that the density and temperature of the gas are $2.2\times10^{-4}$ kg m$^{-3}$ and 5777 K, respectively, typical of the values found in the Sun's photosphere.  
+a) If the opacity of the gas at one wavelength ($\lambda_1$) is $\kappa_{\lambda 1} = 0.026$ m$^2$ kg$^{-1}$ and the opacity at another wavelength ($\lambda_2$) is $\kappa_{\lamda 2} = 0.030 $ m$^2$ kg$^{-1}$, calculate the distance into the gas where the optical depth equals 2/3 for each wavelength.  
+b) At which wavelength can you see farther into the gas?
+c) How much farther? 
+
+> **Answer**: The code chunk below calculates the distances for $\lambda_1$ and $\lambda_2$ from the given the opacities, density, and optical depths. From this result, we find that $\lambda_1$ has the larger distance, thus we can see further into the gas at $\lambda_1$ by about 15 km.
+
+```{python}
+tau_1, tau_2 = 2/3, 2/3
+rho = 2.2E-4 * u.kg / u.m ** 3
+kappa_1 = 0.026 * u.m ** 2 / u.kg
+kappa_2 = 0.030 * u.m ** 2 / u.kg
+
+s_1 = tau_1 / (kappa_1 * rho)  # distance for lambda 1
+s_2 = tau_2 / (kappa_2 * rho)  # distance for lambda 2
+print(f"s1: {s_1:.2e}")
+print(f"s2: {s_2:.2e}")
+print(f"difference: {s_1 - s_2:.2f}")
+```
+
+
+# Problem 3
+Assume that a large solar flare erupts in a region where the magnetic field strength is 0.03 T and that it releases 1025 J in one hour.
+a) What was the magnetic energy density in that region before the eruption began?
+b) What minimum volume would be required to supply the magnetic energy necessary to fuel the flare?
+c) Assuming for simplicity, that the volume involved in supplying the energy for the flare eruption was a cube, compare the length of the one side of the cube with the typical size of a large flare.
+d) How long would it take an Alfven wave to travel the length of the flare?
+
+> **Answer**: The code chunk below calculates the answers the questions above. The energy density was found using 
+> $$u_m = \frac{B^2}{2\mu_0},$$
+>
+> which allowed us to find the volume by dividing the given energy by our answer for energy density. Assuming the volume was a cube, then a side length is the cube root of the total volume, which results in a length $1.42\cdot^{-8}$ times the size of a large flare (100,000 km).
+>
+> The alfven speed of a wave is given by
+> $$v_a = \frac{B}{\sqrt{\mu_0 \rho}},$$
+>
+> where $\rho$ is the density of the photosphere, which is given in the textbook to be $4.9\cdot10^{-6}$ kg / m$^3$. Dividing the length of our cube volume by the alfven speed gives the total time for an alfven wave to traverse the flare, which we estimate to be around $1.17\cdot10^{-4}$ s. 
+
+```{python}
+B = 0.03 * u.T
+energy = 1025 * u.J
+density = 4.9E-6 * u.kg / u.m ** 3
+
+# a
+u_m = B ** 2 / (2 * c.mu0)
+print(f"energy density of flare: {u_m.to(u.J / u.m ** 3):.2e}")
+
+# b
+volume = energy / u_m
+print(f"minimum volume of flare: {volume.to(u.m ** 3):.2e}")
+
+# c
+length = volume ** (1/3)
+large_flare_length = 1E5 * u.km
+ratio = (length / large_flare_length).to(u.dimensionless_unscaled)
+print(f"length of cube with volume above: {length.to(u.m):.2e}")
+print(f"the cube length is {ratio:.2e} times the size of a large flare")
+
+# d
+v_alfven = B / np.sqrt(c.mu0 * density)
+time = length / v_alfven
+print(f"alfven speed of wave: {v_alfven.to(u.m / u.s):.2e}")
+print(f"time for alfven wave to traverse length of flare: {time.to(u.s):.2e}")
+```
+

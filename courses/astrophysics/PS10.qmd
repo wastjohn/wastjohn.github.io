@@ -1,0 +1,35 @@
+---
+title: "Astrophysics PS11"
+author: "Will St. John + Theo Darci-Maher + Caedan Miller"
+---
+
+# Problem 1
+
+a) Taking into consideration the Maxwell-Boltzmann velocity distribution, what temperature would be required for two protons to collide if quantum mechanical tunneling is neglected?  You may assume that nuclei having velocities 8x the RMS values for the Maxwell-Boltzmann distribution can overcome the Coulomb barrier.  Compare your answer with the estimated central temperature of the Sun.
+b) Using the Maxwell-Boltzmann distribution, determine the ratio of the number of protons having velocities 8x the RMS value to those moving at the RMS velocity.
+c) Assuming (incorrectly) that the Sun is pure hydrogen, estimate the number of hydrogen nuclei in the Sun.  Could there be enough protons moving with speed 8x the RMS value to account for the Sun’s luminosity?  How long could these reactions sustain the current Solar luminosity?  Hint: you may assume that the number of protons with velocity $\sim v_{rms}$ is most of the hydrogen atoms.
+
+```{python}
+import astropy.units as u
+import astropy.constants as c
+import numpy as np
+
+T = c.e.value ** 2 / (384 * c.k_B * np.pi * c.eps0 * c.a0 * 2)
+T
+```
+
+# Problem 2
+
+a) Calculate the Eddington luminosity for a 0.072 solar mass star and a 120 solar mass star.
+b) Compare the Eddington luminosities to their actual luminosities and discuss whether or not radiation pressure is likely to play a role in the star’s evolution.
+
+- For the low-mass star: log10(L/Lsolar) = -4.3, and opacity = 0.001 m2 kg-1
+- For the high-mass star:  log10(L/Lsolar) = 6.252, and opacity is dominated by electron scattering (see equation 9.27)
+
+```{python}
+# M_low = 
+# M_high = 
+# kappa_low = 
+# kappa_high = 
+# L_edd_low = 4 * np.pi * c.G * c.c * M_low / kappa_low
+```

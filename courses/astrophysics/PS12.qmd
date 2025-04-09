@@ -1,0 +1,84 @@
+---
+title: "Astrophysics PS12"
+author: "Will St. John + Caedan Miller"
+---
+
+# Problem 1
+
+In a certain part of the North American Nebula, the amount of interstellar extinction in the visual wavelength band is 1.1 magnitudes.  The thickness of the nebula is estimated to be 20 pc, and it is located 700 pc from Earth.  Suppose that a B spectral class main-sequence star is observed in the direction of the nebula and that the absolute visual magnitude of the star is known to be $M_V = -1.1$ from spectroscopic data.  Neglect any other sources of extinction between the observer and the nebula.
+
+a) Find the apparent visual magnitude of the star if it is lying just in front of the nebula.
+b) Find the apparent visual magnitude of the star if it is lying just behind the nebula.
+c) Without taking the existence of the nebula into consideration, based on its apparent magnitude how far away does the star in part b) appear to be?  What would be the percentage error in determining the distance if interstellar extinction were neglected?
+
+```{python}
+import astropy.units as u
+import astropy.constants as c
+import numpy as np
+A = 1.1
+nebula_thickness = 20 * u.pc
+distance = 700 * u.pc
+M = -1.1
+
+# part a) in front of cloud
+m_front = M + 5 * np.log10(distance.value) - 5
+print(m_front)
+
+# part b) behind cloud
+m_behind = M + 5 * np.log10(distance.value + nebula_thickness.value) - 5 + A
+print(m_behind)
+
+# part c) behind cloud, no dust
+d_nodust = 10 ** ((m_behind - M + 5) / 5) * u.pc
+percent_error = np.abs(d_nodust - distance) / distance
+print(d_nodust)
+print(percent_error)
+```
+
+# Problem 2
+
+Part 1) Using the Boltzmann factor, estimate the temperature required for a hydrogen atom’s electron and proton to go from being anti-aligned to being aligned.  Are the temperatures in H I clouds sufficient to produce this low-energy excited state?
+
+
+Part 2) A cold H I cloud produces a 21-cm line with an optical depth at its center of $\tau_\lambda = 0.5$.
+a) Where on the curve of growth do you expect this line to lie?
+b) Check your answer in part a) to equation 12.7 in the book.  If the temperature of the gas is 100 K, the line’s full width at half-maximum is 10 km/s, and the average atomic number density is $10^7$ m$^{-3}$, how thick is the cloud?  Express your answer in pc.
+c) What other observations could you conduct to verify this thickness?
+
+
+```{python}
+# part 1
+energy = c.h * c.c / (21 * u.cm)
+p_ratio = 1E-6
+T = -energy / (c.k_B * np.log(p_ratio))
+print(T.to(u.K))  # diffuse HI clouds T~30-80K
+
+# part 2a
+
+
+# part 2b
+tau_H = 0.5
+temp = 100 * u.K
+fwhm = 10 * u.km / u.s
+n = 1E7 / (u.m ** 3)
+N_H = tau_H * temp * fwhm / 5.2E-23
+s = N_H / n
+print(s.to)
+
+# part 2c
+```
+
+# Problem 3
+
+a) Equations 12.10 and 12.11 in the book illustrate a cooling mechanism for a molecular cloud accomplished through the excitation of oxygen atoms.  Explain why the excitation of hydrogen rather than oxygen is not an effective cooling mechanism.
+b) Why are the temperatures of hot cores significantly greater than dense cores?
+c) Considering the cooling mechanisms discussed for molecular clouds, explain why dense cores are generally cooler than the surrounding giant molecular clouds, and why GMCs are cooler than diffuse molecular clouds.
+
+
+
+# Problem 4
+
+a) In the case where the magnetic energy density is much greater than the thermal energy density, the pressure support for an interstellar cloud will be dominated by magnetic pressure.  For this situation, derive the critical mass needed for gravity to win and collapse the cloud.  (Hint: instead of starting with the virial theorem, compare the total magnetic energy to the gravitational potential energy…).
+b) Estimate the gravitational energy per unit volume in the dense core of the giant molecular cloud in the book’s example 12.2.1, and compare that with the magnetic energy density that would be contained in the cloud if it had a magnetic field of uniform strength, B = 1 nT.  Could the magnetic fields play a significant role in the collapse of the cloud?  At what strength would the magnetic fields either start or stop playing a significant role in the collapse of the cloud?
+
+

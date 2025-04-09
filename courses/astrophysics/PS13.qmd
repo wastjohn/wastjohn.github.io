@@ -1,0 +1,78 @@
+---
+title: "Astrophysics PS13"
+author: "Will St. John + Caedan Miller"
+---
+
+# Problem 1
+The relationships for the Jeans mass, the Jeans length, and the free-fall timescale are fundamental.  In this problem, you will explore these relationships over a range of physical properties.  Consider a cloud of pure molecular hydrogen.  Create two plots to demonstrate the behaviors of these fundamental relations:
+
+- Jeans Mass versus temperature:  Plot the Jeans Mass (in units of Solar masses) versus temperature over the range 5 K $\leq T \leq$ 100 K.  Show curves for five different densities, starting at $1\times10^{-17}$ kg m$^{-3}$ and increasing by a factor of two for each subsequent calculation.  Clearly label each curve with its value of density and also with its characteristic free-fall timescale (in units of Myr).
+- Jeans Length versus temperature:  Plot the Jeans Length (in units of pc) versus temperature over the range 5 K $\leq T \leq$ 100 K.  Show curves for five different densities, starting at $1\times10^{-17}$ kg m$^{-3}$ and increasing by a factor of two for each subsequent calculation.  Clearly label each curve with its value of density and also with its characteristic free-fall timescale (in units of Myr).
+- In a few sentences describe the trends you observe in each of the plots you created.
+
+> **Answer**: The Jeans Mass increases as temperature increases, but increases more rapidly for lower density material. The lowest density material also has the longest time to collapse. The Jeans Radius increases more slowly at higher temperatures across all densities, however the Jeans Radius for lower density material is higher than the Jeans Radius for the higher density material across all temperatures.
+
+```{python}
+import astropy.units as u
+import astropy.constants as const
+import numpy as np
+import matplotlib.pyplot as plt
+
+def jeans_mass(T, mu, rho):
+    M_j = ((5 * const.k_B * T) / (const.G * mu * const.m_p
+        )) ** (3/2) * (3 / (4 * np.pi * rho)) ** (1/2)
+    return M_j.to(u.M_sun)
+    
+def jeans_radius(T, mu, rho):
+    R_j = ((15 * const.k_B * T) / (4 * np.pi * const.G * mu * const.m_p * rho)) ** (1/2)
+    return R_j.to(u.pc)
+
+def t_ff(rho):
+    t = np.sqrt((3 * np.pi)/(32 * const.G * rho))
+    return t.to(u.Myr)
+
+T = np.linspace(5, 100, 96) * u.K
+mu = 1
+rho = 1E-17 * u.kg / u.m ** 3
+
+plt.figure(figsize=(8,6))
+plt.subplot(2,1,1)
+plt.plot(T, jeans_mass(T, mu, rho), label = f"{rho}, t_ff = {t_ff(rho):.2f}")
+plt.plot(T, jeans_mass(T, mu, 2 * rho), label = f"{2 * rho}, t_ff = {t_ff(2 * rho):.2f}")
+plt.plot(T, jeans_mass(T, mu, 4 * rho), label = f"{4 * rho}, t_ff = {t_ff(4 * rho):.2f}")
+plt.plot(T, jeans_mass(T, mu, 8 * rho), label = f"{8 * rho}, t_ff = {t_ff(8 * rho):.2f}")
+plt.plot(T, jeans_mass(T, mu, 16 * rho), label = f"{16 * rho}, t_ff = {t_ff(16 * rho):.2f}")
+plt.xlabel("Temperature [K]")
+plt.ylabel("Jeans Mass [Solar Mass]")
+plt.title("Jeans Mass vs Temperature For Various Densities")
+plt.legend()
+
+plt.subplot(2,1,2)
+plt.plot(T, jeans_radius(T, mu, rho), label = f"{rho}, t_ff = {t_ff(rho):.2f}")
+plt.plot(T, jeans_radius(T, mu, 2 * rho), label = f"{2 * rho}, t_ff = {t_ff(2 * rho):.2f}")
+plt.plot(T, jeans_radius(T, mu, 4 * rho), label = f"{4 * rho}, t_ff = {t_ff(4 * rho):.2f}")
+plt.plot(T, jeans_radius(T, mu, 8 * rho), label = f"{8 * rho}, t_ff = {t_ff(8 * rho):.2f}")
+plt.plot(T, jeans_radius(T, mu, 16 * rho), label = f"{16 * rho}, t_ff = {t_ff(16 * rho):.2f}")
+plt.xlabel("Temperature [K]")
+plt.ylabel("Jeans Radius [pc]")
+plt.title("Jeans Radius vs Temperature For Various Densities")
+plt.subplots_adjust(hspace=0.5)
+```
+
+# Problem 2
+Pick a recently published paper that investigates the IMF
+[Here is a link to a refined ADS search that may be a good place to start.](https://ui.adsabs.harvard.edu/search/filter_database_fq_database=NOT&filter_database_fq_database=((((database%3Aastronomy%20OR%20database%3Aphysics))%20AND%20database%3A%22astronomy%22)%20NOT%20database%3A%22earthscience%22)&filter_database_fq_database=database%3A%22general%22&filter_keyword_facet_fq_keyword_facet=NOT&filter_keyword_facet_fq_keyword_facet=(((*%3A*%20NOT%20keyword_facet%3A%22interplanetary%20medium%22))%20AND%20keyword_facet%3A%22stars%20luminosity%20function%3Bmass%20function%22)&filter_keyword_facet_fq_keyword_facet=keyword_facet%3A%22solar%20system%20general%22&filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_keyword_facet%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(((((database%3Aastronomy%20OR%20database%3Aphysics))%20AND%20database%3A%22astronomy%22)%20NOT%20database%3A%22earthscience%22)%20NOT%20database%3A%22general%22)&fq_keyword_facet=((((*%3A*%20NOT%20keyword_facet%3A%22interplanetary%20medium%22))%20AND%20keyword_facet%3A%22stars%20luminosity%20function%3Bmass%20function%22)%20NOT%20keyword_facet%3A%22solar%20system%20general%22)&fq_property=(property%3A%22refereed%22)&p_=0&q=%20abs%3A%22initial%20mass%20function%22&sort=date%20desc%2C%20bibcode%20desc)
+
+Answer the following questions:
+
+a) How do these astronomers investigate the IMF?  (Describe data, models, etc.)
+b) What do they conclude about the IMF?
+c) How do their results compare to what we talked about in class?
+
+> **Answer**: We read: Early Enrichment Population Theory at High Redshift by Blackwell and Bregman, published in The Astrophysical Journal on January 20, 2025.
+>
+> a) The visible galaxies and stars in a galaxy cluster cannot have produced the measured ICM metallicity. In order to have the observed intracluster medium metallicity of glaxy clusters, a theory exists that says a population of stars must have existed at high redshifts that populated the clusters with the missing metals. Previous work argued the IMF of this theory must be flatter than lower redshift IMFs, but they didn't have that high precision. This work used supernovae, delay time distributions, and luminosity functions of galaxy clusters to derive two best-fit IMFs that are flatter than standard IMFs.
+>
+> b) Their model can successfully produce the observed ICM metallicity and agrees with observations. Interestingly, the model also predicts a rise in the Type Ia supernova rate at increasing redshift.
+>
+> c) In class, we only talked about the interstellar medium. This paper introduced the idea of an intrcluster medium, which is like the ISM but on much larger scales. Overall, it seems the process for determining the two is just a scaled mapping; instead of looking at clusters of stars, like we do for the ISM, we look at clusters of galaxies.
