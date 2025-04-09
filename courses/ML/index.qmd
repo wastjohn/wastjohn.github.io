@@ -29,6 +29,35 @@ We are trying to build a model $f(x)$ of some quantitative output.
 
 $$y = f(x) + \epsilon$$
 
+```{{r}}
+#| message: false
+#| warning: false
+#| eval: false
+
+# model specificiation
+model_spec <- linear_reg() %>%
+  set_mode("regression") %>%
+  set_engine(engine = "lm")
+
+# model recipe
+data_recipe <- recipe(y ~ ., data = ___)
+
+# model workflow
+model_wf <- workflow() %>%
+  add_recipe(data_recipe) %>%
+  add_model(model_spec)
+
+# cross validation
+multiple_models <- model_wf %>%
+  fit_resamples(
+    resamples = vfold_cv(___, v = ___),
+    metrics = metric_set(mae)
+  )
+
+# final model
+final_model <- model_wf %>%
+  fit(data = ___)
+```
 
 ## Model Evaluation
 
@@ -119,6 +148,57 @@ Tuning:
 - $\lambda = 0$, LASSO = Least Squares
 - As $\lambda$ increases, variable coefficients go to zero
 
+```{{r}}
+#| message: false
+#| warning: false
+#| eval: false
+
+# model specificiation
+model_spec <- linear_reg() %>%
+  set_mode("regression") %>%
+  set_engine(engine = "glmnet") %>%
+  set_args(mixture = 1, penalty = tune())
+
+# model recipe
+data_recipe <- recipe(y ~ ., data = ___) %>%
+  step_dummy(all_nominal_predictors())  # normalization done by glmnet
+
+# model workflow
+model_wf <- workflow() %>%
+  add_recipe(data_recipe) %>%
+  add_model(model_spec)
+
+# cross validation
+set.seed(___)
+multiple_models <- model_wf %>%
+  tune_grid(
+    grid = grid_regular(
+      penalty(range = c(___, ___)),  # range is on log10 scale     
+      levels = ___  # how many models to build
+    ),
+    resamples = vfold_cv(___, v = ___),
+    metrics = metric_set(mae)
+)
+
+# model selection
+multiple_models %>%
+  collect_metrics()
+
+autoplot(multiple_models)
+
+best_param <- multiple_models %>%
+  select_best(metric = "mae")
+
+parsimonious_param <- multiple_models %>%   
+  select_by_one_std_err(metric = "mae", 
+                        desc(penalty))
+
+# final model
+final_model <- model_wf %>%
+  finalize_workflow(parameters = parimonious_param) %>%
+  fit(data = ___)
+```
+
 ## Flexible Models
 What if the relationship between $x$ and $y$ is more complicated? Use flexible models!
 
@@ -145,6 +225,53 @@ Algorithm:
 - Observe the $y$ values of these neighbors
 - $f(x) = \text{average}(y \text{ neighbors})$
 
+```{{r}}
+#| message: false
+#| warning: false
+#| eval: false
+
+# model specificiation
+model_spec <- nearest_neighbors() %>%
+  set_mode("regression") %>%
+  set_engine(engine = "kknn") %>%
+  set_args(neighbors = tune())
+
+# model recipe
+data_recipe <- recipe(y ~ ., data = ___) %>%
+  step_dummy(all_nominal_predictors()) %>%
+  step_normalization(all_numeric_predictors())
+
+# model workflow
+model_wf <- workflow() %>%
+  add_recipe(data_recipe) %>%
+  add_model(model_spec)
+
+# cross validation
+set.seed(___)
+knn_models <- model_wf %>%
+  tune_grid(
+    grid = grid_regular(
+      neighbors(range = c(1, ___)),     
+      levels = ___  # how many models to build
+    ),
+    resamples = vfold_cv(___, v = ___),
+    metrics = metric_set(mae)
+)
+
+# model selection
+knn_models %>%
+  collect_metrics()
+
+autoplot(knn_models)
+
+best_knn <- select_best(knn_models, metric = "mae")  # parsimony is irrelevant
+
+# final model
+final_model <- model_wf %>%
+  finalize_workflow(parameters = best_knn) %>%
+  fit(data = ___)
+```
+
 Bias-Variance Tradeoff
 
 - **Bias** How well does the model predict values?
@@ -166,6 +293,38 @@ Splines
     - You choose the knots
     - Functions can be unstable at boundaries
 
+```{{r}}
+#| message: false
+#| warning: false
+#| eval: false
+
+# model specificiation
+model_spec <- linear_reg() %>%
+  set_mode("regression") %>%
+  set_engine(engine = "lm")
+
+# model recipe
+data_recipe <- recipe(y ~ ., data = ___) %>%
+  step_ns(x, deg_free = ___)  # natural splines, deg_free = # knots + 1
+  step_bs(x, options = list(knots = c(___, ___)))  # basis splines, specific locations of knots
+
+# model workflow
+model_wf <- workflow() %>%
+  add_recipe(data_recipe) %>%
+  add_model(model_spec)
+
+# cross validation
+multiple_models <- model_wf %>%
+  fit_resamples(
+    resamples = vfold_cv(___, v = ___),
+    metrics = metric_set(mae)
+  )
+
+# final model
+final_model <- model_wf %>%
+  fit(data = ___)
+```
+
 LOESS
 
 - Fit regression models in small, localized regions, where nearby data have greater influence than far data
@@ -177,3 +336,361 @@ LOESS
     - Putting more weight on closer $x$ neighbors, fit a linear model in this neighborhood
     - Use the local linear model to estimate $f(x)$
 
+# Classification
+Fitting a model to a *categorical* outcome.
+
+$$y = f(x) + \epsilon$$
+
+## Logistic Regression
+
+- Classification to model binary categorical $y$.
+- Interpret in log(odds)
+
+> $$\text{odds} = \frac{p}{p-1},\quad p = \frac{\text{odds}}{\text{odds} + 1}$$
+
+|   Scale   | Impossible | 50/50 | Certain  |
+|-----------|------------|-------|----------|
+|     p     |     0      |  0.5  |     1    |
+|    odds   |     0      |   1   | $\infty$ |
+| log(odds) | -$\infty$  |   0   | $\infty$ |
+
+If we want to make more *concrete predictions*, we use the probability to make a classification through a *classification rule*. Can be based on: 
+
+- Predictor value
+- Probability
+- log(odds)
+
+Visually, the classification rule partitions the data. If the data overlaps, our rule might not always be correct. We can create an **in-smaple confusion matrix** from our classification rule to calculate the following:
+
+|            | Truth |      |
+|------------|-------|------|
+| Prediction |  No   |  Yes |
+|     No     |  TN   |  FN  |
+|    Yes     |  FP   |  TP  |
+
+Sensitivity (TP rate): $\frac{TP}{TP + FN}$
+Specificity (TN rate): $\frac{TN}{TN + FP}$
+
+If you want to improve sensitivity, lower the classification threshold. Note that sensitivity is inversely proportional to specificity, so increasing sensitivity will decrease specificity.
+
+Tuning the classification rule: context
+
+- Consequences of misclassification 
+- Prioritize high sensitivity to avoid FN / increase TP
+- Prioritize high specificity to avoice FP / increase TN
+
+Reciever Operating Characteristic (ROC) Curve:
+
+- Sensitivity vs 1 - Specificity (FPR)
+
+Area under the curve (AUC): 
+
+- Probability we correctly identified $y=0$ and $y=1$
+- Measures overall effectiveness of classification model
+- Closer to 1 the better (0.5 is when Sensitivity = 1 - Specificity)
+
+
+```{{r}}
+#| message: false
+#| warning: false
+#| eval: false
+
+# Ensure outcome is categorical
+sample_data <- sample_data %>% 
+  mutate(y = as.factor(y))
+
+# relevel outcome if you want to look at different category
+sample_data <- sample_data %>%
+  mutate(y = relevel(y, ref = "CATEGORY NOT INTERESTED IN"))
+
+# Create logistic regression classification model specification 
+model_spec <- logistic_reg() %>%
+  set_mode("classification") %>%
+  set_engine(engine = "glm")
+
+# Make data recipe
+data_rec <- recipe(y ~ x, data = sample_data)
+
+# Create model workflow
+model_wf <- workflow() %>%
+  add_recipe(data_rec) %>%
+  add_model(model_spec)
+
+# cross-validate with 10 folds
+multiple_models <- model_wf %>%
+  fit_resamples(
+    resamples = vfold_cv(sample_data, v = 10),
+    control = control_resamples(save_pred = TRUE, entry_level = "second"),
+    metrics = metric_set(accuracy)  # could also specify sensitivity, specificity, roc_auc
+  )
+
+# finalize model
+final_model <- model_wf %>%
+  fit(data = sample_data)
+```
+
+
+## KNN & Trees
+Pro:
+
+- Non-parametric classification
+- Flexibility
+- No assumptions on shape of relationship
+- Good with complicated relationships
+
+Con:
+
+- Lack of insights
+- Ignores relationships that do exist
+- Computationally intensive
+
+### KNN
+Goal: build classification model of categorical response variable
+
+Algorithm: 
+
+- ID nearest neighbors w.r.t. $x$ values
+- Get $y$ value of neighbors
+- Predict the most common neighbor value
+
+
+Pro:
+
+- Flexible
+- Intuitive
+- More than 2 outcome categories
+
+Con:
+
+- Lazy learner; must calculate distances at time of prediction for each point we classify
+- Computationally intensive
+- Provides classifications, but no real sense of relationships
+
+```{{r}}
+#| message: false
+#| warning: false
+#| eval: false
+
+# Ensure outcome is categorical
+sample_data <- sample_data %>% 
+  mutate(y = as.factor(y))
+
+# Create KNN classification model specification 
+model_spec <- nearest_neighbor() %>%
+  set_mode("classification") %>%
+  set_engine(engine = "kknn") %>%
+  set_args(neighbors = tune())
+
+# Make data recipe, convert all predictors to numbers and normalize
+data_rec <- recipe(y ~ x, data = sample_data) %>%
+  step_dummy(all_nomial_predictors()) %>%
+  step_normalize(all_numeric_predictors())
+
+# Create model workflow
+model_wf <- workflow() %>%
+  add_recipe(data_rec) %>%
+  add_model(model_spec)
+
+# Cross-validate
+multiple_models <- model_wf %>%
+  tune_grid(
+    grid = grid_regular(
+      neighbors(range = c(1, 7)),
+      levels = 10
+    ),
+    resamples = vfold_cv(sample_data, 10),
+    metrics = metric_set(accuracy)
+  )
+
+# plot the models
+multiple_models %>%
+  autoplot()
+
+# select best parameter
+# NOTE: parsimony is irrelevant
+best_param <- multiple_models %>%
+  select_best(metric = "accuracy")
+
+# finalize model
+final_model <- model_wf %>%
+  finalize_workflow(best_param)
+  fit(data = sample_data)
+```
+
+### Classification Trees
+Predict outcome from a series of yes/no questions.
+
+Recursive binary splitting algorithm:
+
+1. Start with all the data
+2. Create the best binary split
+  i. Minimizing Gini index ($G = p_1(1 - p_1) + \dots$) - 
+  ii. Maximizing node homogeneity
+3. Repeat 2 until (pruning steps = tuning parameters)
+  i. Reach max depth (# of splits from root to leaf)
+  ii. Min sample size in each node
+  iii. Cost complexity $\alpha$ (like $\lambda$ for lasso)
+    a. $\alpha = 0$ no penalty
+    b. $\alpha \gg$ only make split if very useful
+
+
+Pro:
+
+- More insight into relationship
+- Eager learners - can use a tree to classify all new points
+
+Con:
+
+- Greedy
+- Computationally intesive
+
+> **Note**: KNN and Trees are equal when $\alpha = \infty$ and $K = N$ 
+
+```{{r}}
+#| message: false
+#| warning: false
+#| eval: false
+
+# Ensure outcome is categorical
+sample_data <- sample_data %>% 
+  mutate(y = as.factor(y))
+
+# Create classification tree classification model specification 
+model_spec <- decision_tree() %>%
+  set_mode("classification") %>%
+  set_engine(engine = "rpart") %>%
+  set_args(min_n = 2, tree_depth = 30, cost_complexity = tune())
+
+# Make data recipe
+# NOTE: preprocessing not absolutely necessary
+data_rec <- recipe(y ~ x, data = sample_data)
+
+# Create model workflow
+model_wf <- workflow() %>%
+  add_recipe(data_rec) %>%
+  add_model(model_spec)
+
+# Cross-validate
+multiple_models <- model_wf %>%
+  tune_grid(
+    grid = grid_regular(
+      cost_complexity(range = c(-5, 2)),  # log10 scale
+      levels = 10
+    ),
+    resamples = vfold_cv(sample_data, 10),
+    metrics = metric_set(accuracy)
+  )
+
+# plot the models
+multiple_models %>%
+  autoplot()
+
+# select best parameter
+best_param <- multiple_models %>%
+  select_best(metric = "accuracy")
+
+# select parsimonious parameter
+parsimonious_param <- multiple_models %>%
+  select_by_one_std_err(metric = "accuracy", desc(cost_complexity))
+
+# finalize model
+final_model <- model_wf %>%
+  finalize_workflow(parsimonious_param)
+  fit(data = sample_data)
+```
+
+
+## Bagging and Random Forests
+Idea:
+
+1. Build a bunch of trees with high variance and low bias (unpruned)
+2. Average results to get 1 tree
+
+Both bagging and random forests are examples of *ensemble methods*: combining outputs of multiple ML algorithms
+
+- In general: low variability; more stable predictions
+
+### Bagging
+Bootstrap aggregation (bagging):
+
+- Each tree is created from a resampling with replacement
+- ~2/3 of original data will show up in resample, ~1/3 will not
+- All $p$ predictors are considered for each split
+- Use resample to train, and remaining to test (out of bag error)
+
+Forest = many unpruned tress from slighly different datasets (bootsrapping/resampling)
+
+Overall prediction is from the combined prediction across all trees
+
+- Classification: Majority rules
+- Regression: Averages
+
+```{{r}}
+#| message: false
+#| warning: false
+#| eval: false
+
+# Ensure outcome is categorical
+sample_data <- sample_data %>% 
+  mutate(y = as.factor(y))
+
+# Create bagging classification model specification 
+model_spec <- rand_forest() %>%
+  set_mode("classification") %>%
+  set_engine(engine = "ranger") %>%
+  set_args(
+    mtry = NULL, 
+    min_n = 2, 
+    trees = 500, 
+    probability = FALSE, 
+    importance = "impurity")
+
+# Make data recipe, preprocessing steps aren't absolutly necessary
+data_rec <- recipe(y ~ x, data = sample_data)
+
+# Create model workflow
+model_wf <- workflow() %>%
+  add_recipe(data_rec) %>%
+  add_model(model_spec)
+
+# NOTE: no tuning needed - OOB estimation instead
+
+# finalize model
+final_model <- model_wf %>%
+  fit(data = sample_data)
+```
+
+### Random Forest
+At each split in the tree, randomly select and consider only a subset of predictors
+
+- Typical values are $p/2$ and $\sqrt{p}$
+
+
+Pros:
+
+- Low bias, low variance (maintine bias from trees, but reduce variance)
+- Less computationally intesive (only consider a subset of predictors) compared to bagging
+- Less greedy (surrogates get a chance to shine)
+- Decorrelate trees (random subset of predictors)
+
+Cons:
+
+- Computationally expensive
+- Can't plot results, lose interpretability
+
+
+> **Note**: A forest is the best algorithm for reducing variance.
+
+```{{r}}
+# The only thing you have to change for random forest from bagging code is model specification
+# Create random forest classification model specification 
+model_spec <- rand_forest() %>%
+  set_mode("classification") %>%
+  set_engine(engine = "ranger") %>%
+  set_args(
+    mtry = ___, # number of predictors to consider at each split
+    min_n = 2, 
+    trees = 500, 
+    probability = FALSE, 
+    importance = "impurity")
+```

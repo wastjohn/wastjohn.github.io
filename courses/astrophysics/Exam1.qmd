@@ -1,0 +1,329 @@
+---
+title: "Astrophysics Exam 1 Revision"
+author: "Will St. John"
+---
+
+# Problem 1
+The spring constellation, Leo, hosts many galaxies in its vicinity on the sky, including several Messier objects. Find the angular separation of the two spiral galaxies M95 and M96 located just under the bent coat hanger, I mean, lion. The J2000 coordinates for the two objects are:
+
+    M95: $(\alpha, \delta) = $ 10:43:57.7, +11:42:13
+    M96: $(\alpha, \delta) = $ 10:46:45.7, +11:49:12
+
+> **Original Answer (7/10)**: $\Delta\theta \approx 1.8631$ deg
+>
+> **Revised Answer (10/10)**: I forgot that the declination angle was given in "degrees:arcminutes:arcseconds". Instead, I incorrectly thought it was given in "degrees:minutes:seconds" meaning I would need to multiply the last two terms by a factor of 15 to convert them to degrees from hours. This results in my declinations terms being off by approximately 10 degrees for both measurements. If I had the correct numbers for the declinations in degrees, I would have calculated the correct answer to within half an arcsecond (the rest of my math was correct).
+>
+> I will say that forgetting declination is in degrees:ARCminutes:ARCseconds is a pretty big mistake, but it was also my only mistake on a problem with a lot of algebra, so I would only take off 3 points from my original answer.
+> 
+> The code below correctly calculates the angular separation between the two galaxies using Astropy's SkyCoords class and separation method.
+>
+```{python}
+import astropy.units as u
+from astropy.coordinates import SkyCoord
+import numpy as np
+M95 = SkyCoord("10:43:57.7 +11:42:13", unit=(u.hourangle, u.deg))
+M96 = SkyCoord("10:46:45.7 +11:49:12", unit=(u.hourangle, u.deg))
+
+sep = M96.separation(M95)
+sep.to(u.deg)
+```
+
+# Problem 2
+A hypotheical dwarf planet follows and eccentric orbit about the Sun $(\epsilon = 0.32)$, and is estimated to have an orbital period of 650 years.
+
+a) If this object were on a perfectly circular orbit, at what distance would it be located from the Sun?
+b) What is the closest that this object gets to the Sun?
+c) What is the furthest that this object gets from the Sun?
+
+> **Original Answer (10/10)**: 
+>
+> a) $a \approx 75.037$ AU
+> b) perihelion $\approx 51.025$ AU
+> c) aphelion $\approx 99$ AU
+>
+> **Revised Answer (10/10)**: Since the dwarf planet is orbiting the Sun, we can use Kepler's Third Law, which I did for my original answer. Additionally, the perihelion and aphelion are the locations in an orbit where an object is closest and furthest from the principle focus (in this case the Sun), respectively, and are given by the following equations
+>
+> $$r_{p} = a - ae, \quad r_{a} = a + ae,$$
+>
+> where $a$ is the semi-major axis. The code below verifies my original calculations.
+```{python}
+e = 0.32
+P = 650 * u.yr
+
+# a) kepler's 3rd law
+a = (P ** (2/3)).value * u.au
+print(f"a = {a:.2f}")
+
+# b) perihelion
+r_p = a - a * e
+print(f"perihelion: {r_p:.2f}")
+
+# c) aphelion
+r_a = a + a * e
+print(f"aphelion: {r_a:.2f}")
+```
+
+# Problem 3
+You are attempting to resolve two galaxies using observations of a spectral line with rest wavelength 31.065 cm. These galaxies, both located at a distance of 14.7 Mpc, are physically separated by 61.9 kpc. Assuming a circular aperture, what diameter must your telescope have (in units of meters) in order to resolve these sources?
+
+> **Original Answer (6/10)**: $D = 2.79\cdot 10^{6}$ m
+>
+> **Revised Answer (8/10)**: Originally, I solved the angular resolution formula for diameter, then used parallax to get half the angular separation, doubled it to get the angle, plugged in the result to get the diameter.
+>
+> I now think the problem is simply geometry. Specifically, the angle of the separation of these two galaxies at their given distance is the minimum resolving angle. The code chunk below performs this calculation and results in an answer that matches intuition; our answer is slightly larger than that of the diameter of green bank, which is a radio telescope that typically observes the 21 cm line (31 cm is slightly larger, so maybe we'd expect a slightly larger telescope).
+>
+> My original answer the right equation, but wrong understanding. However, I did check my work and conclude it was unphysical in the exam, so I would give myself 6/10.
+>
+> I give myself 8/10 now, because I am not quite sure why parallax doesn't work in this case, especially since the foundation for parallax is a geometric scenario very similar to what I used below.
+>
+```{python}
+l_rest = 31.065 * u.cm
+dist = 14.7 * u.Mpc
+sep = 61.9 * u.kpc
+
+theta = (sep / (2 * dist)).to(u.m/u.m)
+diameter = 1.22 * l_rest / theta
+print(f"diameter: {diameter.to(u.m):.2f}")
+```
+
+# Problem 4
+In a gas of neutral Hydrogen atoms, at what temperature (in units of Kelvin) is the number of atoms in the second excited state equal to 2.38% of the number of atoms in the ground state?
+
+> **Original Answer (9/10)**: 29485 K
+>
+> **Revised Answer (10/10)**: In my original answer, I rearranged the correct formula to solve for temperature
+> 
+> $$\frac{N_b}{N_a} = \frac{g_b}{g_a}e^{-\frac{\Delta E}{kT}}\longrightarrow T = \frac{-\Delta E}{k\ln\frac{N_b}{N_a}\frac{g_a}{g_b}}$$
+> 
+> but my end result differs from my revised answer. I likely entered the numbers into the calculator wrong during the exam, as my revised answer is the same order of magnitude as my original answer.
+>
+```{python}
+import astropy.constants as c
+g_a = 2 * 1 ** 2  # ground state degeneracy
+g_b = 2 * 3 ** 2  # second excited state degeneracy
+
+ratio = 0.0238  # N_b / N_a
+
+E_a = -13.6 * u.eV
+E_b = E_a / 3 ** 2
+dE = E_b - E_a
+
+T = - dE / (c.k_B * np.log(ratio * g_a / g_b))
+
+print(f"Temperature: {T.to(u.Kelvin):.2f}")
+```
+
+# Problem 5
+A main sequence star has a measured parallax angle of 0.0129 arcseconds. This star has an apparent bolometric magnitude of 3.749.
+
+a) What is the distance to the star?
+b) What is the distance modulus of this star?
+c) What is the absolute magnitude of this star?
+d) What is the ratio of the luminosity of this star to that of the Sun?
+e) If the distance to this star were to increase by a factor of three, what would be its apparent magnitude?
+
+> **Original Answer (10/10)**: 
+>
+> a) $d = 77.5194$ pc
+> b) $m-M = 4.4471$
+> c) $M = -0.6981$
+> d) 149.7063 times more luminous than the Sun
+> e) $m_{3d} = 6.1346$
+>
+> **Revised Answer (10/10)**: All of my revised answers match my original answers.
+>
+```{python}
+p = 0.0129 * u.arcsec
+m = 3.749
+M_Sun = 4.74
+
+# a)
+distance = p.to(u.pc, equivalencies=u.parallax())
+print(f"distance = {distance:.3f}")
+
+# b)
+dist_mod = 5 * np.log10(distance.value) - 5
+print(f"m-M = {dist_mod:.3f}")
+
+# c)
+M = m - dist_mod
+print(f"M = {M:.3f}")
+
+# d)
+L_Lsun = 10 ** ((M - M_Sun) / -2.5)
+print(f"{L_Lsun:.2f} times more luminous than the Sun")
+
+# e)
+m_3d = 5 * np.log10(3 * distance.value) - 5 + M
+print(f"m at 3d = {m_3d:.2f}")
+```
+
+# Problem 6
+What is your favorite book?
+
+> **Original Answer**: The Expanse series of Three Body Problem.
+>
+> **Revised Answer**: The Dark Forest from the Three Body Trilogy
+
+# Problem 7
+The plot below shows an observing plan at the Macalester Observatory. THe elevations of the three sources (the Sun in red, the Moon in dashed gray, and the target of interest in blue) are plotted as functions of time, with midnight central time being at 0 hours. The graph is color-coded to show the sky darkness. Using this plot, and recalling that the Macalester Observatory is located at a latitude of +45 degrees, find
+
+a) the declination of the "Target" object in units of degrees, and 
+b) estimate when during the year this observing plan may have been scheduled.
+
+> **Original Answer (3/10)**: 
+> 
+> a) Around +10 degrees
+> b) Around March 19th
+>
+> **Revised Answer (7/10)**: I confused the target's transit with the Moon's transit.
+> 
+> If we are observing from Macalester, our zenith is +45 degrees, so the horizon corresponds to 45 - 90 = -45 degrees declination. If our target reaches a 40 degree altitude, then the target is 40 degrees above the horizon. Thus, the declination of the target is -45 + 40 = -5 degrees declination.
+>
+> The Sun is also at an altitude of 40 degrees, which corresponds to a declination of -5 degrees, so we are either approaching March 20 or September 23 recently passed. I cannot think of any way to further determine the time of year from this plot, but I imagine there is a way to determine if it were vernal or autumnal, so I give myself only 7/10 for this problem.
+
+# Problem 8
+An eclipsing, double-line spectroscopic binary system consisting of two main sequence stars has an orbital period of 7.17 years. By analyzing the spectra, you determine wavelength shifts of 0.011 nm and 0.064 Angstroms for the two stars.
+
+a) What is the mass ratio of the larger to the smaller star?
+b) The spectral energy distribution of the cooler star suggests a masss of 1.13 Solar masses. What is the mass of the hotter star (in Solar masses)?
+c) Describe the observations and measurements needed to determine the relative temperatures and radii of these stars?
+
+> **Original Answer (10/10)**: 
+>
+> a) $\frac{m_1}{m_2} = 1.7188$
+> b) $m_1 = 1.9422 M_{\odot}$
+> c) Temps? --> Need lightcurve. Radii? --> Need lightcurve. [Included labeled diagram and equations.]
+>
+> **Revised Answer (10/10)**: We expect the ratio of the heavier to lighter star to be proportional to the lighter star's shift to the heavier star's shift.
+>
+> $$\frac{m_1}{m_2} = \frac{\Delta\lambda_2}{\Delta\lambda_1}$$
+>
+> Since they are main sequence stars, we expect the more massive star to be hotter. The code chuck below calculates the answers for parts a) and b)
+>
+```{python}
+dl1 = 0.064 * u.angstrom  # smaller shift, more massive
+dl2 = 0.011 * u.nm  # larger shift, less massive
+
+# a)
+mass_ratio = dl2 / dl1
+print(f"The larger star is {mass_ratio.to(u.m/u.m):.2f} more massive")
+
+# b)
+m_2 = 1.13 * u.M_sun
+m1 = mass_ratio * m_2
+print(f"Mass of larger star: {m1.to(u.M_sun):.2f}")
+```
+
+> To elaborate on part c), since this is an eclipsing binary, we should be able to obtain a lightcurve for the system, wherein we could measure the baseline brightness $B_0$, the brightness of the primary dip $B_p$, and the brightness of the secondary dip $B_s$ to extract the ratio of the temperature of the smaller star $T_s$ to that of the larger star $T_l$ though the following relationship.
+>
+> $$\frac{B_0 - B_p}{B_0 - B_s} = \left(\frac{T_s}{T_l}\right)^4$$
+
+> From the transits, we can measure the times when the smaller star begins/ends transitting infront/behind the larger star. We can find the radii of the two stars from the following equations,
+>
+> $$r_s = \frac{V}{2}(t_b - t_a), \quad r_l = \frac{V}{2}(t_c - t_a) = r_s + \frac{V}{2}(t_c - t_b)$$
+>
+> where $V = V_s + V_1$ (which can be determined from the mass ratio) and $t_a$, $t_b$, and $t_c$ are the start time of transit of primary dip, start of primary dip constancy, and end primary dip constancy, respectively.
+
+# Problem 9
+The plot shows the observed radial velocities of two stars in a gravitationally bound orbit abuot their common center of mass. Four full orbital periods are shown.
+
+a) What can be said about the eccentricity of the orbits? If it can be determined, give the eccentricity. If not, explain why not, and provide possible constraints.
+b) What can be said about the inclination of the system? If it can be determined, give the inclination. If not, explain why not, and provide possible constraints.
+c) If the less massive star has a mass of 2.17 Solar masses, then what is the mass of the other star (in Solar masses)?
+
+> **Original Answer (10/10)**: 
+>
+> a) Both observed $v_r$'s are very periodic and sinusoidal which implies circular orbits ($e\approx0$).
+> b) Inclination affects amplitude of the plot. Need separation and distance to determine $i$ but could assume $\sin^3i \approx 2/3$
+> c) larger star mass $\approx 5.58$ solar masses
+>
+> **Revised Answer (10/10)**: None of my answers changed in my revision, so I would give myself a 10/10 for both attempts.
+>
+> As I mentioned in my original answer, the orbits are very sinusoidal with no skewness. This implies an orbit with low eccentricity.
+>
+> I agree with my answer for part b), in that inclination affects the amplitude of the plot, but we would need more information to determine the inclination. Most binary systems we detect have $\sin^3i \approx 2/3$, so we could assume that applies to this system, but would need to know masses, distances, and either the semimajor axes lengths or angles subtended by the semimajor axes.
+>
+> The code chunk below calculates the mass ratio from the velocity ratio of the two stars governed by the following equation.
+>
+> $$\frac{m_A}{m_B} = \frac{v_B}{v_A}$$
+>
+> Multiplying the mass ratio by the mass of the lower star, we can determine the mass of the larger star.
+>
+```{python}
+v_A = 7
+v_B = 18
+m_s = 2.17 * u.M_sun
+ratio = v_B / v_A
+m_l = m_s * ratio
+print(f"larger star mass: {m_l:.2f}")
+```
+
+# Problem 10
+The plot shows the number ratio of atoms in the second stage of ionization versus the total numbe rof atoms for various hypothetical atomic species, "A", "B", "C", and "D". The four species have identical partition functions for all stages of ionization and they all have exactly the same ionization energy for the first stage fo ionization. The only parameter that differs is the ionization energy for the second stage of ionization.
+
+a) What is the name of the equation used to build these curves.
+b) Which atomic species has the smallest ionization energy? Explain.
+c) Which atomic species has the greatest ionization energy? Explain.
+
+> **Original Answer (6/10)**: 
+>
+> a) Saha equation
+> b) $A$ has smallest ionization energy because it peaks at a lower $\lambda$. In other words, the fraction of ionized particles to total reaches 1 at lower temperatures so it takes less energy to ionize $A$.
+> c) For a similar argument, $D$ must have the highest ionization energy since $N_a/N_{total}$ peaks at higher temperatures.
+>
+> **Revised Answer (10/10)**: The only thing I would change is my typo; $\lambda$ should be temperature. I don't know why I said $\lambda$ as it's not even on the plot, but if we make the replacement with temperature, the answer for part b) reads correctly: "$A$ has the smallest ionization energy because it peaks at a lower temperature." Since my typo reads as a lack of conceptual understanding and I incorporate my argument from b) into c), I would give my original answer a 6/10.
+> 
+
+# Problem 11
+The plot shows the Maxwell-Boltzmann distributions of two parcels of gas, "A" and "B". Each parcel of gas has an identical composition of pure Hydrogen atoms.
+
+a) What is the temperature of the gas in parcel "A"?
+b) What is the average kinetic energy of a gas particle in parcel "B"?
+
+> **Original Answer (4/10)**: 
+>
+> a) We don't know the actual temp, but we do know $A$ is cooler than $B$ bc distribution is averages at lower velocities than $B$.
+> b) Similarly, we don't know the exact value, but we know the average is higher than $A$ and is related by $v = \sqrt{\frac{3kT}{m}}\longleftrightarrow KE = \frac{3}{2}kT$
+>
+> **Revised Answer (10/10)**: I think my original answers were based on the understanding that temperature can be found from velocity, but we were given a velocity distribution, so picking one velocity as the "gas velocity" would result in a different temperature depending on what velocity you pick. 
+> 
+> What I failed to catch was we could use the most probable velocity to determine the temperature, then use that temperature to calculate the average kinetic energy of the gas.
+>
+> $$v_{mp} = \sqrt{\frac{2kT}{m}} \longrightarrow T = \frac{v_{mp}^2 m}{2k}, \quad KE_{avg} = \frac{3}{2}kT$$
+>
+> The following code chunk calculates the temperature of gas $A$ and the average kinetic energy of a particle in gas $B$.
+>
+```{python}
+v_mpA = 10.5 * u.km / u.s
+v_mpB = 13 * u.km / u.s
+m = c.m_p  # proton/Hydrogen mass
+
+# a)
+T_A = v_mpA ** 2 * m / (2 * c.k_B)
+print(f"Temperature of Gas A: {T_A.to(u.K):.2f}")
+
+# b)
+T_B = v_mpB ** 2 * m / (2 * c.k_B)
+KE_avg_B = 3/2 * c.k_B * T_B
+print(f"Average Kinetic Energy of Particle in B: {KE_avg_B.to(u.eV):.2f}")
+```
+
+
+# Reflection
+
+1) What did you feel the most and least confident about going into the exam?
+
+> **Answer**: I felt most confident in my ability to do algebraic manipulation on equations to derive the answer, but least confident in my ability to not make calculator mistakes under the time crunch. I had a comprehensive equation sheet and I felt confident in my ability to interpret them, but I was worried I wouldn't do as well on conceptual questions.
+
+1) What did "grading"/"correcting" your exam help you to understand better?
+
+> **Answer**: I will always remember that declination is given in degrees:arcminutes:arcseconds, not degrees:minutes:seconds. I also solidified my belief that python should be trusted for number crunching than a handheld calculator, at least in my hands. The main thing grading the quiz helped me with was understanding my errors because it forced me to redo the problems.
+
+1) What topics from the first unit do you feel like you still have the most room for improvement?
+
+> **Answer**: As I go into more detail in my revisions for the specific problems, I still have some confusion on why parallax didn't work for the Problem 3 and want to understand how I can interpret the plot in Problem 7 fully. Regarding topics in general, I feel fairly confident in my understanding for most of the material except for orbital mechanics, spectral features, and observing plans. For orbital mechanics, I think I'm mainly confused on what parameters we can determine from each given binary type. The class on spectral features was one that I missed for a swim meet, so I'm worried I missed something. Even though I took observational astronomy, we never had to determine if an observation was feasible that quickly/without help; I would like to get a stronger intuition regarding the time an observation could be observed. Basically, Problem 7 made me realize I don't understand equinoxes and LST well.
+
+1) If 10 pts per problem (except problem 6), what would your original grade be versus the version you’re turning in now?
+
+> **Answer**: Excluding problem 6, I would have received a 75/100. With revisions, I believe I have corrected my exam up to a 95/100.
