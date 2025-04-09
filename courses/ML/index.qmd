@@ -369,7 +369,10 @@ Visually, the classification rule partitions the data. If the data overlaps, our
 |    Yes     |  FP   |  TP  |
 
 Sensitivity (TP rate): $\frac{TP}{TP + FN}$
+<<<<<<< HEAD
 
+=======
+>>>>>>> 063ed5bb25b088e5bba0ebe5bd73aa403f2cd98e
 Specificity (TN rate): $\frac{TN}{TN + FP}$
 
 If you want to improve sensitivity, lower the classification threshold. Note that sensitivity is inversely proportional to specificity, so increasing sensitivity will decrease specificity.
