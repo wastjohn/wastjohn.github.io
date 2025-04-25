@@ -1,0 +1,46 @@
+@article{Chen2015,
+    author = {Chen, Yen-Chi and Ho, Shirley and Freeman, Peter E. and Genovese, Christopher R. and Wasserman, Larry},
+    title = {Cosmic web reconstruction through density ridges: method and algorithm},
+    journal = {Monthly Notices of the Royal Astronomical Society},
+    volume = {454},
+    number = {1},
+    pages = {1140-1156},
+    year = {2015},
+    month = {09},
+    abstract = {The detection and characterization of filamentary structures in the cosmic web allows cosmologists to constrain parameters that dictate the evolution of the Universe. While many filament estimators have been proposed, they generally lack estimates of uncertainty, reducing their inferential power. In this paper, we demonstrate how one may apply the subspace constrained mean shift (SCMS) algorithm (Ozertem \&amp; Erdogmus 2011; Genovese et al. 2014) to uncover filamentary structure in galaxy
+data. The SCMS algorithm is a gradient ascent method that models filaments as density ridges, one-dimensional smooth curves that trace high-density regions within the point cloud. We also demonstrate how augmenting the SCMS algorithm with bootstrap-based methods of uncertainty estimation allows one to place uncertainty bands around putative filaments. We apply the SCMS first to the data set generated from the Voronoi model. The density ridges show strong agreement with the filaments from Voronoi method. We then apply the SCMS method data sets sampled from a P3M N-body simulation, with galaxy number densities consistent with SDSS and WFIRST-AFTA, and to LOWZ and CMASS data from the Baryon Oscillation Spectroscopic Survey (BOSS). To further assess the efficacy of SCMS, we compare the relative locations of BOSS filaments with galaxy clusters in the redMaPPer catalogue, and find that redMaPPer clusters are significantly closer (with p-values \&lt;10−9) to SCMS-detected filaments than to randomly selected galaxies.},
+    issn = {0035-8711},
+    doi = {10.1093/mnras/stv1996},
+    url = {https://doi.org/10.1093/mnras/stv1996},
+    eprint = {https://academic.oup.com/mnras/article-pdf/454/1/1140/3935509/stv1996.pdf},
+    annotate = {This paper provides another approach to identifying structure. From a point cloud, a density ridge can be constructed that essentially acts identifies where the most dense regions in our data is. We can clean and smooth the ridges with some noise thresholds to remove less significant peaks. \\\\
+               
+    This paper also tests their approach on data from the SDSS, but only identifies two dimensional filaments and doesn't explore higher connections like walls and voids. The algorithm in this paper could prove useful in my work, particular in identifying filaments. The ideas of smoothing the data might also prove useful as it would reduce the computational power and potentially allow me to include more data points in the overall experiement.
+    }
+}
+
+
+
+@article{Sousbie2011,
+    author = {Sousbie, T. and Pichon, C. and Kawahara, H.},
+    title = {The persistent cosmic web and its filamentary structure – II. Illustrations},
+    journal = {Monthly Notices of the Royal Astronomical Society},
+    volume = {414},
+    number = {1},
+    pages = {384-403},
+    year = {2011},
+    month = {06},
+    abstract = {The recently introduced discrete persistent structure extractor (DisPerSE, Sousbie, Paper I) is implemented on realistic 3D cosmological simulations and observed redshift catalogues; it is found that DisPerSE traces very well the observed filaments, walls and voids seen both in simulations and in observations. In either setting, filaments are shown to connect on to haloes, outskirt walls, which circumvent voids, as is topologically required by the Morse theory. Indeed this algorithm returns the optimal critical set while operating directly on the particles. DisPerSE, as illustrated here, assumes nothing about the geometry of the survey or its homogeneity, and yields a natural (topologically motivated) self-consistent criterion for selecting the significance level of the identified structures. It is shown that this extraction is possible even for very sparsely sampled point processes, as a function of the persistence ratio (a measure of the significance of topological connections between critical points). Hence, astrophysicists should be in a position to trace precisely the locus of filaments, walls and voids from such samples and assess the confidence of the post-processed sets as a function of this threshold, which can be expressed relative to the expected amplitude of shot noise. In a cosmic framework, this criterion is shown to level with the friends-of-friends structure finder for the identification of peaks, while it also identifies the connected filaments and walls, and quantitatively recovers the full set of topological invariants (number of holes, etc.) directly from the particles, and at no extra cost as a function of the persistence threshold. This criterion is found to be sufficient even if one particle out of two is noise, when the persistence ratio is set to 3σ or more. The algorithm is also implemented on the SDSS catalogue and used to locate interesting configurations of the filamentary structure. In this context, we carried the identification of an ‘optically faint’ cluster at the intersection of filaments through the recent observation of its X-ray counterpart by Suzaku.},
+    issn = {0035-8711},
+    doi = {10.1111/j.1365-2966.2011.18395.x},
+    url = {https://doi.org/10.1111/j.1365-2966.2011.18395.x},
+    eprint = {https://academic.oup.com/mnras/article-pdf/414/1/384/3811918/mnras0414-0384.pdf},
+    annotate = {This paper discusses the application of a type of software that identifies persistent structure on both a simulation and a large survey data from the Sloan Digital Sky Survey (SDSS). Their software performs quite well in identifying different structures in the cosmic web, such as filaments, walls, and voids, which are verified both in simulations and observations. \\\\
+
+    The most pertinant information this paper provides with regards to my paper is the application of the software with SDSS. This paper provided me with the idea of my project: explore the persistent homology of a survey (ideally the Euclid data release) to identify key features. In terms of the cosmic web, the key features would be filaments, which are clusters of galaxies connecting through space in a path-like shape; walls, which are a subtype of filament having significantly larger semi-major axis than semi-minor axis across the lenthwise axis; and voids, which are trapped volumes. \\\\
+
+    This paper gives the genesis of my procedure and shows it is possible, but I will not be able to use anywhere near as many datapoints for my project. Therefore, I am playing with the idea of looking at the persistent homology of a subset of galaxys in a survey. Potential subsets could be found by redshift, location on the sky, galaxy type/morphology, luminosity, mass, etc. Another option would be to collect a random subset of the entire survey.}
+}
+
+
+

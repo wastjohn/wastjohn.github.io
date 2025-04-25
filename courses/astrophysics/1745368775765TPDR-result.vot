@@ -1,0 +1,1657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.4" xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/votable-1.4.xsd">
+<RESOURCE type="results">
+<INFO name="QUERY_STATUS" value="OK" />
+
+<INFO name="QUERY" value="SELECT TOP 3 * FROM catalogue.mer_catalogue  WHERE ellipticity &gt; 0 ORDER BY ellipticity ASC"><![CDATA[SELECT TOP 3 * FROM catalogue.mer_catalogue  WHERE ellipticity > 0 ORDER BY ellipticity ASC]]></INFO>
+<INFO name="JOBID" value="1745368775765TPDR"><![CDATA[1745368775765TPDR]]></INFO>
+
+<TABLE>
+<FIELD datatype="long" name="basic_download_data_oid"/>
+<FIELD datatype="int" name="to_be_published"/>
+<FIELD datatype="long" name="object_id" unit="NA">
+<DESCRIPTION>Euclid unique source identifier</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="right_ascension" unit="deg">
+<DESCRIPTION>Source barycenter RA coordinate (SExtractor ALPHA_J2000) decimal degrees</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="declination" unit="deg">
+<DESCRIPTION>Source barycenter DEC coordinate (SExtractor DELTA_J2000) decimal degrees</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="right_ascension_psf_fitting" unit="deg">
+<DESCRIPTION>Source RA coordinate derived by the PSF-fitting photometry method</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="declination_psf_fitting" unit="deg">
+<DESCRIPTION>Source DEC coordinate derived by the PSF-fitting photometry method</DESCRIPTION>
+</FIELD>
+<FIELD datatype="long" name="segmentation_map_id" unit="NA">
+<DESCRIPTION>Source ID in the associated segmentation map</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="vis_det" unit="NA">
+<DESCRIPTION>Flag to indicate if the source is detected in the VIS mosaic (1) or is only detected in the NIR mosaic (0)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_1fwhm_aper" unit="uJy">
+<DESCRIPTION>VIS band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_2fwhm_aper" unit="uJy">
+<DESCRIPTION>VIS band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_3fwhm_aper" unit="uJy">
+<DESCRIPTION>VIS band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_4fwhm_aper" unit="uJy">
+<DESCRIPTION>VIS band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_y_1fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR Y band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_y_2fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR Y band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_y_3fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR Y band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_y_4fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR Y band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_j_1fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR J band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_j_2fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR J band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_j_3fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR J band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_j_4fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR J band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_h_1fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR H band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_h_2fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR H band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_h_3fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR H band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_h_4fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR H band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_nir_stack_1fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR stack band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_nir_stack_2fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR stack band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_nir_stack_3fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR stack band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_nir_stack_4fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR stack band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_megacam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext Megacam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_megacam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext Megacam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_megacam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext Megacam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_megacam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext Megacam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_megacam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext Megacam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_megacam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext Megacam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_megacam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext Megacam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_megacam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext Megacam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_jpcam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_jpcam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_jpcam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_jpcam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_panstarrs_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext PS band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_panstarrs_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext PS band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_panstarrs_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext PS band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_panstarrs_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext PS band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_panstarrs_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext PS band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_panstarrs_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext PS band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_panstarrs_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext PS band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_panstarrs_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext PS band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_hsc_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext HSC band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_hsc_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext HSC band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_hsc_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext HSC band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_hsc_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext HSC band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_hsc_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext HSC band source aperture photometry flux (1 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_hsc_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext HSC band source aperture photometry flux (2 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_hsc_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext HSC band source aperture photometry flux (3 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_hsc_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext HSC band source aperture photometry flux (4 FWHM diameter) on PSF-matched images</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_1fwhm_aper" unit="uJy">
+<DESCRIPTION>VIS band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_2fwhm_aper" unit="uJy">
+<DESCRIPTION>VIS band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_3fwhm_aper" unit="uJy">
+<DESCRIPTION>VIS band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_4fwhm_aper" unit="uJy">
+<DESCRIPTION>VIS band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_y_1fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR Y band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_y_2fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR Y band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_y_3fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR Y band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_y_4fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR Y band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_j_1fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR J band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_j_2fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR J band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_j_3fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR J band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_j_4fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR J band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_h_1fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR H band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_h_2fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR H band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_h_3fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR H band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_h_4fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR H band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_nir_stack_1fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR stack band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_nir_stack_2fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR stack band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_nir_stack_3fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR stack band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_nir_stack_4fwhm_aper" unit="uJy">
+<DESCRIPTION>NIR stack band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_decam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext DECam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_decam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext DECam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_decam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext DECam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_decam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext DECam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_lsst_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext LSST band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_lsst_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext LSST band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_lsst_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext LSST band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_lsst_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext LSST band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_megacam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext Megacam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_megacam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext Megacam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_megacam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext Megacam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_megacam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Uext Megacam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_megacam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext Megacam band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_megacam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext Megacam band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_megacam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext Megacam band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_megacam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Rext Megacam band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_jpcam_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_jpcam_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_jpcam_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_jpcam_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_panstarrs_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext PS band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_panstarrs_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext PS band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_panstarrs_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext PS band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_panstarrs_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Iext PS band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_panstarrs_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext PS band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_panstarrs_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext PS band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_panstarrs_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext PS band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_panstarrs_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext PS band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_hsc_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext HSC band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_hsc_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext HSC band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_hsc_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext HSC band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_hsc_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Gext HSC band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_hsc_1fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext HSC band source aperture photometry flux (1 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_hsc_2fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext HSC band source aperture photometry flux (2 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_hsc_3fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext HSC band source aperture photometry flux (3 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_hsc_4fwhm_aper" unit="uJy">
+<DESCRIPTION>Zext HSC band source aperture photometry flux (4 FWHM diameter) on PSF-matched images error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_y_templfit" unit="uJy">
+<DESCRIPTION>NIR Y band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_j_templfit" unit="uJy">
+<DESCRIPTION>NIR J band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_h_templfit" unit="uJy">
+<DESCRIPTION>NIR H band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Uext DECam band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Gext DECam band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Rext DECam band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Iext DECam band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Zext DECam band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Uext LSST band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Gext LSST band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Rext LSST band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Iext LSST band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Zext LSST band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_megacam_templfit" unit="uJy">
+<DESCRIPTION>Uext Megacam band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_megacam_templfit" unit="uJy">
+<DESCRIPTION>Rext Megacam band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_jpcam_templfit" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_panstarrs_templfit" unit="uJy">
+<DESCRIPTION>Iext PS band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_panstarrs_templfit" unit="uJy">
+<DESCRIPTION>Zext PS band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_hsc_templfit" unit="uJy">
+<DESCRIPTION>Gext HSC band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_hsc_templfit" unit="uJy">
+<DESCRIPTION>Zext HSC band source template fitting flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_y_templfit" unit="uJy">
+<DESCRIPTION>NIR Y band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_j_templfit" unit="uJy">
+<DESCRIPTION>NIR J band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_h_templfit" unit="uJy">
+<DESCRIPTION>NIR H band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Uext DECam band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Gext DECam band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Rext DECam band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Iext DECam band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>Zext DECam band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Uext LSST band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Gext LSST band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Rext LSST band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Iext LSST band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>Zext LSST band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_megacam_templfit" unit="uJy">
+<DESCRIPTION>Uext Megacam band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_megacam_templfit" unit="uJy">
+<DESCRIPTION>Rext Megacam band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_jpcam_templfit" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_panstarrs_templfit" unit="uJy">
+<DESCRIPTION>Iext PS band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_panstarrs_templfit" unit="uJy">
+<DESCRIPTION>Zext PS band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_hsc_templfit" unit="uJy">
+<DESCRIPTION>Gext HSC band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_hsc_templfit" unit="uJy">
+<DESCRIPTION>Zext HSC band source template fitting flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_y_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to NIR Y band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_j_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to NIR J band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_h_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to NIR H band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_u_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Uext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_g_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Gext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_r_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Rext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_i_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Iext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_z_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Zext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_u_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Uext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_g_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Gext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_r_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Rext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_i_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Iext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_z_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Zext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_u_ext_megacam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Uext Megacam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_r_ext_megacam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Rext Megacam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_g_ext_jpcam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Gext JPCAM band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_i_ext_panstarrs_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Iext PS band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_z_ext_panstarrs_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Zext PS band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_g_ext_hsc_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Gext HSC band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_to_z_ext_hsc_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux on a VIS image PSF-matched to Zext HSC band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_y_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to NIR Y band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_j_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to NIR J bandr (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_h_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to NIR H band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_u_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Uext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_g_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Gext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_r_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Rext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_i_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Iext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_z_ext_decam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Zext DECam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_u_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Uext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_g_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Gext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_r_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Rext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_i_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Iext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_z_ext_lsst_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Zext LSST band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_u_ext_megacam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Uext Megacam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_r_ext_megacam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Rext Megacam band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_g_ext_jpcam_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Gext JPCAM band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_i_ext_panstarrs_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Iext PS band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_z_ext_panstarrs_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Zext PS band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_g_ext_hsc_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Gext HSC band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_to_z_ext_hsc_templfit" unit="uJy">
+<DESCRIPTION>VIS band source flux error on a VIS image PSF-matched to Zext HSC band (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_psf" unit="uJy">
+<DESCRIPTION>VIS band source PSF-fitting photometry flux (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_psf" unit="uJy">
+<DESCRIPTION>VIS band source PSF-fitting photometry flux error (TPHOT measurement)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_segmentation" unit="uJy">
+<DESCRIPTION>VIS or NIR stack band source segmented area flux</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_segmentation" unit="uJy">
+<DESCRIPTION>VIS or NIR stack band source total flux (Kron aperture)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_detection_total" unit="uJy">
+<DESCRIPTION>VIS or NIR stack band source total flux error (Kron aperture)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_detection_total" unit="uJy">
+<DESCRIPTION>VIS or NIR stack band source segmented area flux</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_sersic" unit="uJy">
+<DESCRIPTION>VIS band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_y_sersic" unit="uJy">
+<DESCRIPTION>NIR Y band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_j_sersic" unit="uJy">
+<DESCRIPTION>NIR J band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_h_sersic" unit="uJy">
+<DESCRIPTION>NIR H band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Uext DECam band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Gext DECam band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Rext DECam band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Iext DECam band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Zext DECam band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Uext LSST band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Gext LSST band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Rext LSST band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Iext LSST band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Zext LSST band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_megacam_sersic" unit="uJy">
+<DESCRIPTION>Uext Megacam band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_megacam_sersic" unit="uJy">
+<DESCRIPTION>Rext Megacam band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_jpcam_sersic" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_panstarrs_sersic" unit="uJy">
+<DESCRIPTION>Iext PS band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_panstarrs_sersic" unit="uJy">
+<DESCRIPTION>Zext PS band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_hsc_sersic" unit="uJy">
+<DESCRIPTION>Gext HSC band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_hsc_sersic" unit="uJy">
+<DESCRIPTION>Zext HSC band source flux from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_sersic" unit="uJy">
+<DESCRIPTION>VIS band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_y_sersic" unit="uJy">
+<DESCRIPTION>NIR Y band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_j_sersic" unit="uJy">
+<DESCRIPTION>NIR J band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_h_sersic" unit="uJy">
+<DESCRIPTION>NIR H band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Uext DECam band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Gext DECam band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Rext DECam band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Iext DECam band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_decam_sersic" unit="uJy">
+<DESCRIPTION>Zext DECam band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Uext LSST band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Gext LSST band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Rext LSST band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Iext LSST band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_lsst_sersic" unit="uJy">
+<DESCRIPTION>Zext LSST band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_megacam_sersic" unit="uJy">
+<DESCRIPTION>Uext Megacam band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_megacam_sersic" unit="uJy">
+<DESCRIPTION>Rext Megacam band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_jpcam_sersic" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_panstarrs_sersic" unit="uJy">
+<DESCRIPTION>Iext PS band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_panstarrs_sersic" unit="uJy">
+<DESCRIPTION>Zext PS band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_hsc_sersic" unit="uJy">
+<DESCRIPTION>Gext HSC band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_hsc_sersic" unit="uJy">
+<DESCRIPTION>Zext HSC band source flux error from the Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_vis_disk_sersic" unit="uJy">
+<DESCRIPTION>VIS band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_y_disk_sersic" unit="uJy">
+<DESCRIPTION>NIR Y band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_j_disk_sersic" unit="uJy">
+<DESCRIPTION>NIR J band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_h_disk_sersic" unit="uJy">
+<DESCRIPTION>NIR H band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Uext DECam band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Gext DECam band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Rext DECam band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Iext DECam band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Zext DECam band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Uext LSST band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Gext LSST band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Rext LSST band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Iext LSST band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Zext LSST band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_u_ext_megacam_disk_sersic" unit="uJy">
+<DESCRIPTION>Uext Megacam band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_r_ext_megacam_disk_sersic" unit="uJy">
+<DESCRIPTION>Rext Megacam band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_jpcam_disk_sersic" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_i_ext_panstarrs_disk_sersic" unit="uJy">
+<DESCRIPTION>Iext PS band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_panstarrs_disk_sersic" unit="uJy">
+<DESCRIPTION>Zext PS band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_g_ext_hsc_disk_sersic" unit="uJy">
+<DESCRIPTION>Gext HSC band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="flux_z_ext_hsc_disk_sersic" unit="uJy">
+<DESCRIPTION>Zext HSC band source flux from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_vis_disk_sersic" unit="uJy">
+<DESCRIPTION>VIS band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_y_disk_sersic" unit="uJy">
+<DESCRIPTION>NIR Y band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_j_disk_sersic" unit="uJy">
+<DESCRIPTION>NIR J band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_h_disk_sersic" unit="uJy">
+<DESCRIPTION>NIR H band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Uext DECam band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Gext DECam band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Rext DECam band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Iext DECam band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_decam_disk_sersic" unit="uJy">
+<DESCRIPTION>Zext DECam band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Uext LSST band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Gext LSST band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Rext LSST band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Iext LSST band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_lsst_disk_sersic" unit="uJy">
+<DESCRIPTION>Zext LSST band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_u_ext_megacam_disk_sersic" unit="uJy">
+<DESCRIPTION>Uext Megacam band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_r_ext_megacam_disk_sersic" unit="uJy">
+<DESCRIPTION>Rext Megacam band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_jpcam_disk_sersic" unit="uJy">
+<DESCRIPTION>Gext JPCAM band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_i_ext_panstarrs_disk_sersic" unit="uJy">
+<DESCRIPTION>Iext PS band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_panstarrs_disk_sersic" unit="uJy">
+<DESCRIPTION>Zext PS band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_g_ext_hsc_disk_sersic" unit="uJy">
+<DESCRIPTION>Gext HSC band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fluxerr_z_ext_hsc_disk_sersic" unit="uJy">
+<DESCRIPTION>Zext HSC band source flux error from the Disk+Sersic fit</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_vis_disk_sersic" unit="NA">
+<DESCRIPTION>VIS band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_y_disk_sersic" unit="NA">
+<DESCRIPTION>NIR Y band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_j_disk_sersic" unit="NA">
+<DESCRIPTION>NIR J band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_h_disk_sersic" unit="NA">
+<DESCRIPTION>NIR H band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_u_ext_decam_disk_sersic" unit="NA">
+<DESCRIPTION>Uext DECam band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_g_ext_decam_disk_sersic" unit="NA">
+<DESCRIPTION>Gext DECam band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_r_ext_decam_disk_sersic" unit="NA">
+<DESCRIPTION>Rext DECam band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_i_ext_decam_disk_sersic" unit="NA">
+<DESCRIPTION>Iext DECam band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_z_ext_decam_disk_sersic" unit="NA">
+<DESCRIPTION>Zext DECam band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_u_ext_lsst_disk_sersic" unit="NA">
+<DESCRIPTION>Uext LSST band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_g_ext_lsst_disk_sersic" unit="NA">
+<DESCRIPTION>Gext LSST band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_r_ext_lsst_disk_sersic" unit="NA">
+<DESCRIPTION>Rext LSST band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_i_ext_lsst_disk_sersic" unit="NA">
+<DESCRIPTION>Iext LSST band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_z_ext_lsst_disk_sersic" unit="NA">
+<DESCRIPTION>Zext LSST band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_u_ext_megacam_disk_sersic" unit="NA">
+<DESCRIPTION>Uext Megacam band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_r_ext_megacam_disk_sersic" unit="NA">
+<DESCRIPTION>Rext Megacam band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_g_ext_jpcam_disk_sersic" unit="NA">
+<DESCRIPTION>Gext JPCAM band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_i_ext_panstarrs_disk_sersic" unit="NA">
+<DESCRIPTION>Iext PS band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_z_ext_panstarrs_disk_sersic" unit="NA">
+<DESCRIPTION>Zext PS band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_g_ext_hsc_disk_sersic" unit="NA">
+<DESCRIPTION>Gext HSC band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_z_ext_hsc_disk_sersic" unit="NA">
+<DESCRIPTION>Zext HSC band Sersic fraction</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_vis_disk_sersic_err" unit="NA">
+<DESCRIPTION>VIS band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_y_disk_sersic_err" unit="NA">
+<DESCRIPTION>NIR Y band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_j_disk_sersic_err" unit="NA">
+<DESCRIPTION>NIR J band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_h_disk_sersic_err" unit="NA">
+<DESCRIPTION>NIR H band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_u_ext_decam_disk_sersic_err" unit="NA">
+<DESCRIPTION>Uext DECam band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_g_ext_decam_disk_sersic_err" unit="NA">
+<DESCRIPTION>Gext DECam band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_r_ext_decam_disk_sersic_err" unit="NA">
+<DESCRIPTION>Rext DECam band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_i_ext_decam_disk_sersic_err" unit="NA">
+<DESCRIPTION>Iext DECam band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_z_ext_decam_disk_sersic_err" unit="NA">
+<DESCRIPTION>Zext DECam band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_u_ext_lsst_disk_sersic_err" unit="NA">
+<DESCRIPTION>Uext LSST band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_g_ext_lsst_disk_sersic_err" unit="NA">
+<DESCRIPTION>Gext LSST band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_r_ext_lsst_disk_sersic_err" unit="NA">
+<DESCRIPTION>Rext LSST band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_i_ext_lsst_disk_sersic_err" unit="NA">
+<DESCRIPTION>Iext LSST band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_z_ext_lsst_disk_sersic_err" unit="NA">
+<DESCRIPTION>Zext LSST band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_u_ext_megacam_disk_sersic_err" unit="NA">
+<DESCRIPTION>Uext Megacam band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_r_ext_megacam_disk_sersic_err" unit="NA">
+<DESCRIPTION>Rext Megacam band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_g_ext_jpcam_disk_sersic_err" unit="NA">
+<DESCRIPTION>Gext JPCAM band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_i_ext_panstarrs_disk_sersic_err" unit="NA">
+<DESCRIPTION>Iext PS band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_z_ext_panstarrs_disk_sersic_err" unit="NA">
+<DESCRIPTION>Zext PS band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_g_ext_hsc_disk_sersic_err" unit="NA">
+<DESCRIPTION>Gext HSC band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="sersic_fract_z_ext_hsc_disk_sersic_err" unit="NA">
+<DESCRIPTION>Zext HSC band Sersic fraction error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_vis" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the VIS flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_y" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the NIR Y flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_j" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the NIR J flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_h" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the NIR H flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_nir_stack" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the NIR stack flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_u_ext_decam" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the UextDECam flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_g_ext_decam" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the GextDECam flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_r_ext_decam" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the RextDECam flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_i_ext_decam" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the IextDECam flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_z_ext_decam" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the ZextDECam flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_u_ext_lsst" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Uext LSST flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_g_ext_lsst" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Gext LSST flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_r_ext_lsst" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Rext LSST flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_i_ext_lsst" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Iext LSST flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_z_ext_lsst" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Zext LSST flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_u_ext_megacam" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Uext Megacam flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_r_ext_megacam" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Rext Megacam flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_g_ext_jpcam" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Gext JPCAM flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_i_ext_panstarrs" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Iext PS flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_z_ext_panstarrs" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Zext PS flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_g_ext_hsc" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Gext HSC flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="flag_z_ext_hsc" unit="NA">
+<DESCRIPTION>Objects flag keeping track of the flagged pixels in the Zext HSC flag image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_vis" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the VIS band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_y" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the NIR Y band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_j" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the NIR J band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_h" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the NIR H band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_u_ext_decam" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the DECam U band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_g_ext_decam" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the DECam G band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_r_ext_decam" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the DECam R band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_i_ext_decam" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the DECam I band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_z_ext_decam" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the DECam Z band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_u_ext_lsst" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the LSST U band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_g_ext_lsst" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the LSST G band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_r_ext_lsst" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the LSST R band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_i_ext_lsst" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the LSST I band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_z_ext_lsst" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the LSST Z band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_u_ext_megacam" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the Megacam U band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_r_ext_megacam" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the Megacam R band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_g_ext_jpcam" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the JPCAM G band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_i_ext_panstarrs" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the PS I band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_z_ext_panstarrs" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the PS Z band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_g_ext_hsc" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the HSC G band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="avg_trans_wave_z_ext_hsc" unit="Angstrom">
+<DESCRIPTION>Average filter transmission curve wavelength for the HSC Z band</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="deblended_flag" unit="NA">
+<DESCRIPTION>Flag marking if the object was originally blended with another one</DESCRIPTION>
+</FIELD>
+<FIELD datatype="long" name="parent_id" unit="NA">
+<DESCRIPTION>ID of the parent sources of a deblended object</DESCRIPTION>
+</FIELD>
+<FIELD datatype="long" name="parent_visnir" unit="NA">
+<DESCRIPTION>ID of the parent sources of a deblended object</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="blended_prob" unit="NA">
+<DESCRIPTION>Probability that the source is blended with another source</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="she_flag" unit="NA">
+<DESCRIPTION>Flags for objects SHE might want to remove (eg. bright stars)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="variable_flag" unit="NA">
+<DESCRIPTION>Object variability flag</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="binary_flag" unit="NA">
+<DESCRIPTION>Flag for potentially binary stars</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="point_like_flag" unit="NA">
+<DESCRIPTION>Point-like flag : flag set to 1 for VIS detections with (DET_QUALITY_FLAG==0) AND (POINT_LIKE_PROBA&amp;gt;threshold), otherwise set to NaN</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="point_like_prob" unit="NA">
+<DESCRIPTION>Probability between 0 and 1 that the source is point-like (the estimation uses a &amp;quot;star probability cube&amp;quot; defined in the MDB). Value is set to NaN for NIR-only objects (use MUMAX_MINUS_MAG for NIR-only objcts)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="extended_flag" unit="NA">
+<DESCRIPTION>Extended source flag</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="extended_prob" unit="NA">
+<DESCRIPTION>Probability between 0 and 1 that the source is extended</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="spurious_flag" unit="NA">
+<DESCRIPTION>Spurious source flag</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="spurious_prob" unit="NA">
+<DESCRIPTION>Probability between 0 and 1 that the source is spurious</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="mag_stargal_sep" unit="mag">
+<DESCRIPTION>Magnitude used to compute POINT_LIKE_PROB</DESCRIPTION>
+</FIELD>
+<FIELD datatype="short" name="det_quality_flag" unit="NA">
+<DESCRIPTION>Detection step flags that could indicate the possible corruption of the MAG_STARGAL_SEP values</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="mu_max" unit="mag/arcsec2">
+<DESCRIPTION>Peak surface brightness above the background in the detection band (directly from SExtractor)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="mumax_minus_mag" unit="mag/arcsec2">
+<DESCRIPTION>The difference between MU_MAX and MAG_STARGAL_SEP, valid even for NIR-only sources</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="segmentation_area" unit="pix">
+<DESCRIPTION>Isophotal area of the source above the analysis threshold (SExtractor ISOAREA_IMAGE)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="semimajor_axis" unit="pix">
+<DESCRIPTION>Semi-major axis of the source (from Asterism)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="semimajor_axis_err" unit="pix">
+<DESCRIPTION>Semi-major axis error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="position_angle" unit="deg">
+<DESCRIPTION>Position angle (CCW/x) of the source (SExtractor THETA_IMAGE) range: -90 up to +90 decimal degrees</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="position_angle_err" unit="deg">
+<DESCRIPTION>Position angle error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="ellipticity" unit="NA">
+<DESCRIPTION>A parametrization of how stretched an object is in the detection band, computed from the minor and major axes of the object itself (directly from SExtractor)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="ellipticity_err" unit="NA">
+<DESCRIPTION>Ellipticity error</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="kron_radius" unit="pix">
+<DESCRIPTION>Major semi-axis (in pixels) of the elliptical aperture used for total (Kron) aperture photometry on the detection image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="kron_radius_err" unit="pix">
+<DESCRIPTION>Error on the major semi-axis (in pixels) of the elliptical aperture used for total (Kron) aperture photometry on the detection image</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="fwhm" unit="arcsec">
+<DESCRIPTION>FWHM (in arcsec) used in a-phot to compute colors. A-phot fluxes are computed within apertures that are multiples (1, 2, 3, 4 times) of this FWHM</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="gal_ebv" unit="mag">
+<DESCRIPTION>Estimated galactic E(B-V) at the source centroid according to the reference Planck map</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="gal_ebv_err" unit="mag">
+<DESCRIPTION>Error on galactic E(B-V) according to the reference Planck map</DESCRIPTION>
+</FIELD>
+<FIELD datatype="long" name="gaia_id" unit="NA">
+<DESCRIPTION>The associated GAIA source id</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="gaia_match_quality" unit="NA">
+<DESCRIPTION>The quality of the GAIA match</DESCRIPTION>
+</FIELD>
+<DATA>
+<BINARY2>
+<STREAM encoding='base64'>
+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
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAD+XSolAAAAAP6Kx6gAAAAA/os37gAAAAD+izfuA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+AAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAA
+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
+</STREAM>
+</BINARY2>
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>

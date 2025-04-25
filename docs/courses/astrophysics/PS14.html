@@ -8,7 +8,7 @@
 
 <meta name="author" content="Will St.&nbsp;John + Caedan Miller + Elliott">
 
-<title>Astrophysics PS13 – Will St.&nbsp;John</title>
+<title>Astrophysics PS14 – Will St.&nbsp;John</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -194,7 +194,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Astrophysics PS13</h1>
+<h1 class="title">Astrophysics PS14</h1>
 </div>
 
 
@@ -268,7 +268,7 @@ window.Quarto = {
 <p><strong>Answer</strong>: The code below generates the plots in parts 1) and 2).</p>
 <p>As the remaining stellar mass increases, the ratio of core mass to total mass decreases. In other words, as we lose mass, the core to total mass ratio increases, indicating that the core is becoming the dominant mass in the star.</p>
 </blockquote>
-<div id="b4033cac" class="cell" data-execution_count="1">
+<div id="6d8f7bb5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.io <span class="im">import</span> <span class="bu">ascii</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -302,7 +302,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="PS14_files/figure-html/cell-2-output-2.png" width="625" height="429" class="figure-img"></p>
+<p><img src="PS14_files/figure-html/cell-2-output-2.png" width="626" height="429" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -334,7 +334,7 @@ window.Quarto = {
 <p><span class="math display">\[\frac{dM}{dt} = (-4\times10^{-13})\frac{\eta\cdot L}{g\cdot R},\]</span></p>
 <p>to solve for part b). Note that we get a value that is essentially zero. This is in agreement with what we see in our plots for Question 2, where most of the mass of the star is in the core, so there is no fuel for the core to do fusion, so there are no thermal pulses, so there is no mass loss.</p>
 </blockquote>
-<div id="67ed8ad6" class="cell" data-execution_count="2">
+<div id="93d2deeb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> <span class="fl">3.6634</span> <span class="op">*</span> u.K</span>
