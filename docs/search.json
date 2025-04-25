@@ -319,7 +319,7 @@
     "href": "courses/honors/index.html",
     "title": "Topology Final Project",
     "section": "",
-    "text": "Ellaborate/explain each section in more detail\nCompute persistent image\nConvert persistent image to vectors\nPerform clustering of persistent features using K-means and/or Hierarchical clustering\nLook into PCA/PCR for potential clusterings??"
+    "text": "Ellaborate/explain each section in more detail\nCompute persistent image\nConvert persistent image to vectors\nPerform clustering of persistent features using K-means and/or Hierarchical clustering\nLook into PCA/PCR for potential clusterings??\nGet redshifts for each galaxy"
   },
   {
     "objectID": "courses/honors/index.html#astronomy",

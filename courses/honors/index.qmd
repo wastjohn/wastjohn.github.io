@@ -8,6 +8,7 @@ bibliography: bibliography.bib
 - Convert persistent image to vectors
 - Perform clustering of persistent features using K-means and/or Hierarchical clustering
 - Look into PCA/PCR for potential clusterings??
+- Get redshifts for each galaxy
 
 
 # Welcome Lori!
@@ -49,6 +50,7 @@ The code chunk below imports the necessary modules for working with this data.
 ```{python}
 from astroquery.esa.euclid import Euclid
 from astropy.coordinates import SkyCoord
+from astropy.wcs import WCS
 import astropy.units as u
 from astropy.io import fits
 import matplotlib.pyplot as plt
@@ -136,6 +138,8 @@ for file in [fits_files[-1]]:
         hdul = fits.open(file)
         print(fits.info(file))
         image_data = hdul[0].data
+        header = hdul[0].header
+        wcs = WCS(header)
         plt.imshow(image_data, interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(image_data, interval=PercentileInterval(99.5), stretch=AsinhStretch()))
         plt.colorbar()
         plt.show()
@@ -153,8 +157,19 @@ from gtda.plotting import plot_heatmap
 from gtda.homology import CubicalPersistence
 import numpy as np
 # # image_data
-plt.imshow(image_data, cmap='gray', origin='lower', norm=ImageNormalize(image_data, interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+
+plt.imshow(image_data, cmap='inferno', origin='lower', norm=ImageNormalize(image_data, interval=PercentileInterval(99.5), stretch=AsinhStretch()))
 plt.colorbar()
+plt.xlabel("""X [pixels]
+
+FIGURE 1: Example image of a gravitationally lensed galaxy used in 
+this project. The 0.1 arcmin x 0.1 arcmin image was taken from the
+Euclid Q1 Data Release and is centered on the galaxy with a 
+characteristic lensing effect to the immediate top right.
+""")
+plt.ylabel("Y [pixels] ")
+plt.title("Gravitationally Lensed Galaxy")
+plt.show()
 
 custom_scale = [
     [0.0, "blue"],   # Start color for low values
