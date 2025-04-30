@@ -57,7 +57,11 @@
         "\n",
         "The code chunk below imports the necessary modules for working with this data.\n"
       ],
+<<<<<<< HEAD
       "id": "be0a07bc"
+=======
+      "id": "d4b07afa"
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
     },
     {
       "cell_type": "code",
@@ -82,7 +86,11 @@
         "from gtda.diagrams import Scaler\n",
         "from gtda.diagrams import PersistenceImage"
       ],
+<<<<<<< HEAD
       "id": "1838e7bc",
+=======
+      "id": "d72e34c0",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -92,7 +100,11 @@
       "source": [
         "Once all the libraries are imported, we can extract the data. Each lensed galaxy was found via a machine learning classification model, thus there existed a distribution of objects with associated probabilities that they were lensed galaxies, based on the model. Currently, this project only incorporates objects that had a \"grade\" of \"A\" (i.e. were of the best quality).\n"
       ],
+<<<<<<< HEAD
       "id": "69191f00"
+=======
+      "id": "8e969262"
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
     },
     {
       "cell_type": "code",
@@ -103,7 +115,11 @@
         "mask = (all_targets[\"subset\"] == \"discovery_engine\") & (all_targets[\"grade\"] == \"A\")\n",
         "targets = all_targets[mask]"
       ],
+<<<<<<< HEAD
       "id": "8e4d1119",
+=======
+      "id": "e0f8bfbc",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -113,7 +129,11 @@
       "source": [
         "The target list only contains the celestial coordinates of the grade-A lensed galaxies. Luckily, we can download cutouts of the targets. Note, this code chunk is intentially set to not run as all of the cutouts have already been extracted. Note, we have ~250 targets.\n"
       ],
+<<<<<<< HEAD
       "id": "012a2b0c"
+=======
+      "id": "8170f846"
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
     },
     {
       "cell_type": "code",
@@ -173,7 +193,11 @@
         "\n",
         "print(empty_images)"
       ],
+<<<<<<< HEAD
       "id": "59fbc994",
+=======
+      "id": "cbf071f2",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -183,7 +207,11 @@
       "source": [
         "Once the cutouts are extracted, we can display them so get a sense of what the data actually looks like. The code chunk below shows an example of what a gravitationally lensed galaxy looks like from the Euclid space telescope.\n"
       ],
+<<<<<<< HEAD
       "id": "021bc56f"
+=======
+      "id": "2a4ad3d7"
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
     },
     {
       "cell_type": "code",
@@ -207,7 +235,11 @@
         "        print(f\"EMPTY (deleting): {file}\")\n",
         "        os.remove(file)"
       ],
+<<<<<<< HEAD
       "id": "5c4d8143",
+=======
+      "id": "cfb5e553",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -226,7 +258,11 @@
         "\n",
         "np.unique(shapes)"
       ],
+<<<<<<< HEAD
       "id": "a2263dd8",
+=======
+      "id": "d2376bbd",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -237,7 +273,11 @@
         "# Analysis\n",
         "Once we have the images, the next step is to compute the persistent homology for each image. The code chunk below displays the example image using Python, a Giotto-tda heatmap mehtod, and calculates the cubical persistence of the example image.\n"
       ],
+<<<<<<< HEAD
       "id": "97fb5929"
+=======
+      "id": "982e8bb9"
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
     },
     {
       "cell_type": "code",
@@ -251,7 +291,11 @@
         "\n",
         "image_data = data.reshape((1,119,119))  # reshape image"
       ],
+<<<<<<< HEAD
       "id": "91ff86b0",
+=======
+      "id": "20bd39ee",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -267,7 +311,11 @@
         "\n",
         "inverter.plot(image_data_inverted)"
       ],
+<<<<<<< HEAD
       "id": "63532b8f",
+=======
+      "id": "c2cc2e5e",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -282,7 +330,11 @@
         "image_data_binarized = binarizer.fit_transform(image_data_inverted)\n",
         "binarizer.plot(image_data_binarized)"
       ],
+<<<<<<< HEAD
       "id": "e8ba4f08",
+=======
+      "id": "441b31a4",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -298,7 +350,11 @@
         "\n",
         "height_filtration.plot(image_data_filtration, colorscale=\"jet\")"
       ],
+<<<<<<< HEAD
       "id": "c5ffe033",
+=======
+      "id": "531a8c4e",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -314,7 +370,11 @@
         "\n",
         "cubical_persistence.plot(image_data_cubical)"
       ],
+<<<<<<< HEAD
       "id": "a5797a0b",
+=======
+      "id": "8572e9c7",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -330,7 +390,11 @@
         "\n",
         "scaler.plot(image_data_scaled)"
       ],
+<<<<<<< HEAD
       "id": "c53cbd93",
+=======
+      "id": "b0ace37c",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -344,7 +408,11 @@
         "image_data_pim = pim.fit_transform(image_data_scaled)\n",
         "pim.plot(image_data_pim, homology_dimension_idx=0, colorscale='jet')"
       ],
+<<<<<<< HEAD
       "id": "f6e3b260",
+=======
+      "id": "d5d9a019",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -355,7 +423,11 @@
         "# convert to vector for h-clustering\n",
         "image_data_pim.flatten().shape"
       ],
+<<<<<<< HEAD
       "id": "46118f16",
+=======
+      "id": "68cd36d6",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -375,7 +447,11 @@
         "\n",
         "image_pipeline = Pipeline(steps)"
       ],
+<<<<<<< HEAD
       "id": "2567c67f",
+=======
+      "id": "c696f2ed",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -396,7 +472,11 @@
         "\n",
         "# pim.plot(test, homology_dimension_idx=0, colorscale=\"jet\")"
       ],
+<<<<<<< HEAD
       "id": "bdc44f44",
+=======
+      "id": "c32c7174",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -410,7 +490,11 @@
         "    image_data_pim = pim.fit_transform(i)\n",
         "    pim.plot(image_data_pim).show()"
       ],
+<<<<<<< HEAD
       "id": "d6044dce",
+=======
+      "id": "0b919cbb",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -420,7 +504,11 @@
       "source": [
         "# run clustering algorithm"
       ],
+<<<<<<< HEAD
       "id": "38b16ca4",
+=======
+      "id": "25f022aa",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -459,7 +547,11 @@
         "persistence.plot(fit, 119)\n",
         "fit.shape, fit"
       ],
+<<<<<<< HEAD
       "id": "aa82a09a",
+=======
+      "id": "197a419c",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -469,7 +561,11 @@
       "source": [
         "The code chunk below displays the 0 and 1 dimensional persistence diagrams for the example image. \n"
       ],
+<<<<<<< HEAD
       "id": "26bc277a"
+=======
+      "id": "c7969e37"
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
     },
     {
       "cell_type": "code",
@@ -486,7 +582,11 @@
         "# birth, death = np.delete(bd0, 1, axis=2).flatten(), np.delete(bd0, 0, axis=2).flatten()\n",
         "# plt.scatter(x=birth, y=death)"
       ],
+<<<<<<< HEAD
       "id": "546fb0c5",
+=======
+      "id": "7efb9d24",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -506,7 +606,11 @@
         "pimgr.fit(bd0)\n",
         "imgs = pimgr.transform(bd0)\n"
       ],
+<<<<<<< HEAD
       "id": "57b74cdc",
+=======
+      "id": "ab96c58e",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -516,7 +620,11 @@
       "source": [
         "# Tutorial\n"
       ],
+<<<<<<< HEAD
       "id": "9911ca79"
+=======
+      "id": "0650f4d1"
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
     },
     {
       "cell_type": "code",
@@ -526,7 +634,11 @@
         "\n",
         "X, y = fetch_openml(\"mnist_784\", version=1, return_X_y=True, as_frame=False)"
       ],
+<<<<<<< HEAD
       "id": "362807ee",
+=======
+      "id": "b431c7af",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -542,7 +654,11 @@
         "plot_heatmap(img8)\n",
         "img8.shape"
       ],
+<<<<<<< HEAD
       "id": "6c7aae79",
+=======
+      "id": "0220081d",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -564,7 +680,11 @@
         "\n",
         "binarizer.plot(im8_binarized)"
       ],
+<<<<<<< HEAD
       "id": "25591f27",
+=======
+      "id": "67b0381c",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -579,7 +699,11 @@
         "\n",
         "radial_filtration.plot(im8_filtration, colorscale=\"jet\")"
       ],
+<<<<<<< HEAD
       "id": "88b0e2ad",
+=======
+      "id": "b26b9216",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -594,7 +718,11 @@
         "\n",
         "cubical_persistence.plot(im8_cubical)"
       ],
+<<<<<<< HEAD
       "id": "5740eeae",
+=======
+      "id": "b3dba78f",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -609,7 +737,11 @@
         "\n",
         "scaler.plot(im8_scaled)"
       ],
+<<<<<<< HEAD
       "id": "241cf89a",
+=======
+      "id": "3eb4f561",
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
       "execution_count": null,
       "outputs": []
     },
@@ -629,7 +761,11 @@
         "# References\n",
         "blah blah [@Chen2015, @Sousbie2011]"
       ],
+<<<<<<< HEAD
       "id": "9db3816c"
+=======
+      "id": "688dac52"
+>>>>>>> 7d2ab21240b47c9eccfd44c498107f3363955604
     }
   ],
   "metadata": {
