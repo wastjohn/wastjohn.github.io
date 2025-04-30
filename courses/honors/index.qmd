@@ -59,6 +59,13 @@ import gtda.plotting
 import pandas as pd
 from astropy.io import ascii
 import glob
+import numpy as np
+import os
+from gtda.images import Binarizer
+from gtda.images import RadialFiltration
+from gtda.homology import CubicalPersistence
+from gtda.diagrams import Scaler
+from gtda.diagrams import PersistenceImage
 ```
 
 Once all the libraries are imported, we can extract the data. Each lensed galaxy was found via a machine learning classification model, thus there existed a distribution of objects with associated probabilities that they were lensed galaxies, based on the model. Currently, this project only incorporates objects that had a "grade" of "A" (i.e. were of the best quality).
@@ -131,30 +138,165 @@ print(empty_images)
 Once the cutouts are extracted, we can display them so get a sense of what the data actually looks like. The code chunk below shows an example of what a gravitationally lensed galaxy looks like from the Euclid space telescope.
 
 ```{python}
+# Make sure all images are the same shapes (119, 119)
 fits_files = glob.glob("D:/data/cutouts_0.1arcmin/*.fits")
 
-for file in [fits_files[-1]]:
+for file in fits_files:
     try:
         hdul = fits.open(file)
-        print(fits.info(file))
         image_data = hdul[0].data
         header = hdul[0].header
         wcs = WCS(header)
-        plt.imshow(image_data, interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(image_data, interval=PercentileInterval(99.5), stretch=AsinhStretch()))
-        plt.colorbar()
-        plt.show()
+        if image_data.shape == (120, 120):
+            print(image_data.shape)
+            image_data = np.delete(image_data, -1, axis=0)
+            image_data = np.delete(image_data, -1, axis=1)
+        fits.writeto(f"D:/data/cutouts_0.1arcmin_119x119/{file.split("\\")[-1]}", image_data, header, overwrite=True)
     except:
-        print(f"EMPTY: {file}")
+        print(f"EMPTY (deleting): {file}")
+        os.remove(file)
 ```
 
+
+```{python}
+# check that everything in folder is same dimensions
+fits_files_clean = glob.glob("D:/data/cutouts_0.1arcmin_119x119/*.fits")
+
+shapes = []
+for file in fits_files_clean:
+    hdul = fits.open(file)
+    data = hdul[0].data
+    shapes.append(data.shape)
+
+np.unique(shapes)
+```
 
 # Analysis
 Once we have the images, the next step is to compute the persistent homology for each image. The code chunk below displays the example image using Python, a Giotto-tda heatmap mehtod, and calculates the cubical persistence of the example image.
 
 
 ```{python}
+# load in the image
+plt.imshow(data.reshape(119,119), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data, interval=PercentileInterval(99.5),
+                            stretch=AsinhStretch()))
+plt.colorbar()
+plt.show()
+
+image_data = data.reshape((1,119,119))  # reshape image
+```
+
+```{python}
+# invert the image
+from gtda.images import Inverter
+
+inverter = Inverter(max_value=np.max(image_data))
+image_data_inverted = inverter.fit_transform(image_data)
+
+inverter.plot(image_data_inverted)
+```
+
+```{python}
+# binarize the image
+from gtda.images import Binarizer
+
+binarizer = Binarizer(threshold=0.04)
+image_data_binarized = binarizer.fit_transform(image_data_inverted)
+binarizer.plot(image_data_binarized)
+```
+
+```{python}
+# from binary image to filtration
+from gtda.images import HeightFiltration
+
+height_filtration = HeightFiltration()
+image_data_filtration = height_filtration.fit_transform(image_data_binarized)
+
+height_filtration.plot(image_data_filtration, colorscale="jet")
+```
+
+```{python}
+# from filtration to persistence diagram
+from gtda.homology import CubicalPersistence
+
+cubical_persistence = CubicalPersistence(n_jobs=-1, )
+image_data_cubical = cubical_persistence.fit_transform(data)
+
+cubical_persistence.plot(image_data_cubical)
+```
+
+```{python}
+# scale
+from gtda.diagrams import Scaler
+
+scaler = Scaler()
+image_data_scaled = scaler.fit_transform(image_data_cubical)
+
+scaler.plot(image_data_scaled)
+```
+
+```{python}
+# from persistence diagram to persistence image
+from gtda.diagrams import PersistenceImage
+pim = PersistenceImage(n_jobs=-1)
+image_data_pim = pim.fit_transform(image_data_scaled)
+pim.plot(image_data_pim, homology_dimension_idx=0, colorscale='jet')
+```
+
+```{python}
+
+# convert to vector for h-clustering
+image_data_pim.flatten().shape
+```
+
+
+```{python}
+# convert to pipeline for speed
+from sklearn.pipeline import Pipeline
+# print(image_data.shape)
+steps = [
+    # invert image for superlevel filtration
+    ("cubical_persistence", CubicalPersistence(n_jobs=-1)),
+    ("scaling", Scaler()),
+    ("persistence_image", PersistenceImage(n_jobs=-1))
+]
+
+image_pipeline = Pipeline(steps)
+```
+
+
+```{python}
+# run the pipeline
+pipeline_results = []
+for file in fits_files_clean[:10]:
+    try:
+        hdul = fits.open(file)
+        data = hdul[0].data
+        pipeline_results.append(image_pipeline.fit_transform(data.reshape(1,119,119)))
+    except:
+        print(f"error with index {fits_files_clean.index(file)}")
+
+
+# pim.plot(test, homology_dimension_idx=0, colorscale="jet")
+```
+
+```{python}
+print(len(pipeline_results))
+
+for i in pipeline_results:
+    image_data_pim = pim.fit_transform(i)
+    pim.plot(image_data_pim).show()
+
+```
+
+```{python}
+# run clustering algorithm
+```
+
+
+```{python}
 from gtda.plotting import plot_heatmap
 from gtda.homology import CubicalPersistence
+from gtda.diagrams import PersistenceImage
 import numpy as np
 # # image_data
 
@@ -180,14 +322,105 @@ plot_heatmap(image_data, colorscale=custom_scale, origin="lower")
 
 persistence = CubicalPersistence(n_jobs=-1, reduced_homology=False, infinity_values=np.inf)
 fit = persistence.fit_transform(image_data)
+persistence.plot(fit, 119)
+fit.shape, fit
 
 ```
 
 The code chunk below displays the 0 and 1 dimensional persistence diagrams for the example image. 
 ```{python}
-persistence.transform_plot(image_data, 0)
-persistence.transform_plot(image_data, 1)
+h0 = persistence.transform(image_data)
+diagramsh0 = np.delete(h0, 2, axis=2)
+
+# bdmax = np.unique(bd0)[-2]
+# infmask = bd0 != np.inf
+# bdstd = np.std(bd0[infmask])
+# print(bdstd)
+# print(bd0.shape)
+# birth, death = np.delete(bd0, 1, axis=2).flatten(), np.delete(bd0, 0, axis=2).flatten()
+# plt.scatter(x=birth, y=death)
 ```
+
+
+```{python}
+from ripser import Rips
+from persim import PersImage
+from persim import PersistenceImager
+
+rips = Rips(maxdim=1, coeff=2)
+diagrams = [rips.fit_transform(data) for data in image_data]
+diagrams_h1 = [rips.fit_transform(data)[1] for data in image_data]
+
+pimgr = PersistenceImager(pixel_size=1)
+pimgr.fit(bd0)
+imgs = pimgr.transform(bd0)
+
+
+```
+
+# Tutorial
+
+```{python}
+from sklearn.datasets import fetch_openml
+
+X, y = fetch_openml("mnist_784", version=1, return_X_y=True, as_frame=False)
+```
+
+```{python}
+import numpy as np
+from gtda.plotting import plot_heatmap
+
+im8_idx = np.flatnonzero(y == "8")[0]
+img8 = X[im8_idx].reshape(28, 28)
+plot_heatmap(img8)
+img8.shape
+```
+
+
+```{python}
+from gtda.images import Binarizer
+
+# Pick out index of first 8 image
+im8_idx = np.flatnonzero(y_train == "8")[0]
+# Reshape to (n_samples, n_pixels_x, n_pixels_y) format
+im8 = X_train[im8_idx][None, :, :]
+
+print(im8.shape)
+
+binarizer = Binarizer(threshold=0.4)
+im8_binarized = binarizer.fit_transform(im8)
+
+binarizer.plot(im8_binarized)
+```
+
+```{python}
+from gtda.images import RadialFiltration
+
+radial_filtration = RadialFiltration(center=np.array([20, 6]))
+im8_filtration = radial_filtration.fit_transform(im8_binarized)
+
+radial_filtration.plot(im8_filtration, colorscale="jet")
+```
+
+```{python}
+from gtda.homology import CubicalPersistence
+
+cubical_persistence = CubicalPersistence(n_jobs=-1)
+im8_cubical = cubical_persistence.fit_transform(im8_filtration)
+
+cubical_persistence.plot(im8_cubical)
+```
+
+```{python}
+from gtda.diagrams import Scaler
+
+scaler = Scaler()
+im8_scaled = scaler.fit_transform(im8_cubical)
+
+scaler.plot(im8_scaled)
+```
+
+# Next Steps
 
 The next steps are to:
 

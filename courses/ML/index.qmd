@@ -369,10 +369,7 @@ Visually, the classification rule partitions the data. If the data overlaps, our
 |    Yes     |  FP   |  TP  |
 
 Sensitivity (TP rate): $\frac{TP}{TP + FN}$
-<<<<<<< HEAD
 
-=======
->>>>>>> 063ed5bb25b088e5bba0ebe5bd73aa403f2cd98e
 Specificity (TN rate): $\frac{TN}{TN + FP}$
 
 If you want to improve sensitivity, lower the classification threshold. Note that sensitivity is inversely proportional to specificity, so increasing sensitivity will decrease specificity.
@@ -697,4 +694,328 @@ model_spec <- rand_forest() %>%
     trees = 500, 
     probability = FALSE, 
     importance = "impurity")
+```
+
+
+# Unsupervised Learning
+A set of data with *no outcome*
+
+Instead of predicting, focus on
+
+- **structure** of the data
+- **jumping off point** for further investigations
+
+## Clustering
+Goal: Identify similarities amongst rows, with respect to variables (features).
+
+> In general, clustering is a **DISCOVERY PROCESS**!
+
+### Hierarchical Clustering
+Goal:
+
+- Calculate euclidean distance
+- Group (cluster) together 2 closest points by chosen linkage type
+- Repeat with new clusters till end with 1 cluster
+
+Linkage Types:
+
+- **Complete**: Max distance between any pair of cases
+- **Single**: min distance
+- **Average**: average distance
+- **Centroid**: centroid distance
+
+This creates a dendrogram, which is **NOT** a classification tree (we start from the leaves and end at the root).
+
+General properties of dendrograms:
+
+- The more similar a cluster is, the sooner it will fuse
+- Horizontal distance between leaves in meaningless
+- Height = distance between 2 points
+
+No "correct" way to cut a dendrogram
+
+- Higher cut, fewer clusters, easier to understand, but maybe too simple and not very meaningful.
+
+Drawbacks:
+
+- **Computationally expensive**: need to calculate distances between each pair of points
+- **Greedy**: best local decision of which cluster might not be best split/most meaningful cluster
+
+Code:
+
+```{{r}}
+# Install packages
+library(tidyverse)
+library(cluster)      # to build the hierarchical clustering algorithm
+library(factoextra)   # to draw the dendrograms
+
+# convert column to rowname
+sample_data <- sample_data %>%
+  column_to_rowname("id")
+
+# run clustering algorithm
+# use "complete", "single", "average", or "centroid" linkage method
+hier_model <- hclust(dist(scale(sample_data)), method = ___)
+
+# visualizing the clustering: heat map (not clustering)
+heatmap(scale(data.matrix(sample_data)), Colv = NA, Rowv = NA)
+
+# visualizing the clustering: heat map (ordered by dendrogram/clustering)
+heatmap(scale(data.matrix(sample_data)), Colv = NA)
+
+# Dentrogram (change font size with cex)
+fviz_dend(hier_model, cex = 1)
+fviz_dend(hier_model, horiz = True, cex = 1)  # plot horizontally to read longer labels
+
+# Visualizing clusters in a dendrogram
+# typically want to store in new dataset so cluster assignment isnt written into features used later
+cluster_data <- sample_data %>%
+  mutate(hier_cluster_k = as.factor(cutree(hier_model, k = ___)))
+
+# visualize the clusters on the dendrogram
+fviz_dend(hier_model, k = ___, cex = 1)
+fviz_dend(hier_model, k = ___, horiz = True, cex = 1)  # plot horizontally to read longer labels
+```
+
+### K-Means Clustering
+Goal: Split cases into $k$-nonoverlapping homogeneous clusters
+
+Homogeneous: within cluster varience ($W(c_k)$) of each cluster ($c_1,\dots, c_k$) = average squared distance between all pairs of cases in cluster.
+
+Algorithm:
+
+1. Pick $k$ - from prior knowledge
+2. Initialize locations for $k$ centroids, assign each case to nearest centroid
+3. Calculate new centroid
+4. Reassign each case to cluster with nearest centroid
+5. Repeat 3 and 4 till stablized
+
+Code:
+
+```{{r}}
+# Install packages
+library(tidyverse)
+library(cluster)      # to build the hierarchichal clustering algorithm
+library(factoextra)   # to draw the dendrograms
+
+# process the data
+sample_data <- sample_data %>% 
+  column_to_rownames("id")
+
+# K-means can't handle NA: 2 options
+# Omit missing cases (this can be bad if there are a lot of missing points!)
+sample_data <- na.omit(sample_data)
+
+# Impute the missing cases
+library(VIM)
+sample_data <- sample_data %>%
+  VIM::kNN(imp_var = FALSE)
+
+# Turn categorical features into dummy variables
+# DON'T DO IF YOU HAVE QUANTITATIVE OR LOGICAL FEATURES
+sample_data <- data.frame(model.matrix(~ . - 1, sample_data))
+
+# Run K-means
+set.seed(___)
+kmeans_model <- kmeans(scale(sample_data), centers = ___)
+
+# Get the "the total within- cluster sum of squares"
+# This is the total squared distance of each case from its assigned centroid
+kmeans_model$tot.withinss
+
+# Tuning K-means
+tibble(K = 1:___) %>%
+  mutate(SS = map(K, ~ kmeans(scale(sample_data), centers = .x)$tot.withinss)) %>% 
+  unnest(cols = c(SS))
+
+# Assign each sample case to a cluster
+# We typically want to store this in a new dataset so that the cluster assignments aren't 
+# accidentally used as features in a later analysis!
+cluster_data <- sample_data %>% 
+  mutate(kmeans_cluster_k = kmeans_model$cluster)
+```
+
+## Dimension Reduction
+Goal: Find similarities amongst columns by collapsing/combining features
+
+Motivation: What if we have large data (especially $p>n$)? We might want to
+
+- identify structure and patterns among features
+- conserve computational resources
+- facilitate regression and classification by eleminiated multicolinear predictors
+
+Combining linear predictors:
+
+- Idea 1: kick one out; lose variablity in other predictor
+- Idea 2: find direction of best picture (preserves variability/most information) of data
+
+Idea 2: 
+
+- Principal components are linear combinations of original features where loadings refer to the coefficients.
+- PC1 contains the most variation.
+- We want to retain high variability and reduce correlation
+
+### Principal Component Analysis
+Goal: Turn original set of predictors into $k<p$ uncorrelated principal components (PCs) preserving the majority of information (variability)
+
+Trade offs (relative to kicking out columns):
+
+- PCA preserves more info, but features now lost meaning; difficult to interpret
+
+Details:
+
+- **Score plots**: examine relationships among PCs
+- **Loadings**: coefficients of linear combinations
+- **Loading plots**: understand how PCs are constructed, thus how to interpret PC
+
+```{{r}}
+# Install packages
+library(tidyverse)
+
+# process the data
+sample_data <- sample_data %>% 
+  column_to_rownames("id")
+
+# PCA can't handle NAs
+# Omit missing cases (this can be bad if there are a lot of missing points!)
+sample_data <- na.omit(sample_data)
+
+# Impute the missing cases
+library(VIM)
+sample_data <- sample_data %>%
+  VIM::kNN(imp_var = FALSE)
+
+# Turn categorical features into dummy variables
+# DONT DO IF QUANTITATIVE OR LOGICAL
+sample_data <- data.frame(model.matrix(~ . - 1, sample_data))
+
+# Run PCA
+# scale = TRUE, center = TRUE first standardizes the features
+pca_results <- prcomp(sample_data, scale = TRUE, center = TRUE)
+
+# ---------------------------------------------------------
+# PC visualizations
+# Get the loadings which define the PCs
+pca_results %>% 
+  pluck("rotation")
+
+# Plot loadings for first "k" PCs (you pick k)
+library(reshape2)
+melt(pca_results$rotation[, 1:k]) %>% 
+  ggplot(aes(x = Var1, y = value, fill = Var1)) +
+    geom_bar(stat = "identity") +
+    facet_wrap(~ Var2) + 
+    labs(y = "loadings", x = "original features", fill = "original features")
+
+# Plot loadings for just the first PC
+melt(pca_results$rotation) %>%
+  filter(Var2 == "PC1") %>% 
+  ggplot(aes(x = Var1, y = value, fill = Var1)) +
+    geom_bar(stat = "identity") +
+    labs(y = "loadings", x = "original features", fill = "original features")
+
+# Loadings plot for first 2 PCs
+library(factoextra)
+fviz_pca_var(pca_results, repel = TRUE)
+
+# ---------------------------------------------------------
+# Examine amount of variability captured by each PC
+# Load package for tidy table
+library(tidymodels)
+
+# Numerical summaries: Measure information captured by each PC
+pca_results %>% 
+  tidy(matrix = "eigenvalues")
+
+# Graphical summary 1: SCREE PLOT
+# Plot % of variance explained by each PC
+pca_results %>% 
+  tidy(matrix = "eigenvalues") %>% 
+  ggplot(aes(y = percent, x = PC)) + 
+    geom_point(size = 2) + 
+    geom_line() + 
+    labs(y = "% of variance explained")
+
+# Graphical summary 2: Plot cumulative % of variance explained by each PC
+pca_results %>% 
+  tidy(matrix = "eigenvalues") %>% 
+  rbind(0) %>% 
+  ggplot(aes(y = cumulative, x = PC)) + 
+    geom_point(size = 2) + 
+    geom_line() + 
+    labs(y = "CUMULATIVE % of variance explained")
+
+# ---------------------------------------------------------
+# Examine scores (i.e. PC coordinates for data points)
+# Numerical summary: check out the scores
+pca_results %>% 
+  pluck("x")
+
+# Graphical summary: Score plot
+# Plot PC1 scores (x-axis) vs PC2 scores (y-axis) of all data points
+fviz_pca_ind(pca_results, repel = TRUE)
+```
+
+### Principal Component Regression
+Idea: Combining clustering and regression given some $y$ and $p>n$
+
+Using PCR:
+
+1. Ignore $y$ for now, do PCA
+2. Keep first $k$ PCs that retain sufficient information from OG predictors
+3. Model $y$ by those first PCs
+
+Note:
+
+- PCA might not produce strongest possible predictors of $y$
+- Partial least squares provides alternative
+
+Code:
+
+```{{r}}
+library(tidymodels)
+library(tidyverse)
+
+# STEP 1: specify linear regression model
+lm_spec <- linear_reg() %>%
+  set_model("regression") %>%
+  set_engine("lm")
+
+# STEP 2: variable recipe
+pcr_recipe <- recipe(y ~ ., data = sample_data) %>%
+  update_role(data_id, new_role = "id") %>%
+  step_dummy(all_nomial_predictors()) %>%
+  step_normalize(all_predictors()) %>%
+  step_pca(all_predictors(), num_comp = tune())
+
+# STEP 3: workflow
+pcr_workflow <- workflow() %>%
+  add_recipe(pcr_recipe) %>%
+  add_model(lm_spec)
+
+# STEP 4: Estimate multiple PCR models with varying numbers of PCs
+# Largest range is p
+# Put same number in for levels
+set.seed(___)
+pcr_models <- pcr_workflow %>%
+  tune_grid(
+    grid = grid_regular(num_comp(range = c(1, ___)), levels = ___),
+    resamples = vfold_cv(sample_data, v = 10),
+    metrics = metric_set(mae)
+  )
+
+# explore models
+pcr_models %>%
+  autoplot()
+
+best_param <- multiple_models %>%
+  select_best(metric = "mae")
+
+parsimonious_param <- multiple_models %>%   
+  select_by_one_std_err(metric = "mae", 
+                        desc( parameter name))
+
+final_model <- pcr_workflow %>% 
+  finalize_workflow(___) %>% # your chosen parameter
+  fit(data = ___)
 ```
