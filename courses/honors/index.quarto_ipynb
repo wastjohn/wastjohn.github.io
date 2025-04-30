@@ -1,0 +1,645 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Topology Final Project\"\n",
+        "bibliography: bibliography.bib\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "# TODO\n",
+        "- Ellaborate/explain each section in more detail\n",
+        "- Compute persistent image\n",
+        "- Convert persistent image to vectors\n",
+        "- Perform clustering of persistent features using K-means and/or Hierarchical clustering\n",
+        "- Look into PCA/PCR for potential clusterings??\n",
+        "- Get redshifts for each galaxy\n",
+        "\n",
+        "\n",
+        "# Welcome Lori!\n",
+        "Hi Lori (I assume no one else is going to be looking at the current version of my project)!\n",
+        "\n",
+        "I was thinking of presenting my final project as a website because 1) I have a website already, and 2) I can display code and results in a really easy way. Additionally, Quarto (which is how I made the website) has an option to save the output to slides, so I might do that for the actual presentation. We'll see!\n",
+        "\n",
+        "Starting below is a *rough* draft of what I have done so far.\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Project Overview\n",
+        "This project combines astronomy, persistent homology, and machine learning to investigate topological properties in gravitationally lensed galaxies.\n",
+        "\n",
+        "## Astronomy\n",
+        "- What is a gravitationally lensed galaxy?\n",
+        "- Why do we care about them?\n",
+        "\n",
+        "## Persistent Homology\n",
+        "- What is it?\n",
+        "- How is it helpful?\n",
+        "- How has it been used in astronomy before?\n",
+        "- What do I plan \n",
+        "\n",
+        "## Machine Learning\n",
+        "- What is machine learning?\n",
+        "- Why do we need/want to perform clustering?\n",
+        "- How do the clustering algorithms work and what are they?\n",
+        "\n",
+        "# Data\n",
+        "- What data do I have? What does it look like?\n",
+        "- Where did I get the data from?\n",
+        "- Who funded the data?\n",
+        "- When was the data collected?\n",
+        "- Why was the data collected?\n",
+        "- How do I plan on using the data?\n",
+        "\n",
+        "The code chunk below imports the necessary modules for working with this data.\n"
+      ],
+      "id": "be0a07bc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from astroquery.esa.euclid import Euclid\n",
+        "from astropy.coordinates import SkyCoord\n",
+        "from astropy.wcs import WCS\n",
+        "import astropy.units as u\n",
+        "from astropy.io import fits\n",
+        "import matplotlib.pyplot as plt\n",
+        "from astropy.visualization import astropy_mpl_style, ImageNormalize, PercentileInterval, AsinhStretch, LogStretch\n",
+        "import gtda.plotting\n",
+        "import pandas as pd\n",
+        "from astropy.io import ascii\n",
+        "import glob\n",
+        "import numpy as np\n",
+        "import os\n",
+        "from gtda.images import Binarizer\n",
+        "from gtda.images import RadialFiltration\n",
+        "from gtda.homology import CubicalPersistence\n",
+        "from gtda.diagrams import Scaler\n",
+        "from gtda.diagrams import PersistenceImage"
+      ],
+      "id": "1838e7bc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Once all the libraries are imported, we can extract the data. Each lensed galaxy was found via a machine learning classification model, thus there existed a distribution of objects with associated probabilities that they were lensed galaxies, based on the model. Currently, this project only incorporates objects that had a \"grade\" of \"A\" (i.e. were of the best quality).\n"
+      ],
+      "id": "69191f00"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# get coordinates from list of targets (only select best images)\n",
+        "all_targets = ascii.read(\"D:/data/targets/q1_discovery_engine_lens_catalog.csv\")\n",
+        "mask = (all_targets[\"subset\"] == \"discovery_engine\") & (all_targets[\"grade\"] == \"A\")\n",
+        "targets = all_targets[mask]"
+      ],
+      "id": "8e4d1119",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The target list only contains the celestial coordinates of the grade-A lensed galaxies. Luckily, we can download cutouts of the targets. Note, this code chunk is intentially set to not run as all of the cutouts have already been extracted. Note, we have ~250 targets.\n"
+      ],
+      "id": "012a2b0c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# don't run unless need redownload images!!!\n",
+        "# download the images for each target\n",
+        "empty_images = 0\n",
+        "for i in range(len(targets)):\n",
+        "    r, d = targets[\"right_ascension\"][i], targets[\"declination\"][i]\n",
+        "    coord = SkyCoord(r, d, unit=u.deg, frame='icrs')\n",
+        "    radius = u.Quantity(0.5, u.deg)\n",
+        "\n",
+        "    print(f\"r: {r}\")\n",
+        "    print(f\"d: {d}\")\n",
+        "    print(coord)\n",
+        "    print(radius)\n",
+        "\n",
+        "    # search euclid's mosaic product catalog for targets\n",
+        "    job = Euclid.cone_search(coordinate=coord, radius=radius, table_name=\"sedm.mosaic_product\", ra_column_name=\"ra\", dec_column_name=\"dec\", columns=\"*\", async_job=True, verbose=True)\n",
+        "    cone_results = job.get_results()\n",
+        "    example_file = cone_results[cone_results['instrument_name'] == 'VIS'][0]\n",
+        "    print(f\"cone_results: {cone_results}\")\n",
+        "\n",
+        "    # save results to output path\n",
+        "    file_path = example_file[\"file_path\"] + \"/\" + example_file[\"file_name\"]\n",
+        "    instrument = example_file[\"instrument_name\"]\n",
+        "    obs_id = example_file[\"tile_index\"]\n",
+        "    radius = 0.1 * u.arcmin\n",
+        "    output_folder = 'D:/data/'\n",
+        "\n",
+        "    print(f\"file_path: {file_path}\")\n",
+        "    print(f\"instrument: {instrument}\")\n",
+        "    print(f\"obs_id: {obs_id}\")\n",
+        "\n",
+        "    if not os.path.exists(output_folder):\n",
+        "        os.makedirs(output_folder)\n",
+        "    output_file=output_folder + f'cutouts_0.1arcmin/target_{r}_{d}.fits'\n",
+        "    saved_cutout_filepath = Euclid.get_cutout(file_path=file_path,\n",
+        "        instrument=instrument, id=obs_id, \n",
+        "        coordinate=coord, radius=radius, output_file=output_file)\n",
+        "\n",
+        "    print(\"Cutout saved at\", output_file)\n",
+        "\n",
+        "    # looking at the cutout we made\n",
+        "    try:\n",
+        "        hdul = fits.open(output_file)\n",
+        "        print(fits.info(output_file))\n",
+        "        image_data = hdul[0].data\n",
+        "        plt.imshow(image_data, interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(image_data, interval=PercentileInterval(99.5),\n",
+        "                            stretch=AsinhStretch()))\n",
+        "        plt.colorbar()\n",
+        "        plt.show()\n",
+        "    except:\n",
+        "        empty_images += 1\n",
+        "\n",
+        "print(empty_images)"
+      ],
+      "id": "59fbc994",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Once the cutouts are extracted, we can display them so get a sense of what the data actually looks like. The code chunk below shows an example of what a gravitationally lensed galaxy looks like from the Euclid space telescope.\n"
+      ],
+      "id": "021bc56f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Make sure all images are the same shapes (119, 119)\n",
+        "fits_files = glob.glob(\"D:/data/cutouts_0.1arcmin/*.fits\")\n",
+        "\n",
+        "for file in fits_files:\n",
+        "    try:\n",
+        "        hdul = fits.open(file)\n",
+        "        image_data = hdul[0].data\n",
+        "        header = hdul[0].header\n",
+        "        wcs = WCS(header)\n",
+        "        if image_data.shape == (120, 120):\n",
+        "            print(image_data.shape)\n",
+        "            image_data = np.delete(image_data, -1, axis=0)\n",
+        "            image_data = np.delete(image_data, -1, axis=1)\n",
+        "        fits.writeto(f\"D:/data/cutouts_0.1arcmin_119x119/{file.split(\"\\\\\")[-1]}\", image_data, header, overwrite=True)\n",
+        "    except:\n",
+        "        print(f\"EMPTY (deleting): {file}\")\n",
+        "        os.remove(file)"
+      ],
+      "id": "5c4d8143",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# check that everything in folder is same dimensions\n",
+        "fits_files_clean = glob.glob(\"D:/data/cutouts_0.1arcmin_119x119/*.fits\")\n",
+        "\n",
+        "shapes = []\n",
+        "for file in fits_files_clean:\n",
+        "    hdul = fits.open(file)\n",
+        "    data = hdul[0].data\n",
+        "    shapes.append(data.shape)\n",
+        "\n",
+        "np.unique(shapes)"
+      ],
+      "id": "a2263dd8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Analysis\n",
+        "Once we have the images, the next step is to compute the persistent homology for each image. The code chunk below displays the example image using Python, a Giotto-tda heatmap mehtod, and calculates the cubical persistence of the example image.\n"
+      ],
+      "id": "97fb5929"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# load in the image\n",
+        "plt.imshow(data.reshape(119,119), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data, interval=PercentileInterval(99.5),\n",
+        "                            stretch=AsinhStretch()))\n",
+        "plt.colorbar()\n",
+        "plt.show()\n",
+        "\n",
+        "image_data = data.reshape((1,119,119))  # reshape image"
+      ],
+      "id": "91ff86b0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# invert the image\n",
+        "from gtda.images import Inverter\n",
+        "\n",
+        "inverter = Inverter(max_value=np.max(image_data))\n",
+        "image_data_inverted = inverter.fit_transform(image_data)\n",
+        "\n",
+        "inverter.plot(image_data_inverted)"
+      ],
+      "id": "63532b8f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# binarize the image\n",
+        "from gtda.images import Binarizer\n",
+        "\n",
+        "binarizer = Binarizer(threshold=0.04)\n",
+        "image_data_binarized = binarizer.fit_transform(image_data_inverted)\n",
+        "binarizer.plot(image_data_binarized)"
+      ],
+      "id": "e8ba4f08",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# from binary image to filtration\n",
+        "from gtda.images import HeightFiltration\n",
+        "\n",
+        "height_filtration = HeightFiltration()\n",
+        "image_data_filtration = height_filtration.fit_transform(image_data_binarized)\n",
+        "\n",
+        "height_filtration.plot(image_data_filtration, colorscale=\"jet\")"
+      ],
+      "id": "c5ffe033",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# from filtration to persistence diagram\n",
+        "from gtda.homology import CubicalPersistence\n",
+        "\n",
+        "cubical_persistence = CubicalPersistence(n_jobs=-1, )\n",
+        "image_data_cubical = cubical_persistence.fit_transform(data)\n",
+        "\n",
+        "cubical_persistence.plot(image_data_cubical)"
+      ],
+      "id": "a5797a0b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# scale\n",
+        "from gtda.diagrams import Scaler\n",
+        "\n",
+        "scaler = Scaler()\n",
+        "image_data_scaled = scaler.fit_transform(image_data_cubical)\n",
+        "\n",
+        "scaler.plot(image_data_scaled)"
+      ],
+      "id": "c53cbd93",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# from persistence diagram to persistence image\n",
+        "from gtda.diagrams import PersistenceImage\n",
+        "pim = PersistenceImage(n_jobs=-1)\n",
+        "image_data_pim = pim.fit_transform(image_data_scaled)\n",
+        "pim.plot(image_data_pim, homology_dimension_idx=0, colorscale='jet')"
+      ],
+      "id": "f6e3b260",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# convert to vector for h-clustering\n",
+        "image_data_pim.flatten().shape"
+      ],
+      "id": "46118f16",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# convert to pipeline for speed\n",
+        "from sklearn.pipeline import Pipeline\n",
+        "# print(image_data.shape)\n",
+        "steps = [\n",
+        "    # invert image for superlevel filtration\n",
+        "    (\"cubical_persistence\", CubicalPersistence(n_jobs=-1)),\n",
+        "    (\"scaling\", Scaler()),\n",
+        "    (\"persistence_image\", PersistenceImage(n_jobs=-1))\n",
+        "]\n",
+        "\n",
+        "image_pipeline = Pipeline(steps)"
+      ],
+      "id": "2567c67f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# run the pipeline\n",
+        "pipeline_results = []\n",
+        "for file in fits_files_clean[:10]:\n",
+        "    try:\n",
+        "        hdul = fits.open(file)\n",
+        "        data = hdul[0].data\n",
+        "        pipeline_results.append(image_pipeline.fit_transform(data.reshape(1,119,119)))\n",
+        "    except:\n",
+        "        print(f\"error with index {fits_files_clean.index(file)}\")\n",
+        "\n",
+        "\n",
+        "# pim.plot(test, homology_dimension_idx=0, colorscale=\"jet\")"
+      ],
+      "id": "bdc44f44",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(len(pipeline_results))\n",
+        "\n",
+        "for i in pipeline_results:\n",
+        "    image_data_pim = pim.fit_transform(i)\n",
+        "    pim.plot(image_data_pim).show()"
+      ],
+      "id": "d6044dce",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# run clustering algorithm"
+      ],
+      "id": "38b16ca4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from gtda.plotting import plot_heatmap\n",
+        "from gtda.homology import CubicalPersistence\n",
+        "from gtda.diagrams import PersistenceImage\n",
+        "import numpy as np\n",
+        "# # image_data\n",
+        "\n",
+        "plt.imshow(image_data, cmap='inferno', origin='lower', norm=ImageNormalize(image_data, interval=PercentileInterval(99.5), stretch=AsinhStretch()))\n",
+        "plt.colorbar()\n",
+        "plt.xlabel(\"\"\"X [pixels]\n",
+        "\n",
+        "FIGURE 1: Example image of a gravitationally lensed galaxy used in \n",
+        "this project. The 0.1 arcmin x 0.1 arcmin image was taken from the\n",
+        "Euclid Q1 Data Release and is centered on the galaxy with a \n",
+        "characteristic lensing effect to the immediate top right.\n",
+        "\"\"\")\n",
+        "plt.ylabel(\"Y [pixels] \")\n",
+        "plt.title(\"Gravitationally Lensed Galaxy\")\n",
+        "plt.show()\n",
+        "\n",
+        "custom_scale = [\n",
+        "    [0.0, \"blue\"],   # Start color for low values\n",
+        "    [0.2, \"orange\"] # Midpoint\n",
+        "]\n",
+        "\n",
+        "plot_heatmap(image_data, colorscale=custom_scale, origin=\"lower\")\n",
+        "\n",
+        "persistence = CubicalPersistence(n_jobs=-1, reduced_homology=False, infinity_values=np.inf)\n",
+        "fit = persistence.fit_transform(image_data)\n",
+        "persistence.plot(fit, 119)\n",
+        "fit.shape, fit"
+      ],
+      "id": "aa82a09a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The code chunk below displays the 0 and 1 dimensional persistence diagrams for the example image. \n"
+      ],
+      "id": "26bc277a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "h0 = persistence.transform(image_data)\n",
+        "diagramsh0 = np.delete(h0, 2, axis=2)\n",
+        "\n",
+        "# bdmax = np.unique(bd0)[-2]\n",
+        "# infmask = bd0 != np.inf\n",
+        "# bdstd = np.std(bd0[infmask])\n",
+        "# print(bdstd)\n",
+        "# print(bd0.shape)\n",
+        "# birth, death = np.delete(bd0, 1, axis=2).flatten(), np.delete(bd0, 0, axis=2).flatten()\n",
+        "# plt.scatter(x=birth, y=death)"
+      ],
+      "id": "546fb0c5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from ripser import Rips\n",
+        "from persim import PersImage\n",
+        "from persim import PersistenceImager\n",
+        "\n",
+        "rips = Rips(maxdim=1, coeff=2)\n",
+        "diagrams = [rips.fit_transform(data) for data in image_data]\n",
+        "diagrams_h1 = [rips.fit_transform(data)[1] for data in image_data]\n",
+        "\n",
+        "pimgr = PersistenceImager(pixel_size=1)\n",
+        "pimgr.fit(bd0)\n",
+        "imgs = pimgr.transform(bd0)\n"
+      ],
+      "id": "57b74cdc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Tutorial\n"
+      ],
+      "id": "9911ca79"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.datasets import fetch_openml\n",
+        "\n",
+        "X, y = fetch_openml(\"mnist_784\", version=1, return_X_y=True, as_frame=False)"
+      ],
+      "id": "362807ee",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "from gtda.plotting import plot_heatmap\n",
+        "\n",
+        "im8_idx = np.flatnonzero(y == \"8\")[0]\n",
+        "img8 = X[im8_idx].reshape(28, 28)\n",
+        "plot_heatmap(img8)\n",
+        "img8.shape"
+      ],
+      "id": "6c7aae79",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from gtda.images import Binarizer\n",
+        "\n",
+        "# Pick out index of first 8 image\n",
+        "im8_idx = np.flatnonzero(y_train == \"8\")[0]\n",
+        "# Reshape to (n_samples, n_pixels_x, n_pixels_y) format\n",
+        "im8 = X_train[im8_idx][None, :, :]\n",
+        "\n",
+        "print(im8.shape)\n",
+        "\n",
+        "binarizer = Binarizer(threshold=0.4)\n",
+        "im8_binarized = binarizer.fit_transform(im8)\n",
+        "\n",
+        "binarizer.plot(im8_binarized)"
+      ],
+      "id": "25591f27",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from gtda.images import RadialFiltration\n",
+        "\n",
+        "radial_filtration = RadialFiltration(center=np.array([20, 6]))\n",
+        "im8_filtration = radial_filtration.fit_transform(im8_binarized)\n",
+        "\n",
+        "radial_filtration.plot(im8_filtration, colorscale=\"jet\")"
+      ],
+      "id": "88b0e2ad",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from gtda.homology import CubicalPersistence\n",
+        "\n",
+        "cubical_persistence = CubicalPersistence(n_jobs=-1)\n",
+        "im8_cubical = cubical_persistence.fit_transform(im8_filtration)\n",
+        "\n",
+        "cubical_persistence.plot(im8_cubical)"
+      ],
+      "id": "5740eeae",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from gtda.diagrams import Scaler\n",
+        "\n",
+        "scaler = Scaler()\n",
+        "im8_scaled = scaler.fit_transform(im8_cubical)\n",
+        "\n",
+        "scaler.plot(im8_scaled)"
+      ],
+      "id": "241cf89a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Next Steps\n",
+        "\n",
+        "The next steps are to:\n",
+        "\n",
+        "- compute the persistence image\n",
+        "- vectorize the result\n",
+        "- repeat for all targets\n",
+        "- cluster the vectorized targets using k-means and hierarchical clustering.\n",
+        "\n",
+        "# References\n",
+        "blah blah [@Chen2015, @Sousbie2011]"
+      ],
+      "id": "9db3816c"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\qwert\\anaconda3\\envs\\pyscope-dev\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

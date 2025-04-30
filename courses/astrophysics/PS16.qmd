@@ -1,0 +1,162 @@
+---
+title: "Astrophysics PS16"
+author: "Will St. John + Caedan Miller + Elliott Lewis"
+---
+
+# Problem 1
+Assume that the 1.1 Solar mass core of a star with a zero age main sequence mass of 13 Solar masses collapses in a type II supernova event. Assume that 100% of the energy released by the collapsing core is converted into neutrinos, and that 2.5% of the neutrinos are absorbed by the overlying layers in order to power the ejection of the remnant. Here you will estimate the radius of the collapsed core remnant if sufficient energy is liberated to just barely eject the remaining non-core mass to a distance of infinity.  Use values for this supergiant star from Appendix G of the text.  
+
+a) What is a reasonable initial radius for the 1.1 Solar mass core?  Justify your choice.
+b) Using the radius you described in part a), what is the radius of the collapsed core remnant?  --> NS from WD radius
+c) Compare the value in b) to size of the compact core remaining from type II SNe.  Does it seem reasonable?  Why or why not?
+
+> **Answer**: All stars less than 8 solar masses evolve to white dwarfs. Thus, before our 13 ZAMS star undergoes core collapse, we would expect the uncollapsed core to be electron degenerate and have a radius on the order of that of a white dwarf of similar mass. In this case, our 1.1 Solar mass core that we are interpreting as a white dwarf would have a radius around that of the radius of the Earth.
+>
+> For part b) we know that the total energy to eject the material is 2.5% of the change in gravitational potential energy of the core:
+>
+> $$E_{eject} = 0.025 \Delta E_c$$
+>
+> If we expand the equation, we get the following:
+>
+> $$\frac{GM_cM_e}{r_{avg}} = 0.025\left(\frac{GM_c^2}{r_f} - \frac{GM_c^2}{r_i}\right)$$
+> 
+> which, solving for $r_f$, simplifies to 
+>
+> $$r_f = \frac{0.025 r_{avg} M_c r_i}{M_e r_i + 0.025 r_{avg} M_c}$$
+>
+> The code chunk below estimates $r$ to approximately 6000 km, which is 2 orders of magnitude larger than what we expect for a neutron star (~10 km).
+```{python}
+import astropy.units as u
+import astropy.constants as c
+import matplotlib.pyplot as plt
+import numpy as np
+
+r_avg = 78 * u.R_sun
+r_i = 1 * u.R_earth
+M_star = 13 * u.M_sun
+M_c = 1.1 * u.M_sun
+M_e = M_star - M_c
+
+r_f = 0.025 * r_avg * M_c * r_i / (M_e * r_i + 0.025 * r_avg * M_c)
+print(r_f.to(u.km))
+```
+
+
+
+# Problem 2
+Imagine that the energy released during the decay of a particular radioactive species is 2.89 MeV. If 0.057 Solar masses of this species is produced in a SN event, and if this species has a mass of 56 atomic mass units and a radioactive half-life of 88.8 days, then calculate the following quantities:
+
+a) The total number of atoms of this species
+b) The decay constant of this species
+c) The number of decays per second
+d) The luminosity of the remnant immediately after the SN event in Solar luminosities
+e) The luminosity of the remnant 1 year after the SN event in Solar luminosities
+f) The amount of time required for the remnant to fade by 6.191 magnitudes
+
+
+> **Answer**: The code chunk below calculates the answer to each question.
+
+```{python}
+M_net = 0.057 * u.M_sun
+m_amu = 56 * u.u
+E_amu = 2.89 * u.MeV
+half_life = 88.8 * u.d
+
+# a)
+n_atoms = M_net / m_amu
+print(f"a) total number of atoms: {n_atoms.to(u.kg / u.kg):.2e} atoms")
+
+# b)
+decay_const = np.log(2) / half_life
+print(f"b) decay constant: {decay_const:.2e}")
+
+# c)
+print(f"c) num decays/sec: {decay_const.to(1 / u.s):.2e}")
+
+# d)
+L = E_amu * decay_const * n_atoms 
+print(f"d) L (init): {L.to(u.L_sun):.2e}")
+
+# e)
+new_amount = n_atoms * np.exp(-decay_const * 1 * u.yr)
+L_yr = E_amu * decay_const * new_amount
+print(f"e) L (1yr): {L_yr.to(u.L_sun):.2e}")
+
+# f)
+T = np.log(100 ** (6.191/5)) / decay_const
+print(f"f) Time to fade 6.191 mag: ~{T.to(u.yr):.2f}")
+```
+
+
+# Problem 3
+Individual "A" stands (miraculously and unphysically) on the surface of the more massive neutron star that gave rise the GW170817 event. Individual "B" is in a starship located 0.5 AU away from the neutron star; there is no relative motion between the starship and the neutron star.
+
+a) If one hour of time elapses for individual "A", how much time elapses for individual “B”?
+b) Thinking that one hour is quite enough time to decide that the surface of a neutron star is a very unpleasant place, individual "A" sends an electromagnetic plea for help to individual "B".  This message is broadcast by individual "A" at the rest wavelength of the Hydrogen Balmer alpha transition. To what wavelength (in nm) should individual "B" tune their receiver in order to receive this message?
+
+
+> **Answer**: The code chunk below calculates the values for part a) and b). Note that a radius $r_0=10$ km was assumed as that is the typcially accepted value of a neutron star. For both parts, the following equation was used:
+>
+> $$\frac{\Delta t_0}{\Delta t_\infty} = \frac{\nu_\infty}{\nu_0} = \left(1 - \frac{2GM}{r_0 c^2}\right)^{1/2}$$
+>
+> where the 0 and $\infty$ index indicate individual "A" and "B", respectively.
+>
+> Note that for part b), we can solve for $\lambda$ by $c=\lambda\nu$, which adds the following relation to our equation above.
+>
+> $$\frac{\lambda_0}{\lambda_\infty} = \frac{\Delta t_0}{\Delta t_\infty} = \frac{\nu_\infty}{\nu_0} = \left(1 - \frac{2GM}{r_0 c^2}\right)^{1/2}$$
+> 
+```{python}
+r0 = 10 * u.km  # radius of the neutron star
+M = 1.48 * u.M_sun
+t_A = 1 * u.hr
+
+# a)
+t_B = t_A / (1 - 2 * c.G * M / (r0 * c.c ** 2)) ** 0.5
+print(f"t_B: {t_B}")
+
+# b)
+lambda_A = 656.28 * u.nm
+ratio = t_A / t_B
+lambda_B = lambda_A / ratio
+print(f"lambda_B: {lambda_B}")
+```
+
+
+# Problem 4
+The Event Horizon Telescope has revolutionized our understanding of the regions surrounding supermassive black holes that reside in the dynamical centers of many massive galaxies. 
+
+a) Use the mass of the M87 black hole derived in the manuscript by the [Event Horizon Telescope Collaboration (2019)](https://iopscience.iop.org/article/10.3847/2041-8213/ab0ec7) to calculate the Schwarzschild radius of this black hole.  How does this compare to the observed “shadow”?
+b) It is important to debunk the myth that black holes are furious beasts that devour galaxies. Instead they are rather boring objects that behave like benign point sources unless material ventures within the Schwarzschild  radius. To demonstrate this, create a log-log plot of the Schwarzschild radius (y-axis) as a function of the mass of the black hole (x-axis). Allow the mass to range from 1 Solar mass to $10^{10}$ Solar masses. 
+
+On this plot, show the following physical scales with horizontal lines: 1 Earth radius, 1 Solar radius, 1 AU, and 100 AU. Clearly label each line. Plot the position of the M87 black hole on this diagram. Upload this image in the attachments section
+
+
+> **Answer**: The code chunk below calculates the Schwarzchild radius of the black hole to be around $2.7\cdot10^4$ solar radii, and the shadow of the black hole to be around $7.59\cdot10^4$ solar radii. We expect the shadow to be on the order of the Schwarzchild radius.
+>
+> The code chunk below also creates the desired log-log plot in part b) of the Schwarzchild radius as a function of black hole mass.
+```{python}
+M87 = 6.5E9 * u.M_sun
+dist87 = 16.8 * u.Mpc
+angDiam87 = 42E-6 * u.arcsec
+
+# a)
+R_s_87 = 2 * c.G * M87 / c.c ** 2
+diam87 = angDiam87.to(u.rad) * dist87 / u.rad
+rad87 = diam87 / 2
+print(f"Schwarzchild raius: {R_s_87.to(u.R_sun):.2e}")
+print(f"Radius of shadow: {rad87.to(u.R_sun):.2e}")
+
+# b)
+mass = np.linspace(1, 1E10, 1000) * u.M_sun
+R_s = 2 * c.G * mass / c.c ** 2
+plt.plot(mass, R_s.to(u.R_sun))
+plt.axhline((1 * u.R_sun).value, linestyle="--", color="orange", label="1 $R_{\\odot}$")
+plt.axhline((1 * u.au).to(u.R_sun).value, linestyle="--", color="green", label="1 AU")
+plt.axhline((100 * u.au).to(u.R_sun).value, linestyle="--", color="purple", label="100 AU")
+plt.plot(M87.to(u.M_sun), R_s_87.to(u.R_sun), 'o', label="M87", )
+plt.legend()
+plt.xlabel("Mass [$M_{\\odot}$]")
+plt.ylabel("$R_S$ [$R_{\\odot}$]")
+plt.xscale("log")
+plt.yscale("log")
+```
