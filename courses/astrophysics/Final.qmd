@@ -111,7 +111,7 @@ The plot to the right shows one calibration of the baryonic Tully-Fisher relatio
 
 ![](Final5_BTFR.png)
 
-![](Final5_Objects.png.png)
+![](Final5_Objects.png)
 
 
 > **Answer**: The baryonic Tully-Fisher relation (BTFR) only applies for spiral galaxies because the relationship was derived under the assumption of circular motion. Thus, the ellipitical galaxy, represented as Image #3, does not appear on the plot. The BTFR says that a spiral galaxy's rotational velocity is related to it's mass, wherein low mass galaxies spin at slower rates than high mass galaxies. By this metric, we would expect the spiral galaxy shown in Image #4 to align with galaxy A. Additionally, Leo P is one of the lowest dwarf galaxies that still lies along the BTFR, which would put Image #1 aligning with galaxy C. That would leave galaxy B to align with Image #2, which makes sense when comparing the amount of stellar matierial we see in Image #2 to Images #1 and #4; Image #2 has more mass than #1, but less mass than #4.
