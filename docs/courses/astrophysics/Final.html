@@ -236,7 +236,7 @@ window.Quarto = {
 <p><span class="math display">\[r_s = \frac{2v_c^2r}{c^2},\]</span></p>
 <p>which is dimensionally consistent. The following code chunk estimates the event horizon radius to be 0.0124 pc.</p>
 </blockquote>
-<div id="c151f993" class="cell" data-execution_count="1">
+<div id="a93dc28d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> const</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -266,7 +266,7 @@ window.Quarto = {
 <p><span class="math display">\[\rho(r) = \frac{\rho_0}{\left(\frac{r}{a}\right)\left(1+\frac{r}{a}\right)^2},\]</span></p>
 <p>where <span class="math inline">\(rho_0\)</span> and <span class="math inline">\(a\)</span> are normalization factors. The following code chunk calculates the density of dark matter at <span class="math inline">\(r=17.18\)</span> kpc with the given normalization factors to be <span class="math inline">\(2.81\times10^7\)</span> Solar masses per cubic kpc.</p>
 </blockquote>
-<div id="75d468ea" class="cell" data-execution_count="2">
+<div id="77fcbee9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rho0 <span class="op">=</span> <span class="fl">2E8</span> <span class="op">*</span> u.M_sun <span class="op">/</span> u.kpc <span class="op">**</span> <span class="dv">3</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">13</span> <span class="op">*</span> u.kpc</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">17.18</span> <span class="op">*</span> u.kpc</span>
@@ -290,7 +290,7 @@ window.Quarto = {
 <p><span class="math display">\[M_A - M_B = -2.5 \log_{10}\left(\frac{L_A}{L_B}\right) = -2.5 \log_{10}\left(\frac{\sigma_A^4}{\sigma_B^4}\right)\]</span></p>
 <p>The following code chunk calculates difference in magnitudes to be 0.996 mag, thus B is around a magnitude brighter than A.</p>
 </blockquote>
-<div id="8d946bad" class="cell" data-execution_count="3">
+<div id="1224f9ae" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sigmaA <span class="op">=</span> <span class="dv">97</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sigmaB <span class="op">=</span> <span class="dv">122</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -312,7 +312,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: The absolute magnitude of the star can be calculated using the relation given in the lengend of the plot. The code chunk below calculates just that.</p>
 </blockquote>
-<div id="1a47e8bc" class="cell" data-execution_count="4">
+<div id="29f753ce" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> <span class="fl">3.5</span> <span class="op">*</span> u.d</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="op">-</span><span class="fl">2.97</span> <span class="op">*</span> np.log10(P <span class="op">/</span> u.d) <span class="op">-</span> <span class="fl">1.73</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"M = </span><span class="sc">{</span>M<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -327,8 +327,8 @@ window.Quarto = {
 <section id="problem-5" class="level1">
 <h1>Problem 5</h1>
 <p>The plot to the right shows one calibration of the baryonic Tully-Fisher relation (BTFR). Three individual galaxies are labeled. Next consider the four objects shown in the images below; note that the scale bar in each image sets the angular size. Using your knowledge of the properties of galaxies, match the images of three of these galaxies to their positions on the BTFR. Be sure to justify your assignments, including why the fourth object is not included on the plot.</p>
-<p><img src="Final5_BTFR.png" class="img-fluid"></p>
-<p><img src="Final5_Objects.png.png" class="img-fluid"></p>
+<p><img src="Final5_BTFR.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="Final5_Objects.png" class="img-fluid" style="width:80.0%"></p>
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: The baryonic Tully-Fisher relation (BTFR) only applies for spiral galaxies because the relationship was derived under the assumption of circular motion. Thus, the ellipitical galaxy, represented as Image #3, does not appear on the plot. The BTFR says that a spiral galaxy’s rotational velocity is related to it’s mass, wherein low mass galaxies spin at slower rates than high mass galaxies. By this metric, we would expect the spiral galaxy shown in Image #4 to align with galaxy A. Additionally, Leo P is one of the lowest dwarf galaxies that still lies along the BTFR, which would put Image #1 aligning with galaxy C. That would leave galaxy B to align with Image #2, which makes sense when comparing the amount of stellar matierial we see in Image #2 to Images #1 and #4; Image #2 has more mass than #1, but less mass than #4.</p>
 </blockquote>

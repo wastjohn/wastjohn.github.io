@@ -48,7 +48,7 @@
         "\n",
         "The code chunk below imports the necessary modules for working with this data.\n"
       ],
-      "id": "9c151c96"
+      "id": "233dffec"
     },
     {
       "cell_type": "code",
@@ -75,7 +75,7 @@
         "from persim import PersImage\n",
         "from persim import PersistenceImager"
       ],
-      "id": "077470fc",
+      "id": "3bdb7597",
       "execution_count": null,
       "outputs": []
     },
@@ -85,7 +85,7 @@
       "source": [
         "Once all the libraries are imported, we can extract the data. Each lensed galaxy was found via a machine learning classification model, thus there existed a distribution of objects with associated probabilities that they were lensed galaxies, based on the model. Currently, this project only incorporates objects that had a \"grade\" of \"A\" (i.e. were of the best quality).\n"
       ],
-      "id": "3ce4727e"
+      "id": "b0087434"
     },
     {
       "cell_type": "code",
@@ -96,7 +96,7 @@
         "mask = (all_targets[\"subset\"] == \"discovery_engine\") & (all_targets[\"grade\"] == \"A\")\n",
         "targets = all_targets[mask]"
       ],
-      "id": "3be7fc88",
+      "id": "76bee5b7",
       "execution_count": null,
       "outputs": []
     },
@@ -106,7 +106,7 @@
       "source": [
         "The target list only contains the celestial coordinates of the grade-A lensed galaxies. Luckily, we can download cutouts of the targets. Note, this code chunk is intentially set to not run as all of the cutouts have already been extracted. Note, we have ~250 targets.\n"
       ],
-      "id": "22d2e9fc"
+      "id": "650f66f8"
     },
     {
       "cell_type": "code",
@@ -166,7 +166,7 @@
         "\n",
         "print(empty_images)"
       ],
-      "id": "52ed53e0",
+      "id": "6187b956",
       "execution_count": null,
       "outputs": []
     },
@@ -176,7 +176,7 @@
       "source": [
         "Once the cutouts are extracted, we can display them so get a sense of what the data actually looks like. The code chunk below shows an example of what a gravitationally lensed galaxy looks like from the Euclid space telescope.\n"
       ],
-      "id": "934e6144"
+      "id": "4f5291fa"
     },
     {
       "cell_type": "code",
@@ -191,7 +191,7 @@
         "    data = hdul[0].data\n",
         "    data_list.append(data)"
       ],
-      "id": "a4d2ec4b",
+      "id": "b320e338",
       "execution_count": null,
       "outputs": []
     },
@@ -206,7 +206,7 @@
         "\n",
         "## FITS Image\n"
       ],
-      "id": "828ea1a1"
+      "id": "b3e7c5d2"
     },
     {
       "cell_type": "code",
@@ -217,7 +217,7 @@
         "plt.colorbar()\n",
         "plt.show()"
       ],
-      "id": "daa0626a",
+      "id": "d045f88a",
       "execution_count": null,
       "outputs": []
     },
@@ -227,7 +227,7 @@
       "source": [
         "## Preprocessing\n"
       ],
-      "id": "c7e6d8f0"
+      "id": "d5298d04"
     },
     {
       "cell_type": "code",
@@ -239,7 +239,7 @@
         "data_list = [scale * (data - data.min()) / (data.max() - data.min()) for data in data_list]  # rescale\n",
         "data_invert_list = [scale * np.ones(data.shape) - data for data in data_list]"
       ],
-      "id": "7d94db6f",
+      "id": "d37e4ac0",
       "execution_count": null,
       "outputs": []
     },
@@ -252,7 +252,7 @@
         "plt.colorbar()\n",
         "plt.show()"
       ],
-      "id": "0ce8fe3f",
+      "id": "dd914c7a",
       "execution_count": null,
       "outputs": []
     },
@@ -262,7 +262,7 @@
       "source": [
         "## Calculate Persistence\n"
       ],
-      "id": "f16b2368"
+      "id": "b24431a4"
     },
     {
       "cell_type": "code",
@@ -282,7 +282,7 @@
         "    cubical_data = cubical_persistence.fit_transform(data)\n",
         "    cubical_data_list.append(cubical_data)"
       ],
-      "id": "3069c5a5",
+      "id": "d6988849",
       "execution_count": null,
       "outputs": []
     },
@@ -304,7 +304,7 @@
         "    cubical_diagram1 = np.delete(data_cubical1, 2, 1)  # remove the h1 identifier\n",
         "    cubical_diagram1_list.append(cubical_diagram1)  # add to list"
       ],
-      "id": "518c357b",
+      "id": "4b64340c",
       "execution_count": null,
       "outputs": []
     },
@@ -314,7 +314,7 @@
       "source": [
         "## Create Persistence Images\n"
       ],
-      "id": "ae42d0d5"
+      "id": "dfef56bc"
     },
     {
       "cell_type": "code",
@@ -336,7 +336,7 @@
         "h1_pimgr.pers_range = (0, scale)\n",
         "h1_imgs = h1_pimgr.transform(cubical_diagram1_list, skew=True)"
       ],
-      "id": "3b2db1ee",
+      "id": "a1eeaa73",
       "execution_count": null,
       "outputs": []
     },
@@ -401,7 +401,7 @@
         "    \n",
         "    return"
       ],
-      "id": "a7cad937",
+      "id": "a946a278",
       "execution_count": null,
       "outputs": []
     },
@@ -411,7 +411,7 @@
       "source": [
         "pipeline_plot(-12)"
       ],
-      "id": "d7bc938a",
+      "id": "88fdeee5",
       "execution_count": null,
       "outputs": []
     },
@@ -428,7 +428,7 @@
         "    combined = np.concatenate((h0_vec[i], h1_vec[i]), axis=None)\n",
         "    final_vec.append(combined)"
       ],
-      "id": "5cade569",
+      "id": "e061249e",
       "execution_count": null,
       "outputs": []
     },
@@ -438,7 +438,7 @@
       "source": [
         "## Convert Original Images to Vectors and Save Both Vectors to a CSV \n"
       ],
-      "id": "85c4729d"
+      "id": "2d5fffd0"
     },
     {
       "cell_type": "code",
@@ -454,7 +454,7 @@
         "final_fits_table = pd.DataFrame(np.vstack(fits_image_vec), index=names)\n",
         "final_fits_table.to_csv(\"D:/results/fits_results.csv\")"
       ],
-      "id": "95b41c39",
+      "id": "8d6dc772",
       "execution_count": null,
       "outputs": []
     },
@@ -488,7 +488,7 @@
         "# References\n",
         "blah blah [@Chen2015, @Sousbie2011]"
       ],
-      "id": "e815171c"
+      "id": "440aded7"
     }
   ],
   "metadata": {
