@@ -1,27 +1,16 @@
 ---
-title: "Topology Final Project"
+title: "Persistent Images of Gravitionally Lensed Galaxies"
 bibliography: bibliography.bib
+title-slide-attributes:
+    data-background-image: https://euclid.caltech.edu/download/AvmImage/58/binary/jpg_original
+
+format: html
+    
 ---
-# TODO
-- Ellaborate/explain each section in more detail
-- Compute persistent image
-- Convert persistent image to vectors
-- Perform clustering of persistent features using K-means and/or Hierarchical clustering
-- Look into PCA/PCR for potential clusterings??
-- Get redshifts for each galaxy
 
+# Introduction
+Gravitationally lensed galaxies are an active area of research in astronomy as investigating their properties can give insights into gravitational
 
-# Welcome Lori!
-Hi Lori (I assume no one else is going to be looking at the current version of my project)!
-
-I was thinking of presenting my final project as a website because 1) I have a website already, and 2) I can display code and results in a really easy way. Additionally, Quarto (which is how I made the website) has an option to save the output to slides, so I might do that for the actual presentation. We'll see!
-
-Starting below is a *rough* draft of what I have done so far.
-
-
-
-# Project Overview
-This project combines astronomy, persistent homology, and machine learning to investigate topological properties in gravitationally lensed galaxies.
 
 ## Astronomy
 - What is a gravitationally lensed galaxy?
@@ -39,9 +28,11 @@ This project combines astronomy, persistent homology, and machine learning to in
 - How do the clustering algorithms work and what are they?
 
 # Data
+The Euclid Space telescope was launched in ___ with the intention of mapping 2/3 of the night sky. On March 19, 2025, the Euclid Collaboration released their Quick Data Release (Q1).
+
 - What data do I have? What does it look like?
 - Where did I get the data from?
-- Who funded the data?
+- Who funded the data?  - ESA
 - When was the data collected?
 - Why was the data collected?
 - How do I plan on using the data?
@@ -66,6 +57,8 @@ from gtda.images import RadialFiltration
 from gtda.homology import CubicalPersistence
 from gtda.diagrams import Scaler
 from gtda.diagrams import PersistenceImage
+from persim import PersImage
+from persim import PersistenceImager
 ```
 
 Once all the libraries are imported, we can extract the data. Each lensed galaxy was found via a machine learning classification model, thus there existed a distribution of objects with associated probabilities that they were lensed galaxies, based on the model. Currently, this project only incorporates objects that had a "grade" of "A" (i.e. were of the best quality).
@@ -137,297 +130,211 @@ print(empty_images)
 
 Once the cutouts are extracted, we can display them so get a sense of what the data actually looks like. The code chunk below shows an example of what a gravitationally lensed galaxy looks like from the Euclid space telescope.
 
-```{python}
-# Make sure all images are the same shapes (119, 119)
-fits_files = glob.glob("D:/data/cutouts_0.1arcmin/*.fits")
-
-for file in fits_files:
-    try:
-        hdul = fits.open(file)
-        image_data = hdul[0].data
-        header = hdul[0].header
-        wcs = WCS(header)
-        if image_data.shape == (120, 120):
-            print(image_data.shape)
-            image_data = np.delete(image_data, -1, axis=0)
-            image_data = np.delete(image_data, -1, axis=1)
-        fits.writeto(f"D:/data/cutouts_0.1arcmin_119x119/{file.split("\\")[-1]}", image_data, header, overwrite=True)
-    except:
-        print(f"EMPTY (deleting): {file}")
-        os.remove(file)
-```
 
 
 ```{python}
-# check that everything in folder is same dimensions
+# get data from each fits image
 fits_files_clean = glob.glob("D:/data/cutouts_0.1arcmin_119x119/*.fits")
 
-shapes = []
+data_list = []
 for file in fits_files_clean:
     hdul = fits.open(file)
     data = hdul[0].data
-    shapes.append(data.shape)
-
-np.unique(shapes)
+    data_list.append(data)
 ```
 
 # Analysis
 Once we have the images, the next step is to compute the persistent homology for each image. The code chunk below displays the example image using Python, a Giotto-tda heatmap mehtod, and calculates the cubical persistence of the example image.
 
 
+
+## FITS Image
 ```{python}
 # load in the image
-plt.imshow(data.reshape(119,119), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data, interval=PercentileInterval(99.5),
-                            stretch=AsinhStretch()))
+plt.imshow(data_list[0].reshape((119, 119)), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data_list[0], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
 plt.colorbar()
 plt.show()
+```
 
-image_data = data.reshape((1,119,119))  # reshape image
+## Preprocessing
+```{python}
+# rescaling to [0,1]
+scale = 10
+data_list = [data.reshape((1,119,119)) for data in data_list]  # reshape for cubical complex
+data_list = [scale * (data - data.min()) / (data.max() - data.min()) for data in data_list]  # rescale
+data_invert_list = [scale * np.ones(data.shape) - data for data in data_list]
 ```
 
 ```{python}
-# invert the image
-from gtda.images import Inverter
-
-inverter = Inverter(max_value=np.max(image_data))
-image_data_inverted = inverter.fit_transform(image_data)
-
-inverter.plot(image_data_inverted)
-```
-
-```{python}
-# binarize the image
-from gtda.images import Binarizer
-
-binarizer = Binarizer(threshold=0.04)
-image_data_binarized = binarizer.fit_transform(image_data_inverted)
-binarizer.plot(image_data_binarized)
-```
-
-```{python}
-# from binary image to filtration
-from gtda.images import HeightFiltration
-
-height_filtration = HeightFiltration()
-image_data_filtration = height_filtration.fit_transform(image_data_binarized)
-
-height_filtration.plot(image_data_filtration, colorscale="jet")
-```
-
-```{python}
-# from filtration to persistence diagram
-from gtda.homology import CubicalPersistence
-
-cubical_persistence = CubicalPersistence(n_jobs=-1, )
-image_data_cubical = cubical_persistence.fit_transform(data)
-
-cubical_persistence.plot(image_data_cubical)
-```
-
-```{python}
-# scale
-from gtda.diagrams import Scaler
-
-scaler = Scaler()
-image_data_scaled = scaler.fit_transform(image_data_cubical)
-
-scaler.plot(image_data_scaled)
-```
-
-```{python}
-# from persistence diagram to persistence image
-from gtda.diagrams import PersistenceImage
-pim = PersistenceImage(n_jobs=-1)
-image_data_pim = pim.fit_transform(image_data_scaled)
-pim.plot(image_data_pim, homology_dimension_idx=0, colorscale='jet')
-```
-
-```{python}
-
-# convert to vector for h-clustering
-image_data_pim.flatten().shape
-```
-
-
-```{python}
-# convert to pipeline for speed
-from sklearn.pipeline import Pipeline
-# print(image_data.shape)
-steps = [
-    # invert image for superlevel filtration
-    ("cubical_persistence", CubicalPersistence(n_jobs=-1)),
-    ("scaling", Scaler()),
-    ("persistence_image", PersistenceImage(n_jobs=-1))
-]
-
-image_pipeline = Pipeline(steps)
-```
-
-
-```{python}
-# run the pipeline
-pipeline_results = []
-for file in fits_files_clean[:10]:
-    try:
-        hdul = fits.open(file)
-        data = hdul[0].data
-        pipeline_results.append(image_pipeline.fit_transform(data.reshape(1,119,119)))
-    except:
-        print(f"error with index {fits_files_clean.index(file)}")
-
-
-# pim.plot(test, homology_dimension_idx=0, colorscale="jet")
-```
-
-```{python}
-print(len(pipeline_results))
-
-for i in pipeline_results:
-    image_data_pim = pim.fit_transform(i)
-    pim.plot(image_data_pim).show()
-
-```
-
-```{python}
-# run clustering algorithm
-```
-
-
-```{python}
-from gtda.plotting import plot_heatmap
-from gtda.homology import CubicalPersistence
-from gtda.diagrams import PersistenceImage
-import numpy as np
-# # image_data
-
-plt.imshow(image_data, cmap='inferno', origin='lower', norm=ImageNormalize(image_data, interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+# display preprocessed image
+plt.imshow(data_invert_list[0].reshape(119,119), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data_invert_list[0], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
 plt.colorbar()
-plt.xlabel("""X [pixels]
-
-FIGURE 1: Example image of a gravitationally lensed galaxy used in 
-this project. The 0.1 arcmin x 0.1 arcmin image was taken from the
-Euclid Q1 Data Release and is centered on the galaxy with a 
-characteristic lensing effect to the immediate top right.
-""")
-plt.ylabel("Y [pixels] ")
-plt.title("Gravitationally Lensed Galaxy")
 plt.show()
-
-custom_scale = [
-    [0.0, "blue"],   # Start color for low values
-    [0.2, "orange"] # Midpoint
-]
-
-plot_heatmap(image_data, colorscale=custom_scale, origin="lower")
-
-persistence = CubicalPersistence(n_jobs=-1, reduced_homology=False, infinity_values=np.inf)
-fit = persistence.fit_transform(image_data)
-persistence.plot(fit, 119)
-fit.shape, fit
-
 ```
 
-The code chunk below displays the 0 and 1 dimensional persistence diagrams for the example image. 
+## Calculate Persistence
 ```{python}
-h0 = persistence.transform(image_data)
-diagramsh0 = np.delete(h0, 2, axis=2)
+cubical_persistence = CubicalPersistence(homology_dimensions=(0,1), n_jobs=-1, infinity_values=scale)
 
-# bdmax = np.unique(bd0)[-2]
-# infmask = bd0 != np.inf
-# bdstd = np.std(bd0[infmask])
-# print(bdstd)
-# print(bd0.shape)
-# birth, death = np.delete(bd0, 1, axis=2).flatten(), np.delete(bd0, 0, axis=2).flatten()
-# plt.scatter(x=birth, y=death)
-```
+print("calculating cubical persistence (h0) on inverted images...")
+cubical_invert_data_list = []
+for inverted_data in data_invert_list:
+    cubical_invert_data = cubical_persistence.fit_transform(inverted_data)
+    cubical_invert_data_list.append(cubical_invert_data)
 
-
-```{python}
-from ripser import Rips
-from persim import PersImage
-from persim import PersistenceImager
-
-rips = Rips(maxdim=1, coeff=2)
-diagrams = [rips.fit_transform(data) for data in image_data]
-diagrams_h1 = [rips.fit_transform(data)[1] for data in image_data]
-
-pimgr = PersistenceImager(pixel_size=1)
-pimgr.fit(bd0)
-imgs = pimgr.transform(bd0)
-
-
-```
-
-# Tutorial
-
-```{python}
-from sklearn.datasets import fetch_openml
-
-X, y = fetch_openml("mnist_784", version=1, return_X_y=True, as_frame=False)
+print("calculating cubical persistence (h1) on images...")
+cubical_data_list = []
+for data in data_list:
+    cubical_data = cubical_persistence.fit_transform(data)
+    cubical_data_list.append(cubical_data)
 ```
 
 ```{python}
-import numpy as np
-from gtda.plotting import plot_heatmap
+cubical_diagram0_list = []
+for cubical_invert_data in cubical_invert_data_list:
+    mask0 = cubical_invert_data[:,:,2] == 0  # id h0 in inverted data
+    data_cubical0 = cubical_invert_data[mask0]  # select h0 inverted data
+    cubical_diagram0 = np.delete(data_cubical0, 2, 1)  # remove the h0 identifier
+    cubical_diagram0_list.append(cubical_diagram0)  # add to list
 
-im8_idx = np.flatnonzero(y == "8")[0]
-img8 = X[im8_idx].reshape(28, 28)
-plot_heatmap(img8)
-img8.shape
+cubical_diagram1_list = []
+for cubical_data in cubical_data_list:
+    mask1 = cubical_data[:,:,2] == 1  # id h1 in inverted data
+    data_cubical1 = cubical_data[mask1]  # select h1 inverted data
+    cubical_diagram1 = np.delete(data_cubical1, 2, 1)  # remove the h1 identifier
+    cubical_diagram1_list.append(cubical_diagram1)  # add to list
+```
+
+
+## Create Persistence Images
+```{python}
+# fit h0 images
+h0_pimgr = PersistenceImager(pixel_size=1)
+h0_pimgr.weight_params = {"n": 1.5}  # tuning parameter (maybe [1, 2])
+h0_pimgr.fit(cubical_diagram0_list)
+h0_pimgr.birth_range = (0, scale)
+h0_pimgr.pers_range = (0, scale)
+h0_imgs = h0_pimgr.transform(cubical_diagram0_list, skew=True)
+
+# fit h1 images
+h1_pimgr = PersistenceImager(pixel_size=1)
+h1_pimgr.weight_params = {"n": 1.5}  # tuning parameter (maybe [1, 2])
+h1_pimgr.fit(cubical_diagram1_list)
+h1_pimgr.birth_range = (0, scale)
+h1_pimgr.pers_range = (0, scale)
+h1_imgs = h1_pimgr.transform(cubical_diagram1_list, skew=True)
 ```
 
 
 ```{python}
-from gtda.images import Binarizer
+def persistence_diagram(bdh_array, ax): 
+    h0mask = bdh_array[:,:,2] == 0
+    h1mask = bdh_array[:,:,2] == 1
+    h0birth = bdh_array[h0mask][:,0] 
+    h0death = bdh_array[h0mask][:,1]
+    h1birth = bdh_array[h1mask][:,0] 
+    h1death = bdh_array[h1mask][:,1]
 
-# Pick out index of first 8 image
-im8_idx = np.flatnonzero(y_train == "8")[0]
-# Reshape to (n_samples, n_pixels_x, n_pixels_y) format
-im8 = X_train[im8_idx][None, :, :]
+    ax.scatter(h0birth, h0death, alpha=0.5, marker='.', label="h0")
+    ax.scatter(h1birth, h1death, alpha=0.5, marker='.', label="h1")
+    ax.set_xlabel("Birth")
+    ax.set_ylabel("Death")
+    ax.legend(loc="lower right")
+    oldxlim = ax.get_xlim()
+    oldylim = ax.get_ylim()
+    ax.axline((0,0), (scale + 1,scale + 1), linestyle='--', c="grey")
+    ax.set_xlim(-0.5, scale + 0.5)
+    ax.set_ylim(-0.5, scale + 0.5)
+    return
 
-print(im8.shape)
 
-binarizer = Binarizer(threshold=0.4)
-im8_binarized = binarizer.fit_transform(im8)
+def pipeline_plot(index: str = 0, return_fig: bool = False):
+    fig, ax = plt.subplots(2,3,figsize=(10,8))
+    # inverted image
+    im_invert = ax[0][0].imshow(data_invert_list[index].reshape((119, 119)), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data_invert_list[index], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+    ax[0][0].set_title("Raw Image (Inverted)")
+    fig.colorbar(im_invert, ax=ax[0][0])
 
-binarizer.plot(im8_binarized)
+    # persistence diagram (inverted)
+    persistence_diagram(cubical_invert_data_list[index], ax[0][1])
+    ax[0][1].set_title("H0 Persistence Diagram (Inverted Data)")
+
+    # persistence image (inverted)
+    h1_pimgr.plot_image(h1_imgs[index], ax=ax[0][2])
+    ax[0][2].set_title("H0 Persistence Image (Inverted Data)")
+
+    # raw image
+    im = ax[1][0].imshow(data_list[index].reshape((119, 119)), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data_list[index], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+    ax[1][0].set_title("Raw Image")
+    fig.colorbar(im, ax=ax[1][0])
+
+    # persistence diagram (normal)
+    persistence_diagram(cubical_data_list[index], ax[1][1])
+    ax[1][1].set_title("H1 Persistence Diagram")
+
+    # persistence image (normal)
+    h0_pimgr.plot_image(h0_imgs[index], ax=ax[1][2])
+    ax[1][2].set_title("H1 Persistence Image")
+
+    # adjust subplot images
+    fig.subplots_adjust(hspace=0.4, wspace=0.3)
+
+    if return_fig:
+        return fig, ax
+    
+    return
 ```
 
 ```{python}
-from gtda.images import RadialFiltration
-
-radial_filtration = RadialFiltration(center=np.array([20, 6]))
-im8_filtration = radial_filtration.fit_transform(im8_binarized)
-
-radial_filtration.plot(im8_filtration, colorscale="jet")
+pipeline_plot(-12)
 ```
 
 ```{python}
-from gtda.homology import CubicalPersistence
+# convert to vector
+h0_vec = [image.reshape(100) for image in h0_imgs]
+h1_vec = [image.reshape(100) for image in h1_imgs]
 
-cubical_persistence = CubicalPersistence(n_jobs=-1)
-im8_cubical = cubical_persistence.fit_transform(im8_filtration)
-
-cubical_persistence.plot(im8_cubical)
+final_vec = []
+for i in range(len(h0_vec)):
+    combined = np.concatenate((h0_vec[i], h1_vec[i]), axis=None)
+    final_vec.append(combined)
 ```
 
+## Convert Original Images to Vectors and Save Both Vectors to a CSV 
 ```{python}
-from gtda.diagrams import Scaler
+fits_files = glob.glob("D:/data/cutouts_0.1arcmin/*.fits")
+names = [i.split("\\")[-1].replace('.fits', "") for i in fits_files]
 
-scaler = Scaler()
-im8_scaled = scaler.fit_transform(im8_cubical)
+final_table = pd.DataFrame(np.vstack(final_vec), index=names)
+final_table.to_csv("D:/results/persistent_results.csv")
 
-scaler.plot(im8_scaled)
+fits_image_vec = [image.reshape(119 * 119) for image in data_list]
+final_fits_table = pd.DataFrame(np.vstack(fits_image_vec), index=names)
+final_fits_table.to_csv("D:/results/fits_results.csv")
 ```
 
-# Next Steps
+## Clustering
 
-The next steps are to:
+Hierarchical clustering.
 
-- compute the persistence image
-- vectorize the result
-- repeat for all targets
-- cluster the vectorized targets using k-means and hierarchical clustering.
+
+# Results and Discussion
+
+
+## Cluster: Natural Images {.center .nonincremental}
+
+![](cluster_natural.png){.fragment width="1200" height="600"}
+
+## Cluster: Persistence Images {.center .nonincremental}
+
+![](cluster_persistent.png){.fragment width="1600" height="600"}
+
+
+## {.center}
+
+![](cluster_persistent.png){.fragment width="1600" height="600"}
+
+# Conclusions
 
 # References
 blah blah [@Chen2015, @Sousbie2011]

@@ -64,6 +64,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -153,144 +154,375 @@
 
 </section>
 <section>
-<section id="introduction" class="title-slide slide level1 center">
-<h1>Introduction</h1>
-<p>Gravitationally lensed galaxies are an active area of research in astronomy as investigating their properties can give insights into gravitational</p>
-</section>
-<section id="astronomy" class="slide level2">
-<h2>Astronomy</h2>
+<section id="section" class="title-slide slide level1 center" data-background-image="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/internal_resources/5299/Hubble_Galaxy_Cluster_Abell_370-1.jpeg">
+<h1></h1>
+<aside class="notes">
 <ul>
-<li>What is a gravitationally lensed galaxy?</li>
-<li>Why do we care about them?</li>
-</ul>
-</section>
-<section id="persistent-homology" class="slide level2">
-<h2>Persistent Homology</h2>
+<li>this is an image of a galaxy cluster</li>
+<li>collection of <span class="math inline">\(10^2\)</span>-<span class="math inline">\(10^3\)</span> galaxies</li>
+<li>believe it or not, 2 parts to pay attention to:
 <ul>
-<li>What is it?</li>
-<li>How is it helpful?</li>
-<li>How has it been used in astronomy before?</li>
-<li>What do I plan</li>
+<li>foreground galaxy</li>
+<li>background galaxy</li>
+</ul></li>
+<li>but what exactly are they and why do we care about them?</li>
 </ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="machine-learning" class="slide level2">
-<h2>Machine Learning</h2>
-<ul>
-<li>What is machine learning?</li>
-<li>Why do we need/want to perform clustering?</li>
-<li>How do the clustering algorithms work and what are they?</li>
-</ul>
-</section></section>
-<section id="data" class="title-slide slide level1 center">
-<h1>Data</h1>
-<p>The Euclid Space telescope was launched in ___ with the intention of mapping 2/3 of the night sky. On March 19, 2025, the Euclid Collaboration released their Quick Data Release (Q1).</p>
-<ul>
-<li>What data do I have? What does it look like?</li>
-<li>Where did I get the data from?</li>
-<li>Who funded the data? - ESA</li>
-<li>When was the data collected?</li>
-<li>Why was the data collected?</li>
-<li>How do I plan on using the data?</li>
-</ul>
-<p>The code chunk below imports the necessary modules for working with this data.</p>
-<p>Once all the libraries are imported, we can extract the data. Each lensed galaxy was found via a machine learning classification model, thus there existed a distribution of objects with associated probabilities that they were lensed galaxies, based on the model. Currently, this project only incorporates objects that had a “grade” of “A” (i.e.&nbsp;were of the best quality).</p>
-<p>The target list only contains the celestial coordinates of the grade-A lensed galaxies. Luckily, we can download cutouts of the targets. Note, this code chunk is intentially set to not run as all of the cutouts have already been extracted. Note, we have ~250 targets.</p>
-<p>Once the cutouts are extracted, we can display them so get a sense of what the data actually looks like. The code chunk below shows an example of what a gravitationally lensed galaxy looks like from the Euclid space telescope.</p>
-</section>
-
-<section>
-<section id="analysis" class="title-slide slide level1 center">
-<h1>Analysis</h1>
-<p>Once we have the images, the next step is to compute the persistent homology for each image. The code chunk below displays the example image using Python, a Giotto-tda heatmap mehtod, and calculates the cubical persistence of the example image.</p>
-</section>
-<section id="fits-image" class="slide level2">
-<h2>FITS Image</h2>
-<div id="e17af9dc" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/cell-6-output-1.png" width="518" height="412"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="preprocessing" class="slide level2">
-<h2>Preprocessing</h2>
-<div id="3556c63e" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/cell-8-output-1.png" width="510" height="411"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="calculate-persistence" class="slide level2">
-<h2>Calculate Persistence</h2>
-<div id="5d206f9c" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-stdout">
-<pre><code>calculating cubical persistence (h0) on inverted images...
-calculating cubical persistence (h1) on images...</code></pre>
-</div>
-</div>
-</section>
-<section id="create-persistence-images" class="slide level2">
-<h2>Create Persistence Images</h2>
-<div id="8e4dddab" class="cell" data-execution_count="12">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/cell-13-output-1.png" width="846" height="671"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="convert-original-images-to-vectors-and-save-both-vectors-to-a-csv" class="slide level2">
-<h2>Convert Original Images to Vectors and Save Both Vectors to a CSV</h2>
-</section>
-<section id="clustering" class="slide level2">
-<h2>Clustering</h2>
-<p>Hierarchical clustering.</p>
-</section></section>
-<section>
-<section id="results-and-discussion" class="title-slide slide level1 center">
-<h1>Results and Discussion</h1>
-
-</section>
-<section id="cluster-natural-images" class="slide level2 center nonincremental">
-<h2>Cluster: Natural Images</h2>
-<p><img data-src="cluster_natural.png" class="fragment" width="1200" height="600"></p>
-</section>
-<section id="cluster-persistence-images" class="slide level2 center nonincremental">
-<h2>Cluster: Persistence Images</h2>
-<p><img data-src="cluster_persistent.png" class="fragment" width="1600" height="600"></p>
-</section>
-<section id="section" class="slide level2 center">
+<section id="section-1" class="slide level2" data-background-image="https://science.nasa.gov/wp-content/uploads/2023/04/15861603283_3579db3fc6_o-jpg.webp">
 <h2></h2>
-<p><img data-src="cluster_persistent.png" class="fragment" width="1600" height="600"></p>
+<div class="columns">
+<div class="column">
+<p>What?</p>
+<ul>
+<li>Predicted by GR</li>
+<li>Light from <em>distant</em> galaxies gets warped by foreground galaxies + dark matter</li>
+</ul>
+</div><div class="column">
+<p>Why?</p>
+<ul>
+<li>Natural way to see futher</li>
+<li>Map
+<ul>
+<li>the universe</li>
+<li>dark matter</li>
+<li>dark energy</li>
+</ul></li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>[explain dark matter and dark energy]</p>
+<ul>
+<li>For this presentation, they are
+<ul>
+<li>predicted by GR</li>
+<li>result of when light from distant…</li>
+</ul></li>
+<li>Why do we care about them?
+<ul>
+<li>allow us to see more distant galaxies</li>
+<li>map further into universe</li>
+<li>more datapoints of places with dark matter –&gt; better understand dark matter</li>
+<li>further we see, the better we can estimate expansion, better we can constrain/characterize dark energy</li>
+<li>…[pause]</li>
+<li>Now we know what and why…</li>
+</ul></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
-<section id="conclusions" class="title-slide slide level1 center">
-<h1>Conclusions</h1>
-
+<section>
+<section id="euclid" class="title-slide slide level1 center" data-background-image="https://www.esa.int/var/esa/storage/images/science_exploration/space_science/euclid/24495542-14-eng-GB/Euclid_pillars.png">
+<h1>Euclid</h1>
+<aside class="notes">
+<ul>
+<li>here’s the how</li>
+<li>Euclid:
+<ul>
+<li>telescope that was launched in 2023</li>
+<li>goals to study dark matter like never before</li>
+</ul></li>
+<li>…[pause]</li>
+<li>to give you an idea of what I mean by “like never before”, I included the following video</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="video" class="slide level2">
+<h2>Video</h2>
+<aside class="notes">
+<ul>
+<li>In March of 2025, Euclid released its first data products [gesture to the screen]</li>
+<li>…[pause]</li>
+<li>What you you watching is 1% of the area Euclid plans on covering in its mission</li>
+<li>…[pause]</li>
+<li>What are Euclid’s goals?</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="euclid-goals" class="slide level2 center" data-background-image="https://www.esa.int/var/esa/storage/images/science_exploration/space_science/euclid/24495542-14-eng-GB/Euclid_pillars.png">
+<h2>Euclid Goals</h2>
+<ul>
+<li>3D map of <span class="math inline">\(\frac{1}{3}\)</span> of the sky</li>
+<li>dark matter and dark energy</li>
+<li>10 billion light years</li>
+</ul>
+<aside class="notes">
+<p><span class="citation" data-cites="EuclidLens2025">(<a href="#/references" role="doc-biblioref" onclick="">Collaboration et al. 2025</a>)</span></p>
+<ul>
+<li>3D map of <span class="math inline">\(\frac{1}{3}\)</span> of the sky (why 1/3? turns out lots of dust in galaxy; we want to avoid)</li>
+<li>dark matter and dark energy (get better understanding)</li>
+<li>10 billion light years (very big)</li>
+</ul>
+<p>Overall Goals of Euclid</p>
+<ul>
+<li><p>What is the structure and history of the cosmic web?</p></li>
+<li><p>What is the nature of dark matter?</p></li>
+<li><p>How has the expansion of the Universe changed over time?</p></li>
+<li><p>What is the nature of dark energy?</p></li>
+<li><p>Is our understanding of gravity complete?</p></li>
+<li><p>That brings us to my project</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="research-goal" class="title-slide slide level1 center">
+<h1>Research Goal</h1>
+<p>Can persistence images help classify features in natural images better than just natual image classification on its own?</p>
+<aside class="notes">
+<p>[read off slide]</p>
+<ul>
+<li>In Astro, TDA is applied to large point cloud data (cosmic web) (my original goal)</li>
+<li>Not really applied to individual images/small scale <span class="citation" data-cites="Chen2015">Sousbie, Pichon, and Kawahara (<a href="#/references" role="doc-biblioref" onclick="">2011</a>)</span></li>
+<li>Let’s try it</li>
+<li>Could be useful in other classifications (ie everything is based on how we see things)</li>
+<li>…[pause]</li>
+<li>So how we do this? More specifically, how did I do this?</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="data" class="slide level2" data-background-image="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/internal_resources/5299/Hubble_Galaxy_Cluster_Abell_370-1.jpeg">
+<h2>Data</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="EuclidLensCatalogPaper2.png" class="absolute" style="top: 100px; left: 50px; width: 350px; height: 500px; "> <img data-src="EuclidLensCatalogPaper1.png" class="absolute" style="top: 150px; left: 0px; width: 350px; height: 500px; "></p>
+</div><div class="column">
+<ul>
+<li>Coordinates from <span class="citation" data-cites="Walmsley2025">Walmsley et al. (<a href="#/references" role="doc-biblioref" onclick="">2025</a>)</span></li>
+<li>Only select top candidates</li>
+<li>Get image cutouts of each target</li>
+<li>Preprocess the images (resize, clip, scale, and invert)</li>
+</ul>
+</div></div>
+<aside class="notes">
+<ul>
+<li>The Euclid Collaboration published a list of lensed galaxies they identified through ML algorithm</li>
+<li>Take coordinates from that</li>
+<li>Filter by only grade “A” candidates ~250</li>
+<li>Get image cutouts of each target (242 now)</li>
+<li>Preprocess the images (resize, clip, scale, and invert (h0))</li>
+<li>…[pause]</li>
+<li>those images look like this [next slide]</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-2" class="slide level2 center" data-background-color="white" data-background-image="pipeline.png" data-background-size="contain">
+<h2></h2>
+<aside class="notes">
+<ul>
+<li>on left, we have the “natural” images of the cluster</li>
+<li>Note that most of the image is a value of 0</li>
+<li>can pose a problem for sublevel persistence algorithms
+<ul>
+<li>start from the lowest pixel value and end at the highest</li>
+<li>like the Cubical persistence algorithm in the python library giotto, which I used for this project</li>
+<li>Note cubical persistence can be thought of as the cubical analog to simplicial persistence</li>
+</ul></li>
+<li>Note that the sublevel persistence issue is more of a problem when identifying connected components
+<ul>
+<li>If everything is zero, then everything will be connected (we can see that in the diagram too)</li>
+</ul></li>
+<li>We can get around this by inverting the image for our h0 calculations
+<ul>
+<li>We can see the rest of the process is straightforward: compute persistence diagram, then convert the persistence diagram into a persistence image using the Persim python library</li>
+</ul></li>
+<li>Unlike the h0 superlevel persistence, the h1 calculations can be done with sublevel persistence</li>
+<li>Once we have our images, we can vectorize and concatenate h0 and h1</li>
+<li>Convert vector to dataframe</li>
+<li>Perform Hierarchical Clustering</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-3" class="slide level2 center" data-background-color="white" data-background-image="cluster_natural.png" data-background-size="contain">
+<h2></h2>
+<aside class="notes">
+<ul>
+<li>Here are the results for the “natural” images</li>
+<li>These were just the raw images from the previous slide</li>
+<li>If you haven’t seen a dendrogram before, essentially: [explain dendrogram]</li>
+<li>The key thing to take note of for this is the hight at which we start seeing connections</li>
+<li>That is: when do clusters start being similar?</li>
+<li>Keep that hight in mind as we switch to the results from the persistence image clustering</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-4" class="slide level2 center" data-background-color="white" data-background-image="cluster_persistent.png" data-background-size="contain">
+<h2></h2>
+<aside class="notes">
+<ul>
+<li>what do you notice?</li>
+<li>Did anyone catch the scale? (0-600) now (0-100)</li>
+<li>The persistence image appears to have found similar clusters more easily than the natural images</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section id="discussion" class="title-slide slide level1 center" data-background-image="https://science.nasa.gov/wp-content/uploads/2023/04/15861603283_3579db3fc6_o-jpg.webp">
+<h1>Discussion</h1>
+<div class="columns">
+<div class="column">
+<p><strong>Issues</strong></p>
+<ul>
+<li>Dimensionality: natural vs persistence</li>
+<li>Natural: Curse of Dimensionality</li>
+<li>PCA: highly correlated variables in natural images</li>
+</ul>
+</div><div class="column">
+<p><strong>Future Work</strong></p>
+<ul>
+<li>Finish PCA</li>
+<li>Alternative clustering algorithms</li>
+<li>Reducing size of natural images</li>
+<li>Exploring parameter space of persistence images</li>
+</ul>
+</div></div>
+<aside class="notes">
+<ul>
+<li>Overall, I’m not ready to definitively say yes: persistence images perform better than natural images for clustering</li>
+<li>Why?</li>
+<li>The natural images themselves are 119x119 grids collapsed into 242 ~14000 length vectors (very wide = bad)</li>
+<li>Persistence images are only 242 200 length vectors (more long = good)</li>
+<li>So we have a dimensionality issue</li>
+<li>Speaking a little more on that, hierarchical clustering suffers from the curse of dimensionality, where more variables causes things to naturally become further apart</li>
+<li>Additionally, my first look into PCA showed a lot of highly correlated variables
+<ul>
+<li>Natural clustering process could be likely simplified</li>
+</ul></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
-<section id="references" class="title-slide slide level1 smaller scrollable">
-<h1>References</h1>
-<p>blah blah <span class="citation" data-cites="Chen2015">Sousbie, Pichon, and Kawahara (<a href="#/references" role="doc-biblioref" onclick="">2011</a>)</span></p>
+<section>
+<section id="questions" class="title-slide slide level1 center" data-background-image="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/internal_resources/5299/Hubble_Galaxy_Cluster_Abell_370-1.jpeg">
+<h1>Questions?</h1>
+
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Chen2015" class="csl-entry" role="listitem">
 Chen, Yen-Chi, Shirley Ho, Peter E. Freeman, Christopher R. Genovese, and Larry Wasserman. 2015. <span>“Cosmic Web Reconstruction Through Density Ridges: Method and Algorithm.”</span> <em>Monthly Notices of the Royal Astronomical Society</em> 454 (1): 1140–56. <a href="https://doi.org/10.1093/mnras/stv1996">https://doi.org/10.1093/mnras/stv1996</a>.
 </div>
+<div id="ref-EuclidLens2025" class="csl-entry" role="listitem">
+Collaboration, Euclid, M. Walmsley, P. Holloway, N. E. P. Lines, K. Rojas, T. E. Collett, A. Verma, et al. 2025. <span>“Euclid Quick Data Release (Q1): The Strong Lensing Discovery Engine a – System Overview and Lens Catalogue.”</span> <a href="https://arxiv.org/abs/2503.15324">https://arxiv.org/abs/2503.15324</a>.
+</div>
 <div id="ref-Sousbie2011" class="csl-entry" role="listitem">
 Sousbie, T., C. Pichon, and H. Kawahara. 2011. <span>“The Persistent Cosmic Web and Its Filamentary Structure – II. Illustrations.”</span> <em>Monthly Notices of the Royal Astronomical Society</em> 414 (1): 384–403. <a href="https://doi.org/10.1111/j.1365-2966.2011.18395.x">https://doi.org/10.1111/j.1365-2966.2011.18395.x</a>.
 </div>
+<div id="ref-Walmsley2025" class="csl-entry" role="listitem">
+Walmsley, Mike, Philip Holloway, Natalie Lines, Karina Rojas, Thomas Collett, Aprajita Verma, Tian Li, James Nightingale, Giulia Despali, and Stefan Schuldt. 2025. <span>“Euclid Quick Data Release (Q1): The Strong Lensing Discovery Engine.”</span> Zenodo. <a href="https://doi.org/10.5281/zenodo.15025832">https://doi.org/10.5281/zenodo.15025832</a>.
 </div>
-</section>
+</div>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

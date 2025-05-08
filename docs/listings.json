@@ -17,6 +17,7 @@
       "/courses/astrophysics/index.html",
       "/courses/astrophysics/Exam1.html",
       "/courses/astrophysics/Exam2.html",
+      "/courses/astrophysics/Final.html",
       "/courses/astrophysics/PS1.html",
       "/courses/astrophysics/PS10.html",
       "/courses/astrophysics/PS11.html",
@@ -25,6 +26,7 @@
       "/courses/astrophysics/PS14.html",
       "/courses/astrophysics/PS15.html",
       "/courses/astrophysics/PS16.html",
+      "/courses/astrophysics/PS17.html",
       "/courses/astrophysics/PS2.html",
       "/courses/astrophysics/PS3.html",
       "/courses/astrophysics/PS4.html",
@@ -33,9 +35,10 @@
       "/courses/astrophysics/PS7.html",
       "/courses/astrophysics/PS9.html",
       "/courses/ML/index.html",
+      "/courses/honors/index.html",
+      "/courses/honors/presentation.html",
       "/courses/topology/index.html",
       "/courses/topology/main.html",
-      "/courses/honors/index.html",
       "/courses/topology/rtda.html"
     ]
   },

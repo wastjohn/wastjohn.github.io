@@ -1,0 +1,221 @@
+---
+title: "Persistent Images of Gravitionally Lensed Galaxies"
+bibliography: bibliography.bib
+title-slide-attributes:
+    data-background-image: https://euclid.caltech.edu/download/AvmImage/58/binary/jpg_original
+format: 
+    revealjs:
+        theme: dark
+        scrollable: true
+        auto-stretch: false
+---
+
+# {background-image="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/internal_resources/5299/Hubble_Galaxy_Cluster_Abell_370-1.jpeg"}
+
+::: {.notes}
+- this is an image of a galaxy cluster
+- collection of $10^2$-$10^3$ galaxies
+- believe it or not, 2 parts to pay attention to:
+  - foreground galaxy
+  - background galaxy
+- but what exactly are they and why do we care about them?
+:::
+
+## {background-image="https://science.nasa.gov/wp-content/uploads/2023/04/15861603283_3579db3fc6_o-jpg.webp"}
+:::: {.columns}
+::: {.column}
+What?
+
+- Predicted by GR
+- Light from *distant* galaxies gets warped by foreground galaxies + dark matter
+:::
+
+::: {.column}
+Why?
+
+- Natural way to see futher
+- Map 
+  - the universe
+  - dark matter
+  - dark energy
+:::
+::::
+
+::: {.notes}
+[explain dark matter and dark energy]
+
+- For this presentation, they are
+  - predicted by GR
+  - result of when light from distant...
+- Why do we care about them?
+  - allow us to see more distant galaxies
+  - map further into universe 
+  - more datapoints of places with dark matter --> better understand dark matter
+  - further we see, the better we can estimate expansion, better we can constrain/characterize dark energy
+  - ...[pause]
+  - Now we know what and why...
+:::
+
+# Euclid {background-image="https://www.esa.int/var/esa/storage/images/science_exploration/space_science/euclid/24495542-14-eng-GB/Euclid_pillars.png"}
+
+::: {.notes}
+- here's the how
+- Euclid: 
+  - telescope that was launched in 2023
+  - goals to study dark matter like never before
+- ...[pause]
+- to give you an idea of what I mean by "like never before", I included the following video
+:::
+
+## Video
+
+::: {.notes}
+- In March of 2025, Euclid released its first data products [gesture to the screen]
+- ...[pause]
+- What you you watching is 1% of the area Euclid plans on covering in its mission
+- ...[pause]
+- What are Euclid's goals?
+:::
+
+
+## Euclid Goals {background-image="https://www.esa.int/var/esa/storage/images/science_exploration/space_science/euclid/24495542-14-eng-GB/Euclid_pillars.png" .center}
+
+- 3D map of $\frac{1}{3}$ of the sky
+- dark matter and dark energy
+- 10 billion light years
+
+::: {.notes}
+[@EuclidLens2025]
+
+- 3D map of $\frac{1}{3}$ of the sky (why 1/3? turns out lots of dust in galaxy; we want to avoid)
+- dark matter and dark energy (get better understanding)
+- 10 billion light years (very big)
+
+Overall Goals of Euclid
+
+- What is the structure and history of the cosmic web?
+- What is the nature of dark matter?
+- How has the expansion of the Universe changed over time?
+- What is the nature of dark energy?
+- Is our understanding of gravity complete?
+
+- That brings us to my project
+:::
+
+# Research Goal
+
+Can persistence images help classify features in natural images better than just natual image classification on its own?
+
+::: {.notes}
+[read off slide]
+
+- In Astro, TDA is applied to large point cloud data (cosmic web) (my original goal)
+- Not really applied to individual images/small scale [@Chen2015, @Sousbie2011]
+- Let's try it
+- Could be useful in other classifications (ie everything is based on how we see things)
+- ...[pause]
+- So how we do this? More specifically, how did I do this?
+:::
+
+## Data {background-image="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/internal_resources/5299/Hubble_Galaxy_Cluster_Abell_370-1.jpeg"}
+:::: {.columns}
+::: {.column}
+![](EuclidLensCatalogPaper2.png){.absolute top=100 left=50 width="350" height="500"}
+![](EuclidLensCatalogPaper1.png){.absolute top=150 left=0 width="350" height="500"}
+:::
+
+::: {.column}
+- Coordinates from @Walmsley2025
+- Only select top candidates
+- Get image cutouts of each target
+- Preprocess the images (resize, clip, scale, and invert)
+
+:::
+:::: 
+
+
+
+::: {.notes}
+- The Euclid Collaboration published a list of lensed galaxies they identified through ML algorithm
+- Take coordinates from that
+- Filter by only grade "A" candidates ~250
+- Get image cutouts of each target (242 now)
+- Preprocess the images (resize, clip, scale, and invert (h0))
+- ...[pause]
+- those images look like this [next slide]
+:::
+
+## {.center background-color="white" background-image="pipeline.png" background-size="contain"}
+
+
+::: {.notes}
+- on left, we have the "natural" images of the cluster
+- Note that most of the image is a value of 0
+- can pose a problem for sublevel persistence algorithms 
+  - start from the lowest pixel value and end at the highest
+  - like the Cubical persistence algorithm in the python library giotto, which I used for this project
+  - Note cubical persistence can be thought of as the cubical analog to simplicial persistence
+- Note that the sublevel persistence issue is more of a problem when identifying connected components
+  - If everything is zero, then everything will be connected (we can see that in the diagram too)
+- We can get around this by inverting the image for our h0 calculations
+  - We can see the rest of the process is straightforward: compute persistence diagram, then convert the persistence diagram into a persistence image using the Persim python library
+- Unlike the h0 superlevel persistence, the h1 calculations can be done with sublevel persistence
+- Once we have our images, we can vectorize and concatenate h0 and h1
+- Convert vector to dataframe
+- Perform Hierarchical Clustering
+
+:::
+
+## {.center background-color="white" background-image="cluster_natural.png" background-size="contain"}
+
+::: {.notes}
+- Here are the results for the "natural" images
+- These were just the raw images from the previous slide
+- If you haven't seen a dendrogram before, essentially: [explain dendrogram]
+- The key thing to take note of for this is the hight at which we start seeing connections
+- That is: when do clusters start being similar?
+- Keep that hight in mind as we switch to the results from the persistence image clustering
+:::
+
+## {.center background-color="white" background-image="cluster_persistent.png" background-size="contain"}
+
+::: {.notes}
+- what do you notice?
+- Did anyone catch the scale? (0-600) now (0-100)
+- The persistence image appears to have found similar clusters more easily than the natural images
+:::
+
+# Discussion {background-image="https://science.nasa.gov/wp-content/uploads/2023/04/15861603283_3579db3fc6_o-jpg.webp"}
+:::: {.columns}
+::: {.column}
+**Issues**
+
+- Dimensionality: natural vs persistence
+- Natural: Curse of Dimensionality
+- PCA: highly correlated variables in natural images
+:::
+::: {.column}
+**Future Work**
+
+- Finish PCA
+- Alternative clustering algorithms
+- Reducing size of natural images
+- Exploring parameter space of persistence images
+:::
+::::
+
+
+::: {.notes}
+- Overall, I'm not ready to definitively say yes: persistence images perform better than natural images for clustering
+- Why?
+- The natural images themselves are 119x119 grids collapsed into 242 ~14000 length vectors (very wide = bad)
+- Persistence images are only 242 200 length vectors (more long = good)
+- So we have a dimensionality issue
+- Speaking a little more on that, hierarchical clustering suffers from the curse of dimensionality, where more variables causes things to naturally become further apart
+- Additionally, my first look into PCA showed a lot of highly correlated variables
+  - Natural clustering process could be likely simplified
+:::
+
+# Questions? {background-image="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/internal_resources/5299/Hubble_Galaxy_Cluster_Abell_370-1.jpeg"}
+
+## References
