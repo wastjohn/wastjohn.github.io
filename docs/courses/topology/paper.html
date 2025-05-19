@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Will St.&nbsp;John + Theo Darci-Maher">
+<meta name="author" content="Will St.&nbsp;John">
 
-<title>Astrophysics PS1 – Will St.&nbsp;John</title>
+<title>Persistent Images of Gravitionally Lensed Galaxies – Will St.&nbsp;John</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -183,9 +169,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem-1" id="toc-problem-1" class="nav-link active" data-scroll-target="#problem-1">Problem 1</a></li>
-  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2</a></li>
-  <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3">Problem 3</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#astronomy" id="toc-astronomy" class="nav-link" data-scroll-target="#astronomy">Astronomy</a></li>
+  <li><a href="#persistent-homology" id="toc-persistent-homology" class="nav-link" data-scroll-target="#persistent-homology">Persistent Homology</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning">Machine Learning</a></li>
+  </ul></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -194,7 +189,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Astrophysics PS1</h1>
+<h1 class="title">Persistent Images of Gravitionally Lensed Galaxies</h1>
 </div>
 
 
@@ -204,7 +199,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Will St.&nbsp;John + Theo Darci-Maher </p>
+             <p>Will St.&nbsp;John </p>
           </div>
   </div>
     
@@ -217,242 +212,172 @@ window.Quarto = {
 </header>
 
 
-<section id="problem-1" class="level1">
-<h1>Problem 1</h1>
-<p>For Winer Observatory,</p>
-<ol type="a">
-<li>Find the altutude of the Sun along the meridian on the first day of summer and</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Answer</strong>: The first day of summer is the corresponds to the summer solstice, at which the Sun is at a declination of around 23.5 degrees. Winer observatory is located at a latitude of 31.67 degrees. The following diagram can be made for an observer at Winer.</p>
-<p><img src="astrophysics_PS1_diagram.png" class="img-fluid" style="width:60.0%"></p>
-<p>From this geometry, we can construct the following relationship between the zenith <span class="math inline">\(z\)</span>, declination <span class="math inline">\(\delta\)</span>, and altitude <span class="math inline">\(A\)</span></p>
-<p><span class="math display">\[A = 90 - z + \delta\]</span></p>
-<p>Using this equation, we can plug in the zenith/latitude of Winer and the declination of the Sun at the summer solstice to find the altitude of the Sun at Winer on the summer solstice.</p>
-<p><span class="math display">\[ A = 90 - 31.67 + 23.5 = \boxed{81.83 \text{ deg}} \]</span></p>
-</blockquote>
-<ol start="2" type="a">
-<li>the maximum altidue of the sun on the first day of winter.</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Answer</strong>: Using the equation above, we can plug in the declination of the Sun on the winter solstice (-23.5 degrees) to solve for the altitude from Winer.</p>
-<p><span class="math display">\[ A = 90 - 31.67 - 23.5 = \boxed{34.83 \text{ deg}} \]</span></p>
-</blockquote>
-<ol start="3" type="a">
-<li>How do you expect these altitudes to change for an observer at Macalester?</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Answer</strong>: Macalester is at a higher latitude, so we would expect the respective altitudes to be lower. Using the nifty equation we found early, we can find how much lower exactly.</p>
-<p>For some target at Winer, the altitude is</p>
-<p><span class="math display">\[A_w = 90 - z_w + \delta \]</span></p>
-<p>For the same target at Mac, the altitude is</p>
-<p><span class="math display">\[A_m = 90 - z_m + \delta\]</span></p>
-<p>Thus, the difference between altitudes at Mac and Winer is</p>
-<p><span class="math display">\[A_m - A_w = z_w - z_m = 31.67 - 45 = -13.33\]</span></p>
-<p>and</p>
-<p><span class="math display">\[\boxed{A_m = A_w - 13.33}\]</span></p>
-<p>So the altitudes at Mac are 13.33 degrees lower than the altitudes at Winer.</p>
-</blockquote>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>Dark matter in forground galaxies can distort the light from distant background galaxies. Depending on the distribution of dark matter and the location of the forground matter relative to the background galaxy, the resulting distortion of the distant background galaxy can vary in appearance. Persistent homology is commonly used to identify structure at large scales, but is yet to be used at smaller scales in the field of astronomy. We explore the possibility of using persistence images to identify common structures in images of gravitational lensed galaxies through a hierarchical clustering machine learning algorithm. We find a discrepancy in clustering results between persistence images and image cutouts where the former identified more similar lensed galaxies sooner. Additionally the persistence clustering process takes place at less than 20% of the cutout clustering process. These results could be influenced by the Curse of Dimensionality given the size of the cutouts. We propose a continued investigation into our results that will be enacted in the 2025-2026 school year at Macalester College as a Physics and Astronomy Honors Thesis.</p>
 </section>
-<section id="problem-2" class="level1">
-<h1>Problem 2</h1>
-<p>Congratulations! You’ve been awarded 4 hours of observing time on the Subaru Telescope on Manua Kea on March 18 (yay, spring break trip to Hawaii!).</p>
-<ol type="a">
-<li>What is the Subaru telescope? What portions of the electromagnetic spectrum will you observe in?</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Answer</strong>: The Subaru telescope is an 8.2 meter optical and near infrared telescope located near the summit of Maunakea, Hawaii, operated by the National Astronomical Observatory of Japan (NAOJ), National Institutes of Natural Sciences. We could abserve in visible and near infrared portions of the electromagnetic spectrum.</p>
-</blockquote>
-<ol start="2" type="a">
-<li>Of the following objects, which will you be able to observe if your time starts at 10:00 PM? NGC 13, NGC 2213, NGC 3019, NGC 4214, NGC 5808, NGC 6680, NGC 7111. You may find the NASA/IPAC Extragalactic Database (aka NED, https://ned.ipac.caltech.edu/) helpful.</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Answer</strong>: Below is a table of target names and coordinates.</p>
-<table class="caption-top table">
-<caption>Target list</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;">name</th>
-<th style="text-align: center;"><span class="math inline">\(\alpha\)</span> [deg]</th>
-<th style="text-align: center;"><span class="math inline">\(\delta\)</span> [deg]</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">NGC 13</td>
-<td style="text-align: center;">2.1987</td>
-<td style="text-align: center;">33.4333</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">NGC 2213</td>
-<td style="text-align: center;">92.6753</td>
-<td style="text-align: center;">-71.5286</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">NGC 3019</td>
-<td style="text-align: center;">147.5299</td>
-<td style="text-align: center;">12.7461</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">NGC 4214</td>
-<td style="text-align: center;">183.9132</td>
-<td style="text-align: center;">36.3269</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">NGC 5808</td>
-<td style="text-align: center;">223.5115</td>
-<td style="text-align: center;">73.1317</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">NGC 6680</td>
-<td style="text-align: center;">279.9332</td>
-<td style="text-align: center;">22.3165</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">NGC 7111</td>
-<td style="text-align: center;">325.4739</td>
-<td style="text-align: center;">-6.7088</td>
-</tr>
-</tbody>
-</table>
-<p>March 18th is nearly the vernal equinox, which means the Sun will have a right ascension around 0 deg. Thus, we can consider the bad range of <span class="math inline">\(\alpha\)</span> values to be 270-90 deg and the good range of <span class="math inline">\(\alpha\)</span> values to be 90-270 deg. This allows us to get rid of NGC 13, NGC 6680, and NGC 7111 due to their <span class="math inline">\(\alpha\)</span> values near the Sun.</p>
-<p>We can also get rid of NGC 2213, as it has a declination of -71 degrees, which is unobservable from the Subaru telescope given its latitude of 19.8255 degrees North (19.8255 - 90 = -70 = minimum declination for possible observation).</p>
-<table class="caption-top table">
-<caption>Revised target list</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;">name</th>
-<th style="text-align: center;"><span class="math inline">\(\alpha\)</span> [deg]</th>
-<th style="text-align: center;"><span class="math inline">\(\delta\)</span> [deg]</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">NGC 3019</td>
-<td style="text-align: center;">147.5299</td>
-<td style="text-align: center;">12.7461</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">NGC 4214</td>
-<td style="text-align: center;">183.9132</td>
-<td style="text-align: center;">36.3269</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">NGC 5808</td>
-<td style="text-align: center;">223.5115</td>
-<td style="text-align: center;">73.1317</td>
-</tr>
-</tbody>
-</table>
-<p>Since we are near the vernal equinox, at noon we expect the Sun to be directly overhead, making the LST around 0 hours. At midnight, we expect the LST to be around 12. Thus two hours earlier, when our observation block starts, we expect to have an LST of around 10. We know the following relation.</p>
-<p><span class="math display">\[HA = LST - \alpha\]</span></p>
-<p>If we convert our <span class="math inline">\(\alpha\)</span>’s to hours from degrees, we can solve for the hour angles of each target to determine if we can see them in our observing block.</p>
-<p><span class="math display">\[HA = 10 - \begin{pmatrix}9.8 \\ 12.2 \\ 14.9\end{pmatrix} = \begin{pmatrix}0.2 \\ -2.2 \\ -4.9\end{pmatrix}\]</span></p>
-<p>In other words, at 10 pm local time at the Subaru Telescope, NGC 3019 will be almost directly overhead; two hours later, NGC 4214 will be transiting; and at the end of our session, NGC 5808 will be rising/an hour away from transiting.</p>
-</blockquote>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This project combines concepts in astronomy, topology, and machine learning into one. What follows is a brief introduction into the three fields.</p>
+<section id="astronomy" class="level2">
+<h2 class="anchored" data-anchor-id="astronomy">Astronomy</h2>
+<p>Through observations of the Coma Cluster, <span class="citation" data-cites="Zwicky1933">Zwicky (<a href="#ref-Zwicky1933" role="doc-biblioref">1933</a>)</span> noted that measured velocity dispersions were an order of magnitude higher than what would be possible with the observed mass of the system. In the years that followed, the idea of galaxies being embedded in cold dark matter halos became intrinsically tied to our understanding of the cosmological structure of the Universe, and is well supported by observations and simulations <span class="citation" data-cites="FrenkWhite2012">(<a href="#ref-FrenkWhite2012" role="doc-biblioref">Frenk and White 2012</a>)</span>.</p>
+<p>Gravitionally lensed galaxies are intrinsically connected to dark matter, thus exploring commonalities amongst these lensed objects could reveal insight into the distribution of dark matter. Current methods for identifing classifying celestial objects is based on visual appearences, which depend on the orientation of the galaxies in question <span class="citation" data-cites="SExtractor1996">(e.g., <a href="#ref-SExtractor1996" role="doc-biblioref">Bertin and Arnouts 1996</a>)</span>. Persistent homology offers a potential approach to identify structure regardless of orientation, especially with images <span class="citation" data-cites="Ghrist2008">(<a href="#ref-Ghrist2008" role="doc-biblioref">Ghrist 2008</a>)</span>.</p>
 </section>
-<section id="problem-3" class="level1">
-<h1>Problem 3</h1>
-<p>Use Simbad (https://simbad.cds.unistra.fr/simbad/) to look up the parallax and J2000 coordinates to the three brightest stars in the constellation Orion’s belt: Alnilam, Alnitak, and Mintaka.</p>
-<ol type="a">
-<li>What can you learn about the motion of these stars on Simbad</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Answer</strong>: Alnilam is moving at 1.44 and -0.78 milliarcseconds/year in right ascension and declination, respectively, and away from us at 27.30 km/s. Alnitak is moving at 3.19 and 2.03 milliarcseconds/year in right ascension and declination, respectively, and away from us at 18.50 km/s. Mintaka is moving at 0.65 and -0.69 milliarcseconds/year in right ascension and declination, respectively, and away from us at 18.50 km/s.</p>
-</blockquote>
-<ol start="2" type="a">
-<li>What are the distances to the stars in parsecs?</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Answer</strong>: According to Simbad, the parallax of these stars is the following</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">name</th>
-<th style="text-align: center;">parallax [mas]</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Alnilam</td>
-<td style="text-align: center;">1.65</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Alnitak</td>
-<td style="text-align: center;">4.43</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Mintaka</td>
-<td style="text-align: center;">4.71</td>
-</tr>
-</tbody>
-</table>
-<p>Using the relation between parallax <span class="math inline">\(p\)</span> and distance <span class="math inline">\(d\)</span>,</p>
-<p><span class="math display">\[d_{pc} = \frac{1}{p_{arcsec}}\]</span></p>
-<p>we can find the disances for each star to be the following.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">name</th>
-<th style="text-align: center;">parallax [mas]</th>
-<th style="text-align: center;">distances [pc]</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Alnilam</td>
-<td style="text-align: center;">1.65</td>
-<td style="text-align: center;">606</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Alnitak</td>
-<td style="text-align: center;">4.43</td>
-<td style="text-align: center;">226</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Mintaka</td>
-<td style="text-align: center;">4.71</td>
-<td style="text-align: center;">212</td>
-</tr>
-</tbody>
-</table>
-</blockquote>
-<ol start="3" type="a">
-<li>For the two stars with the most similar distances, calculate their angular separation and minimum physical separation (assuming they are both at a distance equal to that of the nearest of the two stars).</li>
-</ol>
-<blockquote class="blockquote">
-<p><strong>Answer</strong>: Angular separation between two points on the celestial sphere is defined by <span class="math display">\[(\Delta \theta)^2 = (\Delta\alpha\cos\delta)^2 + (\Delta\delta)^2\]</span></p>
-<p>The physical separation can be found by the small angle formula, namely</p>
-<p><span class="math display">\[\theta_{rad} = \frac{D}{d}\]</span></p>
-<p>The following code chuck solves for the angular and physical separation given the coordinates of the two stars and the distance to the closest star.</p>
-</blockquote>
-<div id="ae46be5c" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>alnitak <span class="op">=</span> (<span class="fl">085.18969443</span> <span class="op">*</span> u.deg,<span class="op">-</span><span class="fl">01.94257359</span> <span class="op">*</span> u.deg)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mintaka <span class="op">=</span> (<span class="fl">083.00166706</span> <span class="op">*</span> u.deg,<span class="op">-</span><span class="fl">00.29909511</span> <span class="op">*</span> u.deg)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mintaka_parallax <span class="op">=</span> <span class="fl">4.71</span> <span class="op">*</span> u.arcsec <span class="op">*</span> <span class="dv">10</span><span class="op">**-</span><span class="dv">3</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ara, adec <span class="op">=</span> alnitak</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mra, mdec <span class="op">=</span> mintaka</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>dra <span class="op">=</span> ara <span class="op">-</span> mra</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ddec <span class="op">=</span> adec <span class="op">-</span> mdec</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.sqrt((dra <span class="op">*</span> np.cos(adec))<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> ddec<span class="op">**</span><span class="dv">2</span>).to(u.rad)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> mintaka_parallax.to(u.parsec, equivalencies<span class="op">=</span>u.parallax())</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>separation <span class="op">=</span> theta <span class="op">*</span> distance</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""Alnitak and Mintaka are separated by </span><span class="sc">{</span>theta<span class="sc">.</span>to(u.deg)<span class="sc">:.2f}</span><span class="ss">, </span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">which corresponds to a physical separation of </span><span class="sc">{</span>separation <span class="op">/</span> u<span class="sc">.</span>rad<span class="sc">:.2f}</span><span class="ss">"""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Alnitak and Mintaka are separated by 2.74 deg, 
-which corresponds to a physical separation of 10.14 pc</code></pre>
+<section id="persistent-homology" class="level2">
+<h2 class="anchored" data-anchor-id="persistent-homology">Persistent Homology</h2>
+<p>Persistent homology is a branch of topology that identifies persistent features of simplicial structures. By constructing simplicial structures across a filtration, we can compute the homology at each stage in the filtration, allowing us to construct birth-death pairs of features in data. From the birth-death pairs, or persistence diagram, we can compute the persistence image, which is a vectorized form of the information captured in the birth-death pairs, allowing for implementation in machine learning algorithms <span class="citation" data-cites="Adams2015">(<a href="#ref-Adams2015" role="doc-biblioref">Adams et al. 2015</a>)</span>.</p>
+<p>In astronomy, persistent homology is primarily used at the large-scale <span class="citation" data-cites="Chen2015 Sousbie2011">(e.g., <a href="#ref-Chen2015" role="doc-biblioref">Chen et al. 2015</a>; <a href="#ref-Sousbie2011" role="doc-biblioref">Sousbie, Pichon, and Kawahara 2011</a>)</span>. More specifically, persistent images have not yet been applied to smaller scale astronomical observations. If persistent homology is capable of idenfying structures in image data regardless of orientation, it seems apparent that we should be applying this to the field of astronomy, especially where classification of objects is based primarily on visual orientation.</p>
+</section>
+<section id="machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning">Machine Learning</h2>
+<p>When trying to identify potential similar structure in data through unsupervised machine learning, there are many algorithms that can be implemented. One of the most simple unsupervised machine learning clustering algorithms is the hierarchical clustering algorithm. The idea behind this algorithm is to identify similar datapoints based on their distances to each other. All variables are standardized to allow for comparison between variables of different units, and the closest two points are fused together. Once a cluster is created, we use single linkage method to create the clusters at higher distances. This linkage method will only join two clusters together at a distance <span class="math inline">\(d\)</span> if all of the point in both clusters are at least a distance <span class="math inline">\(d\)</span> away from each other.</p>
+</section>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<p>The Euclid Space telescope was launched in 2023 with the intention of mapping 2/3 of the night sky <span class="citation" data-cites="EuclidOverview2025">(<a href="#ref-EuclidOverview2025" role="doc-biblioref">Euclid Collaboration et al. 2025</a>)</span>. On March 19, 2025, the Euclid Collaboration released their Quick Data Release (Q1), which included a catalog of ~2500 gravitationally lensed galaxies identified via a machine learning classification algorithm <span class="citation" data-cites="EuclidLens2025">(<a href="#ref-EuclidLens2025" role="doc-biblioref">Collaboration et al. 2025</a>)</span>. Each classification was given a grade (“A”, “B”, “C”), with grade “A” having the highest confidence of accurate classification.</p>
+<p>We selected targets with the grade “A” confidence rating which was equivalent to a sample of 250 lensed galaxies. Once we had the coordinates for each target, we used the <code>Euclid</code> class in the <code>astroquery</code> Python library to extract the <span class="math inline">\(119 \text{ pixels } \times 119 \text{ pixels }\)</span> cutouts of the FITS images taken by Euclid. Examples of the cutouts are shown in <a href="#fig-cutout" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="cell-fig-cutout" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-cutout" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cutout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="paper_files/figure-html/fig-cutout-output-1.png" width="614" height="315" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cutout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Examples of of 119x119 image cutouts taken from the Euclid Q1 data release.
+</figcaption>
+</figure>
 </div>
 </div>
+</div>
+<p>Calibration images are subtracted from the raw image in order to produce a science image. This difference can result in negative values in the resulting science image that can lead to negative birth-death pairs during the persistence calcualtion. To get around this, we set all values less than zero to zero for each cutout. Additionally, we normalized and rescaled each image to have pixel values between 0 and 10. We also created an inverted copy of the preprocessed images to compute superlevel persistence described in the analysis section. <a href="#fig-processed" class="quarto-xref">Figure&nbsp;2</a> shows examples of the preprocessed images, both uninverted and inverted.</p>
+<div id="cell-fig-processed" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-processed" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-processed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="paper_files/figure-html/fig-processed-output-1.png" width="614" height="315" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-processed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Examples of the preprocessed cutouts. The top and bottom rows display the uninverted and inverted versions, respectively. Targets are identical within each column.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis" class="level1">
+<h1>Analysis</h1>
+<p>To calculate the persistence of each image, we used the Python library <code>giotto-tda</code>’s <code>CubicalPersistence</code> class. Note that cubical persistence is essentially the cubical analog to simplical persistence, and works well with images.</p>
+<p>Due to most of the values in our images having values close to zero, we compute the superlevel cubical persistence for the <span class="math inline">\(H_0\)</span> homology by running the cubical persistence on the inverted preprocessed images. The uninverted images were used to calculate the <span class="math inline">\(H_1\)</span> homology.</p>
+<p>Once the birth-death pairs were calculated, we computed the persistent images via the <code>Persim</code> Python library’s <code>PersistenceImager</code> class. <a href="#fig-pipeline" class="quarto-xref">Figure&nbsp;3</a> shows the overall analysis process for a single cutout.</p>
+<!-- ## Calculate Persistence -->
+<!-- ## Create Persistence Images -->
+<div id="cell-fig-pipeline" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<div id="fig-pipeline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="paper_files/figure-html/fig-pipeline-output-1.png" width="846" height="671" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Image analysis process for a single cutout. The left column displays the preprocessed cutouts of the target. The middle column shows the persistence diagram calculated from the cubical persistence on the corresponding images in the left column. The right column displays the persistence image associated with the <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> homology for the top and bottom row, respectively.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>After creating the persistence images for each cutout, we collapsed each 10x10 pixel array into a vector with length 100, then concatenated the resulting <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> vectors into one vector of length 200. Each vector becomes a row in a dataframe that will be used for hierarchical clustering. The final dataframe of persistent image vectors had 242 rows, corresponding to the 242 cutouts, and 200 columns, corresponding to the concatenated <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> persistence image vectors.</p>
+<p>A similar process was done to construct the the dataframe of the vectorized versions of the 119x119 cutouts.</p>
+<!-- ## Convert Original Images to Vectors and Save Both Vectors to a CSV  -->
+<p>We used the <code>cluster</code> R package to perform hierarchical clustering on the dataframe of persistence vectors and the dataframe of cutout vectors.</p>
+<p>We chose to use hierarchical clustering as opposed to k-means, another standard clustering algorithm, as k-means requires us to know how many clustering groups we believe there to be for our data, while hierarchical clustering identifies clusters across a range of distance values that can be represented visually by a dendrogram.</p>
+</section>
+<section id="results-and-discussion" class="level1">
+<h1>Results and Discussion</h1>
+<p><a href="#fig-cutoutclust" class="quarto-xref">Figure&nbsp;4</a> and <a href="#fig-persclust" class="quarto-xref">Figure&nbsp;5</a> show the results from the hierarchical clustering of the persistence vectors and cutout vectors, respectively.</p>
+<div id="cell-fig-cutoutclust" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div id="fig-cutoutclust" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cutoutclust-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="paper_files/figure-html/fig-cutoutclust-output-1.png" width="758" height="389" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cutoutclust-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Hierarchical clustering results from the image cutouts. Note that a coloring of an arbitary split at 10 clusters was selected for visualization purposes.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-fig-persclust" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<div id="fig-persclust" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-persclust-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="paper_files/figure-html/fig-persclust-output-1.png" width="758" height="389" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-persclust-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Hierarchical clustering results from the persistence images. Note that a coloring of an arbitary split at 10 clusters was selected for visualization purposes.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As with all dendrograms, the horizontal distance between leaves is meaningless, and the primary feature to be interpreted is the height at which cluster linkages occur. Comparing the dendrograms of <a href="#fig-cutoutclust" class="quarto-xref">Figure&nbsp;4</a> and <a href="#fig-persclust" class="quarto-xref">Figure&nbsp;5</a>, not only do the persistent images appear to fuse much earlier on in the clustering process, but the overall clustering process happens at a much lower range in height than the cutout clusterings.</p>
+<p>A potential reason for this discrepancy in dynamic range could be the size of the cutout vectors; collapsing a <span class="math inline">\(119\times119\)</span> array creates a <span class="math inline">\(14161\)</span> length vector, resulting in a very wide (<span class="math inline">\(242\times14161\)</span>) dataframe for the cutouts. When the number of variables (columns) in a dataframe starts to become large, distance that are calculated using the variables start to become increasing large in a phenomenon known as the Curse of Dimensionality. This could also explain the discrepancy between the high inital fusing heights in <a href="#fig-cutoutclust" class="quarto-xref">Figure&nbsp;4</a> relative to those in <a href="#fig-persclust" class="quarto-xref">Figure&nbsp;5</a>.</p>
+<p>However, the number clusters that are fused at relatively small heights in <a href="#fig-persclust" class="quarto-xref">Figure&nbsp;5</a> could be interpreted as a collection of lensed clusters with very similar structural features, and is not identified in the cutout clustering results of <a href="#fig-cutoutclust" class="quarto-xref">Figure&nbsp;4</a>. This, in addition to the dimensionality issue with the cutouts, warrents some additional exploration.</p>
+</section>
+<section id="conclusions" class="level1">
+<h1>Conclusions</h1>
+<p>Our clustering results of the persistent images of 242 gravitationally lensed galaxies taken from the Euclid Q1 data release have identified a collection of galaxies that are more similar according to their persistence images than they are with their cutout images. This result could be affected by the high dimensions of the cutout images, wherein the Curse of Dimensionality could cause a bias in the linkage distances of the clusters, shifting the overall heights of the cutout clusterings to larger values. This result needs to be investigated further.</p>
+<p>We intend to continue exploring persistence images in this scenario through the following:</p>
+<ul>
+<li>Reducing the size of the cutout vectors through PCA and more advanced dimension reduction algorithm.</li>
+<li>Comparing our hierarchical clustering results with a more advanced clustering algorithm.</li>
+<li>Exploring parameter space of the persistence images algorithm.</li>
+<li>Investigating the similarities found from the clustering results to determine what, if any, classifications with physical interpretations exist.</li>
+</ul>
+<p>The goals above will be an outline for a Physics and Astronomy Honors Thesis during the 2025-2026 school year at Macalester College.</p>
+</section>
+<section id="references" class="level1">
+
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Adams2015" class="csl-entry" role="listitem">
+Adams, Henry, Sofya Chepushtanova, Tegan Emerson, Eric Hanson, Michael Kirby, Francis Motta, Rachel Neville, Chris Peterson, Patrick Shipman, and Lori Ziegelmeier. 2015. <span>“<span class="nocase">Persistence Images: A Stable Vector Representation of Persistent Homology</span>.”</span> <em>arXiv e-Prints</em>, July, arXiv:1507.06217. <a href="https://doi.org/10.48550/arXiv.1507.06217">https://doi.org/10.48550/arXiv.1507.06217</a>.
+</div>
+<div id="ref-SExtractor1996" class="csl-entry" role="listitem">
+Bertin, E., and S. Arnouts. 1996. <span>“<span class="nocase">SExtractor: Software for source extraction.</span>”</span> 117 (June): 393–404. <a href="https://doi.org/10.1051/aas:1996164">https://doi.org/10.1051/aas:1996164</a>.
+</div>
+<div id="ref-Chen2015" class="csl-entry" role="listitem">
+Chen, Yen-Chi, Shirley Ho, Peter E. Freeman, Christopher R. Genovese, and Larry Wasserman. 2015. <span>“Cosmic Web Reconstruction Through Density Ridges: Method and Algorithm.”</span> <em>Monthly Notices of the Royal Astronomical Society</em> 454 (1): 1140–56. <a href="https://doi.org/10.1093/mnras/stv1996">https://doi.org/10.1093/mnras/stv1996</a>.
+</div>
+<div id="ref-EuclidLens2025" class="csl-entry" role="listitem">
+Collaboration, Euclid, M. Walmsley, P. Holloway, N. E. P. Lines, K. Rojas, T. E. Collett, A. Verma, et al. 2025. <span>“Euclid Quick Data Release (Q1): The Strong Lensing Discovery Engine a – System Overview and Lens Catalogue.”</span> <a href="https://arxiv.org/abs/2503.15324">https://arxiv.org/abs/2503.15324</a>.
+</div>
+<div id="ref-EuclidOverview2025" class="csl-entry" role="listitem">
+Euclid Collaboration, Y. Mellier, Abdurro’uf, J. A. Acevedo Barroso, A. Achúcarro, J. Adamek, R. Adam, et al. 2025. <span>“<span class="nocase">Euclid: I. Overview of the Euclid mission</span>”</span> 697 (May): A1. <a href="https://doi.org/10.1051/0004-6361/202450810">https://doi.org/10.1051/0004-6361/202450810</a>.
+</div>
+<div id="ref-FrenkWhite2012" class="csl-entry" role="listitem">
+Frenk, C. S., and S. D. M. White. 2012. <span>“<span class="nocase">Dark matter and cosmic structure</span>.”</span> <em>Annalen Der Physik</em> 524 (9-10): 507–34. <a href="https://doi.org/10.1002/andp.201200212">https://doi.org/10.1002/andp.201200212</a>.
+</div>
+<div id="ref-Ghrist2008" class="csl-entry" role="listitem">
+Ghrist, Robert. 2008. <span>“Barcodes: The Persistent Topology of Data.”</span> <em>BULLETIN (New Series) OF THE AMERICAN MATHEMATICAL SOCIETY</em> 45 (February). <a href="https://doi.org/10.1090/S0273-0979-07-01191-3">https://doi.org/10.1090/S0273-0979-07-01191-3</a>.
+</div>
+<div id="ref-Sousbie2011" class="csl-entry" role="listitem">
+Sousbie, T., C. Pichon, and H. Kawahara. 2011. <span>“The Persistent Cosmic Web and Its Filamentary Structure – II. Illustrations.”</span> <em>Monthly Notices of the Royal Astronomical Society</em> 414 (1): 384–403. <a href="https://doi.org/10.1111/j.1365-2966.2011.18395.x">https://doi.org/10.1111/j.1365-2966.2011.18395.x</a>.
+</div>
+<div id="ref-Zwicky1933" class="csl-entry" role="listitem">
+Zwicky, F. 1933. <span>“<span class="nocase">Die Rotverschiebung von extragalaktischen Nebeln</span>.”</span> <em>Helvetica Physica Acta</em> 6 (January): 110–27.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

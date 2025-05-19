@@ -10,14 +10,22 @@ website:
         text: Home
       - href: research.qmd
         text: Research
-      - href: courses.qmd
-        text: Courses
+      - text: Courses
+        menu:
+          - href: courses/honors/index.qmd
+            text: Honors
+          - href: courses/astrophysics/index.qmd
+            text: Astrophysics
+          - href: courses/ML/index.qmd
+            text: Machine Learning
+          - href: courses/topology/index.qmd
+            text: Topology
 
 format:
   html:
     theme:
-      dark: [cosmo, dark.scss]
       light: [cosmo, light.scss]
+      dark: [cosmo, dark.scss]
       
     css: styles.css
     toc: true

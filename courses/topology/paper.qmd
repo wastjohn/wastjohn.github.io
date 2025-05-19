@@ -1,0 +1,408 @@
+---
+title: "Persistent Images of Gravitionally Lensed Galaxies"
+bibliography: bibliography.bib
+format: html
+author: "Will St. John"
+---
+
+# Abstract
+Dark matter in forground galaxies can distort the light from distant background galaxies. Depending on the distribution of dark matter and the location of the forground matter relative to the background galaxy, the resulting distortion of the distant background galaxy can vary in appearance. Persistent homology is commonly used to identify structure at large scales, but is yet to be used at smaller scales in the field of astronomy. We explore the possibility of using persistence images to identify common structures in images of gravitational lensed galaxies through a hierarchical clustering machine learning algorithm. We find a discrepancy in clustering results between persistence images and image cutouts where the former identified more similar lensed galaxies sooner. Additionally the persistence clustering process takes place at less than 20% of the cutout clustering process. These results could be influenced by the Curse of Dimensionality given the size of the cutouts. We propose a continued investigation into our results that will be enacted in the 2025-2026 school year at Macalester College as a Physics and Astronomy Honors Thesis.
+
+# Introduction
+This project combines concepts in astronomy, topology, and machine learning into one. What follows is a brief introduction into the three fields.
+
+## Astronomy
+
+Through observations of the Coma Cluster, @Zwicky1933 noted that measured velocity dispersions were an order of magnitude higher than what would be possible with the observed mass of the system. In the years that followed, the idea of galaxies being embedded in cold dark matter halos became intrinsically tied to our understanding of the cosmological structure of the Universe, and is well supported by observations and simulations [@FrenkWhite2012].
+
+Gravitionally lensed galaxies are intrinsically connected to dark matter, thus exploring commonalities amongst these lensed objects could reveal insight into the distribution of dark matter. Current methods for identifing classifying celestial objects is based on visual appearences, which depend on the orientation of the galaxies in question [e.g., @SExtractor1996]. Persistent homology offers a potential approach to identify structure regardless of orientation, especially with images [@Ghrist2008].
+
+## Persistent Homology
+
+Persistent homology is a branch of topology that identifies persistent features of simplicial structures. By constructing simplicial structures across a filtration, we can compute the homology at each stage in the filtration, allowing us to construct birth-death pairs of features in data. From the birth-death pairs, or persistence diagram, we can compute the persistence image, which is a vectorized form of the information captured in the birth-death pairs, allowing for implementation in machine learning algorithms [@Adams2015].
+
+In astronomy, persistent homology is primarily used at the large-scale [e.g., @Chen2015; @Sousbie2011]. More specifically, persistent images have not yet been applied to smaller scale astronomical observations. If persistent homology is capable of idenfying structures in image data regardless of orientation, it seems apparent that we should be applying this to the field of astronomy, especially where classification of objects is based primarily on visual orientation.
+
+## Machine Learning
+
+When trying to identify potential similar structure in data through unsupervised machine learning, there are many algorithms that can be implemented. One of the most simple unsupervised machine learning clustering algorithms is the hierarchical clustering algorithm. The idea behind this algorithm is to identify similar datapoints based on their distances to each other. All variables are standardized to allow for comparison between variables of different units, and the closest two points are fused together. Once a cluster is created, we use single linkage method to create the clusters at higher distances. This linkage method will only join two clusters together at a distance $d$ if all of the point in both clusters are at least a distance $d$ away from each other.
+
+
+# Data
+The Euclid Space telescope was launched in 2023 with the intention of mapping 2/3 of the night sky [@EuclidOverview2025]. On March 19, 2025, the Euclid Collaboration released their Quick Data Release (Q1), which included a catalog of ~2500 gravitationally lensed galaxies identified via a machine learning classification algorithm [@EuclidLens2025]. Each classification was given a grade ("A", "B", "C"), with grade "A" having the highest confidence of accurate classification.
+
+We selected targets with the grade "A" confidence rating which was equivalent to a sample of 250 lensed galaxies. Once we had the coordinates for each target, we used the `Euclid` class in the `astroquery` Python library to extract the $119 \text{ pixels } \times 119 \text{ pixels }$ cutouts of the FITS images taken by Euclid. Examples of the cutouts are shown in @fig-cutout.
+
+
+
+```{python}
+# | include: false
+from astroquery.esa.euclid import Euclid
+from astropy.coordinates import SkyCoord
+from astropy.wcs import WCS
+import astropy.units as u
+from astropy.io import fits
+import matplotlib.pyplot as plt
+from astropy.visualization import astropy_mpl_style, ImageNormalize, PercentileInterval, AsinhStretch, LogStretch
+import gtda.plotting
+import pandas as pd
+from astropy.io import ascii
+import glob
+import numpy as np
+import os
+from gtda.images import Binarizer
+from gtda.images import RadialFiltration
+from gtda.homology import CubicalPersistence
+from gtda.diagrams import Scaler
+from gtda.diagrams import PersistenceImage
+from persim import PersImage
+from persim import PersistenceImager
+```
+
+```{python}
+# | include: false
+# | eval: false
+# get coordinates from list of targets (only select best images)
+all_targets = ascii.read("D:/data/targets/q1_discovery_engine_lens_catalog.csv")
+mask = (all_targets["subset"] == "discovery_engine") & (all_targets["grade"] == "A")
+targets = all_targets[mask]
+np.unique(all_targets["grade"])
+```
+
+```{python}
+# | eval: false
+# | include: false
+# don't run unless need redownload images!!!
+# download the images for each target
+empty_images = 0
+for i in range(len(targets)):
+    r, d = targets["right_ascension"][i], targets["declination"][i]
+    coord = SkyCoord(r, d, unit=u.deg, frame='icrs')
+    radius = u.Quantity(0.5, u.deg)
+
+    print(f"r: {r}")
+    print(f"d: {d}")
+    print(coord)
+    print(radius)
+
+    # search euclid's mosaic product catalog for targets
+    job = Euclid.cone_search(coordinate=coord, radius=radius, table_name="sedm.mosaic_product", ra_column_name="ra", dec_column_name="dec", columns="*", async_job=True, verbose=True)
+    cone_results = job.get_results()
+    example_file = cone_results[cone_results['instrument_name'] == 'VIS'][0]
+    print(f"cone_results: {cone_results}")
+
+    # save results to output path
+    file_path = example_file["file_path"] + "/" + example_file["file_name"]
+    instrument = example_file["instrument_name"]
+    obs_id = example_file["tile_index"]
+    radius = 0.1 * u.arcmin
+    output_folder = 'D:/data/'
+
+    print(f"file_path: {file_path}")
+    print(f"instrument: {instrument}")
+    print(f"obs_id: {obs_id}")
+
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    output_file=output_folder + f'cutouts_0.1arcmin/target_{r}_{d}.fits'
+    saved_cutout_filepath = Euclid.get_cutout(file_path=file_path,
+        instrument=instrument, id=obs_id, 
+        coordinate=coord, radius=radius, output_file=output_file)
+
+    print("Cutout saved at", output_file)
+
+    # looking at the cutout we made
+    try:
+        hdul = fits.open(output_file)
+        print(fits.info(output_file))
+        image_data = hdul[0].data
+        plt.imshow(image_data, interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(image_data, interval=PercentileInterval(99.5),
+                            stretch=AsinhStretch()))
+        plt.colorbar()
+        plt.show()
+    except:
+        empty_images += 1
+
+print(empty_images)
+```
+
+```{python}
+# | include: false
+# get data from each fits image
+fits_files_clean = glob.glob("D:/data/cutouts_0.1arcmin_119x119/*.fits")
+
+data_list = []
+for file in fits_files_clean:
+    hdul = fits.open(file)
+    data = hdul[0].data
+    data_list.append(data)
+```
+
+```{python}
+# | echo: false
+# | label: fig-cutout
+# | fig-cap: "Examples of of 119x119 image cutouts taken from the Euclid Q1 data release."
+
+plt.figure(figsize=(8,4))
+for i in range(8):
+    plt.subplot(241 + i)
+    plt.imshow(data_list[-i].reshape((119, 119)), interpolation='nearest', cmap='inferno', origin='lower', norm=ImageNormalize(data_list[-i], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+    plt.axis('off')
+    # plt.colorbar()
+
+plt.subplots_adjust(wspace=0.01, hspace=0.01)
+plt.show()
+```
+
+Calibration images are subtracted from the raw image in order to produce a science image. This difference can result in negative values in the resulting science image that can lead to negative birth-death pairs during the persistence calcualtion. To get around this, we set all values less than zero to zero for each cutout. Additionally, we normalized and rescaled each image to have pixel values between 0 and 10. We also created an inverted copy of the preprocessed images to compute superlevel persistence described in the analysis section. @fig-processed shows examples of the preprocessed images, both uninverted and inverted.
+
+```{python}
+# | include: false
+# rescaling to [0,10]
+scale = 10
+data_list = [data.reshape((1,119,119)) for data in data_list]  # reshape for cubical complex
+data_list = [scale * (data - data.min()) / (data.max() - data.min()) for data in data_list]  # normalize and rescale
+data_invert_list = [scale * np.ones(data.shape) - data for data in data_list]
+```
+
+
+```{python}
+# | echo: false
+# | label: fig-processed
+# | fig-cap: "Examples of the preprocessed cutouts. The top and bottom rows display the uninverted and inverted versions, respectively. Targets are identical within each column."
+
+plt.figure(figsize=(8,4))
+for i in range(4):
+    plt.subplot(241 + i)
+    plt.imshow(data_list[-i].reshape((119, 119)), interpolation='nearest', cmap='inferno', origin='lower', norm=ImageNormalize(data_list[-i], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+    plt.axis('off')
+
+    plt.subplot(245 + i)
+    plt.imshow(data_invert_list[-i].reshape((119, 119)), interpolation='nearest', cmap='inferno', origin='lower', norm=ImageNormalize(data_invert_list[-i], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+    plt.axis('off')
+
+plt.subplots_adjust(wspace=0.01, hspace=0.01)
+plt.show()
+```
+
+# Analysis
+To calculate the persistence of each image, we used the Python library `giotto-tda`'s `CubicalPersistence` class. Note that cubical persistence is essentially the cubical analog to simplical persistence, and works well with images. 
+
+Due to most of the values in our images having values close to zero, we compute the superlevel cubical persistence for the $H_0$ homology by running the cubical persistence on the inverted preprocessed images. The uninverted images were used to calculate the $H_1$ homology.
+
+Once the birth-death pairs were calculated, we computed the persistent images via the `Persim` Python library's `PersistenceImager` class. @fig-pipeline shows the overall analysis process for a single cutout.
+
+<!-- ## Calculate Persistence -->
+```{python}
+# | include: false
+cubical_persistence = CubicalPersistence(homology_dimensions=(0,1), n_jobs=-1, infinity_values=scale)
+
+print("calculating cubical persistence (h0) on inverted images...")
+cubical_invert_data_list = []
+for inverted_data in data_invert_list:
+    cubical_invert_data = cubical_persistence.fit_transform(inverted_data)
+    cubical_invert_data_list.append(cubical_invert_data)
+
+print("calculating cubical persistence (h1) on images...")
+cubical_data_list = []
+for data in data_list:
+    cubical_data = cubical_persistence.fit_transform(data)
+    cubical_data_list.append(cubical_data)
+```
+
+```{python}
+# | include: false
+cubical_diagram0_list = []
+for cubical_invert_data in cubical_invert_data_list:
+    mask0 = cubical_invert_data[:,:,2] == 0  # id h0 in inverted data
+    data_cubical0 = cubical_invert_data[mask0]  # select h0 inverted data
+    cubical_diagram0 = np.delete(data_cubical0, 2, 1)  # remove the h0 identifier
+    cubical_diagram0_list.append(cubical_diagram0)  # add to list
+
+cubical_diagram1_list = []
+for cubical_data in cubical_data_list:
+    mask1 = cubical_data[:,:,2] == 1  # id h1 in inverted data
+    data_cubical1 = cubical_data[mask1]  # select h1 inverted data
+    cubical_diagram1 = np.delete(data_cubical1, 2, 1)  # remove the h1 identifier
+    cubical_diagram1_list.append(cubical_diagram1)  # add to list
+```
+
+
+<!-- ## Create Persistence Images -->
+```{python}
+# | include: false
+# fit h0 images
+h0_pimgr = PersistenceImager(pixel_size=1)
+h0_pimgr.weight_params = {"n": 1.5}  # tuning parameter (maybe [1, 2])
+h0_pimgr.fit(cubical_diagram0_list)
+h0_pimgr.birth_range = (0, scale)
+h0_pimgr.pers_range = (0, scale)
+h0_imgs = h0_pimgr.transform(cubical_diagram0_list, skew=True)
+
+# fit h1 images
+h1_pimgr = PersistenceImager(pixel_size=1)
+h1_pimgr.weight_params = {"n": 1.5}  # tuning parameter (maybe [1, 2])
+h1_pimgr.fit(cubical_diagram1_list)
+h1_pimgr.birth_range = (0, scale)
+h1_pimgr.pers_range = (0, scale)
+h1_imgs = h1_pimgr.transform(cubical_diagram1_list, skew=True)
+```
+
+
+```{python}
+# | include: false
+def persistence_diagram(bdh_array, ax): 
+    h0mask = bdh_array[:,:,2] == 0
+    h1mask = bdh_array[:,:,2] == 1
+    h0birth = bdh_array[h0mask][:,0] 
+    h0death = bdh_array[h0mask][:,1]
+    h1birth = bdh_array[h1mask][:,0] 
+    h1death = bdh_array[h1mask][:,1]
+
+    ax.scatter(h0birth, h0death, alpha=0.5, marker='.', label="h0")
+    ax.scatter(h1birth, h1death, alpha=0.5, marker='.', label="h1")
+    ax.set_xlabel("Birth")
+    ax.set_ylabel("Death")
+    ax.legend(loc="lower right")
+    oldxlim = ax.get_xlim()
+    oldylim = ax.get_ylim()
+    ax.axline((0,0), (scale + 1,scale + 1), linestyle='--', c="grey")
+    ax.set_xlim(-0.5, scale + 0.5)
+    ax.set_ylim(-0.5, scale + 0.5)
+    return
+
+
+def pipeline_plot(index: str = 0, return_fig: bool = False):
+    fig, ax = plt.subplots(2,3,figsize=(10,8))
+    # inverted image
+    im_invert = ax[0][0].imshow(data_invert_list[index].reshape((119, 119)), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data_invert_list[index], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+    ax[0][0].set_title("Raw Image (Inverted)")
+    fig.colorbar(im_invert, ax=ax[0][0])
+
+    # persistence diagram (inverted)
+    persistence_diagram(cubical_invert_data_list[index], ax[0][1])
+    ax[0][1].set_title("H0 Persistence Diagram (Inverted Data)")
+
+    # persistence image (inverted)
+    h0_pimgr.plot_image(h0_imgs[index], ax=ax[0][2])
+    ax[0][2].set_title("H0 Persistence Image (Inverted Data)")
+
+    # raw image
+    im = ax[1][0].imshow(data_list[index].reshape((119, 119)), interpolation='nearest', cmap='gray', origin='lower', norm=ImageNormalize(data_list[index], interval=PercentileInterval(99.5), stretch=AsinhStretch()))
+    ax[1][0].set_title("Raw Image")
+    fig.colorbar(im, ax=ax[1][0])
+
+    # persistence diagram (normal)
+    persistence_diagram(cubical_data_list[index], ax[1][1])
+    ax[1][1].set_title("H1 Persistence Diagram")
+
+    # persistence image (normal)
+    h1_pimgr.plot_image(h1_imgs[index], ax=ax[1][2])
+    ax[1][2].set_title("H1 Persistence Image")
+
+    # adjust subplot images
+    fig.subplots_adjust(hspace=0.4, wspace=0.3)
+
+    if return_fig:
+        return fig, ax
+    
+    return
+```
+
+```{python}
+# | echo: false
+# | label: fig-pipeline
+# | fig-cap: "Image analysis process for a single cutout. The left column displays the preprocessed cutouts of the target. The middle column shows the persistence diagram calculated from the cubical persistence on the corresponding images in the left column. The right column displays the persistence image associated with the $H_0$ and $H_1$ homology for the top and bottom row, respectively."
+
+pipeline_plot(-12)
+```
+
+After creating the persistence images for each cutout, we collapsed each 10x10 pixel array into a vector with length 100, then concatenated the resulting $H_0$ and $H_1$ vectors into one vector of length 200. Each vector becomes a row in a dataframe that will be used for hierarchical clustering. The final dataframe of persistent image vectors had 242 rows, corresponding to the 242 cutouts, and 200 columns, corresponding to the concatenated $H_0$ and $H_1$ persistence image vectors. 
+
+A similar process was done to construct the the dataframe of the vectorized versions of the 119x119 cutouts.
+
+```{python}
+# | include: false
+# convert to vector
+h0_vec = [image.reshape(100) for image in h0_imgs]
+h1_vec = [image.reshape(100) for image in h1_imgs]
+
+final_vec = []
+for i in range(len(h0_vec)):
+    combined = np.concatenate((h0_vec[i], h1_vec[i]), axis=None)
+    final_vec.append(combined)
+```
+
+<!-- ## Convert Original Images to Vectors and Save Both Vectors to a CSV  -->
+
+```{python}
+# | include: false
+# | eval: false
+fits_files = glob.glob("D:/data/cutouts_0.1arcmin/*.fits")
+names = [i.split("\\")[-1].replace('.fits', "") for i in fits_files]
+
+final_table = pd.DataFrame(np.vstack(final_vec), index=names)
+final_table.to_csv("D:/results/persistent_results.csv")
+
+fits_image_vec = [image.reshape(119 * 119) for image in data_list]
+final_fits_table = pd.DataFrame(np.vstack(fits_image_vec), index=names)
+final_fits_table.to_csv("D:/results/fits_results.csv")
+```
+
+We used the `cluster` R package to perform hierarchical clustering on the dataframe of persistence vectors and the dataframe of cutout vectors.
+
+We chose to use hierarchical clustering as opposed to k-means, another standard clustering algorithm, as k-means requires us to know how many clustering groups we believe there to be for our data, while hierarchical clustering identifies clusters across a range of distance values that can be represented visually by a dendrogram.
+
+
+
+# Results and Discussion
+@fig-cutoutclust and @fig-persclust show the results from the hierarchical clustering of the persistence vectors and cutout vectors, respectively. 
+
+```{python}
+# | echo: false
+# | label: fig-cutoutclust
+# | fig-cap: "Hierarchical clustering results from the image cutouts. Note that a coloring of an arbitary split at 10 clusters was selected for visualization purposes."
+
+
+import matplotlib.image as mpimg
+
+cluster_image = mpimg.imread("cluster_natural.png")
+pers_image = mpimg.imread("cluster_persistent.png")
+
+plt.figure(figsize=(10,5))
+plt.imshow(cluster_image)
+plt.axis("off")
+plt.show()
+```
+
+
+```{python}
+# | echo: false
+# | label: fig-persclust
+# | fig-cap: "Hierarchical clustering results from the persistence images. Note that a coloring of an arbitary split at 10 clusters was selected for visualization purposes."
+
+plt.figure(figsize=(10,5))
+plt.imshow(pers_image)
+plt.axis("off")
+plt.show()
+```
+
+As with all dendrograms, the horizontal distance between leaves is meaningless, and the primary feature to be interpreted is the height at which cluster linkages occur. Comparing the dendrograms of @fig-cutoutclust and @fig-persclust, not only do the persistent images appear to fuse much earlier on in the clustering process, but the overall clustering process happens at a much lower range in height than the cutout clusterings. 
+
+A potential reason for this discrepancy in dynamic range could be the size of the cutout vectors; collapsing a $119\times119$ array creates a $14161$ length vector, resulting in a very wide ($242\times14161$) dataframe for the cutouts. When the number of variables (columns) in a dataframe starts to become large, distance that are calculated using the variables start to become increasing large in a phenomenon known as the Curse of Dimensionality. This could also explain the discrepancy between the high inital fusing heights in @fig-cutoutclust relative to those in @fig-persclust. 
+
+However, the number clusters that are fused at relatively small heights in @fig-persclust could be interpreted as a collection of lensed clusters with very similar structural features, and is not identified in the cutout clustering results of @fig-cutoutclust. This, in addition to the dimensionality issue with the cutouts, warrents some additional exploration.
+
+# Conclusions
+Our clustering results of the persistent images of 242 gravitationally lensed galaxies taken from the Euclid Q1 data release have identified a collection of galaxies that are more similar according to their persistence images than they are with their cutout images. This result could be affected by the high dimensions of the cutout images, wherein the Curse of Dimensionality could cause a bias in the linkage distances of the clusters, shifting the overall heights of the cutout clusterings to larger values. This result needs to be investigated further.
+
+We intend to continue exploring persistence images in this scenario through the following:
+
+- Reducing the size of the cutout vectors through PCA and more advanced dimension reduction algorithm.
+- Comparing our hierarchical clustering results with a more advanced clustering algorithm.
+- Exploring parameter space of the persistence images algorithm.
+- Investigating the similarities found from the clustering results to determine what, if any, classifications with physical interpretations exist.
+
+The goals above will be an outline for a Physics and Astronomy Honors Thesis during the 2025-2026 school year at Macalester College.
+
+# References

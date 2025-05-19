@@ -2,3 +2,29 @@
 title: "Astrophysics"
 ---
 
+# Problem Sets
+
+- [PS1](PS1.qmd)
+- [PS2](PS2.qmd)
+- [PS3](PS3.qmd)
+- [PS4](PS4.qmd)
+- [PS5](PS5.qmd)
+- [PS6](PS6.qmd)
+- [PS7](PS7.qmd)
+- [PS9](PS9.qmd)
+- [PS10](PS10.qmd)
+- [PS11](PS11.qmd)
+- [PS12](PS12.qmd)
+- [PS13](PS13.qmd)
+- [PS14](PS14.html)
+- [PS15](PS15.qmd)
+- [PS16](PS16.qmd)
+- [PS17](PS17.qmd)
+
+# Exams
+
+- [Exam 1](Exam1.qmd)
+- [Exam 2](exa2)
+- [Final Exam](Final.qmd)
+
+

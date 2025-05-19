@@ -36,11 +36,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-3692fb4b4745519386f59a8d5352662e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -127,10 +98,29 @@ window.Quarto = {
     <a class="nav-link" href="../../research.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../courses.html"> 
-<span class="menu-text">Courses</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../courses/honors/index.html">
+ <span class="dropdown-text">Honors</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/astrophysics/index.html">
+ <span class="dropdown-text">Astrophysics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/ML/index.html">
+ <span class="dropdown-text">Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/topology/index.html">
+ <span class="dropdown-text">Topology</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -143,27 +133,8 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#types-of-topology" id="toc-types-of-topology" class="nav-link active" data-scroll-target="#types-of-topology">Types of Topology</a></li>
-  <li><a href="#geometry-vs-toplogy" id="toc-geometry-vs-toplogy" class="nav-link" data-scroll-target="#geometry-vs-toplogy">Geometry vs Toplogy</a></li>
-  <li><a href="#continuity" id="toc-continuity" class="nav-link" data-scroll-target="#continuity">Continuity</a>
-  <ul class="collapse">
-  <li><a href="#open-sets" id="toc-open-sets" class="nav-link" data-scroll-target="#open-sets">Open Sets</a></li>
-  <li><a href="#closed-sets" id="toc-closed-sets" class="nav-link" data-scroll-target="#closed-sets">Closed Sets</a></li>
-  <li><a href="#continuity-by-open-sets" id="toc-continuity-by-open-sets" class="nav-link" data-scroll-target="#continuity-by-open-sets">Continuity by Open Sets</a></li>
-  </ul></li>
-  <li><a href="#topological-space" id="toc-topological-space" class="nav-link" data-scroll-target="#topological-space">Topological Space</a>
-  <ul class="collapse">
-  <li><a href="#constructing-a-topology" id="toc-constructing-a-topology" class="nav-link" data-scroll-target="#constructing-a-topology">Constructing a Topology</a></li>
-  <li><a href="#closed-subset" id="toc-closed-subset" class="nav-link" data-scroll-target="#closed-subset">Closed Subset</a></li>
-  <li><a href="#topological-space-and-continutity" id="toc-topological-space-and-continutity" class="nav-link" data-scroll-target="#topological-space-and-continutity">Topological Space and Continutity</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -187,136 +158,13 @@ window.Quarto = {
 </header>
 
 
-<section id="types-of-topology" class="level1">
-<h1>Types of Topology</h1>
+<p>Final Project</p>
 <ul>
-<li>Point set</li>
-<li>Geometric</li>
-<li>Algebraic</li>
-<li>Computational</li>
+<li><a href="../../courses/topology/paper.html">Final Paper</a></li>
+<li><a href="../../courses/topology/presentation.html">Final Presentation</a></li>
 </ul>
-</section>
-<section id="geometry-vs-toplogy" class="level1">
-<h1>Geometry vs Toplogy</h1>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Geometry</th>
-<th style="text-align: center;">Topology</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">measurments</td>
-<td style="text-align: center;">how are things qualitatively similar</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">rigid shapes</td>
-<td style="text-align: center;">answers qualitative questions</td>
-</tr>
-</tbody>
-</table>
-<p>So what is it?</p>
-<blockquote class="blockquote">
-<p><strong>Topology</strong> is the study of <em>continuous</em> functions.</p>
-</blockquote>
-</section>
-<section id="continuity" class="level1">
-<h1>Continuity</h1>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 75%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Naive Continuity</th>
-<th style="text-align: center;">Rigorous Continuity</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">draw without picking up your pencil</td>
-<td style="text-align: center;"><span class="math inline">\(\epsilon\)</span>-<span class="math inline">\(\delta\)</span> definition: <span class="math inline">\(\forall \epsilon&gt;0 \exists \delta&gt;0 s.t. |x-a|&lt;\delta \implies |f(x) - f(a)| &lt; \epsilon\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Cons</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Somone from planet Zog might have different intuition</td>
-<td style="text-align: center;">Impractical (prove all?) and distant reliant</td>
-</tr>
-</tbody>
-</table>
-<p>We want a definition of continuity that doesn’t rely on distance. Enter open sets.</p>
-<section id="open-sets" class="level2">
-<h2 class="anchored" data-anchor-id="open-sets">Open Sets</h2>
-<blockquote class="blockquote">
-<p><strong>Definition</strong>: If <span class="math inline">\(S\subset\mathbb{R}\)</span> then <span class="math inline">\(S\)</span> is open if <span class="math inline">\(\forall x \in S \exists\)</span> some open interval <span class="math inline">\((x-\delta_x, x+\delta_x)\)</span> (where <span class="math inline">\(\delta_x&gt;0\)</span>) contained within <span class="math inline">\(S\)</span>.</p>
-</blockquote>
-<p>Note that <span class="math inline">\((x-\delta_x, x+\delta_x)\)</span> is sometimes called an open neighborhood or “breathing space”.</p>
-<blockquote class="blockquote">
-<p><strong>Theorem</strong>: <span class="math inline">\(\displaystyle \bigcup_{}^\infty opensets = open\)</span></p>
-<p><strong>Theorem</strong>: <span class="math inline">\(\displaystyle \bigcap_{}^N opensets = open\)</span></p>
-</blockquote>
-</section>
-<section id="closed-sets" class="level2">
-<h2 class="anchored" data-anchor-id="closed-sets">Closed Sets</h2>
-<blockquote class="blockquote">
-<p><strong>Definition</strong>: A subset <span class="math inline">\(S\subset\mathbb{R}\)</span> is closed if its compliment <span class="math inline">\(\mathbb{R}-S\)</span> is open.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>Theorem</strong>: <span class="math inline">\(\displaystyle \bigcap_{}^\infty closedsets = closed\)</span></p>
-<p><strong>Theorem</strong>: <span class="math inline">\(\displaystyle \bigcup_{}^N closedsets = closed\)</span></p>
-</blockquote>
-<p>Note, open and closed sets are not opposites of each other!</p>
-</section>
-<section id="continuity-by-open-sets" class="level2">
-<h2 class="anchored" data-anchor-id="continuity-by-open-sets">Continuity by Open Sets</h2>
-<blockquote class="blockquote">
-<p><strong>Definition</strong>: If <span class="math inline">\(f:D\rightarrow C\)</span> is a function, and <span class="math inline">\(S\)</span> is a subset of <span class="math inline">\(C\)</span>, then the primage of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span>, written <span class="math inline">\(f^{-1}(S)\)</span>, is the subset of <span class="math inline">\(D\)</span> defined by <span class="math display">\[f^{-1}(S) = {x\in D, f(x)\in S}\]</span></p>
-</blockquote>
-<p>In other words, the preimage of <span class="math inline">\(S\)</span> consists of all the points which get mapped to <span class="math inline">\(S\)</span> by <span class="math inline">\(f\)</span>.</p>
-<blockquote class="blockquote">
-<p><strong>Theorem</strong>: Let <span class="math inline">\(f:\mathbb{R}\rightarrow\mathbb{R}\)</span> be a function. If <span class="math inline">\(f\)</span> is continuous, then <span class="math inline">\(f^{-1}(S)\)</span> is open whenever <span class="math inline">\(S\subset\mathbb{R}\)</span> is open. And vice versa: If <span class="math inline">\(f^{-1}(S)\)</span> is open whenever <span class="math inline">\(S\)</span> is an open subset of <span class="math inline">\(\mathbb{R}\)</span>, then <span class="math inline">\(f\)</span> is continuous.</p>
-</blockquote>
-<p>Note, continuity also works for closed sets!</p>
-</section>
-</section>
-<section id="topological-space" class="level1">
-<h1>Topological Space</h1>
-<blockquote class="blockquote">
-<p><strong>Definition</strong>: A set, <span class="math inline">\(X\)</span>, with a collection, <span class="math inline">\(T\)</span>, of subsets of <span class="math inline">\(X\)</span>, called “open” sets which satisfy the following</p>
-<p>T1) The set <span class="math inline">\(X\)</span> is “open” T2) The empty set is “open” T3) Arbitrary unions of open sets are open T4) Finite intersection of open sets are open</p>
-</blockquote>
-<p>The collection of open sets is called the topology of <span class="math inline">\(X\)</span></p>
-<p>Ex: <span class="math inline">\(\mathbb{R}\)</span></p>
-<section id="constructing-a-topology" class="level2">
-<h2 class="anchored" data-anchor-id="constructing-a-topology">Constructing a Topology</h2>
-<p>You can construct a topology by satisfying T1-T4 in two different ways.</p>
-<blockquote class="blockquote">
-<p><strong>Definition</strong>: Indiscrete Topology - Call empty set and set <span class="math inline">\(S\)</span> open</p>
-<p><strong>Definition</strong>: Discrete Topology - Take all subsets of <span class="math inline">\(S\)</span> to be open</p>
-</blockquote>
-</section>
-<section id="closed-subset" class="level2">
-<h2 class="anchored" data-anchor-id="closed-subset">Closed Subset</h2>
-<blockquote class="blockquote">
-<p><strong>Definition</strong>: A subset <span class="math inline">\(S\)</span> of a topological space <span class="math inline">\(T\)</span> is closed if <span class="math inline">\(T-S\)</span> is open.</p>
-</blockquote>
-</section>
-<section id="topological-space-and-continutity" class="level2">
-<h2 class="anchored" data-anchor-id="topological-space-and-continutity">Topological Space and Continutity</h2>
-<blockquote class="blockquote">
-<p><strong>Definition</strong>: A function/map <span class="math inline">\(f:S\rightarrow T\)</span> from one topological space to another is continuous if the preimage <span class="math inline">\(f^{-1}(Q)\)</span> of every open set <span class="math inline">\(Q\subset T\)</span> is an open set in <span class="math inline">\(S\)</span>.</p>
-<p><strong>Definition</strong>: If <span class="math inline">\(S\)</span> has discrete topology and <span class="math inline">\(T\)</span> has any topological space, then any function <span class="math inline">\(f:S\rightarrow T\)</span> is continuous. If <span class="math inline">\(T\)</span> has indiscrete topology and <span class="math inline">\(S\)</span> has any topological space, then any function <span class="math inline">\(f:S\rightarrow T\)</span> is continuous.</p>
-<p><strong>Definition</strong>: If <span class="math inline">\(R\)</span>, <span class="math inline">\(S\)</span>, <span class="math inline">\(T\)</span> are topological spaces and <span class="math inline">\(f:R\rightarrow S\)</span>, <span class="math inline">\(g:S\rightarrow T\)</span> are continuous functions, then <span class="math inline">\(g\circ f:R\rightarrow T\)</span> is continuous.</p>
-</blockquote>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -455,7 +303,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = true;
+  const darkModeDefault = false;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
