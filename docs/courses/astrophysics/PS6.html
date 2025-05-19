@@ -71,11 +71,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-3692fb4b4745519386f59a8d5352662e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -162,10 +162,29 @@ window.Quarto = {
     <a class="nav-link" href="../../research.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../courses.html"> 
-<span class="menu-text">Courses</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../courses/honors/index.html">
+ <span class="dropdown-text">Honors</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/astrophysics/index.html">
+ <span class="dropdown-text">Astrophysics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/ML/index.html">
+ <span class="dropdown-text">Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/topology/index.html">
+ <span class="dropdown-text">Topology</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -226,7 +245,7 @@ window.Quarto = {
 <p>Using trig, we can determine the length corresponding to our diffraction angle at a distance of the Moon’s perigee. Dividing that length by the hair growth rate will tell us how long we would have to wait before we can resolve the image of the hair.</p>
 <p>The code below does just that.</p>
 </blockquote>
-<div id="9a669791" class="cell" data-execution_count="1">
+<div id="aad173ad" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -268,7 +287,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: Given our observing frequency and bandwitdth, the corresponding mid, lower, and upper frequencies are simply the center and bounds created by our bandwidth, centered at the observing frequency. Thus,</p>
 </blockquote>
-<div id="8ea7f9ff" class="cell" data-execution_count="2">
+<div id="a9297970" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">3.2</span> <span class="op">*</span> u.GHz</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bw <span class="op">=</span> <span class="dv">80</span> <span class="op">*</span> u.MHz</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>f_m <span class="op">=</span> f</span>
@@ -287,7 +306,7 @@ lower frequency: 3.16 GHz</code></pre>
 <p>Assuming the radio dish is 100% effective, the total power is given by</p>
 <p><span class="math display">\[P = S * A * \Delta\nu,\]</span></p>
 <p>where <span class="math inline">\(S\)</span> is the spectral flux density, <span class="math inline">\(A\)</span> is the collecting area of the telescope, and <span class="math inline">\(\Delta\nu\)</span> is the bandwidth.</p>
-<div id="f59f7e29" class="cell" data-execution_count="3">
+<div id="8f583b3a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> <span class="fl">3.17</span> <span class="op">*</span> <span class="fl">1E-3</span> <span class="op">*</span> u.Jy</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">65</span> <span class="op">*</span> u.m</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">23</span> <span class="op">*</span> u.Mpc</span>
@@ -303,7 +322,7 @@ lower frequency: 3.16 GHz</code></pre>
 <p><span class="math display">\[\frac{P_{source}}{P_{observed}} = \frac{A_{source}}{A_{telescope}}\]</span></p>
 <p>We can find the power of the source by multiplying the ratio by the power observed by the telescope.</p>
 <p><span class="math display">\[P_{source} = \frac{A_{source}}{A_{telescope}} * P_{observed}\]</span></p>
-<div id="ec0adcf2" class="cell" data-execution_count="4">
+<div id="e10f0546" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># power at source, ratio is the same</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>A_source <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> D <span class="op">**</span> <span class="dv">2</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>A_telescope <span class="op">=</span> np.pi <span class="op">*</span> (d<span class="op">/</span><span class="dv">2</span>) <span class="op">**</span> <span class="dv">2</span></span>
@@ -334,7 +353,7 @@ lower frequency: 3.16 GHz</code></pre>
 <p><span class="math display">\[\Delta x = \frac{\Delta\theta}{S}\]</span></p>
 <p>The code below perfoms the processes described above for the given scenario.</p>
 </blockquote>
-<div id="eb8d6739" class="cell" data-execution_count="5">
+<div id="6148d9ea" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="dv">3251</span> <span class="op">*</span> u.mm</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">16</span> <span class="op">/</span> <span class="fl">39.37</span> <span class="op">*</span> u.m</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -498,7 +517,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = true;
+  const darkModeDefault = false;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {

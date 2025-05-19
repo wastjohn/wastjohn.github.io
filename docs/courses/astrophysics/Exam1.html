@@ -71,11 +71,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-3692fb4b4745519386f59a8d5352662e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -162,10 +162,29 @@ window.Quarto = {
     <a class="nav-link" href="../../research.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../courses.html"> 
-<span class="menu-text">Courses</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../courses/honors/index.html">
+ <span class="dropdown-text">Honors</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/astrophysics/index.html">
+ <span class="dropdown-text">Astrophysics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/ML/index.html">
+ <span class="dropdown-text">Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/topology/index.html">
+ <span class="dropdown-text">Topology</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -237,7 +256,7 @@ M96: $(\alpha, \delta) = $ 10:46:45.7, +11:49:12</code></pre>
 <p>I will say that forgetting declination is in degrees:ARCminutes:ARCseconds is a pretty big mistake, but it was also my only mistake on a problem with a lot of algebra, so I would only take off 3 points from my original answer.</p>
 <p>The code below correctly calculates the angular separation between the two galaxies using Astropy’s SkyCoords class and separation method.</p>
 </blockquote>
-<div id="c271917c" class="cell" data-execution_count="1">
+<div id="1b9e0fba" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.coordinates <span class="im">import</span> SkyCoord</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -270,7 +289,7 @@ M96: $(\alpha, \delta) = $ 10:46:45.7, +11:49:12</code></pre>
 <p><span class="math display">\[r_{p} = a - ae, \quad r_{a} = a + ae,\]</span></p>
 <p>where <span class="math inline">\(a\)</span> is the semi-major axis. The code below verifies my original calculations.</p>
 </blockquote>
-<div id="3ef585cd" class="cell" data-execution_count="2">
+<div id="b9b07065" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="fl">0.32</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> <span class="dv">650</span> <span class="op">*</span> u.yr</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -302,7 +321,7 @@ aphelion: 99.05 AU</code></pre>
 <p>My original answer the right equation, but wrong understanding. However, I did check my work and conclude it was unphysical in the exam, so I would give myself 6/10.</p>
 <p>I give myself 8/10 now, because I am not quite sure why parallax doesn’t work in this case, especially since the foundation for parallax is a geometric scenario very similar to what I used below.</p>
 </blockquote>
-<div id="f5b4df91" class="cell" data-execution_count="3">
+<div id="9d270e57" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>l_rest <span class="op">=</span> <span class="fl">31.065</span> <span class="op">*</span> u.cm</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> <span class="fl">14.7</span> <span class="op">*</span> u.Mpc</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sep <span class="op">=</span> <span class="fl">61.9</span> <span class="op">*</span> u.kpc</span>
@@ -324,7 +343,7 @@ aphelion: 99.05 AU</code></pre>
 <p><span class="math display">\[\frac{N_b}{N_a} = \frac{g_b}{g_a}e^{-\frac{\Delta E}{kT}}\longrightarrow T = \frac{-\Delta E}{k\ln\frac{N_b}{N_a}\frac{g_a}{g_b}}\]</span></p>
 <p>but my end result differs from my revised answer. I likely entered the numbers into the calculator wrong during the exam, as my revised answer is the same order of magnitude as my original answer.</p>
 </blockquote>
-<div id="8821570b" class="cell" data-execution_count="4">
+<div id="ec1f41f1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>g_a <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">1</span> <span class="op">**</span> <span class="dv">2</span>  <span class="co"># ground state degeneracy</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>g_b <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">**</span> <span class="dv">2</span>  <span class="co"># second excited state degeneracy</span></span>
@@ -364,7 +383,7 @@ aphelion: 99.05 AU</code></pre>
 </ol>
 <p><strong>Revised Answer (10/10)</strong>: All of my revised answers match my original answers.</p>
 </blockquote>
-<div id="db00b4ac" class="cell" data-execution_count="5">
+<div id="da17acbb" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.0129</span> <span class="op">*</span> u.arcsec</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fl">3.749</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>M_Sun <span class="op">=</span> <span class="fl">4.74</span></span>
@@ -442,7 +461,7 @@ m at 3d = 6.13</code></pre>
 <p><span class="math display">\[\frac{m_1}{m_2} = \frac{\Delta\lambda_2}{\Delta\lambda_1}\]</span></p>
 <p>Since they are main sequence stars, we expect the more massive star to be hotter. The code chuck below calculates the answers for parts a) and b)</p>
 </blockquote>
-<div id="18f1f6a6" class="cell" data-execution_count="6">
+<div id="dd86ce73" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dl1 <span class="op">=</span> <span class="fl">0.064</span> <span class="op">*</span> u.angstrom  <span class="co"># smaller shift, more massive</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dl2 <span class="op">=</span> <span class="fl">0.011</span> <span class="op">*</span> u.nm  <span class="co"># larger shift, less massive</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -491,7 +510,7 @@ Mass of larger star: 1.94 solMass</code></pre>
 <p><span class="math display">\[\frac{m_A}{m_B} = \frac{v_B}{v_A}\]</span></p>
 <p>Multiplying the mass ratio by the mass of the lower star, we can determine the mass of the larger star.</p>
 </blockquote>
-<div id="8341c9bd" class="cell" data-execution_count="7">
+<div id="135639d0" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>v_A <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>v_B <span class="op">=</span> <span class="dv">18</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>m_s <span class="op">=</span> <span class="fl">2.17</span> <span class="op">*</span> u.M_sun</span>
@@ -539,7 +558,7 @@ Mass of larger star: 1.94 solMass</code></pre>
 <p><span class="math display">\[v_{mp} = \sqrt{\frac{2kT}{m}} \longrightarrow T = \frac{v_{mp}^2 m}{2k}, \quad KE_{avg} = \frac{3}{2}kT\]</span></p>
 <p>The following code chunk calculates the temperature of gas <span class="math inline">\(A\)</span> and the average kinetic energy of a particle in gas <span class="math inline">\(B\)</span>.</p>
 </blockquote>
-<div id="528e06ee" class="cell" data-execution_count="8">
+<div id="0662e253" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>v_mpA <span class="op">=</span> <span class="fl">10.5</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>v_mpB <span class="op">=</span> <span class="dv">13</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> c.m_p  <span class="co"># proton/Hydrogen mass</span></span>
@@ -725,7 +744,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = true;
+  const darkModeDefault = false;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {

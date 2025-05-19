@@ -162,10 +162,29 @@ window.Quarto = {
     <a class="nav-link" href="../../research.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../courses.html"> 
-<span class="menu-text">Courses</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../courses/honors/index.html">
+ <span class="dropdown-text">Honors</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/astrophysics/index.html">
+ <span class="dropdown-text">Astrophysics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/ML/index.html">
+ <span class="dropdown-text">Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/topology/index.html">
+ <span class="dropdown-text">Topology</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -426,7 +445,7 @@ window.Quarto = {
 <p><span class="math display">\[\theta_{rad} = \frac{D}{d}\]</span></p>
 <p>The following code chuck solves for the angular and physical separation given the coordinates of the two stars and the distance to the closest star.</p>
 </blockquote>
-<div id="ae46be5c" class="cell" data-execution_count="1">
+<div id="3c5f6416" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>alnitak <span class="op">=</span> (<span class="fl">085.18969443</span> <span class="op">*</span> u.deg,<span class="op">-</span><span class="fl">01.94257359</span> <span class="op">*</span> u.deg)</span>

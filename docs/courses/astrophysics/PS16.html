@@ -71,11 +71,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-3692fb4b4745519386f59a8d5352662e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -162,10 +162,29 @@ window.Quarto = {
     <a class="nav-link" href="../../research.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../courses.html"> 
-<span class="menu-text">Courses</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../courses/honors/index.html">
+ <span class="dropdown-text">Honors</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/astrophysics/index.html">
+ <span class="dropdown-text">Astrophysics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/ML/index.html">
+ <span class="dropdown-text">Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/topology/index.html">
+ <span class="dropdown-text">Topology</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -236,7 +255,7 @@ window.Quarto = {
 <p><span class="math display">\[r_f = \frac{0.025 r_{avg} M_c r_i}{M_e r_i + 0.025 r_{avg} M_c}\]</span></p>
 <p>The code chunk below estimates <span class="math inline">\(r\)</span> to approximately 6000 km, which is 2 orders of magnitude larger than what we expect for a neutron star (~10 km).</p>
 </blockquote>
-<div id="ba982e44" class="cell" data-execution_count="1">
+<div id="0756da23" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -269,7 +288,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: The code chunk below calculates the answer to each question.</p>
 </blockquote>
-<div id="bcb1b123" class="cell" data-execution_count="2">
+<div id="fedcc5a7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>M_net <span class="op">=</span> <span class="fl">0.057</span> <span class="op">*</span> u.M_sun</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m_amu <span class="op">=</span> <span class="dv">56</span> <span class="op">*</span> u.u</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>E_amu <span class="op">=</span> <span class="fl">2.89</span> <span class="op">*</span> u.MeV</span>
@@ -322,7 +341,7 @@ f) Time to fade 6.191 mag: ~2.00 yr</code></pre>
 <p>Note that for part b), we can solve for <span class="math inline">\(\lambda\)</span> by <span class="math inline">\(c=\lambda\nu\)</span>, which adds the following relation to our equation above.</p>
 <p><span class="math display">\[\frac{\lambda_0}{\lambda_\infty} = \frac{\Delta t_0}{\Delta t_\infty} = \frac{\nu_\infty}{\nu_0} = \left(1 - \frac{2GM}{r_0 c^2}\right)^{1/2}\]</span></p>
 </blockquote>
-<div id="f170cb9d" class="cell" data-execution_count="3">
+<div id="cc9c34b0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>r0 <span class="op">=</span> <span class="dv">10</span> <span class="op">*</span> u.km  <span class="co"># radius of the neutron star</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="fl">1.48</span> <span class="op">*</span> u.M_sun</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>t_A <span class="op">=</span> <span class="dv">1</span> <span class="op">*</span> u.hr</span>
@@ -354,7 +373,7 @@ lambda_B: 874.7142869225755 nm</code></pre>
 <p><strong>Answer</strong>: The code chunk below calculates the Schwarzchild radius of the black hole to be around <span class="math inline">\(2.7\cdot10^4\)</span> solar radii, and the shadow of the black hole to be around <span class="math inline">\(7.59\cdot10^4\)</span> solar radii. We expect the shadow to be on the order of the Schwarzchild radius.</p>
 <p>The code chunk below also creates the desired log-log plot in part b) of the Schwarzchild radius as a function of black hole mass.</p>
 </blockquote>
-<div id="93409dae" class="cell" data-execution_count="4">
+<div id="8d03b157" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>M87 <span class="op">=</span> <span class="fl">6.5E9</span> <span class="op">*</span> u.M_sun</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dist87 <span class="op">=</span> <span class="fl">16.8</span> <span class="op">*</span> u.Mpc</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>angDiam87 <span class="op">=</span> <span class="fl">42E-6</span> <span class="op">*</span> u.arcsec</span>
@@ -532,7 +551,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = true;
+  const darkModeDefault = false;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {

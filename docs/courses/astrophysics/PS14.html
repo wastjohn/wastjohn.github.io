@@ -71,11 +71,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-3692fb4b4745519386f59a8d5352662e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a3d30b477d13debbc8888286ac5bac8f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -162,10 +162,29 @@ window.Quarto = {
     <a class="nav-link" href="../../research.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../courses.html"> 
-<span class="menu-text">Courses</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../courses/honors/index.html">
+ <span class="dropdown-text">Honors</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/astrophysics/index.html">
+ <span class="dropdown-text">Astrophysics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/ML/index.html">
+ <span class="dropdown-text">Machine Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/topology/index.html">
+ <span class="dropdown-text">Topology</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -268,7 +287,7 @@ window.Quarto = {
 <p><strong>Answer</strong>: The code below generates the plots in parts 1) and 2).</p>
 <p>As the remaining stellar mass increases, the ratio of core mass to total mass decreases. In other words, as we lose mass, the core to total mass ratio increases, indicating that the core is becoming the dominant mass in the star.</p>
 </blockquote>
-<div id="6d8f7bb5" class="cell" data-execution_count="1">
+<div id="df579280" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.io <span class="im">import</span> <span class="bu">ascii</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -334,7 +353,7 @@ window.Quarto = {
 <p><span class="math display">\[\frac{dM}{dt} = (-4\times10^{-13})\frac{\eta\cdot L}{g\cdot R},\]</span></p>
 <p>to solve for part b). Note that we get a value that is essentially zero. This is in agreement with what we see in our plots for Question 2, where most of the mass of the star is in the core, so there is no fuel for the core to do fusion, so there are no thermal pulses, so there is no mass loss.</p>
 </blockquote>
-<div id="93d2deeb" class="cell" data-execution_count="2">
+<div id="e3b6aa10" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> <span class="fl">3.6634</span> <span class="op">*</span> u.K</span>
@@ -495,7 +514,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = true;
+  const darkModeDefault = false;
   let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {

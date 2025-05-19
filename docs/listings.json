@@ -3,79 +3,12 @@
     "listing": "/research.html",
     "items": [
       "/research/H2OMegamasers/presentation.pptx",
-      "/research/CONs/index.html",
       "/research/GBT-ConfirmedLocalVolumeDwarfGalaxies/index.html",
       "/research/LeoP/index.html",
       "/research/pyScope/index.html",
       "/research/TUBRO/index.html",
+      "/research/CONs/index.html",
       "/research/H2OMegamasers/index.html"
-    ]
-  },
-  {
-    "listing": "/courses.html",
-    "items": [
-      "/courses/astrophysics/index.html",
-      "/courses/astrophysics/Exam1.html",
-      "/courses/astrophysics/Exam2.html",
-      "/courses/astrophysics/Final.html",
-      "/courses/astrophysics/PS1.html",
-      "/courses/astrophysics/PS10.html",
-      "/courses/astrophysics/PS11.html",
-      "/courses/astrophysics/PS12.html",
-      "/courses/astrophysics/PS13.html",
-      "/courses/astrophysics/PS14.html",
-      "/courses/astrophysics/PS15.html",
-      "/courses/astrophysics/PS16.html",
-      "/courses/astrophysics/PS17.html",
-      "/courses/astrophysics/PS2.html",
-      "/courses/astrophysics/PS3.html",
-      "/courses/astrophysics/PS4.html",
-      "/courses/astrophysics/PS5.html",
-      "/courses/astrophysics/PS6.html",
-      "/courses/astrophysics/PS7.html",
-      "/courses/astrophysics/PS9.html",
-      "/courses/ML/index.html",
-      "/courses/honors/index.html",
-      "/courses/honors/presentation.html",
-      "/courses/topology/index.html",
-      "/courses/topology/main.html",
-      "/courses/topology/rtda.html"
-    ]
-  },
-  {
-    "listing": "/courses/astrophysics/index.html",
-    "items": [
-      "/courses/astrophysics/work/PS1.html"
-    ]
-  },
-  {
-    "listing": "/courses-old.html",
-    "items": [
-      "/courses/astrophysics/index.html",
-      "/courses/astrophysics/Exam1.html",
-      "/courses/astrophysics/Exam2.html",
-      "/courses/astrophysics/Final.html",
-      "/courses/astrophysics/PS1.html",
-      "/courses/astrophysics/PS10.html",
-      "/courses/astrophysics/PS11.html",
-      "/courses/astrophysics/PS12.html",
-      "/courses/astrophysics/PS13.html",
-      "/courses/astrophysics/PS14.html",
-      "/courses/astrophysics/PS15.html",
-      "/courses/astrophysics/PS16.html",
-      "/courses/astrophysics/PS17.html",
-      "/courses/astrophysics/PS2.html",
-      "/courses/astrophysics/PS3.html",
-      "/courses/astrophysics/PS4.html",
-      "/courses/astrophysics/PS5.html",
-      "/courses/astrophysics/PS6.html",
-      "/courses/astrophysics/PS7.html",
-      "/courses/astrophysics/PS9.html",
-      "/courses/honors/index.html",
-      "/courses/ML/index.html",
-      "/courses/topology/paper.html",
-      "/courses/topology/presentation.html",
-      "/courses/topology/index.html"
     ]
   }
 ]
