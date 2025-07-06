@@ -2,7 +2,7 @@
 title: "pyScope: Optical Telescope Automation with Python"
 image: featured.png
 image-alt: "pyScope logo"
-date: now
+date: 06/19/2024
 categories:
     - Optical Astronomy
     - Python
@@ -12,4 +12,4 @@ about:
     image: featured.png
 ---
 
-Python programming
+[Link to AAS presentation](https://baas.aas.org/pub/2024n7i228p02/release/1)

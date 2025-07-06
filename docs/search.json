@@ -4,14 +4,14 @@
     "href": "research.html",
     "title": "Research",
     "section": "",
-    "text": "Here is some text about my research.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nExploring Hidden Nuclei in Nearby Galaxies\n\n\n\nOptical Astronomy\n\n\nJWST\n\n\nHST\n\n\nPython\n\n\nSAOImage DS9\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\nJul 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies\n\n\n\nRadio Astronomy\n\n\nGBT\n\n\nInternational Collegues\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\nJul 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamental Astrophysics at Low Metallicity: Leo P\n\n\n\nRadio Astronomy\n\n\nVLA\n\n\nPython\n\n\nCASA\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\nJul 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npyScope: Optical Telescope Automation with Python\n\n\n\nOptical Astronomy\n\n\nPython\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\nJul 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTURBO: Total-coverage Ultra-fast Response to Binary Mergers Observatory\n\n\n\nGravitational Waves\n\n\nOptical Astronomy\n\n\nPython\n\n\nSQL\n\n\nHTML/CSS\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\nJul 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalysis of the Optical Spectra of H2O Megamaser Emissions\n\n\n\nOptical Astronomy\n\n\nGBT\n\n\nPython\n\n\nSQL\n\n\nPast Project\n\n\n\n\n\n\n\n\n\n\nJun 1, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Here is some text about my research.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nSwimSense: Open-Source Data Science for Swimmers\n\n\n\nPython\n\n\nArduino\n\n\nSwimming\n\n\n\n\n\n\n\n\n\n\nJul 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTURBO: Total-coverage Ultra-fast Response to Binary Mergers Observatory\n\n\n\nGravitational Waves\n\n\nOptical Astronomy\n\n\nPython\n\n\nSQL\n\n\nHTML/CSS\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\nJul 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies\n\n\n\nRadio Astronomy\n\n\nGBT\n\n\nInternational Collegues\n\n\nPaper\n\n\n\n\n\n\n\n\n\n\nJun 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotes on Compact Obscured Nuclei I. The Evolutionary Context\n\n\n\nOptical Astronomy\n\n\nInfrared Astronomy\n\n\nJWST\n\n\nHST\n\n\nPython\n\n\nR\n\n\nSAOImage DS9\n\n\nPaper\n\n\n\n\n\n\n\n\n\n\nApr 9, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamental Astrophysics at Low Metallicity: Leo P\n\n\n\nRadio Astronomy\n\n\nVLA\n\n\nPython\n\n\nCASA\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\nJun 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npyScope: Optical Telescope Automation with Python\n\n\n\nOptical Astronomy\n\n\nPython\n\n\nIn progress\n\n\n\n\n\n\n\n\n\n\nJun 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalysis of the Optical Spectra of H2O Megamaser Emissions\n\n\n\nOptical Astronomy\n\n\nGBT\n\n\nPython\n\n\nSQL\n\n\nPast Project\n\n\n\n\n\n\n\n\n\n\nJun 1, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "research/pyScope/index.html",
     "href": "research/pyScope/index.html",
     "title": "pyScope: Optical Telescope Automation with Python",
     "section": "",
-    "text": "Python programming"
+    "text": "Link to AAS presentation"
   },
   {
     "objectID": "research/H2OMegamasers/index.html",
@@ -23,9 +23,9 @@
   {
     "objectID": "research/CONs/index.html",
     "href": "research/CONs/index.html",
-    "title": "Exploring Hidden Nuclei in Nearby Galaxies",
+    "title": "Notes on Compact Obscured Nuclei I. The Evolutionary Context",
     "section": "",
-    "text": "Exploring Hidden Nuclei in Nearby Galaxies, Macalester College (Fall 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John (Jay) Gallagher III (Visiting Astronomy Professor, Macalester College & Emeritus Professor of Astronomy, U. Wisconsin-Madison)\nScheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024"
+    "text": "Exploring Hidden Nuclei in Nearby Galaxies, Macalester College (Fall 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John (Jay) Gallagher III (Visiting Astronomy Professor, Macalester College & Emeritus Professor of Astronomy, U. Wisconsin-Madison)\nScheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024\n\n\nLink to our research note\nPart 1 of 2. Link to second research note"
   },
   {
     "objectID": "courses/topology/presentation.html#section-1",
@@ -354,14 +354,14 @@
     "href": "research/GBT-ConfirmedLocalVolumeDwarfGalaxies/index.html",
     "title": "Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies",
     "section": "",
-    "text": "Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies, Macalester College (Summer 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John Cannon\nAdditional research members:"
+    "text": "Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies, Macalester College (Summer 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John Cannon\nAdditional research members:\n\n\nPaper we published"
   },
   {
     "objectID": "research/LeoP/index.html",
     "href": "research/LeoP/index.html",
     "title": "Fundamental Astrophysics at Low Metallicity: Leo P",
     "section": "",
-    "text": "Fundamental Astrophysics at Low Metallicity: Leo P, Macalester College (Summer 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John Cannon (Macalester Physics and Astronomy Department)\nScheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024"
+    "text": "Fundamental Astrophysics at Low Metallicity: Leo P, Macalester College (Summer 2023 - Present) – [Description of research]\n\nResearch advisor: Dr. John Cannon (Macalester Physics and Astronomy Department)\nScheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024\n\n\nLink to AAS presentation"
   },
   {
     "objectID": "research/TUBRO/index.html",
@@ -369,5 +369,12 @@
     "title": "TURBO: Total-coverage Ultra-fast Response to Binary Mergers Observatory",
     "section": "",
     "text": "Python programming"
+  },
+  {
+    "objectID": "research/SwimSense/index.html",
+    "href": "research/SwimSense/index.html",
+    "title": "SwimSense: Open-Source Data Science for Swimmers",
+    "section": "",
+    "text": "SwimSense"
   }
 ]

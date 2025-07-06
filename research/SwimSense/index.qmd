@@ -1,0 +1,12 @@
+---
+title: "SwimSense: Open-Source Data Science for Swimmers"
+date: now
+categories:
+    - Python
+    - Arduino
+    - Swimming
+about: 
+    template: solana
+---
+
+SwimSense

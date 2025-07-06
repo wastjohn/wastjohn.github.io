@@ -2,12 +2,12 @@
 title: "Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies"
 image: featured.png
 image-alt: "Legacy survey images overlaid with HI spectra from program GBT/23B-032"
-date: now
+date: 6/10/2025
 categories:
     - Radio Astronomy
     - GBT
     - International Collegues
-    - In progress
+    - Paper
 about: 
     template: solana
     image: featured.png
@@ -15,3 +15,6 @@ about:
 * Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies, Macalester College (Summer 2023 - Present) – [Description of research]
     + Research advisor: Dr. John Cannon
     + Additional research members:  
+
+
+[Paper we published](https://iopscience.iop.org/article/10.3847/1538-3881/add888)

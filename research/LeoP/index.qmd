@@ -2,7 +2,7 @@
 title: "Fundamental Astrophysics at Low Metallicity: Leo P"
 image: featured.png
 image-alt: "Moment Map of Leo P"
-date: now
+date: 06/19/2024
 categories:
     - Radio Astronomy
     - VLA
@@ -17,3 +17,6 @@ about:
 *	Fundamental Astrophysics at Low Metallicity: Leo P, Macalester College (Summer 2023 - Present) – [Description of research]
     +	Research advisor: Dr. John Cannon (Macalester Physics and Astronomy Department)
     +	Scheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024
+
+
+[Link to AAS presentation](https://baas.aas.org/pub/2024n7i203p03/release/1)

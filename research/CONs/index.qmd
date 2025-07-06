@@ -1,15 +1,17 @@
 ---
-title: "Exploring Hidden Nuclei in Nearby Galaxies"
+title: "Notes on Compact Obscured Nuclei I. The Evolutionary Context"
 image: featured.png
 image-alt: "False-color ratio image of NGC2273 "
-date: now
+date: 04/09/25
 categories:
     - Optical Astronomy
+    - Infrared Astronomy
     - JWST
     - HST
     - Python
+    - R
     - SAOImage DS9
-    - In progress
+    - Paper
 about: 
     template: solana
     image: featured.png
@@ -18,3 +20,6 @@ about:
     + Research advisor: Dr. John (Jay) Gallagher III (Visiting Astronomy Professor, Macalester College & Emeritus Professor of Astronomy, U. Wisconsin-Madison)
     + Scheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024
 
+[Link to our research note](https://iopscience.iop.org/article/10.3847/2515-5172/adcab1)
+
+Part 1 of 2. [Link to second research note](https://iopscience.iop.org/article/10.3847/2515-5172/adcb3b)
