@@ -247,7 +247,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: The following code chunk calculates the answers to the questions above. Given the relative change in part d), turbulence does not make a significant contribution to FWHM in the solar photosphere.</p>
 </blockquote>
-<div id="928d458b" class="cell" data-execution_count="1">
+<div id="0c5ed185" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -289,7 +289,7 @@ b) At which wavelength can you see farther into the gas? c) How much farther?</p
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: The code chunk below calculates the distances for <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> from the given the opacities, density, and optical depths. From this result, we find that <span class="math inline">\(\lambda_1\)</span> has the larger distance, thus we can see further into the gas at <span class="math inline">\(\lambda_1\)</span> by about 15 km.</p>
 </blockquote>
-<div id="878e62c2" class="cell" data-execution_count="2">
+<div id="308f1abb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tau_1, tau_2 <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">2</span><span class="op">/</span><span class="dv">3</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> <span class="fl">2.2E-4</span> <span class="op">*</span> u.kg <span class="op">/</span> u.m <span class="op">**</span> <span class="dv">3</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>kappa_1 <span class="op">=</span> <span class="fl">0.026</span> <span class="op">*</span> u.m <span class="op">**</span> <span class="dv">2</span> <span class="op">/</span> u.kg</span>
@@ -316,7 +316,7 @@ difference: 15540.02 m</code></pre>
 <p>The alfven speed of a wave is given by <span class="math display">\[v_a = \frac{B}{\sqrt{\mu_0 \rho}},\]</span></p>
 <p>where <span class="math inline">\(\rho\)</span> is the density of the photosphere, which is given in the textbook to be <span class="math inline">\(4.9\cdot10^{-6}\)</span> kg / m<span class="math inline">\(^3\)</span>. Dividing the length of our cube volume by the alfven speed gives the total time for an alfven wave to traverse the flare, which we estimate to be around <span class="math inline">\(1.17\cdot10^{-4}\)</span> s.</p>
 </blockquote>
-<div id="8ce4223a" class="cell" data-execution_count="3">
+<div id="7e63f9a4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="fl">0.03</span> <span class="op">*</span> u.T</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> <span class="dv">1025</span> <span class="op">*</span> u.J</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>density <span class="op">=</span> <span class="fl">4.9E-6</span> <span class="op">*</span> u.kg <span class="op">/</span> u.m <span class="op">**</span> <span class="dv">3</span></span>

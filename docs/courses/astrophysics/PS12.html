@@ -245,7 +245,7 @@ window.Quarto = {
 <li>Find the apparent visual magnitude of the star if it is lying just behind the nebula.</li>
 <li>Without taking the existence of the nebula into consideration, based on its apparent magnitude how far away does the star in part b) appear to be? What would be the percentage error in determining the distance if interstellar extinction were neglected?</li>
 </ol>
-<div id="42ff5daf" class="cell" data-execution_count="1">
+<div id="1d52cece" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -279,7 +279,7 @@ window.Quarto = {
 <h1>Problem 2</h1>
 <p>Part 1) Using the Boltzmann factor, estimate the temperature required for a hydrogen atom’s electron and proton to go from being anti-aligned to being aligned. Are the temperatures in H I clouds sufficient to produce this low-energy excited state?</p>
 <p>Part 2) A cold H I cloud produces a 21-cm line with an optical depth at its center of <span class="math inline">\(\tau_\lambda = 0.5\)</span>. a) Where on the curve of growth do you expect this line to lie? b) Check your answer in part a) to equation 12.7 in the book. If the temperature of the gas is 100 K, the line’s full width at half-maximum is 10 km/s, and the average atomic number density is <span class="math inline">\(10^7\)</span> m<span class="math inline">\(^{-3}\)</span>, how thick is the cloud? Express your answer in pc. c) What other observations could you conduct to verify this thickness?</p>
-<div id="fe58ac51" class="cell" data-execution_count="2">
+<div id="32ea3a93" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># part 1</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> c.h <span class="op">*</span> c.c <span class="op">/</span> (<span class="dv">21</span> <span class="op">*</span> u.cm)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>p_ratio <span class="op">=</span> <span class="fl">1E-6</span></span>

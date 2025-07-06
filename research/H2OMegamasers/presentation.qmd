@@ -1,6 +1,0 @@
----
-title: "Presentation"
-format:
-    pptx:
-        reference-doc: 2022_ISEFPresentation_StJohn.pptx
----

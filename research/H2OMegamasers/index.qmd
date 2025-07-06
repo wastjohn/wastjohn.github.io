@@ -15,7 +15,7 @@ about:
 ---
 At Massanutten Regional Governor's School (MRGS), students take a research course where they are given the opportunnity to work with outside mentors. I was fortunate enough to be able to work with Dr. Anca Constantin, a professor in JMU's Physics and Astronomy Department, during my two years at MRGS.
 
-The goal of our project was to learn more about water megamasers by examining the optical spectra of a large dataset of confirmed megamasers. This was done by crossmatching a catalog of known megamasers, provided by the Megamaser Cosmology Project (MCP), with the Sloan Digital Sky Survey (SDSS). Python was used for data manipulation and visualization. SQL was used for data filtering in the SDSS. If interested, you can download a copy of my <a href="2022_ISEFPresentation_StJohn.pptx">end-of-year/ISEF presentation</a>.
+The goal of our project was to learn more about water megamasers by examining the optical spectra of a large dataset of confirmed megamasers. This was done by crossmatching a catalog of known megamasers, provided by the Megamaser Cosmology Project (MCP), with the Sloan Digital Sky Survey (SDSS). Python was used for data manipulation and visualization. SQL was used for data filtering in the SDSS. If interested, you can download a copy of my <a href="/images/2022_ISEFPresentation_StJohn.pptx">end-of-year/ISEF presentation</a>.
 
 <!-- TODO: Create quarto version of presentation -->
 
