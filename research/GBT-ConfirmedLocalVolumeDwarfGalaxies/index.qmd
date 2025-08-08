@@ -1,5 +1,5 @@
 ---
-title: "Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies"
+title: "100 Proof: HI Observations of 100 Nearby Dwarf Galaxies with the 100 m Green Bank Telescope"
 image: featured.png
 image-alt: "Legacy survey images overlaid with HI spectra from program GBT/23B-032"
 date: 6/10/2025
