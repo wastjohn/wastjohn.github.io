@@ -1,0 +1,18 @@
+---
+title: "Persistent Images of Gravitionally Lensed Galaxies"
+date: May 7, 2025
+image: featured.png
+image-alt: ""
+categories:
+    - Topology
+    - Python
+    - Graviational Lensing
+    - Euclid
+about: 
+    template: solana
+    image: featured.png
+---
+
+During the Spring semester of my junior year at Macalester, I took a topology math class taught by Professor Lori Ziegelmeier. At the end of the course, we conducted and presented research on a topic of our choosing, showcasing our new skills in topological data analysis or TDA. [Here is a link to my final paper](../../courses/topology/paper.qmd) where I explored persisent images of graviationally lensed galaxies observed by the Euclid space telescope.
+
+This project was extremely fun and exciting for me, particularly because TDA hasn't really been explored in the field of astronomy [except at the large-scale](https://donut.topology.rocks/?q=tag%3A%22Cosmology%22). I'm hoping to continue this project and explore TDA applications to astronomy and cosmology in the future.

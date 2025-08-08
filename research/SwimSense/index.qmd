@@ -1,12 +1,17 @@
 ---
 title: "SwimSense: Open-Source Data Science for Swimmers"
 date: now
+image: featured.png
+image-alt: ""
 categories:
     - Python
     - Arduino
     - Swimming
 about: 
     template: solana
+    image: featured.png
 ---
 
-SwimSense
+The goal of this project is to provide swimmers and coaches with all the resources they need to analyze their swimming technique through data. This project arose out of a desire of mine to improve my own technique, and was inspired by the work of Ken Ono and others with the University of Vrigina's Swim Team.
+
+[Here is the link to the GitHub repo](https://github.com/wastjohn/SwimSense) where most of this project is documented, for the time being.

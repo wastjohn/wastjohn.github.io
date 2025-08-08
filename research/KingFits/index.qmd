@@ -1,0 +1,18 @@
+---
+title: "MACRO Science: King-Fitted Structural Parameters of 20 Globular Clusters Observed with the RLMT"
+date: June 19, 2024
+image: featured.png
+image-alt: ""
+categories:
+    - Astronomy
+    - Python
+    - MACRO Consortium
+about: 
+    template: solana
+    image: featured.png
+
+---
+
+Using data collected from the Robert L. Mutel Telescope, we performed g’, i’, and r’ photometry to determine the structural parameters of ~20 globular clusters, assuming King models. Our model parameters for core radius rc, tidal radius rt, and model constant k are presented and compared to the literature. Additionally, some of the targets have also been observed by Macalester’s 16-inch telescope, equipped with an SBIG CCD camera, located in St. Paul, MN. A comparison of the quality of data obtained at Macalester and those taken with the RLMT CMOS, located in Sonoita AZ, is presented.
+
+[Here is the link to the AAS244 IPoster presentation.](https://aas242-aas.ipostersessions.com/?s=5E-5D-24-E4-07-88-5E-B5-0C-29-F5-BC-65-BD-06-B8)

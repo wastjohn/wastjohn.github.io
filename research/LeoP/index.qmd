@@ -14,9 +14,7 @@ about:
     image: featured.png
 ---
 
-*	Fundamental Astrophysics at Low Metallicity: Leo P, Macalester College (Summer 2023 - Present) – [Description of research]
-    +	Research advisor: Dr. John Cannon (Macalester Physics and Astronomy Department)
-    +	Scheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024
+Leo P is a nearby and metal-poor (3% of the Solar abundance) star-forming dwarf galaxy that anchors fundamental galaxy scaling relationships. Originally identified by its neutral hydrogen content in the ALFALFA survey, Leo P has undergone intense observational scrutiny which has revealed it to be the lowest mass galaxy that still lies on the mass-metallicity relationship. In order to further explore the neutral interstellar medium of this cosmologically important system, we present deep neutral hydrogen HI 21cm imaging acquired with the National Radio Astronomy Observatory’s Karl G. Jansky Very Large Array (VLA) in the extended B configuration. The high spectral and spatial resolution of these data (2.5 km/s per channel in a synthesized beam size of 10" = 79 pc at the adopted distance of 1.62 Mpc) allow us to undertake the most comprehensive study of the HI in Leo P to date. The relationship between HI and nebular Hα emission is complex. At full angular resolution we measure a peak HI column density $N_{HI} = 9\cdot10^{20} \text{cm}^{-2}$ (corresponding to a peak HI mass surface density of ~7 Solar masses per square parsec) that is slightly offset from the Hα maximum (where the extremely low oxygen abundance is measured). We compare the HI morphology and kinematics on various angular scales to the faint Hα loops seen in deep MUSE IFU observations.
 
 
-[Link to AAS presentation](https://baas.aas.org/pub/2024n7i203p03/release/1)
+[Here is the link to the AAS244 IPoster presentation.](https://aas242-aas.ipostersessions.com/?s=39-6E-AF-E3-05-09-6E-8F-62-A7-84-DD-78-3A-36-43)

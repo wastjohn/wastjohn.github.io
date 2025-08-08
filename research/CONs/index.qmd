@@ -1,25 +1,18 @@
 ---
-title: "Notes on Compact Obscured Nuclei I. The Evolutionary Context"
-image: featured.png
-image-alt: "False-color ratio image of NGC2273 "
+title: "Notes on Compact Obscured Nuclei. I. The Evolutionary Context"
+image: featured.jpg
+image-alt: "Left: mass, distance, and luminosity distributions are displayed for our samples of LIRGs, CT-AGN, and CON-LIRGs. The star marks the location of the uncertain bolometric luminosity of the NGC 1068 Seyfert-2 galaxy, an example of a nearby CT-AGN sharing some properties of CONs. Right: flowchart illustrating possible evolutionary connections between the galaxy samples. The box connects galaxies with similar stellar masses. Although the CON-LIRGs are more luminous than the CT-AGN, arrows show potential evolutionary relationships between CONs, LIRGs, and CT-AGN among galaxies with similar basic characteristics."
 date: 04/09/25
 categories:
-    - Optical Astronomy
-    - Infrared Astronomy
-    - JWST
-    - HST
     - Python
     - R
-    - SAOImage DS9
     - Paper
 about: 
     template: solana
-    image: featured.png
+    image: featured.jpg
 ---
-* Exploring Hidden Nuclei in Nearby Galaxies, Macalester College (Fall 2023 - Present) – [Description of research]
-    + Research advisor: Dr. John (Jay) Gallagher III (Visiting Astronomy Professor, Macalester College & Emeritus Professor of Astronomy, U. Wisconsin-Madison)
-    + Scheduled to present findings at upcoming American Astronomical Society meeting in Summer 2024
+Luminosity sources in compact obscured nuclei (CONs) and the role of CONs in galaxy evolution are yet to be fully understood. We address these through an examination of luminosity and mass distributions of a sample of CONs in luminous infrared galaxies (CON-LIRGs), Compton thick active galactic nuclei (CT-AGN), and luminous infrared galaxies (LIRGs). We find LIRGs, CON-LIRGs, and CT-AGN occur in disk galaxies with similar stellar masses. CON-LIRGs and LIRGs, while potentially powered in different ways, have similar bolometric luminosities. Since these three unusual evolutionary phases occur in the same general population of galaxies, transitions between these evolutionary phases are possible within the same galaxy. However, CONs typically are substantially more luminous than CT-AGN, so evolution from a CT-AGN to a CON-LIRG would require additional luminosity from a compact starburst or increased central black hole accretion power. CON-LIRGs are not simply more deeply embedded versions of CT-AGNs.
 
-[Link to our research note](https://iopscience.iop.org/article/10.3847/2515-5172/adcab1)
+[Here is the link to our first AAS research note (1/2).](https://iopscience.iop.org/article/10.3847/2515-5172/adcab1)
 
-Part 1 of 2. [Link to second research note](https://iopscience.iop.org/article/10.3847/2515-5172/adcb3b)
+[Here is the link to our second AAS research note (2/2)](https://iopscience.iop.org/article/10.3847/2515-5172/adcb3b)

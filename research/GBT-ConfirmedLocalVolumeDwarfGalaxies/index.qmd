@@ -12,9 +12,7 @@ about:
     template: solana
     image: featured.png
 ---
-* Mapping the HI in Newly-Discovered, GBT-Confirmed Local Volume Dwarf Galaxies, Macalester College (Summer 2023 - Present) – [Description of research]
-    + Research advisor: Dr. John Cannon
-    + Additional research members:  
+We describe the results of observations with the 100 m Robert C. Byrd Green Bank Telescope in the H I line of 105 nearby dwarf galaxies, 60 of which were discovered recently in the DESI Legacy Imaging Surveys. Of 105 objects observed, we detected 77 galaxies with the following median parameters: an H I flux of 0.69 Jy km s‑1, a heliocentric velocity of 732 km s‑1, and a W50 line width of 32 km s‑1. Seventy are isolated late-type objects and 35 are new probable satellites of nearby spiral galaxies (NGC 628, NGC 2787, NGC 3556, NGC 4490, NGC 4594, and NGC 5055). The detected galaxies are predominantly gas-rich systems with a median gas-to-stellar-mass ratio of 1.87. In general, they follow the classic Tully–Fisher relation obtained for large disk-dominated spiral galaxies if their M21 magnitudes are used instead of B magnitudes.
 
 
-[Paper we published](https://iopscience.iop.org/article/10.3847/1538-3881/add888)
+[Here is the link to the paper we published in the Astronomical Journal.](https://iopscience.iop.org/article/10.3847/1538-3881/add888)

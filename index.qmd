@@ -18,7 +18,8 @@ about:
 
 He/Him/His 
 
-Undergraduate Physics & Astronomy Student | Macalester College
+Undergraduate Physics & Astronomy Student <br>
+2022-2026 | Macalester College
 
 ### Education
 
@@ -30,39 +31,32 @@ East Rockingham High School <br>
 :::
 
 ### Biography
-I am an undergraduate student at Macalester College, currently in my third year. I am majoring in Physics with a Concentration in Astronomy and will also graduate with a Minor in Mathematics.
+I am an undergraduate student at Macalester College, currently in my senior year. I am a double major in Physics and Mathematics with a Concentration in Astronomy, and a minor in Data Science.
 
-Currently, cosmology sounds the most appealing to me, research-wise. I also enjoy thinking about astrophysical phenomena, their driving mechanisms, and their implications, which makes me think theory would be a good specialization as well. I also really enjoy programming and making models, so perhaps something in `computational theoretical cosmology`? At least it sounds cool.
+Cosmology has always been an interest of mine, yet, I haven't had many research opportunnities to pursue the field. However, I have been able to participate in numerous research opportunnities which has helped me solidify my interests.
 
-Unfortunately, I haven't taken many astro courses at Macalester (there are really only 2), but I will be taking astrophysics this Spring!
+> Specifically, I aim to conduct research that specializes in the intersection of cosmology/astrophysics, machine learning, and collaboration across fields.
 
-Regardless, the reason I want to go into astrophysics/cosmology is:
+These interests were honed in the Spring semester of my junior year when I took a topology class. The final project combined gravitational lensing, topological data analysis, and clustering algorithms into one, and has been one of the most exciting research experiences I've had to date.
 
-> I believe cosmology is the field that can answer the biggest questions.
-
-
-Even though I don't yet have the theory background of a graduate student, I have been fortunate enough to have had multiple astro-specific research opportunities. If you are interested, explore the research page to learn more about them, 
+If you are interested to learn more about my research experiences, [check out the research page](research.qmd),
 <!-- <i class='bi-download'></i>  -->
-<a href="https://drive.google.com/file/d/14VrpjkMyNO0DWVdG5JuliY6noKXRxAoD/view?usp=sharing" target="_blank">download my CV</a>, or reach out to me using the info provide below!
+<a href="https://drive.google.com/file/d/14VrpjkMyNO0DWVdG5JuliY6noKXRxAoD/view?usp=sharing" target="_blank">download my CV</a>, or reach out to me using the info provide below.
 
 ### Personal
 
-I grew up in the rural town of McGaheysville, VA, and spent most of my time and energy on school and sports. 
+I grew up in the rural town of McGaheysville, VA, and spent most of my time and energy on school and sports.
 
-Want to mention
+My parents taught me how to swim at a young age. Shortly after moving to McGaheysville, I joined the Massanutten Marlins Summer League Swim Team. As I got older and more serious about swimming, I joined the Virginia Gators of Harrisonburg, a club swim team that swam year round. When I got to high school, I joined the varsity team and [made some waves my senior year](https://www.dnronline.com/sports/2021-22-all-valley-boys-swimmer-of-the-year-east-rockinghams-william-st-john/article_321a6c79-0466-53f2-95d3-c7eb6555ab54.html). 
 
-- Massanutten Marlins swimming and coaching
-- Gators Swimming
-- ERHS Swim Captain, record holder, and news blurb
-- ERHS Marching Band
-- SwimSense project
+Outside of swimming in high school, I was in the ERHS marching band as a percussion captain, coached for the Massanutten Marlins, earned my 2nd degree blackbelt in American Freestyle Martial Arts, and became an Eagle Scout where my project involved creating a [GaGa ball pit addition to my elementary school playground](https://www.facebook.com/reel/2425760157670268). Now in college, I am a captain of the Macalester Swim and Dive team; captain of the club water polo team, the Spawn of Neptune; and Tresurer of the Macalester Pep Band.
 
-I started swimming with the Massanutten Marlines summer league team in (enter year). I was the captain of my high school swim team and [made some splashes in the local news](https://www.dnronline.com/sports/2021-22-all-valley-boys-swimmer-of-the-year-east-rockinghams-william-st-john/article_321a6c79-0466-53f2-95d3-c7eb6555ab54.html) my senior year.
+One of my more recent interests has been a project to develop a sensor and software that a swimmer can wear that records acceleration and rotation, allowing the coaches and swimmers to quantitatively measure technique. This project arose from my own greedy desires to [be like the pros](https://www.teamusa.com/news/2024/june/05/how-data-analytics-have-helped-swimmer-kate-douglass-become-a-paris-favorite), but in my search, I learned the commercial technology was way too [expensive](https://www.eolab.com/products) for me or even my DIII team to purchase.
+
+So I set out on a mission to make something more accessible to non-professional, collegiate, and casual atheletes alike. Check out the [SwimSense article on my Research page](research/SwimSense/index.qmd) to learn more or reach out to me!
 
 ### Get in Touch
 
 **Email**: <a href='mailto:wstjohn@macalester.edu'>wstjohn@macalester.edu</a>
 
 **Address**: 1600 Grand Avenue, Saint Paul, MN 55105
-
-**Phone**: 540-908-0354
