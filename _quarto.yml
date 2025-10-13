@@ -20,6 +20,10 @@ website:
             text: Machine Learning
           - href: courses/topology/index.qmd
             text: Topology
+          - href: courses/quantum/index.qmd
+            text: Quantum
+          - href: courses/compGeom/index.qmd
+            text: Computational Geometry
 
 format:
   html:
