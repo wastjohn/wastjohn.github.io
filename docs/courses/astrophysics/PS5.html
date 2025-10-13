@@ -183,6 +183,14 @@ window.Quarto = {
     <a class="dropdown-item" href="../../courses/topology/index.html">
  <span class="dropdown-text">Topology</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/quantum/index.html">
+ <span class="dropdown-text">Quantum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/compGeom/index.html">
+ <span class="dropdown-text">Computational Geometry</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -254,7 +262,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: Using the equations provided, we can create a simple Python script to calculate the minimum velocity, minimum approaching angle, and Lorentz factor of the jet.</p>
 </blockquote>
-<div id="d12f37fe" class="cell" data-execution_count="1">
+<div id="1e67292b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> c</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -278,7 +286,7 @@ Lorentz factor: 4.61</code></pre>
 <blockquote class="blockquote">
 <p>Below is a plot of <span class="math inline">\(\frac{\beta_{app}}{c}\)</span> vs <span class="math inline">\(\phi\)</span> for a variety of Lorentz factors.</p>
 </blockquote>
-<div id="810d8491" class="cell" data-execution_count="2">
+<div id="e68081ff" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> np.linspace(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">101</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t_min <span class="op">=</span> np.arcsin(<span class="dv">1</span><span class="op">/</span>l)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>np.tan(t_min)</span>
@@ -314,7 +322,7 @@ Lorentz factor: 4.61</code></pre>
 <p>Note that the conversion between wavelenth and frequency can be found using the simple relationship <span class="math display">\[c = \lambda \nu.\]</span></p>
 <p>Below is code that calculates the results described above.</p>
 </blockquote>
-<div id="37c13d66" class="cell" data-execution_count="3">
+<div id="ec6ee6e2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># time dilation</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="fl">0.85</span> <span class="op">*</span> c.c</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>t_p <span class="op">=</span> <span class="dv">4</span></span>
@@ -350,7 +358,7 @@ Wavelength ship receivers tuned to: 59.70 cm</code></pre>
 <p><strong>Answer</strong>: If we calculate the redshift <span class="math display">\[z = \frac{\lambda_{obs} - \lambda_{rest}}{\lambda_{rest}}\]</span> of the H<span class="math inline">\(\alpha\)</span> absorption line, we can use the following relationship to determine the radial velocity. <span class="math display">\[\frac{v_r}{c} = \frac{(z+1)^2 - 1}{(z+1)^2 + 1}\]</span></p>
 <p>For the transverse velocity, we need to multiply the proper motion and the distance to the target (which can be found via parallax), by a conversion factor of 4.74 to convert to units of km/s. <span class="math display">\[v_t = 4.74\mu r\]</span> Adding the radial and transverse velocities in quadrature results in the total velocity of the star. <span class="math display">\[v = \sqrt{v_r^2 + v_t^2}\]</span> Below is a Python script to perfom the above calculations.</p>
 </blockquote>
-<div id="fe3bda6d" class="cell" data-execution_count="4">
+<div id="7ce2e05f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>l_obs <span class="op">=</span> <span class="fl">656.034</span> <span class="op">*</span> u.nm</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.54901</span> <span class="op">*</span> u.arcsec</span>
@@ -394,7 +402,7 @@ velocity: 143.99 km / s</code></pre>
 <p><strong>Answer</strong>: Rearranging the Heisenberg uncertainty principle to solve for the velocity <span class="math display">\[\Delta v = \frac{\hbar}{2 m_e \Delta x}\]</span> allows us to find the minimum velocity an electron must travel at given we know it’s location with a given uncertainty.</p>
 <p>A simple Python script below performs the above calculations.</p>
 </blockquote>
-<div id="782a8ac3" class="cell" data-execution_count="5">
+<div id="001deab2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">1.5E-12</span> <span class="op">*</span> u.m</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dv <span class="op">=</span> c.hbar <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> dx <span class="op">*</span> c.m_e) </span>

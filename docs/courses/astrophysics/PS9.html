@@ -183,6 +183,14 @@ window.Quarto = {
     <a class="dropdown-item" href="../../courses/topology/index.html">
  <span class="dropdown-text">Topology</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/quantum/index.html">
+ <span class="dropdown-text">Quantum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/compGeom/index.html">
+ <span class="dropdown-text">Computational Geometry</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -282,7 +290,7 @@ window.Quarto = {
 <p><span class="math display">\[I_{\lambda,0} = \frac{I_\lambda}{e^{-\tau_{\lambda,0}\sec\theta}}\]</span></p>
 <p>The code chunk below performs the calculations described above.</p>
 </blockquote>
-<div id="adab6d7d" class="cell" data-execution_count="1">
+<div id="8376f0ff" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -326,7 +334,7 @@ Specific intensity abover Earth's atmosphere: 4.39e-11 W / m2</code></pre>
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: The code below calculates the optical depth using the trapezoidal rule numerical integration for <span class="math inline">\(\tau_{i+1}\)</span>.</p>
 </blockquote>
-<div id="05475547" class="cell" data-execution_count="2">
+<div id="17c5d2bf" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.io <span class="im">import</span> <span class="bu">ascii</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -405,7 +413,7 @@ Specific intensity abover Earth's atmosphere: 4.39e-11 W / m2</code></pre>
 <blockquote class="blockquote">
 <p>The code below finds the value of <span class="math inline">\(\tau\)</span> closest to 2/3, which corresponds to the optical depth we “see” as the “surface” and plots vertical and horizontal lines corresponding to the approximate physical depth and temperature, respectively.</p>
 </blockquote>
-<div id="7d221316" class="cell" data-execution_count="3">
+<div id="da7ace28" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate physical depth of optical depth = 2/3</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> (data[<span class="st">"tau"</span>] <span class="op">&lt;</span> <span class="dv">1</span>) <span class="op">&amp;</span> (data[<span class="st">"tau"</span>] <span class="op">&gt;</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>subdata <span class="op">=</span> data[<span class="st">"tau"</span>,<span class="st">"physical_depth"</span>,<span class="st">"temp"</span>][mask]</span>

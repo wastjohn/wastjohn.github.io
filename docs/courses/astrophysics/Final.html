@@ -183,6 +183,14 @@ window.Quarto = {
     <a class="dropdown-item" href="../../courses/topology/index.html">
  <span class="dropdown-text">Topology</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/quantum/index.html">
+ <span class="dropdown-text">Quantum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/compGeom/index.html">
+ <span class="dropdown-text">Computational Geometry</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -255,7 +263,7 @@ window.Quarto = {
 <p><span class="math display">\[r_s = \frac{2v_c^2r}{c^2},\]</span></p>
 <p>which is dimensionally consistent. The following code chunk estimates the event horizon radius to be 0.0124 pc.</p>
 </blockquote>
-<div id="5aca7ee4" class="cell" data-execution_count="1">
+<div id="90999105" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.constants <span class="im">as</span> const</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -285,7 +293,7 @@ window.Quarto = {
 <p><span class="math display">\[\rho(r) = \frac{\rho_0}{\left(\frac{r}{a}\right)\left(1+\frac{r}{a}\right)^2},\]</span></p>
 <p>where <span class="math inline">\(rho_0\)</span> and <span class="math inline">\(a\)</span> are normalization factors. The following code chunk calculates the density of dark matter at <span class="math inline">\(r=17.18\)</span> kpc with the given normalization factors to be <span class="math inline">\(2.81\times10^7\)</span> Solar masses per cubic kpc.</p>
 </blockquote>
-<div id="decf8038" class="cell" data-execution_count="2">
+<div id="9994fc59" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rho0 <span class="op">=</span> <span class="fl">2E8</span> <span class="op">*</span> u.M_sun <span class="op">/</span> u.kpc <span class="op">**</span> <span class="dv">3</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">13</span> <span class="op">*</span> u.kpc</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">17.18</span> <span class="op">*</span> u.kpc</span>
@@ -309,7 +317,7 @@ window.Quarto = {
 <p><span class="math display">\[M_A - M_B = -2.5 \log_{10}\left(\frac{L_A}{L_B}\right) = -2.5 \log_{10}\left(\frac{\sigma_A^4}{\sigma_B^4}\right)\]</span></p>
 <p>The following code chunk calculates difference in magnitudes to be 0.996 mag, thus B is around a magnitude brighter than A.</p>
 </blockquote>
-<div id="66741a03" class="cell" data-execution_count="3">
+<div id="831d7c99" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sigmaA <span class="op">=</span> <span class="dv">97</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sigmaB <span class="op">=</span> <span class="dv">122</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -331,7 +339,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: The absolute magnitude of the star can be calculated using the relation given in the lengend of the plot. The code chunk below calculates just that.</p>
 </blockquote>
-<div id="10a1bc57" class="cell" data-execution_count="4">
+<div id="19c8136d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> <span class="fl">3.5</span> <span class="op">*</span> u.d</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="op">-</span><span class="fl">2.97</span> <span class="op">*</span> np.log10(P <span class="op">/</span> u.d) <span class="op">-</span> <span class="fl">1.73</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"M = </span><span class="sc">{</span>M<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

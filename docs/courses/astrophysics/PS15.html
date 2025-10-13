@@ -183,6 +183,14 @@ window.Quarto = {
     <a class="dropdown-item" href="../../courses/topology/index.html">
  <span class="dropdown-text">Topology</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/quantum/index.html">
+ <span class="dropdown-text">Quantum</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../courses/compGeom/index.html">
+ <span class="dropdown-text">Computational Geometry</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -249,7 +257,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: Given the magnitude</p>
 </blockquote>
-<div id="160619f6" class="cell" data-execution_count="1">
+<div id="56a27501" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -282,7 +290,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Answer</strong>: If we measure the magnitude</p>
 </blockquote>
-<div id="0af9678b" class="cell" data-execution_count="2">
+<div id="bc3314a9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.io <span class="im">import</span> <span class="bu">ascii</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">ascii</span>.read(<span class="st">"https://content.cld.iop.org/journals/0067-0049/249/1/18/revision1/apjsab9caet2_mrt.txt"</span>)</span>
@@ -293,7 +301,7 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>RRc <span class="op">=</span> data.group_by(<span class="st">"Type"</span>).groups[<span class="dv">8</span>]</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> data.group_by(<span class="st">"Type"</span>).groups[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="156aa704" class="cell" data-execution_count="3">
+<div id="34cede3e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot r-band mag vs period for all stars</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># color and label by star type</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># log x axis, limits 0.025 to 80 days, linear magnitude axis, from 22 to 11</span></span>
