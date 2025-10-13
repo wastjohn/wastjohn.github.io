@@ -1,0 +1,77 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Astrophysics PS11\"\n",
+        "author: \"Will St. John + Theo Darci-Maher + Caedan Miller\"\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Problem 1\n",
+        "\n",
+        "a) Taking into consideration the Maxwell-Boltzmann velocity distribution, what temperature would be required for two protons to collide if quantum mechanical tunneling is neglected?  You may assume that nuclei having velocities 8x the RMS values for the Maxwell-Boltzmann distribution can overcome the Coulomb barrier.  Compare your answer with the estimated central temperature of the Sun.\n",
+        "b) Using the Maxwell-Boltzmann distribution, determine the ratio of the number of protons having velocities 8x the RMS value to those moving at the RMS velocity.\n",
+        "c) Assuming (incorrectly) that the Sun is pure hydrogen, estimate the number of hydrogen nuclei in the Sun.  Could there be enough protons moving with speed 8x the RMS value to account for the Sun’s luminosity?  How long could these reactions sustain the current Solar luminosity?  Hint: you may assume that the number of protons with velocity $\\sim v_{rms}$ is most of the hydrogen atoms.\n"
+      ],
+      "id": "d5b097d2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import astropy.units as u\n",
+        "import astropy.constants as c\n",
+        "import numpy as np\n",
+        "\n",
+        "T = c.e.value ** 2 / (384 * c.k_B * np.pi * c.eps0 * c.a0 * 2)\n",
+        "T"
+      ],
+      "id": "d79fbffd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Problem 2\n",
+        "\n",
+        "a) Calculate the Eddington luminosity for a 0.072 solar mass star and a 120 solar mass star.\n",
+        "b) Compare the Eddington luminosities to their actual luminosities and discuss whether or not radiation pressure is likely to play a role in the star’s evolution.\n",
+        "\n",
+        "- For the low-mass star: log10(L/Lsolar) = -4.3, and opacity = 0.001 m2 kg-1\n",
+        "- For the high-mass star:  log10(L/Lsolar) = 6.252, and opacity is dominated by electron scattering (see equation 9.27)\n"
+      ],
+      "id": "0540cf5f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# M_low = \n",
+        "# M_high = \n",
+        "# kappa_low = \n",
+        "# kappa_high = \n",
+        "# L_edd_low = 4 * np.pi * c.G * c.c * M_low / kappa_low"
+      ],
+      "id": "d715a135",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\qwert\\AppData\\Roaming\\Python\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

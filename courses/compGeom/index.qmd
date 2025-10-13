@@ -1,0 +1,67 @@
+---
+title: "Computational Geometry"
+---
+
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.path import Path
+
+def get_polygon_area(x, y):
+    s = 0
+    for i in range(len(x)):
+        s += x[i] * y[i-1] - x[i-1] * y[i]
+    return 0.5 * np.abs(s)
+
+
+def picks_thm(i, b):
+    return i + b / 2 - 1
+
+
+# square
+x = [0, 1, 1, 0]
+y = [0, 0, 1, 1]
+i = 0
+b = 4
+assert get_polygon_area(x, y) == picks_thm(i, b)
+
+# triangle
+x = [0, 1, 1]
+y = [0, 0, 1]
+i = 0
+b = 3
+assert get_polygon_area(x, y) == picks_thm(i, b)
+
+# 5 sided shape
+x = [-2, 0, 2, 1, -1]
+y = [1, 3, 1, 0, 0]
+i = 4
+b = 8
+assert get_polygon_area(x, y) == picks_thm(i, b)
+
+# something weirder
+points = [
+    (1, 7),
+    (4, 7),
+    (4, 5),
+    (5, 9),
+    (5, 5),
+    (9, 5),
+    (5, 4),
+    (4, 1),
+    (4, 4),
+    (1, 4),
+        ]
+x = [xi[0] for xi in points]
+y = [yi[1] for yi in points]
+i = 4
+b = 25
+plt.figure(figsize=(8,8))
+plt.plot(x, y)
+plt.scatter(x, y)
+plt.xticks(np.arange(0, 10, 1).tolist())
+plt.yticks(np.arange(0, 10, 1).tolist())
+plt.grid(True)
+assert get_polygon_area(x, y) == picks_thm(i, b)
+```

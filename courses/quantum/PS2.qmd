@@ -1,0 +1,184 @@
+---
+title: PHYS 481 - Quantum Mechanics
+subtitle: Assignment 02
+author: Will St. John
+date: 10/03/2025
+---
+
+# Problem 1.7
+
+Calculate $d\left<p\right>/dt$. Answer:
+
+$$\frac{d\left<p\right>}{dt} = \left<-\frac{\partial V}{\partial x}\right>$$
+
+This is an instance of **Ehrenfest's theorem**, which asserts that *expectation values obey classical laws.*
+
+
+> **Response**: Before proving this, we should derive a few quantities.
+>
+> $$\begin{align}\frac{\partial \Psi}{\partial t} &= \frac{i\hbar}{2m}\frac{\partial^2\Psi}{\partial x^2} - \frac{i}{\hbar}V\Psi \\ \frac{\partial \Psi^*}{\partial t} &= -\frac{i\hbar}{2m}\frac{\partial^2\Psi}{\partial x^2} + \frac{i}{\hbar}V\Psi\end{align}$$
+>
+> $$\begin{align} \frac{d\left<p\right>}{dt} &= \frac{d}{dt}\left(-i\hbar\int_{-\infty}^{\infty}\Psi^*\frac{\partial\Psi}{\partial x} dx\right) \\ &= -i\hbar\int_{-\infty}^{\infty}\frac{d}{dt}\left(\Psi^*\frac{\partial\Psi}{\partial x}\right) dx \\ &= -i\hbar \int_{-\infty}^{\infty}\left(\Psi^*\frac{d}{dt}\frac{\partial\Psi}{\partial x} + \frac{\partial\Psi}{\partial x}\frac{\partial\Psi^*}{dt}\right) \\ &= -i\hbar\int_{-\infty}^{\infty}\left(\Psi^*\frac{\partial}{\partial x}\left(\frac{i\hbar}{2m}\frac{\partial^2\Psi}{\partial x^2} - \frac{i}{\hbar}V\Psi\right) + \frac{\partial \Psi}{\partial x}\left(-\frac{i\hbar}{2m}\frac{\partial^2\Psi}{\partial x^2} + \frac{i}{\hbar}V\Psi\right)\right) \\ &= -i\hbar\int_{-\infty}^{\infty}\left(\Psi^*\frac{i\hbar}{2m}\frac{\partial^3\Psi}{\partial x^3} - \frac{i}{\hbar}V\Psi^*\frac{\partial\Psi}{\partial x} - \frac{i}{\hbar}\frac{\partial V}{\partial x}\Psi^*\Psi - \frac{i\hbar}{2m}\frac{\partial^2\Psi^*}{\partial x^2}\frac{\partial \Psi}{\partial x} + \frac{i}{\hbar}V\Psi^*\frac{\partial\Psi}{\partial x}\right) \\ &= -i\hbar\left(\frac{-i\hbar}{2m}\int_{-\infty}^{\infty}\frac{\partial^2\Psi^*}{\partial x^2}\frac{\partial\Psi}{\partial x}dx + \frac{i\hbar}{2m}\int_{-\infty}^{\infty}\Psi^*\frac{\partial^3\Psi}{\partial x^3}dx - \frac{i}{\hbar}\int_{-\infty}^{\infty}\frac{\partial V}{\partial x}\Psi^*\Psi dx\right) \\ &= -i\hbar \left(\frac{-i\hbar}{2m}\left(\frac{\partial \Psi}{\partial x}\frac{\partial \Psi^*}{\partial x}\right)\Big|_{-\infty}^{\infty} + \frac{i\hbar}{2m}\int_{-\infty}^{\infty}\frac{\partial \Psi^*}{\partial x}\frac{\partial^2\Psi}{\partial x^2}dx + \frac{i\hbar}{2m}\int_{-\infty}^{\infty}\Psi^*\frac{\partial^3\Psi}{\partial x^3}dx - \frac{i}{\hbar}\int_{-\infty}^{\infty}\frac{\partial V}{\partial x}\Psi^*\Psi dx \right) \\ &= -i\hbar\left(\frac{i\hbar}{2m}\int_{-\infty}^{\infty}\frac{\partial \Psi^*}{\partial x}\frac{\partial^2\Psi}{\partial x^2}dx + \int_{-\infty}^{\infty}\left(\frac{i\hbar}{2m}\Psi^*\frac{\partial^3\Psi}{\partial x^3} - \frac{i}{\hbar}\frac{\partial V}{\partial x}\Psi^*\Psi\right)dx\right) \\ &= -i\hbar\left(\frac{i\hbar}{2m}\Psi^*\frac{\partial^2\Psi}{\partial x^2}\Big|_{-\infty}^{\infty} - \frac{i\hbar}{2m}\int_{-\infty}^{\infty}\Psi^*\frac{\partial^3\Psi}{\partial x^3}dx + \frac{i\hbar}{2m}\int_{-\infty}^{\infty}\Psi^*\frac{\partial^3\Psi}{\partial x^3}dx - \frac{i}{\hbar}\int_{-\infty}^{\infty}\frac{\partial V}{\partial x}\Psi^*\Psi dx\right) \\ &= -\int_{-\infty}^{\infty}\Psi^*\frac{\partial V}{\partial x}\Psi dx \\ &= \left<-\frac{\partial V}{\partial x}\right>\end{align}$$
+
+
+# Problem 1.9
+
+A particle of mass $m$ has the wave function 
+
+$$\Psi(x,t) = Ae^{-a[(mx^2/\hbar) + it]},$$
+
+where $A$ and $a$ are positive real constants.
+
+a) Find $A$.
+b) For what potential energy function, $V(x)$, is this a solution to the Schrodinger equation?
+c) Calculate the expectation values of $x$, $x^2$, $p$, and $p^2$.
+d) Find $\sigma_x$ and $\sigma_p$. Is their product consistent with the uncertainty principle?
+
+
+> **Response**: Normalizing $\Psi$ to find $A$ is done below.
+>
+> $$\begin{align} 1 &= \int_{-\infty}^{\infty}\Psi^*\Psi dx \\ &= A^2 \int_{-\infty}^{\infty}e^{-2amx^2/\hbar} \\ &= A^2\left(\frac{\pi\hbar}{2ma}\right)^{1/2} \\ A &= \left(\frac{2ma}{\pi\hbar}\right)^{1/4}\end{align}$$
+>
+> To find what potential energy function $V(x)$ is a solution to the the Schrodinger equation, we need to find $\frac{\partial \Psi}{\partial t}$ and $\frac{\partial^2\Psi}{\partial x^2}$, then plug the results in to the Schrodinger equation, and solve for $V(x)$, all of which are done below.
+>
+> $$\begin{align} \frac{\partial \Psi}{\partial t} &= -ai\left(\frac{2ma}{\pi\hbar}\right)^{1/4}e^{-a[(mx^2/\hbar) + it]} \\ \frac{\partial^2\Psi}{\partial x^2} &= \left(\frac{2ma}{\pi\hbar}\right)^{1/4}\left(\frac{2max}{\hbar}\right)^2e^{-a[(mx^2/\hbar) + it]} + \left(\frac{2ma}{\pi\hbar}\right)^{1/4}\left(\frac{-2ma}{\hbar}\right)e^{-a[(mx^2/\hbar) + it]} \\ V(x) \Psi &= i\hbar\frac{\partial \Psi}{\partial t} + \frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2} \\ &= i\hbar\left(-ai\left(\frac{2ma}{\pi\hbar}\right)^{1/4}e^{-a[(mx^2/\hbar) + it]}\right) + \frac{\hbar^2}{2m}\left(\left(\frac{2ma}{\pi\hbar}\right)^{1/4}\left(\frac{2max}{\hbar}\right)^2e^{-a[(mx^2/\hbar) + it]} + \left(\frac{2ma}{\pi\hbar}\right)^{1/4}\left(\frac{-2ma}{\hbar}\right)e^{-a[(mx^2/\hbar) + it]}\right) \\ V(x) &= a\hbar\left(\frac{2ma}{\pi\hbar}\right)^{1/4}+ \frac{\hbar^2}{2m}\left(\frac{2ma}{\pi\hbar}\right)^{1/4}\left(\frac{2max}{\hbar}\right)^2 - \frac{\hbar^2}{2m}\left(\frac{2ma}{\hbar}\right)\left(\frac{2ma}{\hbar}\right) \\ V(x) &= 2ma^2x^2\end{align}$$
+>
+> Calculating the expecation values of $x$, $x^2$, $p$, and $p^2$ is done below.
+>
+> $$\begin{align} \left<x\right> &= \int_{-\infty}^{\infty}\Psi^*x\Psi dx \\ &= A^2\int_{-\infty}^{\infty}xe^{-2a(mx^2/\hbar)} \\ &= 0 \text{ because odd integrand over symmetric bounds} \\ \\ \left<x^2\right> &= \Psi^*x^2\Psi dx \\ &= \left(\frac{2am}{\pi\hbar}\right)^{1/2}\int_{-\infty}^{\infty}x^2e^{-2amx^2}dx \\ &= \left(\frac{2am}{\pi\hbar}\right)^{1/2}\left(\frac{\hbar}{4am}\right)\left(\frac{\pi\hbar}{2am}\right)^{1/2} \\ &= \frac{\hbar}{4am} \\ \\ \left<p\right> &= m\frac{d\left<x\right>}{dt} \\ &= 0 \text{ by Ehrenfest's Theorem} \\ \\ \left<p^2\right> &= \int_{-\infty}^{\infty}\Psi^*\hat{p}^2\Psi dx \\ &= -\hbar^2\int_{-\infty}^{\infty}\Psi^*\frac{\partial^2 \Psi}{\partial x^2}dx \\ &= \hbar^2\left(\frac{2am}{\pi\hbar}\right)^{1/2}\left(\frac{2am}{\hbar}\right)\int_{-\infty}^{\infty}\left(1 - \frac{2am}{\hbar}x^2\right)e^{-2amx^2/\hbar}dx\\ &= \hbar am\end{align}$$
+>
+> It follows that $\sigma_x$ and $\sigma_p$ are
+>
+> $$\begin{align}\sigma_x &= \sqrt{\left<x^2\right> - \left<x\right>^2} = \left(\frac{\hbar}{4am}\right)^{1/2} \\ \sigma_p &= \sqrt{\left<p^2\right> - \left<p\right>^2} = \left(\hbar a m\right)^{1/2} \end{align}$$
+>
+> And their product is consistent with the uncertainty principle.
+>
+> $$\sigma_x \sigma_p = \left(\frac{\hbar}{4am}\right)^{1/2} \left(\hbar a m\right)^{1/2} = \frac{\hbar}{2} \geq \frac{\hbar}{2}$$
+
+# Problem 1.14
+
+Let $P_{ab}(t)$ be the probability of finding the particle in the range $(a < x < b)$, at time $t$.
+
+a) Show that $$\frac{dP_{ab}}{dt} = J(a,t) - J(b, t),$$ where $$J(x,t) \equiv \frac{i\hbar}{2m}\left(\Psi\frac{\partial \Psi^*}{\partial x} - \Psi^*\frac{\partial\Psi}{\partial x}\right).$$ What are the units of $J(x,t)$? *Comment:* $J$ is called the **probability current** because it tells you the rate at which probability is "flowing" past the point $x$. If $P_{ab}(t)$ is increasing, then more probability is flowing into the region at one end than flows out at the other.
+
+b) Find the probability current for the wave function in Problem 1.9 (This is not a very pithy example, I'm afraid; we'll encounter more substantial ones in due course.)
+
+> **Response**: For part a), we can derive the result the following way.
+>
+> $$\begin{align} \frac{d}{dt}P_{ab} &= \frac{d}{dt}\int_{a}^{b}|\Psi|^2 dx \\ &= \int_a^b \frac{d}{dt}|\Psi|^2dx \\ &= \int_a^b \frac{\partial}{\partial x}\left(\frac{i\hbar}{2m}\left(\Psi^*\frac{\partial \Psi}{\partial x} - \frac{\partial \Psi^*}{\partial x}\Psi\right)\right)dx \\ &= \int_a^b\frac{\partial}{\partial x}-J(x,t) dx \\ &= -J(x,t)\Big|_a^b \\ &= J(a,t) - J(b,t)\end{align}$$
+>
+> Note that the units of $J$ are $\frac{1}{s}$.
+>
+> For part b), if we call the real part of $\Psi$ $f(x)$ (to minimize the writing), we get the following probability current.
+>
+> $$\begin{align}\Psi &= f(x)e^{-iat} \\ \Psi^* &= f(x)e^{iat} \\ \frac{\partial\Psi}{\partial x} &= f'(x)e^{-iat} \\ \frac{\partial\Psi^*}{\partial x} &= f'(x)e^{iat} \\ \\ J(x,t) &= \frac{i\hbar}{2m}\left(\Psi\frac{\partial \Psi^*}{\partial x} - \Psi^*\frac{\partial\Psi}{\partial x}\right) \\ &= \frac{i\hbar}{2m}\left(f(x)e^{-iat}f'(x)e^{iat} - f(x)e^{iat}f'(x)e^{-iat}\right) \\ &= 0\end{align}$$
+
+# Problem 1.16
+
+A particle is represented (at time $t=0$) by the wavefunction $$\Psi(x,0) = \cases{A(a^2 - x^2), \hspace{1cm} -a\leq x\leq +a \\ 0, \hspace{3.3cm} \text{otherwise.}}$$
+
+a) Determine the normalization constant $A$.
+b) What is the expectation value of $x$?
+c) What is the expectation value of $p$ (Note that you *cannot* get it from $\left<p\right> = md\left<x\right>/dt$. Why not?)
+d) Find the expectation value of $x^2$.
+e) Find the expectation value of $p^2$.
+f) Find the uncertainty in $x$ ($\sigma_x$).
+g) Find the uncertainty in $p$ ($\sigma_p$).
+h) Check that your results are consistent with the uncertainty principle.
+
+> **Response**: We can normalize $\Psi$ to find $A$ as follows:
+>
+> $$\begin{align} 1 &= A^2\int_{-a}^{a}(a^2-x^2)^2dx \\ &= A^2\left(a^4\int_{-a}^{a}dx -2a^2\int_{-a}^{a}x^2dx + \int_{-a}^{a}x^4dx\right) \\ &= A^2\left(a^4x - 2a^2\frac{1}{3}x^3 + \frac{1}{3}x^5\right)\Big|_{-a}^{a} \\ &= A^2\left(2a^5-\frac{4}{3}a^5 + \frac{2}{3}a^5\right) \\ &= A^2\frac{16}{15}a^5 \\ A&= \frac{1}{4}\sqrt{\frac{15}{a^5}}\end{align}$$
+>
+> From there we can find $\left<x\right>$,
+>
+> $$\begin{align}\left<x\right> &= \int_{-a}^{a}\Psi^*x\Psi dx \\ &= A^2\int_{-a}^{a}x(a^2-x^2)^2dx \\ &= 0 \text{ because odd integrand over symmetric bounds}\end{align}$$
+>
+> $\left<p\right>$ (which we can't get from taking the time derivative because we are only given $\Psi(t=0)$, not a distribution of $\Psi$ across a range of $t$),
+>
+> $$\begin{align}\left<p\right> &= \int_{-a}^{a}\Psi^*p\Psi dx \\ &= -i\hbar A^2\int_{-a}^{a}\underbrace{(a^2-x^2)}_{even}\underbrace{\frac{\partial}{\partial x}(a^2 - x^2)}_{odd}dx \\ &= 0 \text{ because odd integrand over symmetric bounds}\end{align}$$
+>
+> $\left<x^2\right>$,
+>
+> $$\begin{align}\left<x^2\right> &= \int_{-a}^{a}\Psi^*x^2\Psi dx \\ &= A^2\left[a^4\int_{-a}^{a}x^2 dx - 2a^2\int_{-a}^{a}x^4 dx + \int_{-a}^{a} x^6 dx\right] \\ &= 2A^2\left[a^4\frac{1}{3}x^3 - \frac{2}{5}a^2x^5 + \frac{1}{7}a^7\right]_{0}^{a} \\ &= \frac{15}{8}a^2\left[\frac{1}{3} - \frac{2}{5} + \frac{1}{7}\right] \\ &= \frac{a^2}{7}\end{align}$$
+>
+> and $\left<p^2\right>$.
+>
+> $$\begin{align}\left<p^2\right> &= \int_{-a}^{a}\Psi^*p^2\Psi dx \\ &= -\hbar^2 A^2\int_{-a}^{a}(a^2 - x^2)\frac{\partial^2}{\partial x^2}(a^2- x^2)dx \\ &= 2\hbar^2 A^2\int_{-a}^{a}(a^2-x^2)dx \\ &= \frac{15\hbar^2}{4a^5}\int_{0}^{a}(a^2-x^2)dx \\ &= \frac{15\hbar^2}{4a^5} \left(a^2 x - \frac{1}{3}x^3\right)_{0}^{a} \\ &= \frac{5\hbar^2}{2a^2}\end{align}$$
+>
+> With those values, we can find $\sigma_x$ and $\sigma_p$, and compare them with the uncertainty principle.
+>
+> $$\begin{align}\sigma_x &= \sqrt{\left<x^2\right> - \left<x\right>^2} = \frac{a}{\sqrt{7}} \\ \sigma_p &= \sqrt{\left<p^2\right> - \left<p\right>^2} = \sqrt{\frac{5}{2}}\frac{\hbar}{a} \\ \sigma_x\sigma_p &= \frac{a}{\sqrt{7}}\sqrt{\frac{5}{2}}\frac{\hbar}{a} = \sqrt{\frac{5}{14}}\hbar \geq \frac{\hbar}{2} \end{align}$$
+
+# Problem 1.17
+Suppose you wanted to describe an **unstable particle**, that spontaneously disitegrates with a "lifetime" $\tau$. In that case the total probability of finding the particle somewhere should *not* be constant, but should decrease at (say) an exponential rate:
+
+$$P(t) \equiv \int_{-\infty}^{\infty}|\Psi(x,t)|^2dx = e^{-t/\tau}.$$
+
+A crude way of achieving this result is as follows. In equation 1.24 we tacitly assumed that $V$ (the potential energy) is *real*. That is certaintly reasonable, but it leads to the "conservation of probability" enshrined in Equations 1.27. What if we assign $V$ to an imaginary part:
+
+$$V = V_0 - i\Gamma,$$
+
+where $V_0$ is the true potential energy and $\Gamma$ is a positive real constant?
+
+a) Show that (in place of Equation 1.27) we now get $$\frac{dP}{dt} = -\frac{2\Gamma}{\hbar}P.$$
+b) Solve for $P(t)$, and find the lifetime of the particle in terms of $\Gamma$.
+
+> **Response**: If we check out the "old" version of Equation 1.24
+>
+> $$\frac{\partial\Psi^*}{\partial t} = \frac{-i\hbar}{2m}\frac{\partial^2\Psi^*}{\partial x^2} + \frac{i}{\hbar}V\Psi^*$$
+>
+> we can see that letting $V$ be a complex function, then Equations 1.24 becomes the following
+>
+> $$\frac{\partial\Psi^*}{\partial t} = \frac{-i\hbar}{2m}\frac{\partial^2\Psi^*}{\partial x^2} + \frac{i}{\hbar}V^*\Psi^*$$
+>
+> which causes 1.25, in which we apply the time derivative to $|\Psi|^2$, to become the following
+>
+> $$\begin{align} \frac{\partial}{\partial t}|\Psi|^2 &= \frac{i\hbar}{2m}\left(\Psi^*\frac{\partial^2\Psi}{\partial x^2} - \frac{\partial^2\Psi^*}{\partial x^2}\Psi\right) \\ &= \frac{\partial}{\partial x}\left[\frac{i\hbar}{2m}\left(\Psi^*\frac{\partial\Psi}{\partial x} - \frac{\partial\Psi^*}{\partial x}\Psi\right)\right] + \int\frac{i}{\hbar} |\Psi|^2 (V^* - V) dx \\ &= \frac{i}{\hbar}(V_0 + i\Gamma - V_0 + i\Gamma)\underbrace{\int |\Psi|^2 dx}_{P(t)} \\ \frac{dP}{dt} &= -\frac{2\Gamma}{\hbar}P\end{align}$$
+>
+> Solving for $P(t)$, we get the following relationship:
+>
+> $$\begin{align} \int\frac{1}{P}dP &= \frac{-2\Gamma}{\hbar}\int dt \\ \ln P &= \frac{-2\Gamma t}{\hbar} + C \\ P(t) &= P(0)e^{-2\Gamma t/\hbar} \longrightarrow\tau \equiv\frac{\hbar}{2\Gamma}\end{align}$$
+
+
+
+# Problem 1.18
+
+Very roughly speaking, quantum mechanics is relevant when the de Broglie wavelength of the particle in question ($h/p$) is greater than the characteristic size of the system ($d$). In thermal equilibrium at (Kelvin) temperature $T$, the average kinetic energy of a particle is 
+
+$$\frac{p^2}{2m} = \frac{3}{2}k_B T$$
+
+(where $k_B$ is Boltzmann's constant), so the typical de Broglie wavelength is 
+
+$$\lambda = \frac{h}{\sqrt{3mk_B T}}.$$
+
+The purpose of this problem is to determine which systems will have to be treated quantum mechanically, and which can safely be described classically.
+
+a) **Solids.** The lattice spacing in a typical solid is around $d=0.3$ nm. Find the temperature below which the unbound *electrons* in a solid are quantum mechanical. Below what temperature are the *nuclei* in a solid quantum mechanical? (Use silicon as an example.) $$$$ Moral: the free electrons in a solid are *always* quantum mechanical; the nuclei are generally *not* quantum mechanical. The same goes for liquids (for which the interatomic spacing is roughly the same), with the exception of helium below 4 K.
+b) **Gases.** For what temperatures are the atoms in an ideal gas at pressure $P$ quantum mechanical? *Hint:* Use the ideal gas law ($PV = Nk_B T$) to deduce the interatomic spacing. $$$$ *Answer:* $T<(1/k_B)(h^2/3m)^{3/5}P^{2/5}$. Obviously (for the gas to show quantum behavior) we want $m$ to be as small as possible, and $P$ as large as possible. Put in the numbers for helium at atmospheric pressure. Is hydrogen in outer space (where the interatomic spacing is about 1 cm and the temperature is about 3 K) quantum mechanical? (Assume it's monatomic hydrogen, not H$_2$.)
+
+> **Response**: If we rearrange the first equation given for $p$, we can solve for the characteristic size of the system when things must be treated quantum mechanically, specifically
+>
+> $$d < \frac{h}{\sqrt{3mk_B T}}$$
+>
+> which corresponds to a temperature of
+>
+> $$T < \frac{h^2}{3mk_Bd^2}$$
+>
+> below which systems must be treated quantum mechanically.
+>
+> Plugging in the mass of the electron ($m_e = 9.11\cdot10^{-31}$ kg) and the mass of a silicon nucleus ($m = 28.085m_p$, $m_p = 1.67\cdot10^{-27}$ kg) at $d = 0.3$ nm, we temperatures of $T<1.3\cdot10^5$ K and $T < 2.45$ K, respectively, which jives with the given moral that free electrons are always quantum mechanical and nuclei are generally not.
+>
+> Looking into gasses, we can rewrite $d$ in terms of the ideal gas law if we let $N=1$ and $V = d^3$.
+>
+> $$PV = Nk_BT \longrightarrow d = \left(\frac{k_BT}{P}\right)^{1/3}$$
+>
+> Plugging this result into our equation for $T$, we get the following
+>
+> $$\begin{align} T &< \frac{h^2}{3mk_Bd^2} = \frac{h^2}{3mk_B}\left(\frac{P}{k_B T}\right)^{2/5} \\ T^{5/3} &< \left(\frac{h^2P^{2/5}}{3mk_B^{5/3}}\right)^{5/3} \\ T &< \left(\frac{1}{k_B}\right)\left(\frac{h^2}{2m}\right)^{3/5}P^{2/5}\end{align}$$
+>
+> Plugging in numbers for helium ($m = 4m_p = 6.8\cdot10^{-27}$ kg) at atmospheric pressure ($P=10^5$ N/m$^2$), using the equation we derived above, and hydrogen ($m=1.67\cdot10^{-27}$ kg) in outerspace with $d=0.01$ m, using $T < \frac{h^2}{3mk_Bd^2}$, we get $T<2.8$ K and $T<6.35\cdot10^{-14}$ K for helium and hydrogen, respectively. These results imply that helium on earth are only quantum mechanical at very low temperatures, while hydrogen in space can be treated classically.
+
+
+
+
