@@ -69,7 +69,7 @@ d) Suppose that a measurement yields $4E_0$, write down the wave function immedi
 
 > **Response**: For part a), we know $\Psi(x,t)$ is normalized if $\int_{-\infty}^{\infty}|\Psi(x,t)|^2dx = 1$. If we assume 
 >
-> $$\Psi(x,t) = \frac{1}{\sqrt{7}}\left(\sqrt{2}\chi_1(x)e^{-iE_1t/\hbar} + \sqrt{3}\chi_2(x)^{-iE_2t/\hbar} - i\chi_3(x)^{-iE_3t/\hbar} + \chi_4(x)^{-iE_4t/\hbar}\right)$$
+> $$\Psi(x,t) = \frac{1}{\sqrt{7}}\left(\sqrt{2}\chi_1(x)e^{-iE_1t/\hbar} + \sqrt{3}\chi_2(x)e^{-iE_2t/\hbar} - i\chi_3(x)e^{-iE_3t/\hbar} + \chi_4(x)e^{-iE_4t/\hbar}\right)$$
 >
 > Then $\Psi(x,t)^*\Psi(x,t)$ will set all exponential terms to 1, and all we will have to worry about will be the coefficients, since the eigenstates form an orthonormal basis. Thus, we can prove $\Psi(x,t)$ is normalized by checking:
 >
