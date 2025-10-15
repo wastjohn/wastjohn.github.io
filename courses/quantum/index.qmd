@@ -6,3 +6,4 @@ Problem Sets
 
 - [PS1](PS1.qmd)
 - [PS2](PS2.qmd)
+- [PS3](PS3.qmd)
