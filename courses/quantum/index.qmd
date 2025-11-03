@@ -2,6 +2,11 @@
 title: "Quantum"
 ---
 
+Notes
+
+- [Notes](notes.qmd)
+
+
 Problem Sets
 
 - [PS1](PS1.qmd)

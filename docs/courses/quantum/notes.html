@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Will St.&nbsp;John">
 
-<title>Quantum – Will St.&nbsp;John</title>
+<title>Quantum Mechanics Notes/Overview – Will St.&nbsp;John</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -141,21 +171,67 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#history-of-qm" id="toc-history-of-qm" class="nav-link active" data-scroll-target="#history-of-qm">History of QM</a></li>
+  <li><a href="#the-wave-function" id="toc-the-wave-function" class="nav-link" data-scroll-target="#the-wave-function">The Wave Function</a>
+  <ul class="collapse">
+  <li><a href="#schrodinger-equation" id="toc-schrodinger-equation" class="nav-link" data-scroll-target="#schrodinger-equation">Schrodinger Equation</a></li>
+  <li><a href="#statistical-interpretation" id="toc-statistical-interpretation" class="nav-link" data-scroll-target="#statistical-interpretation">Statistical Interpretation</a></li>
+  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability">Probability</a></li>
+  <li><a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization">Normalization</a></li>
+  <li><a href="#momentum" id="toc-momentum" class="nav-link" data-scroll-target="#momentum">Momentum</a></li>
+  <li><a href="#uncertainty-principle" id="toc-uncertainty-principle" class="nav-link" data-scroll-target="#uncertainty-principle">Uncertainty Principle</a></li>
+  </ul></li>
+  <li><a href="#time-independent-schrodinger-equation" id="toc-time-independent-schrodinger-equation" class="nav-link" data-scroll-target="#time-independent-schrodinger-equation">Time-Independent Schrodinger Equation</a>
+  <ul class="collapse">
+  <li><a href="#stationary-states" id="toc-stationary-states" class="nav-link" data-scroll-target="#stationary-states">Stationary States</a></li>
+  <li><a href="#infinite-square-well" id="toc-infinite-square-well" class="nav-link" data-scroll-target="#infinite-square-well">Infinite Square Well</a></li>
+  <li><a href="#harmonic-oscillator" id="toc-harmonic-oscillator" class="nav-link" data-scroll-target="#harmonic-oscillator">Harmonic Oscillator</a>
+  <ul class="collapse">
+  <li><a href="#algebraic-method" id="toc-algebraic-method" class="nav-link" data-scroll-target="#algebraic-method">Algebraic Method</a></li>
+  <li><a href="#analytic-method" id="toc-analytic-method" class="nav-link" data-scroll-target="#analytic-method">Analytic Method</a></li>
+  </ul></li>
+  <li><a href="#free-particle" id="toc-free-particle" class="nav-link" data-scroll-target="#free-particle">Free Particle</a></li>
+  <li><a href="#delta-function-potential" id="toc-delta-function-potential" class="nav-link" data-scroll-target="#delta-function-potential">Delta-Function Potential</a>
+  <ul class="collapse">
+  <li><a href="#boundscattering-states-tunneling" id="toc-boundscattering-states-tunneling" class="nav-link" data-scroll-target="#boundscattering-states-tunneling">Bound/Scattering States: Tunneling</a></li>
+  <li><a href="#delta-function-well" id="toc-delta-function-well" class="nav-link" data-scroll-target="#delta-function-well">Delta-Function Well</a></li>
+  </ul></li>
+  <li><a href="#finite-square-well" id="toc-finite-square-well" class="nav-link" data-scroll-target="#finite-square-well">Finite Square Well</a></li>
+  </ul></li>
+  <li><a href="#formalism" id="toc-formalism" class="nav-link" data-scroll-target="#formalism">Formalism</a>
+  <ul class="collapse">
+  <li><a href="#hilbert-space" id="toc-hilbert-space" class="nav-link" data-scroll-target="#hilbert-space">Hilbert Space</a></li>
+  <li><a href="#observables" id="toc-observables" class="nav-link" data-scroll-target="#observables">Observables</a></li>
+  <li><a href="#eigenfunctions-of-a-hermitian-operator" id="toc-eigenfunctions-of-a-hermitian-operator" class="nav-link" data-scroll-target="#eigenfunctions-of-a-hermitian-operator">Eigenfunctions of a Hermitian Operator</a></li>
+  <li><a href="#generalized-statistical-interpretation" id="toc-generalized-statistical-interpretation" class="nav-link" data-scroll-target="#generalized-statistical-interpretation">Generalized Statistical Interpretation</a></li>
+  <li><a href="#the-uncertainty-principle" id="toc-the-uncertainty-principle" class="nav-link" data-scroll-target="#the-uncertainty-principle">The Uncertainty Principle</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Quantum</h1>
+<h1 class="title">Quantum Mechanics Notes/Overview</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Will St.&nbsp;John </p>
+          </div>
+  </div>
     
   
     
@@ -166,19 +242,211 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Notes</p>
+<blockquote class="blockquote">
+<p>Information on this page was taken from the Fall 2025 Macalester College Quantum Mechanics course taught by Professor Saki Khan using Griffith’s 2nd Edition.</p>
+</blockquote>
+<section id="history-of-qm" class="level1">
+<h1>History of QM</h1>
+</section>
+<section id="the-wave-function" class="level1">
+<h1>The Wave Function</h1>
+<p>Physicists needed a mathematical tool to describe particles/waves. This function has to meet a some physics criteria:</p>
+<ol type="1">
+<li>Complex function</li>
+<li>Square-integrable</li>
+<li>Normalizing doesn’t depend on time (the particle has to be somewhere)</li>
+</ol>
+<section id="schrodinger-equation" class="level2">
+<h2 class="anchored" data-anchor-id="schrodinger-equation">Schrodinger Equation</h2>
+<p>Since all particles can be described as waves (thanks DeBroglie), and a bunch of other criteria, we get the following differential equation in QM, solutions to which are called wave functions:</p>
+<p><span class="math display">\[-\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2} + V\Psi = i\hbar\frac{\partial\Psi}{\partial t}\]</span></p>
+<p>Solutions to the Schrodinger Equation are called <em>square-integrable</em></p>
+</section>
+<section id="statistical-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-interpretation">Statistical Interpretation</h2>
+<p>What does a wave function actually mean? Max Born provides the interpretation. Specifically</p>
+<p><span class="math display">\[\int_a^b|\Psi(x, t)|^2dx = \left\{\text{probability of finding the particle between $a$ and $b$ at time $t$}\right\}\]</span></p>
+<p>Ok. What if I make a measurement of a particle at time <span class="math inline">\(t\)</span>, say at position <span class="math inline">\(C\)</span>? Where was the particle just before I made the measurement?</p>
+<p>Turn’s out there’s three plausible answers.</p>
+<ol type="1">
+<li>(<strong>Realist</strong>) The particle was at <span class="math inline">\(C\)</span>.</li>
+<li>(<strong>Orthodox</strong>) The particle wasn’t really anywhere.</li>
+<li>(<strong>Agnostic</strong>) No answer.</li>
+</ol>
+<p>Most physicist take the orthodox view after John Bell’s showed that it makes an observable difference whether the particle had a precise (though unknown) position prior to measurement.</p>
+<p>Ok. What if I make a measurement right after the first measurement?</p>
+<p>Answer: The wave function <strong>collapses</strong> and all subsequent measurements yield <span class="math inline">\(C\)</span>.</p>
+</section>
+<section id="probability" class="level2">
+<h2 class="anchored" data-anchor-id="probability">Probability</h2>
+<p>In statistics, it’s called the average. In QM, it’s called the <strong>expectation value</strong>, that is to say <em>the value you would get after repeated measurements</em>.</p>
+</section>
+<section id="normalization" class="level2">
+<h2 class="anchored" data-anchor-id="normalization">Normalization</h2>
+<p>Given our statistical interpretation of the wave function, we will need to normalize the function. We can do so with the following physical condition: <em>at any given time, the particle must be somewhere</em>.</p>
+<p><span class="math display">\[\int_{-\infty}^{\infty}|\Psi(x, t)|^2 dx = 1\]</span></p>
+<p>Note, once a wave function is normalized at some <span class="math inline">\(t\)</span>, it remains normalized for all other <span class="math inline">\(t\)</span>.</p>
+</section>
+<section id="momentum" class="level2">
+<h2 class="anchored" data-anchor-id="momentum">Momentum</h2>
+<p>Here is a neat fact:</p>
 <ul>
-<li><a href="../../courses/quantum/notes.html">Notes</a></li>
+<li>All observables (eg. energy, temperature, etc.) <span class="math inline">\(Q\)</span> are functions of <span class="math inline">\(x\)</span> and <span class="math inline">\(p\)</span>. In other words, <span class="math inline">\(Q=Q(x, p)\)</span>.</li>
 </ul>
-<p>Problem Sets</p>
-<ul>
-<li><a href="../../courses/quantum/PS1.html">PS1</a></li>
-<li><a href="../../courses/quantum/PS2.html">PS2</a></li>
-<li><a href="../../courses/quantum/PS3.html">PS3</a></li>
-<li><a href="../../courses/quantum/PS4.html">PS4</a></li>
-</ul>
+<p>Any observable has a corresponding expectation value in QM defined as: <span class="math display">\[\left&lt;Q(x, p)\right&gt;\int\Psi^*\left[Q(x, -i\hbar\partial/\partial x)\right]\Psi dx\]</span></p>
+<p>Additionally, we can define <strong>operators</strong>, essentially functions, that allow us to only have to remember classical equations and two specific operators.</p>
+<p><span class="math display">\[\hat{x} = x, \quad \hat{p} = -i\hbar\frac{\partial}{\partial x}\]</span></p>
+<p>Another neat fact is <strong>Ehrenfest’s theorem</strong>: <em>expectation values obey classical laws</em>, allowing us to translate angle brackets in QM equations.</p>
+</section>
+<section id="uncertainty-principle" class="level2">
+<h2 class="anchored" data-anchor-id="uncertainty-principle">Uncertainty Principle</h2>
+<p>We should all know this by now.</p>
+<p><span class="math display">\[\sigma_x\sigma_p \geq\frac{\hbar}{2}\]</span></p>
+</section>
+</section>
+<section id="time-independent-schrodinger-equation" class="level1">
+<h1>Time-Independent Schrodinger Equation</h1>
+<section id="stationary-states" class="level2">
+<h2 class="anchored" data-anchor-id="stationary-states">Stationary States</h2>
+<p>When we try to solve the Schrodinger Equation (SE), we use the physicist’s favorite tool, separation of variables, to derive the time-independent Schrodinger Equation (TISE).</p>
+<p><span class="math display">\[-\frac{\hbar^2}{2m}\frac{d^2 \Psi}{dx^2} + V\Psi = E\Psi\]</span></p>
+<p>This is especially cool because any time-independent solution we find with this equation can be turned into a time-dependent solution by adding on</p>
+<p><span class="math display">\[e^{-iEt\hbar}\]</span></p>
+<p>The key thing about solutions to the TISE are:</p>
+<ol type="1">
+<li>They are <strong>stationary states</strong>: the probability density (<span class="math inline">\(|\Psi(x,t)|^2\)</span>) doesn’t depend on <span class="math inline">\(t\)</span></li>
+<li>The are states of <em>definite total energy</em>. Note total energy is called the <strong>Hamiltonian</strong></li>
+<li>The general solution is a <strong>linear combination</strong> of separable variables. Specifically, <span class="math display">\[\Psi(x,t) = \sum_{n=1}^{\infty}c_n\psi_n e^{-i E_n t/\hbar} = \sum_{n=1}^{\infty}c_n\Psi_n\]</span></li>
+</ol>
+<p>Importantly, <span class="math inline">\(|c_n|^2\)</span> is the <em>probability</em> that a measurement of the energy would return the value <span class="math inline">\(E_n\)</span>.</p>
+<p>Additionally, <span class="math display">\[\sum_{n=1}^\infty|c_n|^2 =1\]</span> and <span class="math display">\[\left&lt;H\right&gt; = \sum_{n=1}^{\infty}|c_n|^2 E_n\]</span>.</p>
+</section>
+<section id="infinite-square-well" class="level2">
+<h2 class="anchored" data-anchor-id="infinite-square-well">Infinite Square Well</h2>
+<p>Given</p>
+<p><span class="math display">\[V(x) = \cases{0, \quad 0\leq x\leq a \\ \infty, \quad \text{otherwise}}\]</span></p>
+<p>solutions to the TISE after solving for both regions and applying boundary conditions gives</p>
+<p><span class="math display">\[E_n = \frac{n^2\pi^2\hbar^2}{2ma^2}\]</span></p>
+<p>and <span class="math display">\[\psi_n(x) = \sqrt{\frac{2}{a}}\sin\left(\frac{n\pi}{a}x\right)\]</span></p>
+<p>which have interesting properties. Namely</p>
+<ol type="1">
+<li><span class="math inline">\(\psi_n\)</span> alternate being <strong>even</strong> or <strong>odd</strong></li>
+<li><span class="math inline">\(\psi_1\)</span> has no nodes, <span class="math inline">\(\psi_2\)</span> has one, <span class="math inline">\(\psi_3\)</span> has 2, etc.</li>
+<li>They are orthogonal</li>
+<li>They are complete (any other function can be expressed as a linear combination of them)</li>
+</ol>
+<p>The third point bring up the key realization (<strong>Kronecker delta</strong>):</p>
+<p><span class="math display">\[\int\psi_m^*\psi_n dx = \delta_{mn} = \cases{0, \quad m\not= n \\ 1, \quad m = n}\]</span></p>
+<p>From part 4 comes the relation</p>
+<p><span class="math display">\[c_n = \int\psi_n^*f(x) dx\]</span></p>
+<p>or what is often more helpful (at least in HW)</p>
+<p><span class="math display">\[c_n = \sqrt{\frac{2}{a}}\int_0^\infty\sin\left(\frac{n\pi}{a}x\right)\Psi(x,0) dx\]</span></p>
+</section>
+<section id="harmonic-oscillator" class="level2">
+<h2 class="anchored" data-anchor-id="harmonic-oscillator">Harmonic Oscillator</h2>
+<p>Another cool fact: harmonic oscillators are cool and useful and we can approximate any function as a Taylor series expansion.</p>
+<p>Assuming the potential takes the form <span class="math display">\[V(x) = \frac{1}{2}m\omega^2x^2\]</span> our TISE becomes <span class="math display">\[-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + \frac{1}{2}m\omega^2x^2 = E\psi\]</span></p>
+<p>There are two methods for which to solve this differential equation.</p>
+<section id="algebraic-method" class="level3">
+<h3 class="anchored" data-anchor-id="algebraic-method">Algebraic Method</h3>
+<p>With</p>
+<p><span class="math display">\[\hat{a}_\pm = \frac{1}{\sqrt{2\hbar m\omega}}(\mp i\hat{p} + m\omega x)\]</span></p>
+<p><span class="math display">\[\left[x, \hat{p}\right] = i\hbar\]</span></p>
+<p>It follows if <span class="math inline">\(\psi\)</span> satisfies the SE with energy <span class="math inline">\(E\)</span> (that is <span class="math inline">\(\hat{H}\psi = E\psi\)</span>), then <span class="math inline">\(\hat{a}_+\psi\)</span> satisfies the SE with energy <span class="math inline">\((E + \hbar\omega)\)</span>: <span class="math inline">\(\hat{H}(\hat{a}_+\psi) = (E+\hbar\omega)(\hat{a}_+\psi)\)</span></p>
+<p>We call <span class="math inline">\(\hat{a}_\pm\)</span> <strong>ladder operators</strong>.</p>
+<p>This is particlarly useful because we can find</p>
+<p><span class="math display">\[\psi_0 = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}e^{-\frac{m\omega}{2\hbar}x^2}\]</span></p>
+<p><span class="math display">\[\psi_n = A_n(\hat{a}_+)^n\psi_0, \text{ with } E_n = \left(n + \frac{1}{2}\right)\hbar\omega\]</span></p>
+<p>Additionally, it’s useful to know</p>
+<p><span class="math display">\[\hat{a}_+\psi_n = \sqrt{n + 1}\psi_{n+1}, \quad \hat{a}_-\psi_n = \sqrt{n}\psi_{n-1}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\psi_n = \frac{1}{\sqrt{n!}}(\hat{a}_+)^n\psi_0\]</span></p>
+<p>Arguably even more useful: <span class="math display">\[x = \sqrt{\frac{\hbar}{2m\omega}}\left(\hat{a}_+ + \hat{a}_-\right), \quad \hat{p} = i\sqrt{\frac{\hbar m \omega}{2}}(\hat{a}_+ - \hat{a}_-)\]</span></p>
+</section>
+<section id="analytic-method" class="level3">
+<h3 class="anchored" data-anchor-id="analytic-method">Analytic Method</h3>
+<p>If we use the analytic method, we get the solution</p>
+<p><span class="math display">\[\psi_n = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}\frac{1}{\sqrt{2^nn!}}H_n(\xi)e^{-\xi^2/2}\]</span></p>
+<p>which use the <strong>Hermite polynomials</strong>!</p>
+</section>
+</section>
+<section id="free-particle" class="level2">
+<h2 class="anchored" data-anchor-id="free-particle">Free Particle</h2>
+<p>Our TISE is</p>
+<p><span class="math display">\[-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} = E\psi\]</span></p>
+<p>or <span class="math display">\[\frac{d^2\psi}{dx^2} = -k^2\psi, \quad k = \frac{\sqrt{2mE}}{\hbar}\]</span></p>
+<p>which has a general solution of</p>
+<p><span class="math display">\[\psi = Ae^{ikx} + Be^{-ikx}\]</span></p>
+<p>or the time-dependent solution of</p>
+<p><span class="math display">\[\Psi_k(x,t) = Ae^{i\left(kx - \frac{\hbar k^2}{2m}t\right)}, \quad k = \pm\frac{\sqrt{2mE}}{\hbar}\]</span></p>
+<p>with <span class="math inline">\(k&gt;0\implies \text{traveling to right}\)</span> and <span class="math inline">\(k&lt;0\implies \text{traveling to left}\)</span></p>
+<p>The big thing of free particles is: <strong>there is no such thing as a free particle with deifinite energy</strong></p>
+<p>Instead we can get a solution using a Fourier transformation to get the wave packet. This wave packet solution helps us see that the quantum and classical velocity of the particle are identical if we define the quantum velocity as the group velocity, not the phase velocity. $$$$</p>
+</section>
+<section id="delta-function-potential" class="level2">
+<h2 class="anchored" data-anchor-id="delta-function-potential">Delta-Function Potential</h2>
+<section id="boundscattering-states-tunneling" class="level3">
+<h3 class="anchored" data-anchor-id="boundscattering-states-tunneling">Bound/Scattering States: Tunneling</h3>
+<p>If <span class="math inline">\(E&lt; V(-\infty)\)</span> and <span class="math inline">\(V(\infty)\)</span>, then the system is in a <strong>bound state</strong>.</p>
+<p>If <span class="math inline">\(E&lt; V(-\infty)\)</span> or <span class="math inline">\(V(\infty)\)</span>, then the system is in a <strong>scattering state</strong>.</p>
+<p>This is a result of tunneling.</p>
+</section>
+<section id="delta-function-well" class="level3">
+<h3 class="anchored" data-anchor-id="delta-function-well">Delta-Function Well</h3>
+<p>Given</p>
+<p><span class="math display">\[\delta(x) = \cases{0, \quad x\not=0 \\ \infty, \quad x = 0}\quad \int_{-\infty}^{\infty}\delta(x) dx = 1\]</span></p>
+<p>We can consider potentials of the form</p>
+<p><span class="math display">\[V(x) = -\alpha\delta(x)\]</span></p>
+<p>We can solve similarly to prior problems, but note that our general solution might take the form</p>
+<p><span class="math display">\[\psi = Ae^{lx} + Be^{-lx}\]</span>.</p>
+<p>For bound states (note, dirac delta potentials result in only one bound state), the solution is</p>
+<p><span class="math display">\[\psi = \frac{\sqrt{m\alpha}}{\hbar}e^{-m\alpha|x|/\hbar^2}, \quad E = -\frac{m\alpha^2}{2\hbar^2}\]</span></p>
+<p>For scattered states, the solution is a series of tranmitted and reflected waves.</p>
+<p><span class="math display">\[R = \frac{|B|^2}{|A|^2}, \quad T = \frac{|F|^2}{|A|^2}, \quad R + T = 1\]</span></p>
+<p>In our case (a negative dirac delta well),</p>
+<p><span class="math display">\[R = \frac{1}{1 + (2\hbar^2E/m\alpha^2)}, T = \frac{1}{1 + (m\alpha^2/2\hbar^2E)}\]</span></p>
+<p>The key takeaways when solving these boundary condition problems are</p>
+<ol type="1">
+<li><span class="math inline">\(\psi\)</span> is always continuous</li>
+<li><span class="math inline">\(d\psi/dx\)</span> is continuous except at points of infinite potential</li>
+</ol>
+</section>
+</section>
+<section id="finite-square-well" class="level2">
+<h2 class="anchored" data-anchor-id="finite-square-well">Finite Square Well</h2>
+<p>For a finite square well, with potential</p>
+<p><span class="math display">\[V(x) = \cases{-V_0, \quad -a \leq x \leq a \\ 0, \quad |x| &gt; a}\]</span></p>
+<p>We get a transcendental equation (cannot be solved algebraically)</p>
+<p><span class="math display">\[\tan z = \sqrt{(z_0/z)^2-1}\]</span></p>
+<p>The graph of which looks like</p>
+<p><img src="transcedental.png" class="img-fluid"></p>
+<p>What is interesting about this solution is</p>
+<ol type="1">
+<li><strong>For a wide, deep well</strong>, the well looks like an infinite square well</li>
+<li><strong>For a shallow, narrow well</strong>, there are fewer and fewer bound states, but one state is always present.</li>
+</ol>
+</section>
+</section>
+<section id="formalism" class="level1">
+<h1>Formalism</h1>
+<section id="hilbert-space" class="level2">
+<h2 class="anchored" data-anchor-id="hilbert-space">Hilbert Space</h2>
+</section>
+<section id="observables" class="level2">
+<h2 class="anchored" data-anchor-id="observables">Observables</h2>
+</section>
+<section id="eigenfunctions-of-a-hermitian-operator" class="level2">
+<h2 class="anchored" data-anchor-id="eigenfunctions-of-a-hermitian-operator">Eigenfunctions of a Hermitian Operator</h2>
+</section>
+<section id="generalized-statistical-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="generalized-statistical-interpretation">Generalized Statistical Interpretation</h2>
+</section>
+<section id="the-uncertainty-principle" class="level2">
+<h2 class="anchored" data-anchor-id="the-uncertainty-principle">The Uncertainty Principle</h2>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
